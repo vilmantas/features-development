@@ -1,0 +1,16 @@
+{
+    "name": "Health",
+    "rootNamespace": "",
+    "references": [
+        "GUID:c7bff77d66b55c949934bd0b903bdf65"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
