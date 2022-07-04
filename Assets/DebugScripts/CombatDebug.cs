@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 
 namespace DebugScripts
 {
-    public class Debug : MonoBehaviour
+    public class CombatDebug : MonoBehaviour
     {
         private CombatController m_CombatController;
         
