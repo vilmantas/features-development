@@ -4,6 +4,17 @@ namespace Utilities
 {
     public class ResourceContainer
     {
+        public ResourceContainer(int max, int current)
+        {
+            Max = max;
+
+            Current = current > max ? max : current;
+        }
+
+        public ResourceContainer(int max) : this(max, 0)
+        {
+        }
+
         public int Max { get; private set; }
 
         public int Current { get; private set; }
@@ -11,13 +22,6 @@ namespace Utilities
         public bool IsEmpty => Current == 0;
 
         public bool IsFull => Current == Max;
-
-        public ResourceContainer(int max, int current)
-        {
-            Max = max;
-
-            Current = current > max ? max : current;
-        }
 
         public bool Receive(int value)
         {
@@ -40,7 +44,7 @@ namespace Utilities
 
             return value != leftovers;
         }
-        
+
         public bool Reduce(int value)
         {
             return Reduce(value, out var _);

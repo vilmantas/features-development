@@ -1,25 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using NUnit.Framework;
-using UnityEngine;
-using UnityEngine.TestTools;
 using Utilities;
 
 namespace ResourceContainerTests
 {
     public class Base
     {
-        private ResourceContainer m_SUT;
-
-        private int m_Max;
-
         private int m_currentAmount;
 
-        public void Setup()
+        private int m_Max;
+        private ResourceContainer m_SUT;
+
+        public void Initialize()
         {
             m_SUT = new ResourceContainer(m_Max, m_currentAmount);
         }
-        
+
         [TestFixture]
         public class WhenNotFull : Base
         {
@@ -29,7 +24,7 @@ namespace ResourceContainerTests
                 m_currentAmount = 5;
                 m_Max = 10;
 
-                base.Setup();
+                Initialize();
             }
 
             [Test]
@@ -37,7 +32,7 @@ namespace ResourceContainerTests
             {
                 Assert.IsTrue(m_SUT.Receive(1));
             }
-            
+
             [Test]
             public void ItCanReduce()
             {
@@ -51,7 +46,7 @@ namespace ResourceContainerTests
 
                 Assert.AreEqual(5, leftovers);
             }
-            
+
             [Test]
             public void ItReportsAmountLeftAfterReducing()
             {
@@ -72,7 +67,7 @@ namespace ResourceContainerTests
             public void ItDoesNotGoBelowZero()
             {
                 m_SUT.Reduce(100);
-                
+
                 Assert.AreEqual(0, m_SUT.Current);
             }
         }
@@ -85,7 +80,7 @@ namespace ResourceContainerTests
             {
                 m_currentAmount = m_Max;
 
-                base.Setup();
+                Initialize();
             }
 
             [Test]
@@ -119,7 +114,7 @@ namespace ResourceContainerTests
             {
                 m_currentAmount = 0;
 
-                base.Setup();
+                Initialize();
             }
 
             [Test]
@@ -133,7 +128,7 @@ namespace ResourceContainerTests
             {
                 Assert.IsFalse(m_SUT.Reduce(1));
             }
-            
+
             [Test]
             public void ItDoesntConsumeAmountReduced()
             {
