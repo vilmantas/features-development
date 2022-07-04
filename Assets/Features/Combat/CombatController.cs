@@ -1,50 +1,21 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Feature.Combat.Events;
-using Features.Combat;
+using Feature.Combat;
 using UnityEngine;
+using UnityEngine.Events;
 
-namespace Feature.Combat
+namespace Features.Combat
 {
-    public class CombatController
+    public class CombatController : MonoBehaviour
     {
-        private readonly ICombatManager Manager;
-
-        public CombatController(ICombatManager manager)
-        {
-            Manager = manager;
-        }
-
-        public Action<CombatController> CurryAttack(Func<AttackInfo> infoCallback,
-            Action<AttackResult> resultCallback)
-        {
-            return target => Attack(target, infoCallback.Invoke(), resultCallback);
-        }
-
-        public void Attack(CombatController target, AttackInfo info, Action<AttackResult> resultCallback)
-        {
-            var request = new Attack(info, resultCallback);
-            
-            target.Defend(request);
-        }
+        [HideInInspector] 
+        public OnHitEvent OnHit = new ();
         
-        private void Defend(Attack request)
+        internal void Hit(AttackMetadataBase source, Action<HitMetadataBase> resultCallback)
         {
-            if (Manager.TryAvoidAttack(request))
-            {
-                request.ResultCallback.Invoke(new FailedAttackResult(this));
-
-                return;
-            }
-            
-            var source = request.Info;
-
-            var damage = Manager.OnHit(source);
-
-            var result = new SuccessfulAttackResult(this, damage);
-            
-            request.ResultCallback.Invoke(result);
+            OnHit.Invoke(source, resultCallback);
         }
     }
+    
+    [Serializable]
+    public class OnHitEvent : UnityEvent<AttackMetadataBase, Action<HitMetadataBase>> {}
 }

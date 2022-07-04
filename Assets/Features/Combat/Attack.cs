@@ -2,16 +2,13 @@ using System;
 
 namespace Features.Combat
 {
-    public class Attack
+    public abstract class AttackMetadataBase
     {
-        public readonly AttackInfo Info;
-
-        public readonly Action<AttackResult> ResultCallback;
-
-        public Attack(AttackInfo info, Action<AttackResult> resultCallback)
-        {
-            Info = info;
-            ResultCallback = resultCallback;
-        }
+        protected AttackMetadataBase() {}
+    }
+    
+    public abstract class HitMetadataBase
+    {
+        protected HitMetadataBase() {}
     }
 }

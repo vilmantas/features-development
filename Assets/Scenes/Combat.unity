@@ -334,6 +334,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 218407974}
+  - component: {fileID: 218407975}
   m_Layer: 0
   m_Name: Combat
   m_TagString: Untagged
@@ -356,6 +357,21 @@ Transform:
   m_Father: {fileID: 816388656}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &218407975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218407973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfb427bc6762428fa9ede51e8bbc4c3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnHit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &304309867
 GameObject:
   m_ObjectHideFlags: 0
@@ -365,6 +381,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 304309868}
+  - component: {fileID: 304309869}
   m_Layer: 0
   m_Name: Combat
   m_TagString: Untagged
@@ -387,6 +404,21 @@ Transform:
   m_Father: {fileID: 1712494079}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &304309869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 304309867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfb427bc6762428fa9ede51e8bbc4c3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnHit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &411334775
 GameObject:
   m_ObjectHideFlags: 0
@@ -851,7 +883,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1ae94adefb648a6aac091c7d6a51948, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 1712494080}
+  Target: {fileID: 304309869}
 --- !u!1 &1197348986
 GameObject:
   m_ObjectHideFlags: 0
@@ -1199,7 +1231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1ae94adefb648a6aac091c7d6a51948, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 816388657}
+  Target: {fileID: 218407975}
 --- !u!1 &1871814217
 GameObject:
   m_ObjectHideFlags: 0
