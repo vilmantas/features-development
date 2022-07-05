@@ -46,5 +46,10 @@ namespace Utilities.ItemsContainer
         {
             return Parent.GetHashCode();
         }
+
+        public static StorageData DuplicateEmpty(StorageData original)
+        {
+            return new StorageData(original.Parent, new ResourceContainer(original.StackableData.Max));
+        }
     }
 }
