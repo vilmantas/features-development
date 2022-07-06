@@ -1,57 +1,66 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Features.Buffs
 {
     public class BuffController : MonoBehaviour
     {
-        public int TickIntervalMilliseconds = 100;
+        public BuffAddedEvent OnBuffAdded = new();
 
-        [Min(0)] public int MaxBuffCount = 100;
+        public BuffRemovedEvent OnBuffRemoved = new();
 
-        private List<ActiveBuff> Buffs = new();
+        public BuffStackAddedEvent OnBuffStackAdded = new();
 
-        public void Receive(string buffName)
+        public BuffStackRemovedEvent OnBuffStackRemoved = new();
+        private BuffContainer Container;
+
+        public IReadOnlyList<ActiveBuff> ActiveBuffs => Container.Buffs.Where(x => !x.IsDepleted).ToList();
+
+        private void Start()
         {
-            var buff = Buffs.FirstOrDefault(x => x.Metadata.Name == buffName);
-
-            if (buff == null)
-            {
-                if (!BuffDatabase.Exists(buffName)) return;
-
-                buff = BuffDatabase.GetActiveBuff(buffName);
-
-                Buffs.Add(buff);
-
-                buff.ResetDuration();
-
-                StartCoroutine(Ticker(buff));
-            }
-            else
-            {
-                if (buff.Stacks.CanReceive)
-                {
-                    buff.Stacks.Receive(1);
-                }
-
-                buff.ResetDuration();
-            }
+            Container = new BuffContainer().RegisterCallbacks(OnBuffRemoved.Invoke, OnBuffAdded.Invoke,
+                OnBuffStackRemoved.Invoke, OnBuffStackAdded.Invoke);
         }
 
-        private IEnumerator Ticker(ActiveBuff buff)
+        private void Update()
         {
-            var interval = TickIntervalMilliseconds / 1000;
-
-            while (true)
-            {
-                yield return new WaitForSeconds(interval);
-
-                buff.DurationLeft -= interval;
-
-                buff.Metadata.OnTick(interval);
-            }
+            Container.Tick(Time.deltaTime);
         }
+
+        public void Remove(BuffBase buff)
+        {
+            Container.Remove(buff);
+        }
+
+        public void Receive(BuffBase buff)
+        {
+            Container.Receive(buff);
+        }
+    }
+
+
+    [Serializable]
+    public class BuffRemovedEvent : UnityEvent<ActiveBuff>
+    {
+    }
+
+
+    [Serializable]
+    public class BuffAddedEvent : UnityEvent<ActiveBuff>
+    {
+    }
+
+    [Serializable]
+    public class BuffStackRemovedEvent : UnityEvent<ActiveBuff>
+    {
+    }
+
+
+    [Serializable]
+    public class BuffStackAddedEvent : UnityEvent<ActiveBuff>
+    {
     }
 }

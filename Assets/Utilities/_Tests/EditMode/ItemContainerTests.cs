@@ -1,7 +1,6 @@
 using System;
 using System.Linq;
 using NUnit.Framework;
-using Utilities;
 using Utilities.ItemsContainer;
 
 namespace ItemContainerTests
@@ -9,13 +8,13 @@ namespace ItemContainerTests
     public class TestData
     {
         public Func<StorageData, StorageData> FakeFactory =
-            (t => new StorageData(t.Parent, new ResourceContainer(t.StackableData.Max)));
+            (t => new StorageData(t.Parent, t.StackableData.Max));
 
         public int m_ContainerSize = 5;
 
         public StorageData SimpleItem = new("Test 1");
 
-        public StorageData StackableItem = new("Test 2", new ResourceContainer(5));
+        public StorageData StackableItem = new("Test 2", 5);
         public Container SUT;
     }
 
@@ -28,7 +27,7 @@ namespace ItemContainerTests
 
             SimpleItem = new StorageData("Test 1");
 
-            StackableItem = new StorageData("Test 2", new ResourceContainer(5));
+            StackableItem = new StorageData("Test 2", 5);
         }
 
         [Test]
@@ -162,7 +161,7 @@ namespace ItemContainerTests
 
             var originalSlotItem = SUT.SlotsWithData.First().Item;
 
-            var replacement = new StorageData("Lol", new(1));
+            var replacement = new StorageData("Lol");
 
             SUT.ReplaceExact(originalSlotItem, replacement);
 

@@ -1,4 +1,3 @@
-using Utilities;
 using Utilities.ItemsContainer;
 
 namespace DebugScripts
@@ -9,7 +8,7 @@ namespace DebugScripts
 
         public StorableItemDebug()
         {
-            item = new StorageData(this, new ResourceContainer(5));
+            item = new StorageData(this, 5);
         }
 
         public string Name { get; set; }

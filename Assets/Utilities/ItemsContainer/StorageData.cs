@@ -6,10 +6,10 @@ namespace Utilities.ItemsContainer
     {
         internal readonly Guid Id = Guid.NewGuid();
 
-        public StorageData(object parent, ResourceContainer stackableData)
+        public StorageData(object parent, int maxStackSize = 1)
         {
             Parent = parent;
-            StackableData = stackableData;
+            StackableData = new ResourceContainer(maxStackSize);
         }
 
         public StorageData(object parent)
@@ -45,11 +45,6 @@ namespace Utilities.ItemsContainer
         public override int GetHashCode()
         {
             return Parent.GetHashCode();
-        }
-
-        public static StorageData DuplicateEmpty(StorageData original)
-        {
-            return new StorageData(original.Parent, new ResourceContainer(original.StackableData.Max));
         }
     }
 }
