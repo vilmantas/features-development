@@ -29,13 +29,6 @@ namespace DebugScripts
             m_InventoryController.OnChangeRequestHandled.AddListener(ChangeRequestHandled);
 
             m_InventoryController.WithUI(baseSlotUIPrefab, UIContainer.transform);
-
-            // foreach (var fakeItemSo in Items)
-            // {
-            //     var request = ChangeRequestFactory.Add(fakeItemSo.GetInstance.StorageData, 2);
-            //
-            //     m_InventoryController.HandleRequest(request);
-            // }
         }
 
         private StorageData wtf(StorageData arg)
