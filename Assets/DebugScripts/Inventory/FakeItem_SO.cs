@@ -9,9 +9,11 @@ namespace DebugScripts
 
         public Sprite Sprite;
 
-        [Min(1)] [Range(1, 1000)] public int MaxStack;
+        [Min(1)] [Range(1, 1000)] public int MaxStack = 1;
 
-        public FakeItemMetadata GetMetadata => new(Name, Sprite, MaxStack);
+        public GameObject Model;
+
+        public FakeItemMetadata GetMetadata => new(Name, Sprite, Model, MaxStack);
 
         public FakeItemInstance GetInstance => new(GetMetadata);
     }

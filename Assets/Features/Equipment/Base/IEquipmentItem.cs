@@ -14,6 +14,10 @@ namespace Equipment
 
         public string GetAmmoText { get; }
 
+        bool IsStackable { get; }
+
+        int CurrentAmount { get; }
+
         public bool Combine(IEquipmentItem other);
     }
 

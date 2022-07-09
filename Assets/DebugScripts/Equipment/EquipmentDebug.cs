@@ -6,6 +6,7 @@ namespace DebugScripts.Equipment
 {
     public class EquipmentDebug : MonoBehaviour
     {
+        public FakeItem_SO FakeItem;
         private EquipmentController m_EquipmentController;
 
         private void Start()
@@ -16,7 +17,8 @@ namespace DebugScripts.Equipment
 
             var request = new EquipRequest()
             {
-                SlotType = "Basef"
+                SlotType = "Basef",
+                Item = FakeItem.GetInstance.EquipmentData
             };
 
             m_EquipmentController.HandleEquipRequest(request);

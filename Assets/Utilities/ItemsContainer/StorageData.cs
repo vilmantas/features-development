@@ -32,16 +32,6 @@ namespace Utilities.ItemsContainer
             return Parent.Equals(b.Parent);
         }
 
-        public static bool operator !=(StorageData a, StorageData b)
-        {
-            return a?.Parent != b?.Parent;
-        }
-
-        public static bool operator ==(StorageData a, StorageData b)
-        {
-            return a?.Parent == b?.Parent;
-        }
-
         public override int GetHashCode()
         {
             return Parent.GetHashCode();
