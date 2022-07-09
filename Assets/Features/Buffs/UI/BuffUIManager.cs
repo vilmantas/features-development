@@ -63,6 +63,8 @@ namespace Features.Buffs.UI
         {
             var timer = m_InstantiationFunc.Invoke();
 
+            timer.Setup(arg0);
+
             m_Buffs.Add(arg0.Metadata.Name, (timer, arg0));
         }
 

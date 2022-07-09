@@ -6,5 +6,6 @@ namespace Features.Buffs.UI
     {
         GameObject gameObject { get; }
         void BuffTickCallback(ActiveBuff buff);
+        void Setup(ActiveBuff buff);
     }
 }

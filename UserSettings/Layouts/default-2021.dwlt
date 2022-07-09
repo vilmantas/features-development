@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Console
+  m_Title: Project
   m_RootView: {fileID: 10}
   m_MinSize: {x: 875, y: 421}
   m_MaxSize: {x: 10000, y: 10000}
@@ -39,12 +39,12 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 546
+    x: 687
     y: 0
-    width: 480
-    height: 372
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
+    width: 436
+    height: 395
+  m_MinSize: {x: 102, y: 121}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 22}
   m_Panes:
   - {fileID: 22}
@@ -65,12 +65,12 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 1026
+    x: 1123
     y: 0
-    width: 439
-    height: 372
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
+    width: 342
+    height: 395
+  m_MinSize: {x: 102, y: 121}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
@@ -95,13 +95,13 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
-    y: 575
+    y: 552
     width: 1465
-    height: 372
+    height: 395
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 165
+  controlID: 148
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -119,8 +119,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 267
     y: 0
-    width: 618
-    height: 575
+    width: 608
+    height: 552
   m_MinSize: {x: 202, y: 221}
   m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 21}
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 142
+  controlID: 146
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -197,7 +197,7 @@ MonoBehaviour:
     x: 0
     y: 0
     width: 267
-    height: 575
+    height: 552
   m_MinSize: {x: 201, y: 221}
   m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 19}
@@ -222,8 +222,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 546
-    height: 372
+    width: 687
+    height: 395
   m_MinSize: {x: 231, y: 271}
   m_MaxSize: {x: 10001, y: 10021}
   m_ActualView: {fileID: 17}
@@ -326,7 +326,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 143
+  controlID: 147
 --- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -348,11 +348,11 @@ MonoBehaviour:
     x: 0
     y: 0
     width: 1465
-    height: 575
+    height: 552
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 144
+  controlID: 27
 --- !u!114 &15
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -368,10 +368,10 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 885
+    x: 875
     y: 0
-    width: 580
-    height: 575
+    width: 590
+    height: 552
   m_MinSize: {x: 202, y: 221}
   m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 20}
@@ -399,21 +399,21 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1737
-    y: -432
-    width: 437
-    height: 351
+    x: 1834
+    y: -455
+    width: 340
+    height: 374
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
     m_SaveData: []
   m_Spl:
-    ID: 191
+    ID: 197
     splitterInitialOffset: 215
     currentActiveSplitter: -1
     realSizes:
-    - 145
-    - 136
+    - 157
+    - 147
     relativeSizes:
     - 0.5160142
     - 0.48398578
@@ -423,7 +423,7 @@ MonoBehaviour:
     maxSizes:
     - 0
     - 0
-    lastTotalSize: 281
+    lastTotalSize: 304
     splitSize: 6
     xOffset: 0
     m_Version: 1
@@ -503,12 +503,12 @@ MonoBehaviour:
       categories: []
       parentId: 
       parentUniqueId: 
-    - id: 1003
+    - id: 1018
       uniqueId: '[Features.Buffs.Tests.EditMode.dll][suite]'
       name: Features.Buffs.Tests.EditMode.dll
       fullName: C:/Users/Vilmantas/Desktop/Code/unity-stuff/features-development/Library/ScriptAssemblies/Features.Buffs.Tests.EditMode.dll
-      resultStatus: 1
-      duration: 0.1175448
+      resultStatus: 0
+      duration: 0
       messages: 
       output: 
       stacktrace: 
@@ -519,12 +519,12 @@ MonoBehaviour:
       categories: []
       parentId: 1000
       parentUniqueId: '[features-development][suite]'
-    - id: 1006
+    - id: 1019
       uniqueId: Features.Buffs.Tests.EditMode.dll/[Features.Buffs.Tests.EditMode][BuffContainerTests][suite]
       name: BuffContainerTests
       fullName: BuffContainerTests
-      resultStatus: 1
-      duration: 0.1158325
+      resultStatus: 0
+      duration: 0
       messages: 
       output: 
       stacktrace: 
@@ -533,14 +533,14 @@ MonoBehaviour:
       description: 
       isSuite: 1
       categories: []
-      parentId: 1005
+      parentId: 1018
       parentUniqueId: '[Features.Buffs.Tests.EditMode.dll][suite]'
     - id: 1001
       uniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/[Features.Buffs.Tests.EditMode][BuffContainerTests.General][suite]
       name: General
       fullName: BuffContainerTests.General
-      resultStatus: 1
-      duration: 0.1139253
+      resultStatus: 0
+      duration: 0
       messages: 
       output: 
       stacktrace: 
@@ -549,14 +549,14 @@ MonoBehaviour:
       description: 
       isSuite: 1
       categories: []
-      parentId: 1006
+      parentId: 1019
       parentUniqueId: Features.Buffs.Tests.EditMode.dll/[Features.Buffs.Tests.EditMode][BuffContainerTests][suite]
-    - id: 1005
+    - id: 1006
       uniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/General/[Features.Buffs.Tests.EditMode][BuffContainerTests.General.AddsABuffWithFullDuration]
       name: AddsABuffWithFullDuration
       fullName: BuffContainerTests.General.AddsABuffWithFullDuration
-      resultStatus: 1
-      duration: 0.0472715
+      resultStatus: 0
+      duration: 0
       messages: 
       output: 
       stacktrace: 
@@ -572,8 +572,8 @@ MonoBehaviour:
       uniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/General/[Features.Buffs.Tests.EditMode][BuffContainerTests.General.ItAddsOneStackbyDefault]
       name: ItAddsOneStackbyDefault
       fullName: BuffContainerTests.General.ItAddsOneStackbyDefault
-      resultStatus: 1
-      duration: 0.0010609
+      resultStatus: 0
+      duration: 0
       messages: 
       output: 
       stacktrace: 
@@ -589,8 +589,8 @@ MonoBehaviour:
       uniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/General/[Features.Buffs.Tests.EditMode][BuffContainerTests.General.ItCanExecuteIntervalTickImmediately]
       name: ItCanExecuteIntervalTickImmediately
       fullName: BuffContainerTests.General.ItCanExecuteIntervalTickImmediately
-      resultStatus: 1
-      duration: 0.0032442
+      resultStatus: 0
+      duration: 0
       messages: 
       output: 
       stacktrace: 
@@ -606,8 +606,8 @@ MonoBehaviour:
       uniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/General/[Features.Buffs.Tests.EditMode][BuffContainerTests.General.ItCanReceiveABuff]
       name: ItCanReceiveABuff
       fullName: BuffContainerTests.General.ItCanReceiveABuff
-      resultStatus: 1
-      duration: 0.0003139
+      resultStatus: 0
+      duration: 0
       messages: 
       output: 
       stacktrace: 
@@ -623,8 +623,8 @@ MonoBehaviour:
       uniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/General/[Features.Buffs.Tests.EditMode][BuffContainerTests.General.ItCanReceiveBuffAfterFirstFinishes]
       name: ItCanReceiveBuffAfterFirstFinishes
       fullName: BuffContainerTests.General.ItCanReceiveBuffAfterFirstFinishes
-      resultStatus: 1
-      duration: 0.0018742
+      resultStatus: 0
+      duration: 0
       messages: 
       output: 
       stacktrace: 
@@ -636,12 +636,12 @@ MonoBehaviour:
       - Uncategorized
       parentId: 1001
       parentUniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/[Features.Buffs.Tests.EditMode][BuffContainerTests.General][suite]
-    - id: 1004
+    - id: 1005
       uniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/General/[Features.Buffs.Tests.EditMode][BuffContainerTests.General.ItDoesNotStackOverLimit]
       name: ItDoesNotStackOverLimit
       fullName: BuffContainerTests.General.ItDoesNotStackOverLimit
-      resultStatus: 1
-      duration: 0.000289
+      resultStatus: 0
+      duration: 0
       messages: 
       output: 
       stacktrace: 
@@ -657,8 +657,8 @@ MonoBehaviour:
       uniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/General/[Features.Buffs.Tests.EditMode][BuffContainerTests.General.ItNotifiesEachTimeAStackGetsRemoved]
       name: ItNotifiesEachTimeAStackGetsRemoved
       fullName: BuffContainerTests.General.ItNotifiesEachTimeAStackGetsRemoved
-      resultStatus: 1
-      duration: 0.0003084
+      resultStatus: 0
+      duration: 0
       messages: 
       output: 
       stacktrace: 
@@ -674,8 +674,8 @@ MonoBehaviour:
       uniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/General/[Features.Buffs.Tests.EditMode][BuffContainerTests.General.ItNotifiesEachTimeWhenStacksGetAdded]
       name: ItNotifiesEachTimeWhenStacksGetAdded
       fullName: BuffContainerTests.General.ItNotifiesEachTimeWhenStacksGetAdded
-      resultStatus: 1
-      duration: 0.0004282
+      resultStatus: 0
+      duration: 0
       messages: 
       output: 
       stacktrace: 
@@ -691,8 +691,8 @@ MonoBehaviour:
       uniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/General/[Features.Buffs.Tests.EditMode][BuffContainerTests.General.ItNotifiesWhenBuffReceived]
       name: ItNotifiesWhenBuffReceived
       fullName: BuffContainerTests.General.ItNotifiesWhenBuffReceived
-      resultStatus: 1
-      duration: 0.0003
+      resultStatus: 0
+      duration: 0
       messages: 
       output: 
       stacktrace: 
@@ -708,8 +708,8 @@ MonoBehaviour:
       uniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/General/[Features.Buffs.Tests.EditMode][BuffContainerTests.General.ItNotifiesWhenBuffRemoved]
       name: ItNotifiesWhenBuffRemoved
       fullName: BuffContainerTests.General.ItNotifiesWhenBuffRemoved
-      resultStatus: 1
-      duration: 0.0002935
+      resultStatus: 0
+      duration: 0
       messages: 
       output: 
       stacktrace: 
@@ -725,8 +725,8 @@ MonoBehaviour:
       uniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/General/[Features.Buffs.Tests.EditMode][BuffContainerTests.General.ItNotifiesWhenStackWasAdded]
       name: ItNotifiesWhenStackWasAdded
       fullName: BuffContainerTests.General.ItNotifiesWhenStackWasAdded
-      resultStatus: 1
-      duration: 0.0002619
+      resultStatus: 0
+      duration: 0
       messages: 
       output: 
       stacktrace: 
@@ -742,8 +742,8 @@ MonoBehaviour:
       uniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/General/[Features.Buffs.Tests.EditMode][BuffContainerTests.General.ItNotifiesWhenStackWasRemoved]
       name: ItNotifiesWhenStackWasRemoved
       fullName: BuffContainerTests.General.ItNotifiesWhenStackWasRemoved
-      resultStatus: 1
-      duration: 0.0002795
+      resultStatus: 0
+      duration: 0
       messages: 
       output: 
       stacktrace: 
@@ -759,8 +759,8 @@ MonoBehaviour:
       uniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/General/[Features.Buffs.Tests.EditMode][BuffContainerTests.General.ItShouldTick10TimesForEverySecondPassed]
       name: ItShouldTick10TimesForEverySecondPassed
       fullName: BuffContainerTests.General.ItShouldTick10TimesForEverySecondPassed
-      resultStatus: 1
-      duration: 0.0207206
+      resultStatus: 0
+      duration: 0
       messages: 
       output: 
       stacktrace: 
@@ -772,12 +772,12 @@ MonoBehaviour:
       - Uncategorized
       parentId: 1001
       parentUniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/[Features.Buffs.Tests.EditMode][BuffContainerTests.General][suite]
-    - id: 1003
+    - id: 1004
       uniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/General/[Features.Buffs.Tests.EditMode][BuffContainerTests.General.ItStacksBuffs]
       name: ItStacksBuffs
       fullName: BuffContainerTests.General.ItStacksBuffs
-      resultStatus: 1
-      duration: 0.0003806
+      resultStatus: 0
+      duration: 0
       messages: 
       output: 
       stacktrace: 
@@ -793,8 +793,8 @@ MonoBehaviour:
       uniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/General/[Features.Buffs.Tests.EditMode][BuffContainerTests.General.ItTriggersInterval]
       name: ItTriggersInterval
       fullName: BuffContainerTests.General.ItTriggersInterval
-      resultStatus: 1
-      duration: 0.0003711
+      resultStatus: 0
+      duration: 0
       messages: 
       output: 
       stacktrace: 
@@ -810,8 +810,8 @@ MonoBehaviour:
       uniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/General/[Features.Buffs.Tests.EditMode][BuffContainerTests.General.ItTriggersTickIntervalsDuringBuffDuration]
       name: ItTriggersTickIntervalsDuringBuffDuration
       fullName: BuffContainerTests.General.ItTriggersTickIntervalsDuringBuffDuration
-      resultStatus: 1
-      duration: 0.0002843
+      resultStatus: 0
+      duration: 0
       messages: 
       output: 
       stacktrace: 
@@ -823,12 +823,12 @@ MonoBehaviour:
       - Uncategorized
       parentId: 1001
       parentUniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/[Features.Buffs.Tests.EditMode][BuffContainerTests.General][suite]
-    - id: 1038
+    - id: 1053
       uniqueId: '[Utilities.Tests.EditMode.dll][suite]'
       name: Utilities.Tests.EditMode.dll
       fullName: C:/Users/Vilmantas/Desktop/Code/unity-stuff/features-development/Library/ScriptAssemblies/Utilities.Tests.EditMode.dll
-      resultStatus: 1
-      duration: 0.0772031
+      resultStatus: 0
+      duration: 0
       messages: 
       output: 
       stacktrace: 
@@ -839,12 +839,12 @@ MonoBehaviour:
       categories: []
       parentId: 1000
       parentUniqueId: '[features-development][suite]'
-    - id: 1039
+    - id: 1055
       uniqueId: Utilities.Tests.EditMode.dll/[Utilities.Tests.EditMode][ItemContainerTests][suite]
       name: ItemContainerTests
       fullName: ItemContainerTests
-      resultStatus: 1
-      duration: 0.027131
+      resultStatus: 0
+      duration: 0
       messages: 
       output: 
       stacktrace: 
@@ -853,14 +853,14 @@ MonoBehaviour:
       description: 
       isSuite: 1
       categories: []
-      parentId: 1038
+      parentId: 1053
       parentUniqueId: '[Utilities.Tests.EditMode.dll][suite]'
-    - id: 1009
+    - id: 1039
       uniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/[Utilities.Tests.EditMode][ItemContainerTests.General][suite]
       name: General
       fullName: ItemContainerTests.General
-      resultStatus: 1
-      duration: 0.0250352
+      resultStatus: 0
+      duration: 0
       messages: 
       output: 
       stacktrace: 
@@ -869,14 +869,14 @@ MonoBehaviour:
       description: 
       isSuite: 1
       categories: []
-      parentId: 1039
+      parentId: 1055
       parentUniqueId: Utilities.Tests.EditMode.dll/[Utilities.Tests.EditMode][ItemContainerTests][suite]
-    - id: 1013
+    - id: 1043
       uniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/General/[Utilities.Tests.EditMode][ItemContainerTests.General.ItAddsDuplicatesIfExistingItemIsFull]
       name: ItAddsDuplicatesIfExistingItemIsFull
       fullName: ItemContainerTests.General.ItAddsDuplicatesIfExistingItemIsFull
-      resultStatus: 1
-      duration: 0.0049876
+      resultStatus: 0
+      duration: 0
       messages: 
       output: 
       stacktrace: 
@@ -886,14 +886,14 @@ MonoBehaviour:
       isSuite: 0
       categories:
       - Uncategorized
-      parentId: 1009
+      parentId: 1039
       parentUniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/[Utilities.Tests.EditMode][ItemContainerTests.General][suite]
-    - id: 1015
+    - id: 1045
       uniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/General/[Utilities.Tests.EditMode][ItemContainerTests.General.ItAppendsToExistingStackableItem]
       name: ItAppendsToExistingStackableItem
       fullName: ItemContainerTests.General.ItAppendsToExistingStackableItem
-      resultStatus: 1
-      duration: 0.0005645
+      resultStatus: 0
+      duration: 0
       messages: 
       output: 
       stacktrace: 
@@ -903,14 +903,14 @@ MonoBehaviour:
       isSuite: 0
       categories:
       - Uncategorized
-      parentId: 1009
+      parentId: 1039
       parentUniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/[Utilities.Tests.EditMode][ItemContainerTests.General][suite]
-    - id: 1012
+    - id: 1042
       uniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/General/[Utilities.Tests.EditMode][ItemContainerTests.General.ItCanReceiveAnItem]
       name: ItCanReceiveAnItem
       fullName: ItemContainerTests.General.ItCanReceiveAnItem
-      resultStatus: 1
-      duration: 0.0003128
+      resultStatus: 0
+      duration: 0
       messages: 
       output: 
       stacktrace: 
@@ -920,14 +920,14 @@ MonoBehaviour:
       isSuite: 0
       categories:
       - Uncategorized
-      parentId: 1009
+      parentId: 1039
       parentUniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/[Utilities.Tests.EditMode][ItemContainerTests.General][suite]
-    - id: 1017
+    - id: 1047
       uniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/General/[Utilities.Tests.EditMode][ItemContainerTests.General.ItCanRemoveItem]
       name: ItCanRemoveItem
       fullName: ItemContainerTests.General.ItCanRemoveItem
-      resultStatus: 1
-      duration: 0.0016818
+      resultStatus: 0
+      duration: 0
       messages: 
       output: 
       stacktrace: 
@@ -937,14 +937,14 @@ MonoBehaviour:
       isSuite: 0
       categories:
       - Uncategorized
-      parentId: 1009
+      parentId: 1039
       parentUniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/[Utilities.Tests.EditMode][ItemContainerTests.General][suite]
-    - id: 1020
+    - id: 1050
       uniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/General/[Utilities.Tests.EditMode][ItemContainerTests.General.ItCanRemoveSpecificItem]
       name: ItCanRemoveSpecificItem
       fullName: ItemContainerTests.General.ItCanRemoveSpecificItem
-      resultStatus: 1
-      duration: 0.0010595
+      resultStatus: 0
+      duration: 0
       messages: 
       output: 
       stacktrace: 
@@ -954,14 +954,14 @@ MonoBehaviour:
       isSuite: 0
       categories:
       - Uncategorized
-      parentId: 1009
+      parentId: 1039
       parentUniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/[Utilities.Tests.EditMode][ItemContainerTests.General][suite]
-    - id: 1022
+    - id: 1052
       uniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/General/[Utilities.Tests.EditMode][ItemContainerTests.General.ItCanReplaceExactItem]
       name: ItCanReplaceExactItem
       fullName: ItemContainerTests.General.ItCanReplaceExactItem
-      resultStatus: 1
-      duration: 0.0007718
+      resultStatus: 0
+      duration: 0
       messages: 
       output: 
       stacktrace: 
@@ -971,14 +971,14 @@ MonoBehaviour:
       isSuite: 0
       categories:
       - Uncategorized
-      parentId: 1009
+      parentId: 1039
       parentUniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/[Utilities.Tests.EditMode][ItemContainerTests.General][suite]
-    - id: 1021
+    - id: 1051
       uniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/General/[Utilities.Tests.EditMode][ItemContainerTests.General.ItCanSwapSlotItems]
       name: ItCanSwapSlotItems
       fullName: ItemContainerTests.General.ItCanSwapSlotItems
-      resultStatus: 1
-      duration: 0.0009178
+      resultStatus: 0
+      duration: 0
       messages: 
       output: 
       stacktrace: 
@@ -988,14 +988,14 @@ MonoBehaviour:
       isSuite: 0
       categories:
       - Uncategorized
-      parentId: 1009
+      parentId: 1039
       parentUniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/[Utilities.Tests.EditMode][ItemContainerTests.General][suite]
-    - id: 1014
+    - id: 1044
       uniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/General/[Utilities.Tests.EditMode][ItemContainerTests.General.ItDoesNotAddDuplicateItemsIfExistingItemIsNotFull]
       name: ItDoesNotAddDuplicateItemsIfExistingItemIsNotFull
       fullName: ItemContainerTests.General.ItDoesNotAddDuplicateItemsIfExistingItemIsNotFull
-      resultStatus: 1
-      duration: 0.0002627
+      resultStatus: 0
+      duration: 0
       messages: 
       output: 
       stacktrace: 
@@ -1005,14 +1005,14 @@ MonoBehaviour:
       isSuite: 0
       categories:
       - Uncategorized
-      parentId: 1009
+      parentId: 1039
       parentUniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/[Utilities.Tests.EditMode][ItemContainerTests.General][suite]
-    - id: 1019
+    - id: 1049
       uniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/General/[Utilities.Tests.EditMode][ItemContainerTests.General.ItDoesNotRemoveMoreThanAvailable]
       name: ItDoesNotRemoveMoreThanAvailable
       fullName: ItemContainerTests.General.ItDoesNotRemoveMoreThanAvailable
-      resultStatus: 1
-      duration: 0.0005056
+      resultStatus: 0
+      duration: 0
       messages: 
       output: 
       stacktrace: 
@@ -1022,14 +1022,14 @@ MonoBehaviour:
       isSuite: 0
       categories:
       - Uncategorized
-      parentId: 1009
+      parentId: 1039
       parentUniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/[Utilities.Tests.EditMode][ItemContainerTests.General][suite]
-    - id: 1011
+    - id: 1041
       uniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/General/[Utilities.Tests.EditMode][ItemContainerTests.General.ItHasItems]
       name: ItHasItems
       fullName: ItemContainerTests.General.ItHasItems
-      resultStatus: 1
-      duration: 0.0033573
+      resultStatus: 0
+      duration: 0
       messages: 
       output: 
       stacktrace: 
@@ -1039,14 +1039,14 @@ MonoBehaviour:
       isSuite: 0
       categories:
       - Uncategorized
-      parentId: 1009
+      parentId: 1039
       parentUniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/[Utilities.Tests.EditMode][ItemContainerTests.General][suite]
-    - id: 1010
+    - id: 1040
       uniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/General/[Utilities.Tests.EditMode][ItemContainerTests.General.ItHasSize]
       name: ItHasSize
       fullName: ItemContainerTests.General.ItHasSize
-      resultStatus: 1
-      duration: 0.0002863
+      resultStatus: 0
+      duration: 0
       messages: 
       output: 
       stacktrace: 
@@ -1056,14 +1056,14 @@ MonoBehaviour:
       isSuite: 0
       categories:
       - Uncategorized
-      parentId: 1009
+      parentId: 1039
       parentUniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/[Utilities.Tests.EditMode][ItemContainerTests.General][suite]
-    - id: 1016
+    - id: 1046
       uniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/General/[Utilities.Tests.EditMode][ItemContainerTests.General.ItReportsAmountAdded]
       name: ItReportsAmountAdded
       fullName: ItemContainerTests.General.ItReportsAmountAdded
-      resultStatus: 1
-      duration: 0.0002757
+      resultStatus: 0
+      duration: 0
       messages: 
       output: 
       stacktrace: 
@@ -1073,14 +1073,14 @@ MonoBehaviour:
       isSuite: 0
       categories:
       - Uncategorized
-      parentId: 1009
+      parentId: 1039
       parentUniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/[Utilities.Tests.EditMode][ItemContainerTests.General][suite]
-    - id: 1018
+    - id: 1048
       uniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/General/[Utilities.Tests.EditMode][ItemContainerTests.General.ItReportsRemovedAmount]
       name: ItReportsRemovedAmount
       fullName: ItemContainerTests.General.ItReportsRemovedAmount
-      resultStatus: 1
-      duration: 0.0002747
+      resultStatus: 0
+      duration: 0
       messages: 
       output: 
       stacktrace: 
@@ -1090,14 +1090,14 @@ MonoBehaviour:
       isSuite: 0
       categories:
       - Uncategorized
-      parentId: 1009
+      parentId: 1039
       parentUniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/[Utilities.Tests.EditMode][ItemContainerTests.General][suite]
-    - id: 1040
+    - id: 1054
       uniqueId: Utilities.Tests.EditMode.dll/[Utilities.Tests.EditMode][ResourceContainerTests][suite]
       name: ResourceContainerTests
       fullName: ResourceContainerTests
-      resultStatus: 1
-      duration: 0.0382003
+      resultStatus: 0
+      duration: 0
       messages: 
       output: 
       stacktrace: 
@@ -1106,14 +1106,14 @@ MonoBehaviour:
       description: 
       isSuite: 1
       categories: []
-      parentId: 1038
+      parentId: 1053
       parentUniqueId: '[Utilities.Tests.EditMode.dll][suite]'
-    - id: 1019
+    - id: 1024
       uniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/[Utilities.Tests.EditMode][ResourceContainerTests.General][suite]
       name: General
       fullName: ResourceContainerTests.General
-      resultStatus: 1
-      duration: 0.0044697
+      resultStatus: 0
+      duration: 0
       messages: 
       output: 
       stacktrace: 
@@ -1122,14 +1122,14 @@ MonoBehaviour:
       description: 
       isSuite: 1
       categories: []
-      parentId: 1049
+      parentId: 1054
       parentUniqueId: Utilities.Tests.EditMode.dll/[Utilities.Tests.EditMode][ResourceContainerTests][suite]
-    - id: 1020
+    - id: 1025
       uniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/General/[Utilities.Tests.EditMode][ResourceContainerTests.General.ItCanReceive]
       name: ItCanReceive
       fullName: ResourceContainerTests.General.ItCanReceive
-      resultStatus: 1
-      duration: 0.0004688
+      resultStatus: 0
+      duration: 0
       messages: 
       output: 
       stacktrace: 
@@ -1139,14 +1139,14 @@ MonoBehaviour:
       isSuite: 0
       categories:
       - Uncategorized
-      parentId: 1019
+      parentId: 1024
       parentUniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/[Utilities.Tests.EditMode][ResourceContainerTests.General][suite]
-    - id: 1021
+    - id: 1026
       uniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/General/[Utilities.Tests.EditMode][ResourceContainerTests.General.ItCanReduce]
       name: ItCanReduce
       fullName: ResourceContainerTests.General.ItCanReduce
-      resultStatus: 1
-      duration: 0.0002316
+      resultStatus: 0
+      duration: 0
       messages: 
       output: 
       stacktrace: 
@@ -1156,14 +1156,14 @@ MonoBehaviour:
       isSuite: 0
       categories:
       - Uncategorized
-      parentId: 1019
+      parentId: 1024
       parentUniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/[Utilities.Tests.EditMode][ResourceContainerTests.General][suite]
-    - id: 1025
+    - id: 1030
       uniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/General/[Utilities.Tests.EditMode][ResourceContainerTests.General.ItDoesNotGoBelowZero]
       name: ItDoesNotGoBelowZero
       fullName: ResourceContainerTests.General.ItDoesNotGoBelowZero
-      resultStatus: 1
-      duration: 0.0002504
+      resultStatus: 0
+      duration: 0
       messages: 
       output: 
       stacktrace: 
@@ -1173,14 +1173,14 @@ MonoBehaviour:
       isSuite: 0
       categories:
       - Uncategorized
-      parentId: 1019
+      parentId: 1024
       parentUniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/[Utilities.Tests.EditMode][ResourceContainerTests.General][suite]
-    - id: 1024
+    - id: 1029
       uniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/General/[Utilities.Tests.EditMode][ResourceContainerTests.General.ItDoesNotGoOverMaximum]
       name: ItDoesNotGoOverMaximum
       fullName: ResourceContainerTests.General.ItDoesNotGoOverMaximum
-      resultStatus: 1
-      duration: 0.0002611
+      resultStatus: 0
+      duration: 0
       messages: 
       output: 
       stacktrace: 
@@ -1190,14 +1190,14 @@ MonoBehaviour:
       isSuite: 0
       categories:
       - Uncategorized
-      parentId: 1019
+      parentId: 1024
       parentUniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/[Utilities.Tests.EditMode][ResourceContainerTests.General][suite]
-    - id: 1022
+    - id: 1027
       uniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/General/[Utilities.Tests.EditMode][ResourceContainerTests.General.ItReportsAmountLeftAfterReceiving]
       name: ItReportsAmountLeftAfterReceiving
       fullName: ResourceContainerTests.General.ItReportsAmountLeftAfterReceiving
-      resultStatus: 1
-      duration: 0.0002489
+      resultStatus: 0
+      duration: 0
       messages: 
       output: 
       stacktrace: 
@@ -1207,14 +1207,14 @@ MonoBehaviour:
       isSuite: 0
       categories:
       - Uncategorized
-      parentId: 1019
+      parentId: 1024
       parentUniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/[Utilities.Tests.EditMode][ResourceContainerTests.General][suite]
-    - id: 1023
+    - id: 1028
       uniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/General/[Utilities.Tests.EditMode][ResourceContainerTests.General.ItReportsAmountLeftAfterReducing]
       name: ItReportsAmountLeftAfterReducing
       fullName: ResourceContainerTests.General.ItReportsAmountLeftAfterReducing
-      resultStatus: 1
-      duration: 0.0003751
+      resultStatus: 0
+      duration: 0
       messages: 
       output: 
       stacktrace: 
@@ -1224,14 +1224,14 @@ MonoBehaviour:
       isSuite: 0
       categories:
       - Uncategorized
-      parentId: 1019
+      parentId: 1024
       parentUniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/[Utilities.Tests.EditMode][ResourceContainerTests.General][suite]
-    - id: 1030
+    - id: 1035
       uniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/[Utilities.Tests.EditMode][ResourceContainerTests.WhenEmpty][suite]
       name: WhenEmpty
       fullName: ResourceContainerTests.WhenEmpty
-      resultStatus: 1
-      duration: 0.0120816
+      resultStatus: 0
+      duration: 0
       messages: 
       output: 
       stacktrace: 
@@ -1240,14 +1240,14 @@ MonoBehaviour:
       description: 
       isSuite: 1
       categories: []
-      parentId: 1049
+      parentId: 1054
       parentUniqueId: Utilities.Tests.EditMode.dll/[Utilities.Tests.EditMode][ResourceContainerTests][suite]
-    - id: 1032
+    - id: 1037
       uniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/WhenEmpty/[Utilities.Tests.EditMode][ResourceContainerTests.WhenEmpty.ItCantBeReduced]
       name: ItCantBeReduced
       fullName: ResourceContainerTests.WhenEmpty.ItCantBeReduced
-      resultStatus: 1
-      duration: 0.0003967
+      resultStatus: 0
+      duration: 0
       messages: 
       output: 
       stacktrace: 
@@ -1257,14 +1257,14 @@ MonoBehaviour:
       isSuite: 0
       categories:
       - Uncategorized
-      parentId: 1030
+      parentId: 1035
       parentUniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/[Utilities.Tests.EditMode][ResourceContainerTests.WhenEmpty][suite]
-    - id: 1033
+    - id: 1038
       uniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/WhenEmpty/[Utilities.Tests.EditMode][ResourceContainerTests.WhenEmpty.ItDoesntConsumeAmountReduced]
       name: ItDoesntConsumeAmountReduced
       fullName: ResourceContainerTests.WhenEmpty.ItDoesntConsumeAmountReduced
-      resultStatus: 1
-      duration: 0.0002577
+      resultStatus: 0
+      duration: 0
       messages: 
       output: 
       stacktrace: 
@@ -1274,14 +1274,14 @@ MonoBehaviour:
       isSuite: 0
       categories:
       - Uncategorized
-      parentId: 1030
+      parentId: 1035
       parentUniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/[Utilities.Tests.EditMode][ResourceContainerTests.WhenEmpty][suite]
-    - id: 1031
+    - id: 1036
       uniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/WhenEmpty/[Utilities.Tests.EditMode][ResourceContainerTests.WhenEmpty.ItIsEmpty]
       name: ItIsEmpty
       fullName: ResourceContainerTests.WhenEmpty.ItIsEmpty
-      resultStatus: 1
-      duration: 0.0002244
+      resultStatus: 0
+      duration: 0
       messages: 
       output: 
       stacktrace: 
@@ -1291,14 +1291,14 @@ MonoBehaviour:
       isSuite: 0
       categories:
       - Uncategorized
-      parentId: 1030
+      parentId: 1035
       parentUniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/[Utilities.Tests.EditMode][ResourceContainerTests.WhenEmpty][suite]
-    - id: 1026
+    - id: 1031
       uniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/[Utilities.Tests.EditMode][ResourceContainerTests.WhenFull][suite]
       name: WhenFull
       fullName: ResourceContainerTests.WhenFull
-      resultStatus: 1
-      duration: 0.0111584
+      resultStatus: 0
+      duration: 0
       messages: 
       output: 
       stacktrace: 
@@ -1307,14 +1307,14 @@ MonoBehaviour:
       description: 
       isSuite: 1
       categories: []
-      parentId: 1049
+      parentId: 1054
       parentUniqueId: Utilities.Tests.EditMode.dll/[Utilities.Tests.EditMode][ResourceContainerTests][suite]
-    - id: 1028
+    - id: 1033
       uniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/WhenFull/[Utilities.Tests.EditMode][ResourceContainerTests.WhenFull.ItCantReceive]
       name: ItCantReceive
       fullName: ResourceContainerTests.WhenFull.ItCantReceive
-      resultStatus: 1
-      duration: 0.0003648
+      resultStatus: 0
+      duration: 0
       messages: 
       output: 
       stacktrace: 
@@ -1324,14 +1324,14 @@ MonoBehaviour:
       isSuite: 0
       categories:
       - Uncategorized
-      parentId: 1026
+      parentId: 1031
       parentUniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/[Utilities.Tests.EditMode][ResourceContainerTests.WhenFull][suite]
-    - id: 1029
+    - id: 1034
       uniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/WhenFull/[Utilities.Tests.EditMode][ResourceContainerTests.WhenFull.ItDoesntConsumeAmountReceived]
       name: ItDoesntConsumeAmountReceived
       fullName: ResourceContainerTests.WhenFull.ItDoesntConsumeAmountReceived
-      resultStatus: 1
-      duration: 0.0002562
+      resultStatus: 0
+      duration: 0
       messages: 
       output: 
       stacktrace: 
@@ -1341,14 +1341,14 @@ MonoBehaviour:
       isSuite: 0
       categories:
       - Uncategorized
-      parentId: 1026
+      parentId: 1031
       parentUniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/[Utilities.Tests.EditMode][ResourceContainerTests.WhenFull][suite]
-    - id: 1027
+    - id: 1032
       uniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/WhenFull/[Utilities.Tests.EditMode][ResourceContainerTests.WhenFull.ItIsFull]
       name: ItIsFull
       fullName: ResourceContainerTests.WhenFull.ItIsFull
-      resultStatus: 1
-      duration: 0.0002381
+      resultStatus: 0
+      duration: 0
       messages: 
       output: 
       stacktrace: 
@@ -1358,12 +1358,12 @@ MonoBehaviour:
       isSuite: 0
       categories:
       - Uncategorized
-      parentId: 1026
+      parentId: 1031
       parentUniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/[Utilities.Tests.EditMode][ResourceContainerTests.WhenFull][suite]
     m_ResultText: features-development (0.241s)
     m_ResultStacktrace: 
     m_TestListState:
-      scrollPos: {x: 0, y: 195}
+      scrollPos: {x: 0, y: 75}
       m_SelectedIDs: ab096070
       m_LastClickedID: 1885342123
       m_ExpandedIDs: b86f4586172b398e3f871b9903458399baf02fab2f9917b2e52ec8c2ffbee6c2caea3ce2258ecfe2a24133edbbe64bfbd2dab7003ca08405a995050964693811eb886f12a811d51ecf4a43345f999446f7747b522fe17161d24bc4680add8a6dab0960705604ec7262cf6a76452d467b4b5ea47cffffff7f
@@ -1413,9 +1413,9 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 711
-    y: -432
-    width: 545
-    height: 351
+    y: -455
+    width: 686
+    height: 374
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -1433,36 +1433,36 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/DebugScripts/Buffs
+    - Assets/Scenes
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/DebugScripts/Buffs
+  - Assets/Scenes
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\Vilmantas\Desktop\Code\unity-stuff\features-development
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 74590000
-    m_LastClickedID: 22900
-    m_ExpandedIDs: 000000000059000002590000045900000659000008590000285900002a59000034590000565a0000ca5a000000ca9a3b
+    scrollPos: {x: 0, y: 14}
+    m_SelectedIDs: 845c0000
+    m_LastClickedID: 23684
+    m_ExpandedIDs: 000000005e5c0000605c0000625c0000645c0000665c0000685c00006a5c0000e66f0000ec6f000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: EditMode
-      m_OriginalName: EditMode
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 22838
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 9}
     m_SearchString: 
@@ -1476,7 +1476,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000000059000002590000045900000659000008590000
+    m_ExpandedIDs: 000000005e5c0000605c0000625c0000645c0000665c0000685c00006a5c00006c5c00006e5c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1563,7 +1563,7 @@ MonoBehaviour:
   m_ObjectsLockedBeforeSerialization: []
   m_InstanceIDsLockedBeforeSerialization: 
   m_PreviewResizer:
-    m_CachedPref: 151
+    m_CachedPref: -151
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
@@ -1596,7 +1596,7 @@ MonoBehaviour:
     x: 711
     y: -1007
     width: 266
-    height: 554
+    height: 531
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -1606,21 +1606,21 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 4613feff4e17feffd217feff5618feffde1bfeff9623fefff824feff4e26feffd226feff5627feffea2efeff2831feffac31feff7434feffc035feff4436feffc836feff4c37feffd037feff5438feffb439feff383afeffbc3afeff1e3cfeff863ffeff0a40feff6641feff6443feff3454feffa061feffca6ffeff8c70feff4273feffb077feff1079feffd279feff2e7cfeffec7cfeff4c7efeffce7efeff5c7ffeff0280feffc080feff0a82feffc882feffae8cfefff292feff0094feff6295feff0c96feffc898feff7299feff109dfeff109ffeffba9ffeff48a0feff92a1feff48a2feffb8a3feff62a4feffe4a4feff66a5feffe4a6feffc6abfeff5aadfeff00aefeff60affeff12b0feffc4b0feffdab1feffa8b2feffdab4feff8cb5feffecb6feffb4befeffe6c2feffccc4feff14c7feff16c9feffeccafeff4acefefff0d5feff72d6feff40d9feffdad9feff5cdafefff6dafeff90dbfeff12dcfeff94dcfeff2eddfeff7ee1fefffce6fefff6ebfeff14edfeffdaedfeff5cf3feffeef3feffd61dffff1232ffff4832ffffd232ffff0c33ffff5039ffff7639ffffe03affff0e3dffffd046ffff6447ffffec47ffff6c48fffff448ffff664affffe24affff5e4bffffda4bffff564cffffd24cffff4e4dffffca4dffff464effffc24effff4a4fffffde4fffff5251ffffc057ffff3e58ffffc258ffff6c5bfffff45bffff705cffffec5cffff745dffff005effff1c5fffff985fffff2060ffff9c60ffff2461ffffac61ffff7a66ffff506cffff666effffbe71ffff8082ffffd882ffff6684ffffcc84ffff2485ffffb286ffff2a8dffff928dffffea8dffff788fffff5092ffffa692ffff0293ffff5a93ffff7c94ffffe094ffffd495ffff2c96ffffb697ffff2ec9ffff46c9ffff9cf9ffff3afbffffe46d0000246e0000106f0000506f00009c900000a6900000ec900000
+      m_ExpandedIDs: aa0affff5e0dffff7a1effff921effff683affffd43affffe0b2ffff24fbffffe45900003e5a0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
+        m_Name: Text (TMP)
+        m_OriginalName: Text (TMP)
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 0
+        m_UserData: -57716
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 11
+        m_OriginalEventType: 0
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 8}
       m_SearchString: 
@@ -1650,10 +1650,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1596
+    x: 1586
     y: -1007
-    width: 578
-    height: 554
+    width: 588
+    height: 531
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -1685,7 +1685,7 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: 0, y: 0}
+      snapOffset: {x: 0, y: 25}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: unity-scene-view-toolbar
@@ -1701,6 +1701,17 @@ MonoBehaviour:
       snapCorner: 1
       id: unity-search-toolbar
       index: 1
+      layout: 1
+    - dockPosition: 1
+      containerId: overlay-toolbar__top
+      floating: 1
+      collapsed: 0
+      displayed: 1
+      snapOffset: {x: 150, y: 150}
+      snapOffsetDelta: {x: 0, y: 0}
+      snapCorner: 0
+      id: RiderFlow.SceneToolbar
+      index: 2
       layout: 1
     - dockPosition: 0
       containerId: overlay-container--left
@@ -1855,9 +1866,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 435.0822, y: 358.60593, z: -20.958618}
+    m_Target: {x: 303, y: 266.5, z: 0}
     speed: 2
-    m_Value: {x: 435.0822, y: 358.60593, z: -20.958618}
+    m_Value: {x: 303, y: 266.5, z: 0}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1904,13 +1915,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.11375127, y: -0.00596134, z: 0.0006826219, w: 0.99349225}
+    m_Target: {x: 0.080908224, y: 0.008969894, z: -0.0007280716, w: 0.9966829}
     speed: 2
-    m_Value: {x: 0.11375115, y: -0.0059613334, z: 0.00068262115, w: 0.9934912}
+    m_Value: {x: 0.08090807, y: 0.008969877, z: -0.0007280702, w: 0.996681}
   m_Size:
-    m_Target: 568.53485
+    m_Target: 559.3444
     speed: 2
-    m_Value: 568.53485
+    m_Value: 559.3444
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1957,8 +1968,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 978
     y: -1007
-    width: 616
-    height: 554
+    width: 606
+    height: 531
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -1969,7 +1980,7 @@ MonoBehaviour:
   m_ShowGizmos: 0
   m_TargetDisplay: 0
   m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
-  m_TargetSize: {x: 616, y: 533}
+  m_TargetSize: {x: 606, y: 510}
   m_TextureFilterMode: 0
   m_TextureHideFlags: 61
   m_RenderIMGUI: 1
@@ -1984,10 +1995,10 @@ MonoBehaviour:
     m_VRangeLocked: 0
     hZoomLockedByDefault: 0
     vZoomLockedByDefault: 0
-    m_HBaseRangeMin: -308
-    m_HBaseRangeMax: 308
-    m_VBaseRangeMin: -266.5
-    m_VBaseRangeMax: 266.5
+    m_HBaseRangeMin: -303
+    m_HBaseRangeMax: 303
+    m_VBaseRangeMin: -255
+    m_VBaseRangeMax: 255
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
     m_VAllowExceedBaseRangeMin: 1
@@ -2005,23 +2016,23 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 21
-      width: 616
-      height: 533
+      width: 606
+      height: 510
     m_Scale: {x: 1, y: 1}
-    m_Translation: {x: 308, y: 266.5}
+    m_Translation: {x: 303, y: 255}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -308
-      y: -266.5
-      width: 616
-      height: 533
+      x: -303
+      y: -255
+      width: 606
+      height: 510
     m_MinimalGUI: 1
   m_defaultScale: 1
-  m_LastWindowPixelSize: {x: 616, y: 554}
+  m_LastWindowPixelSize: {x: 606, y: 531}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000
@@ -2047,10 +2058,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1257
-    y: -432
-    width: 478
-    height: 351
+    x: 1398
+    y: -455
+    width: 434
+    height: 374
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default

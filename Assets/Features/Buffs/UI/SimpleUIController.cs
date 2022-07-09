@@ -1,25 +1,30 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using Utilities.RadialTimer;
 
 namespace Features.Buffs.UI
 {
     public class SimpleUIController : MonoBehaviour, IBuffUI
     {
-        private TextMeshProUGUI m_Text;
+        private Image m_Sprite;
+        private TextMeshProUGUI m_StacksText;
         private RadialTimerController m_TimerController;
-
-        private void Awake()
-        {
-            m_TimerController = GetComponentInChildren<RadialTimerController>();
-            m_Text = GetComponentInChildren<TextMeshProUGUI>();
-        }
 
         public void BuffTickCallback(ActiveBuff buff)
         {
             m_TimerController.SetFillAmount(buff.Metadata.Duration, buff.DurationLeft);
 
-            m_Text.text = buff.Stacks.ToString();
+            m_StacksText.text = buff.Stacks.ToString();
+        }
+
+        public void Setup(ActiveBuff buff)
+        {
+            m_TimerController = GetComponentInChildren<RadialTimerController>();
+            m_StacksText = GetComponentInChildren<TextMeshProUGUI>();
+            m_Sprite = transform.Find("sprite").GetComponent<Image>();
+
+            m_Sprite.sprite = null;
         }
 
         public new GameObject gameObject => transform.gameObject;
