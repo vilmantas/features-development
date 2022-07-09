@@ -80,6 +80,30 @@ namespace ItemContainerTests
         }
 
         [Test]
+        public void ItDoesNotAppendNewItemToExistingStackable()
+        {
+            SUT.Add(StackableItem);
+            SUT.Add(SimpleItem);
+
+            Assert.AreEqual(SUT.SlotsWithData.First().Item, StackableItem);
+            Assert.AreEqual(SUT.SlotsWithData.Skip(1).First().Item, SimpleItem);
+        }
+
+
+        [Test]
+        public void ItStacksMultipleItems()
+        {
+            SUT.Add(StackableItem);
+            SUT.Add(SimpleItem);
+            SUT.Add(StackableItem);
+
+            Assert.AreEqual(SUT.SlotsWithData.Count, 2);
+            Assert.AreEqual(SUT.SlotsWithData.First().Item, StackableItem);
+            Assert.AreEqual(SUT.SlotsWithData.First().Item.StackableData.Current, 2);
+            Assert.AreEqual(SUT.SlotsWithData.Skip(1).First().Item, SimpleItem);
+        }
+
+        [Test]
         public void ItReportsAmountAdded()
         {
             SUT.Add(StackableItem, 6, out int amountAdded);
@@ -146,7 +170,7 @@ namespace ItemContainerTests
 
             var secondSlotItem = SUT.SlotsWithData.Skip(1).First().Item;
 
-            SUT.Swap(firstSlot, secondSlot);
+            SUT.Swap(firstSlot.Id, secondSlot.Id);
 
             Assert.AreSame(firstSlotItem, SUT.SlotsWithData.Skip(1).First().Item);
             Assert.AreSame(secondSlotItem, SUT.SlotsWithData.First().Item);
@@ -163,7 +187,7 @@ namespace ItemContainerTests
 
             var replacement = new StorageData("Lol");
 
-            SUT.ReplaceExact(originalSlotItem, replacement);
+            SUT.ReplaceExact(originalSlot.Id, replacement);
 
             Assert.AreSame(replacement, originalSlot.Item);
         }

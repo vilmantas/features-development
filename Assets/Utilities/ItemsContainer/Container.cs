@@ -27,7 +27,10 @@ namespace Utilities.ItemsContainer
         public IReadOnlyList<StorageData> Items => m_Items.Where(x => !x.IsEmpty).Select(x => x.Item).ToList();
         public IReadOnlyList<ContainerItem> Slots => m_Items.ToList();
         public IReadOnlyList<ContainerItem> SlotsWithData => m_Items.Where(x => !x.IsEmpty).ToList();
+
+        public IReadOnlyList<ContainerItem> SlotsWithoutData => m_Items.Where(x => x.IsEmpty).ToList();
         public bool IsEmpty => SlotsWithData.Count == 0;
+        public bool IsFull => SlotsWithoutData.Count == 0;
 
         public void Add(StorageData item)
         {
@@ -44,18 +47,28 @@ namespace Utilities.ItemsContainer
             Increase(item, amount, out amountAdded);
         }
 
-        public void Swap(ContainerItem first, ContainerItem second)
+        public bool Swap(Guid first, Guid second)
         {
-            SwapSlotItems(first, second);
+            var source = Slots.FirstOrDefault(x => x.Id == first);
+
+            var target = Slots.FirstOrDefault(x => x.Id == second);
+
+            if (source == null || target == null) return false;
+
+            SwapSlotItems(source, target);
+
+            return true;
         }
 
-        public void ReplaceExact(StorageData current, StorageData replacement)
+        public bool ReplaceExact(Guid current, StorageData replacement)
         {
-            var slot = Slots.FirstOrDefault(x => x.Item.Id == current.Id);
+            var slot = Slots.FirstOrDefault(x => x.Id == current);
 
-            if (slot == null) return;
+            if (slot == null) return false;
 
             slot.m_Item = replacement;
+
+            return true;
         }
 
         public void RemoveExact(StorageData item)
@@ -182,19 +195,13 @@ namespace Utilities.ItemsContainer
 
         private void SwapSlotItems(ContainerItem first, ContainerItem second)
         {
-            var source = Slots.FirstOrDefault(x => x.Id == first.Id);
+            var sourceItem = first.Item;
 
-            var target = Slots.FirstOrDefault(x => x.Id == second.Id);
+            var targetItem = second.Item;
 
-            if (source == null || target == null) return;
+            first.m_Item = targetItem;
 
-            var sourceItem = source.Item;
-
-            var targetItem = target.Item;
-
-            source.m_Item = targetItem;
-
-            target.m_Item = sourceItem;
+            second.m_Item = sourceItem;
         }
 
         private bool TryGetFreeSlot(out ContainerItem containerItem)
@@ -207,7 +214,7 @@ namespace Utilities.ItemsContainer
         private bool TryGetItem(StorageData item, out StorageData inventoryItem, bool ignoreEmpty = false)
         {
             var items =
-                SlotsWithData.Select(x => x.Item);
+                SlotsWithData.Where(x => x.Item.Equals(item)).Select(x => x.Item);
 
             if (ignoreEmpty)
             {

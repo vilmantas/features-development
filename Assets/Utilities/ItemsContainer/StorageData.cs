@@ -12,11 +12,11 @@ namespace Utilities.ItemsContainer
             StackableData = new ResourceContainer(maxStackSize);
         }
 
-        public StorageData(object parent)
+        public StorageData(StorageData original)
         {
-            Parent = parent;
+            Parent = original.Parent;
 
-            StackableData = new ResourceContainer(1, 1);
+            StackableData = new ResourceContainer(original.StackableData.Max);
         }
 
         public object Parent { get; }
