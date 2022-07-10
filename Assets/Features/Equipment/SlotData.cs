@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Equipment.Unity
+namespace Features.Equipment
 {
     [Serializable]
     public class SlotData

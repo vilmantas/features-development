@@ -3,7 +3,7 @@ using Utilities.ItemsContainer;
 
 namespace Features.Inventory
 {
-    public interface IInventorySlotUI
+    public interface IInventoryUIData
     {
         InventoryButtonPressEvent OnPressed { get; }
 

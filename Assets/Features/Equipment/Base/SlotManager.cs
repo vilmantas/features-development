@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Equipment
+namespace Features.Equipment
 {
     public class SlotManager
     {
@@ -48,7 +48,7 @@ namespace Equipment
 
             var equippedItem = EmptySlotPresent(slot) ? EmptySlot(slot) : FirstSlot(slot);
 
-            return EquipmentSlot(item, equippedItem, out previousItem);
+            return EquipToSlot(item, equippedItem, out previousItem);
         }
 
         public EquipmentContainerItem EquipOrReplace(Guid slotId, IEquipmentItem item, out IEquipmentItem previousItem)
@@ -57,10 +57,10 @@ namespace Equipment
 
             var equipmentSlot = SlotById(slotId);
 
-            return equipmentSlot != null ? EquipmentSlot(item, equipmentSlot, out previousItem) : null;
+            return equipmentSlot != null ? EquipToSlot(item, equipmentSlot, out previousItem) : null;
         }
 
-        private static EquipmentContainerItem EquipmentSlot(IEquipmentItem item, EquipmentContainerItem equipmentSlot,
+        private static EquipmentContainerItem EquipToSlot(IEquipmentItem item, EquipmentContainerItem equipmentSlot,
             out IEquipmentItem previousItem)
         {
             previousItem = null;

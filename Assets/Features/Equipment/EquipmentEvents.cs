@@ -1,7 +1,7 @@
 using System;
 using UnityEngine.Events;
 
-namespace Equipment.Unity
+namespace Features.Equipment.Events
 {
     [Serializable]
     public class ItemEquippedEvent : UnityEvent<EquipResult>
@@ -10,6 +10,11 @@ namespace Equipment.Unity
 
     [Serializable]
     public class ItemUnequipEvent : UnityEvent<EquipmentContainerItem>
+    {
+    }
+
+    [Serializable]
+    public class EquipmentButtonPressEvent : UnityEvent<EquipmentContainerItem>
     {
     }
 }

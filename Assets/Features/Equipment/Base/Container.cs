@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Equipment
+namespace Features.Equipment
 {
     public class Container
     {
@@ -12,7 +12,7 @@ namespace Equipment
             Manager = new SlotManager(slots);
         }
 
-        public IReadOnlyList<EquipmentContainerItem> EquippedItems => Manager.Items;
+        public IReadOnlyList<EquipmentContainerItem> ContainerSlots => Manager.Items;
 
         public EquipResult Equip(EquipRequest request)
         {

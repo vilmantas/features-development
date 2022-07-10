@@ -34,13 +34,13 @@ namespace Features.Inventory
             m_Container = new Container(InventoryItemFactories.MakeItem, Size);
         }
 
-        public void WithUI(IInventorySlotUI prefab, Transform container)
+        public void WithUI(IInventoryUIData prefab, Transform container)
         {
             UIManager.SetSource(this,
                 () =>
                 {
                     var instance = Instantiate(prefab.gameObject, container);
-                    return instance.GetComponentInChildren<IInventorySlotUI>();
+                    return instance.GetComponentInChildren<IInventoryUIData>();
                 },
                 controller => DestroyImmediate(controller.gameObject));
         }

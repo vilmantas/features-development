@@ -1,4 +1,4 @@
-using Equipment;
+using Features.Equipment;
 using Features.Inventory;
 using Inventory;
 using Inventory.Abstract.Internal;
@@ -12,13 +12,14 @@ namespace DebugScripts
     {
         public Transform UIContainer;
 
-        public BaseSlotUIData baseSlotUIPrefab;
+        public BaseInventoryUIData baseInventoryUIPrefab;
 
         public FakeItem_SO Arrows;
 
         public FakeItem_SO Axe;
 
         public FakeItem_SO Pickaxe;
+
         private InventoryController m_InventoryController;
 
         private void Start()
@@ -29,7 +30,7 @@ namespace DebugScripts
 
             m_InventoryController.OnChangeRequestHandled.AddListener(ChangeRequestHandled);
 
-            m_InventoryController.WithUI(baseSlotUIPrefab, UIContainer.transform);
+            m_InventoryController.WithUI(baseInventoryUIPrefab, UIContainer.transform);
         }
 
         private StorageData wtf(StorageData arg)
@@ -137,7 +138,7 @@ namespace DebugScripts
         public FakeItemInstance Parent { get; }
         public string mainSlot { get; }
         public string secondarySlot { get; }
-        public string GetAmmoText => IsStackable ? string.Empty : CurrentAmount.ToString();
+        public string GetAmmoText => IsStackable ? CurrentAmount.ToString() : string.Empty;
 
         public bool IsStackable => Parent.StorageData.StackableData.Max > 1;
 
@@ -147,16 +148,18 @@ namespace DebugScripts
         {
             if (other is not IEquipmentItem<FakeItemInstance> otherItem) return false;
 
-            if (otherItem.Parent.Equals(Parent)) return false;
+            if (!otherItem.Parent.Equals(Parent)) return false;
 
             if (!IsStackable) return false;
 
+            var amountToAdd = otherItem.CurrentAmount;
+
             Parent.StorageData.StackableData.Receive(otherItem.CurrentAmount,
-                out int added);
+                out int leftovers);
 
-            otherItem.Parent.StorageData.StackableData.Reduce(added, out _);
+            otherItem.Parent.StorageData.StackableData.Reduce(otherItem.CurrentAmount - leftovers, out _);
 
-            return added != 0;
+            return true;
         }
     }
 }

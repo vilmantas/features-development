@@ -1037,7 +1037,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UIContainer: {fileID: 767449649}
-  baseSlotUIPrefab: {fileID: 477678512454350374, guid: bea29dda395b53b47960b48941c2cead, type: 3}
+  baseInventoryUIPrefab: {fileID: 477678512454350374, guid: bea29dda395b53b47960b48941c2cead, type: 3}
   Arrows: {fileID: 11400000, guid: 6ac4443bbb6984641b1c6f96add56a17, type: 2}
   Axe: {fileID: 11400000, guid: ee001382db0880e44a134a7656029841, type: 2}
   Pickaxe: {fileID: 11400000, guid: 124536c16ef8a7a4784474e351d84924, type: 2}

@@ -9,15 +9,15 @@ namespace Features.Inventory
 {
     public class InventoryUIManager
     {
-        private List<IInventorySlotUI> Datas = new();
+        private List<IInventoryUIData> Datas = new();
 
-        private Action<IInventorySlotUI> m_DestroyAction;
+        private Action<IInventoryUIData> m_DestroyAction;
 
-        private Func<IInventorySlotUI> m_InstantiationFunc;
+        private Func<IInventoryUIData> m_InstantiationFunc;
         private InventoryController m_Source;
 
-        public void SetSource(InventoryController controller, Func<IInventorySlotUI> instantiationFunc,
-            Action<IInventorySlotUI> destroyAction)
+        public void SetSource(InventoryController controller, Func<IInventoryUIData> instantiationFunc,
+            Action<IInventoryUIData> destroyAction)
         {
             m_Source = controller;
 
@@ -26,6 +26,8 @@ namespace Features.Inventory
             m_DestroyAction = destroyAction;
 
             SubscribeToSource();
+
+            DisplayNewUI();
         }
 
         private void OnItemChangeRequestHandled(IChangeRequestResult request)

@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Hierarchy
+  m_Title: Game
   m_RootView: {fileID: 10}
   m_MinSize: {x: 875, y: 421}
   m_MaxSize: {x: 10000, y: 10000}
@@ -39,12 +39,12 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 854
+    x: 804
     y: 0
-    width: 371
+    width: 421
     height: 395
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 102, y: 121}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 22}
   m_Panes:
   - {fileID: 22}
@@ -69,8 +69,8 @@ MonoBehaviour:
     y: 0
     width: 240
     height: 395
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 102, y: 121}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
@@ -101,7 +101,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 108
+  controlID: 73
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -121,8 +121,8 @@ MonoBehaviour:
     y: 0
     width: 608
     height: 552
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 21}
   m_Panes:
   - {fileID: 21}
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 164
+  controlID: 123
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -198,8 +198,8 @@ MonoBehaviour:
     y: 0
     width: 266
     height: 552
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 19}
@@ -222,10 +222,10 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 854
+    width: 804
     height: 395
-  m_MinSize: {x: 231, y: 271}
-  m_MaxSize: {x: 10001, y: 10021}
+  m_MinSize: {x: 230, y: 250}
+  m_MaxSize: {x: 10000, y: 10000}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
@@ -326,7 +326,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 165
+  controlID: 124
 --- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -352,7 +352,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 166
+  controlID: 125
 --- !u!114 &15
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -408,7 +408,7 @@ MonoBehaviour:
     m_LastAppliedPresetName: Default
     m_SaveData: []
   m_Spl:
-    ID: 197
+    ID: 194
     splitterInitialOffset: 215
     currentActiveSplitter: -1
     realSizes:
@@ -492,7 +492,7 @@ MonoBehaviour:
       name: features-development
       fullName: features-development
       resultStatus: 1
-      duration: 0.2119952
+      duration: 0.2212475
       messages: 
       output: 
       stacktrace: 
@@ -508,7 +508,7 @@ MonoBehaviour:
       name: Features.Buffs.Tests.EditMode.dll
       fullName: C:/Users/Vilmantas/Desktop/Code/unity-stuff/features-development/Library/ScriptAssemblies/Features.Buffs.Tests.EditMode.dll
       resultStatus: 1
-      duration: 0.0745754
+      duration: 0.0829647
       messages: 
       output: 
       stacktrace: 
@@ -524,7 +524,7 @@ MonoBehaviour:
       name: BuffContainerTests
       fullName: BuffContainerTests
       resultStatus: 1
-      duration: 0.0735935
+      duration: 0.0802392
       messages: 
       output: 
       stacktrace: 
@@ -540,7 +540,7 @@ MonoBehaviour:
       name: General
       fullName: BuffContainerTests.General
       resultStatus: 1
-      duration: 0.0717268
+      duration: 0.0781399
       messages: 
       output: 
       stacktrace: 
@@ -556,7 +556,7 @@ MonoBehaviour:
       name: AddsABuffWithFullDuration
       fullName: BuffContainerTests.General.AddsABuffWithFullDuration
       resultStatus: 1
-      duration: 0.0253331
+      duration: 0.0248228
       messages: 
       output: 
       stacktrace: 
@@ -573,7 +573,7 @@ MonoBehaviour:
       name: ItAddsOneStackbyDefault
       fullName: BuffContainerTests.General.ItAddsOneStackbyDefault
       resultStatus: 1
-      duration: 0.001267
+      duration: 0.0013867
       messages: 
       output: 
       stacktrace: 
@@ -590,7 +590,7 @@ MonoBehaviour:
       name: ItCanExecuteIntervalTickImmediately
       fullName: BuffContainerTests.General.ItCanExecuteIntervalTickImmediately
       resultStatus: 1
-      duration: 0.0032421
+      duration: 0.0034836
       messages: 
       output: 
       stacktrace: 
@@ -607,7 +607,7 @@ MonoBehaviour:
       name: ItCanReceiveABuff
       fullName: BuffContainerTests.General.ItCanReceiveABuff
       resultStatus: 1
-      duration: 0.0003042
+      duration: 0.0005849
       messages: 
       output: 
       stacktrace: 
@@ -624,7 +624,7 @@ MonoBehaviour:
       name: ItCanReceiveBuffAfterFirstFinishes
       fullName: BuffContainerTests.General.ItCanReceiveBuffAfterFirstFinishes
       resultStatus: 1
-      duration: 0.0018689
+      duration: 0.0021509
       messages: 
       output: 
       stacktrace: 
@@ -641,7 +641,7 @@ MonoBehaviour:
       name: ItDoesNotStackOverLimit
       fullName: BuffContainerTests.General.ItDoesNotStackOverLimit
       resultStatus: 1
-      duration: 0.0003
+      duration: 0.0002974
       messages: 
       output: 
       stacktrace: 
@@ -658,7 +658,7 @@ MonoBehaviour:
       name: ItNotifiesEachTimeAStackGetsRemoved
       fullName: BuffContainerTests.General.ItNotifiesEachTimeAStackGetsRemoved
       resultStatus: 1
-      duration: 0.0003202
+      duration: 0.0003158
       messages: 
       output: 
       stacktrace: 
@@ -675,7 +675,7 @@ MonoBehaviour:
       name: ItNotifiesEachTimeWhenStacksGetAdded
       fullName: BuffContainerTests.General.ItNotifiesEachTimeWhenStacksGetAdded
       resultStatus: 1
-      duration: 0.0004225
+      duration: 0.0004162
       messages: 
       output: 
       stacktrace: 
@@ -692,7 +692,7 @@ MonoBehaviour:
       name: ItNotifiesWhenBuffReceived
       fullName: BuffContainerTests.General.ItNotifiesWhenBuffReceived
       resultStatus: 1
-      duration: 0.0002639
+      duration: 0.0002982
       messages: 
       output: 
       stacktrace: 
@@ -709,7 +709,7 @@ MonoBehaviour:
       name: ItNotifiesWhenBuffRemoved
       fullName: BuffContainerTests.General.ItNotifiesWhenBuffRemoved
       resultStatus: 1
-      duration: 0.0002976
+      duration: 0.0002802
       messages: 
       output: 
       stacktrace: 
@@ -726,7 +726,7 @@ MonoBehaviour:
       name: ItNotifiesWhenStackWasAdded
       fullName: BuffContainerTests.General.ItNotifiesWhenStackWasAdded
       resultStatus: 1
-      duration: 0.000291
+      duration: 0.0002618
       messages: 
       output: 
       stacktrace: 
@@ -743,7 +743,7 @@ MonoBehaviour:
       name: ItNotifiesWhenStackWasRemoved
       fullName: BuffContainerTests.General.ItNotifiesWhenStackWasRemoved
       resultStatus: 1
-      duration: 0.0002915
+      duration: 0.0002649
       messages: 
       output: 
       stacktrace: 
@@ -760,7 +760,7 @@ MonoBehaviour:
       name: ItShouldTick10TimesForEverySecondPassed
       fullName: BuffContainerTests.General.ItShouldTick10TimesForEverySecondPassed
       resultStatus: 1
-      duration: 0.0139602
+      duration: 0.0141817
       messages: 
       output: 
       stacktrace: 
@@ -777,7 +777,7 @@ MonoBehaviour:
       name: ItStacksBuffs
       fullName: BuffContainerTests.General.ItStacksBuffs
       resultStatus: 1
-      duration: 0.0003579
+      duration: 0.0003849
       messages: 
       output: 
       stacktrace: 
@@ -794,7 +794,7 @@ MonoBehaviour:
       name: ItTriggersInterval
       fullName: BuffContainerTests.General.ItTriggersInterval
       resultStatus: 1
-      duration: 0.0002817
+      duration: 0.0002819
       messages: 
       output: 
       stacktrace: 
@@ -811,7 +811,7 @@ MonoBehaviour:
       name: ItTriggersTickIntervalsDuringBuffDuration
       fullName: BuffContainerTests.General.ItTriggersTickIntervalsDuringBuffDuration
       resultStatus: 1
-      duration: 0.0002883
+      duration: 0.0002831
       messages: 
       output: 
       stacktrace: 
@@ -828,7 +828,7 @@ MonoBehaviour:
       name: Utilities.Tests.EditMode.dll
       fullName: C:/Users/Vilmantas/Desktop/Code/unity-stuff/features-development/Library/ScriptAssemblies/Utilities.Tests.EditMode.dll
       resultStatus: 1
-      duration: 0.0789681
+      duration: 0.0790671
       messages: 
       output: 
       stacktrace: 
@@ -844,7 +844,7 @@ MonoBehaviour:
       name: ItemContainerTests
       fullName: ItemContainerTests
       resultStatus: 1
-      duration: 0.0294078
+      duration: 0.0308167
       messages: 
       output: 
       stacktrace: 
@@ -860,7 +860,7 @@ MonoBehaviour:
       name: General
       fullName: ItemContainerTests.General
       resultStatus: 1
-      duration: 0.0286862
+      duration: 0.0300568
       messages: 
       output: 
       stacktrace: 
@@ -876,7 +876,7 @@ MonoBehaviour:
       name: ItAddsDuplicatesIfExistingItemIsFull
       fullName: ItemContainerTests.General.ItAddsDuplicatesIfExistingItemIsFull
       resultStatus: 1
-      duration: 0.0069323
+      duration: 0.0078495
       messages: 
       output: 
       stacktrace: 
@@ -893,7 +893,7 @@ MonoBehaviour:
       name: ItAppendsToExistingStackableItem
       fullName: ItemContainerTests.General.ItAppendsToExistingStackableItem
       resultStatus: 1
-      duration: 0.0005466
+      duration: 0.0006383
       messages: 
       output: 
       stacktrace: 
@@ -910,7 +910,7 @@ MonoBehaviour:
       name: ItCanReceiveAnItem
       fullName: ItemContainerTests.General.ItCanReceiveAnItem
       resultStatus: 1
-      duration: 0.0003364
+      duration: 0.00031
       messages: 
       output: 
       stacktrace: 
@@ -927,7 +927,7 @@ MonoBehaviour:
       name: ItCanRemoveItem
       fullName: ItemContainerTests.General.ItCanRemoveItem
       resultStatus: 1
-      duration: 0.001704
+      duration: 0.0018956
       messages: 
       output: 
       stacktrace: 
@@ -944,7 +944,7 @@ MonoBehaviour:
       name: ItCanRemoveSpecificItem
       fullName: ItemContainerTests.General.ItCanRemoveSpecificItem
       resultStatus: 1
-      duration: 0.0024071
+      duration: 0.0020857
       messages: 
       output: 
       stacktrace: 
@@ -961,7 +961,7 @@ MonoBehaviour:
       name: ItCanReplaceExactItem
       fullName: ItemContainerTests.General.ItCanReplaceExactItem
       resultStatus: 1
-      duration: 0.0013242
+      duration: 0.001282
       messages: 
       output: 
       stacktrace: 
@@ -978,7 +978,7 @@ MonoBehaviour:
       name: ItCanSwapSlotItems
       fullName: ItemContainerTests.General.ItCanSwapSlotItems
       resultStatus: 1
-      duration: 0.0015422
+      duration: 0.0014935
       messages: 
       output: 
       stacktrace: 
@@ -995,7 +995,24 @@ MonoBehaviour:
       name: ItDoesNotAddDuplicateItemsIfExistingItemIsNotFull
       fullName: ItemContainerTests.General.ItDoesNotAddDuplicateItemsIfExistingItemIsNotFull
       resultStatus: 1
-      duration: 0.0002894
+      duration: 0.0002736
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1039
+      parentUniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/[Utilities.Tests.EditMode][ItemContainerTests.General][suite]
+    - id: 1046
+      uniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/General/[Utilities.Tests.EditMode][ItemContainerTests.General.ItDoesNotAppendNewItemToExistingStackable]
+      name: ItDoesNotAppendNewItemToExistingStackable
+      fullName: ItemContainerTests.General.ItDoesNotAppendNewItemToExistingStackable
+      resultStatus: 1
+      duration: 0.0003265
       messages: 
       output: 
       stacktrace: 
@@ -1012,7 +1029,7 @@ MonoBehaviour:
       name: ItDoesNotRemoveMoreThanAvailable
       fullName: ItemContainerTests.General.ItDoesNotRemoveMoreThanAvailable
       resultStatus: 1
-      duration: 0.0008286
+      duration: 0.0006661
       messages: 
       output: 
       stacktrace: 
@@ -1029,7 +1046,7 @@ MonoBehaviour:
       name: ItHasItems
       fullName: ItemContainerTests.General.ItHasItems
       resultStatus: 1
-      duration: 0.0034658
+      duration: 0.0031862
       messages: 
       output: 
       stacktrace: 
@@ -1046,7 +1063,7 @@ MonoBehaviour:
       name: ItHasSize
       fullName: ItemContainerTests.General.ItHasSize
       resultStatus: 1
-      duration: 0.0002822
+      duration: 0.0002446
       messages: 
       output: 
       stacktrace: 
@@ -1063,7 +1080,7 @@ MonoBehaviour:
       name: ItReportsAmountAdded
       fullName: ItemContainerTests.General.ItReportsAmountAdded
       resultStatus: 1
-      duration: 0.0002708
+      duration: 0.0002592
       messages: 
       output: 
       stacktrace: 
@@ -1080,7 +1097,24 @@ MonoBehaviour:
       name: ItReportsRemovedAmount
       fullName: ItemContainerTests.General.ItReportsRemovedAmount
       resultStatus: 1
-      duration: 0.000284
+      duration: 0.0003063
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1039
+      parentUniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/[Utilities.Tests.EditMode][ItemContainerTests.General][suite]
+    - id: 1047
+      uniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/General/[Utilities.Tests.EditMode][ItemContainerTests.General.ItStacksMultipleItems]
+      name: ItStacksMultipleItems
+      fullName: ItemContainerTests.General.ItStacksMultipleItems
+      resultStatus: 1
+      duration: 0.0004104
       messages: 
       output: 
       stacktrace: 
@@ -1097,7 +1131,7 @@ MonoBehaviour:
       name: ResourceContainerTests
       fullName: ResourceContainerTests
       resultStatus: 1
-      duration: 0.037708
+      duration: 0.0379434
       messages: 
       output: 
       stacktrace: 
@@ -1113,7 +1147,7 @@ MonoBehaviour:
       name: General
       fullName: ResourceContainerTests.General
       resultStatus: 1
-      duration: 0.0047758
+      duration: 0.0044738
       messages: 
       output: 
       stacktrace: 
@@ -1129,7 +1163,7 @@ MonoBehaviour:
       name: ItCanReceive
       fullName: ResourceContainerTests.General.ItCanReceive
       resultStatus: 1
-      duration: 0.0004739
+      duration: 0.0004785
       messages: 
       output: 
       stacktrace: 
@@ -1146,7 +1180,7 @@ MonoBehaviour:
       name: ItCanReduce
       fullName: ResourceContainerTests.General.ItCanReduce
       resultStatus: 1
-      duration: 0.0002229
+      duration: 0.0002184
       messages: 
       output: 
       stacktrace: 
@@ -1163,7 +1197,7 @@ MonoBehaviour:
       name: ItDoesNotGoBelowZero
       fullName: ResourceContainerTests.General.ItDoesNotGoBelowZero
       resultStatus: 1
-      duration: 0.0002527
+      duration: 0.0002412
       messages: 
       output: 
       stacktrace: 
@@ -1180,7 +1214,7 @@ MonoBehaviour:
       name: ItDoesNotGoOverMaximum
       fullName: ResourceContainerTests.General.ItDoesNotGoOverMaximum
       resultStatus: 1
-      duration: 0.0002459
+      duration: 0.0002338
       messages: 
       output: 
       stacktrace: 
@@ -1197,7 +1231,7 @@ MonoBehaviour:
       name: ItReportsAmountLeftAfterReceiving
       fullName: ResourceContainerTests.General.ItReportsAmountLeftAfterReceiving
       resultStatus: 1
-      duration: 0.0002494
+      duration: 0.0002382
       messages: 
       output: 
       stacktrace: 
@@ -1214,7 +1248,7 @@ MonoBehaviour:
       name: ItReportsAmountLeftAfterReducing
       fullName: ResourceContainerTests.General.ItReportsAmountLeftAfterReducing
       resultStatus: 1
-      duration: 0.0002465
+      duration: 0.000235
       messages: 
       output: 
       stacktrace: 
@@ -1231,7 +1265,7 @@ MonoBehaviour:
       name: WhenEmpty
       fullName: ResourceContainerTests.WhenEmpty
       resultStatus: 1
-      duration: 0.0117343
+      duration: 0.0107554
       messages: 
       output: 
       stacktrace: 
@@ -1247,7 +1281,7 @@ MonoBehaviour:
       name: ItCantBeReduced
       fullName: ResourceContainerTests.WhenEmpty.ItCantBeReduced
       resultStatus: 1
-      duration: 0.0004232
+      duration: 0.0004018
       messages: 
       output: 
       stacktrace: 
@@ -1264,7 +1298,7 @@ MonoBehaviour:
       name: ItDoesntConsumeAmountReduced
       fullName: ResourceContainerTests.WhenEmpty.ItDoesntConsumeAmountReduced
       resultStatus: 1
-      duration: 0.0002679
+      duration: 0.0002704
       messages: 
       output: 
       stacktrace: 
@@ -1281,7 +1315,7 @@ MonoBehaviour:
       name: ItIsEmpty
       fullName: ResourceContainerTests.WhenEmpty.ItIsEmpty
       resultStatus: 1
-      duration: 0.0004563
+      duration: 0.0002209
       messages: 
       output: 
       stacktrace: 
@@ -1298,7 +1332,7 @@ MonoBehaviour:
       name: WhenFull
       fullName: ResourceContainerTests.WhenFull
       resultStatus: 1
-      duration: 0.0113563
+      duration: 0.0125198
       messages: 
       output: 
       stacktrace: 
@@ -1314,7 +1348,7 @@ MonoBehaviour:
       name: ItCantReceive
       fullName: ResourceContainerTests.WhenFull.ItCantReceive
       resultStatus: 1
-      duration: 0.0003809
+      duration: 0.0003865
       messages: 
       output: 
       stacktrace: 
@@ -1331,7 +1365,7 @@ MonoBehaviour:
       name: ItDoesntConsumeAmountReceived
       fullName: ResourceContainerTests.WhenFull.ItDoesntConsumeAmountReceived
       resultStatus: 1
-      duration: 0.0002654
+      duration: 0.0002742
       messages: 
       output: 
       stacktrace: 
@@ -1348,7 +1382,7 @@ MonoBehaviour:
       name: ItIsFull
       fullName: ResourceContainerTests.WhenFull.ItIsFull
       resultStatus: 1
-      duration: 0.0002848
+      duration: 0.0002224
       messages: 
       output: 
       stacktrace: 
@@ -1360,7 +1394,7 @@ MonoBehaviour:
       - Uncategorized
       parentId: 1031
       parentUniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/[Utilities.Tests.EditMode][ResourceContainerTests.WhenFull][suite]
-    m_ResultText: features-development (0.212s)
+    m_ResultText: features-development (0.221s)
     m_ResultStacktrace: 
     m_TestListState:
       scrollPos: {x: 0, y: 0}
@@ -1414,7 +1448,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 711
     y: -455
-    width: 853
+    width: 803
     height: 374
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
@@ -1433,22 +1467,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Features/Inventory
+    - Assets/DebugScripts/Equipment
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Features/Inventory
+  - Assets/DebugScripts/Equipment
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\Vilmantas\Desktop\Code\unity-stuff\features-development
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 245e0000
-    m_LastClickedID: 24100
-    m_ExpandedIDs: 000000009a5c00009c5c00009e5c0000a25c0000a45c0000a85c0000aa5c0000be5c0000e45d0000e65d0000f45d0000245e0000ba5f0000f26a000000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 46}
+    m_SelectedIDs: 94620000
+    m_LastClickedID: 25236
+    m_ExpandedIDs: 000000001a5d00001c5d00001e5d0000205d0000225d0000245d0000265d0000285d00002a5d00002c5d00002e5d0000325d0000345d00007660000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1476,7 +1510,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000009a5c00009c5c00009e5c0000a05c0000a25c0000a45c0000a65c0000a85c0000aa5c0000
+    m_ExpandedIDs: 000000001a5d00001c5d00001e5d0000205d0000225d0000245d0000265d0000285d00002a5d00002c5d00002e5d0000305d0000325d0000345d0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1501,8 +1535,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 
-    m_LastClickedInstanceID: 0
+    m_SelectedInstanceIDs: fc650000
+    m_LastClickedInstanceID: 26108
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000
     m_RenameOverlay:
@@ -1566,7 +1600,7 @@ MonoBehaviour:
     m_CachedPref: -151
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
-  m_LastInspectedObjectInstanceID: -1
+  m_LastInspectedObjectInstanceID: 26108
   m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0
@@ -1604,23 +1638,23 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: c67b0000
-      m_LastClickedID: 31686
-      m_ExpandedIDs: f079fcfffc79fcffc07b0000
+      m_SelectedIDs: fc650000
+      m_LastClickedID: 26108
+      m_ExpandedIDs: 0072feffd472feffe475feff1679feffbebdfeff1ebefeff24fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: custom_data
-        m_OriginalName: custom_data
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 31674
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 8}
       m_SearchString: 
@@ -1664,7 +1698,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 1
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: -101, y: -1}
+      snapOffsetDelta: {x: -101, y: -26}
       snapCorner: 3
       id: Tool Settings
       index: 0
@@ -1697,7 +1731,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 0
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 25}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 1
       id: unity-search-toolbar
       index: 1
@@ -1741,7 +1775,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 0
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 25}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Scene View/Light Settings
       index: 0
@@ -1752,7 +1786,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 0
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 25}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Scene View/Camera
       index: 1
@@ -1763,7 +1797,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 0
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 25}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Scene View/Cloth Constraints
       index: 2
@@ -1774,7 +1808,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 0
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 25}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Scene View/Cloth Collisions
       index: 3
@@ -1785,7 +1819,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 0
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 25}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Scene View/Navmesh Display
       index: 4
@@ -1796,7 +1830,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 0
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 25}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Scene View/Agent Display
       index: 5
@@ -1807,7 +1841,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 0
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 25}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Scene View/Obstacle Display
       index: 6
@@ -1818,7 +1852,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 0
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 25}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Scene View/Occlusion Culling
       index: 7
@@ -1829,7 +1863,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 0
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 25}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Scene View/Physics Debugger
       index: 8
@@ -1840,7 +1874,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 0
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 25}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Scene View/Scene Visibility
       index: 9
@@ -1851,24 +1885,24 @@ MonoBehaviour:
       collapsed: 0
       displayed: 0
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 25}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Scene View/Particles
       index: 10
       layout: 4
   m_WindowGUID: cc27987af1a868c49b0894db9c0f5429
   m_Gizmos: 1
-  m_OverrideSceneCullingMask: 0
-  m_SceneIsLit: 0
+  m_OverrideSceneCullingMask: 6917529027641081856
+  m_SceneIsLit: 1
   m_SceneLighting: 1
   m_2DMode: 0
   m_isRotationLocked: 0
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 223.81198, y: 36.815063, z: 0}
+    m_Target: {x: 0, y: 0, z: -6.35}
     speed: 2
-    m_Value: {x: 128, y: 354, z: 0}
+    m_Value: {x: 0, y: 0, z: -6.35}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1880,7 +1914,7 @@ MonoBehaviour:
   m_SceneViewState:
     m_AlwaysRefresh: 0
     showFog: 1
-    showSkybox: 0
+    showSkybox: 1
     showFlares: 1
     showImageEffects: 1
     showParticleSystems: 1
@@ -1915,13 +1949,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.03299094, y: -0.013492767, z: 0.00044550153, w: 0.9993663}
+    m_Target: {x: 0.05846343, y: -0.010482365, z: 0.00061400875, w: 0.9982365}
     speed: 2
     m_Value: {x: 0.0584633, y: -0.010482343, z: 0.0006140074, w: 0.99823433}
   m_Size:
-    m_Target: 70.71068
+    m_Target: 1.7727156
     speed: 2
-    m_Value: 62.932503
+    m_Value: 1.7727156
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -2058,9 +2092,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1565
+    x: 1515
     y: -455
-    width: 369
+    width: 419
     height: 374
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:

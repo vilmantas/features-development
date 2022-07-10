@@ -1,6 +1,6 @@
 using System;
 
-namespace Equipment
+namespace Features.Equipment
 {
     public class EquipRequest
     {

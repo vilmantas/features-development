@@ -438,7 +438,7 @@ GameObject:
   - component: {fileID: 5444376561011798724}
   - component: {fileID: 8222497307879281349}
   m_Layer: 5
-  m_Name: pref_EquipmentUIData
+  m_Name: pref_BaseEquipmentUIData
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

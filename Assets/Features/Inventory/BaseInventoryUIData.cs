@@ -8,14 +8,14 @@ using Utilities.ItemsContainer;
 
 namespace Inventory.Unity
 {
-    public class BaseSlotUIData : MonoBehaviour,
+    public class BaseInventoryUIData : MonoBehaviour,
         IBeginDragHandler,
         IDragHandler,
         IEndDragHandler,
         IPointerEnterHandler,
         IPointerExitHandler,
         IPointerClickHandler,
-        IInventorySlotUI
+        IInventoryUIData
     {
         [HideInInspector] public InventoryButtonPressEvent m_OnPressed = new();
 
@@ -69,7 +69,7 @@ namespace Inventory.Unity
 
             if (eventData.pointerEnter == null) return;
 
-            var target = eventData.pointerEnter.GetComponentInParent<BaseSlotUIData>();
+            var target = eventData.pointerEnter.GetComponentInParent<BaseInventoryUIData>();
 
             if (target == null) return;
 
@@ -102,7 +102,7 @@ namespace Inventory.Unity
 
             if (eventData.dragging)
             {
-                var source = eventData.pointerDrag.GetComponentInParent<BaseSlotUIData>();
+                var source = eventData.pointerDrag.GetComponentInParent<BaseInventoryUIData>();
 
                 if (source == null || source.m_InventoryItemContainer.IsEmpty) return;
             }

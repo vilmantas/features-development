@@ -7,7 +7,7 @@ using Utilities.ItemsContainer;
 
 namespace DebugScripts
 {
-    public class InventoryUIDataController : BaseSlotUIData
+    public class InventoryUIDataController : BaseInventoryUIData
     {
         [HideInInspector] public TextMeshProUGUI Title;
 

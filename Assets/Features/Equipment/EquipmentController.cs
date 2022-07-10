@@ -1,30 +1,47 @@
 using System.Collections.Generic;
 using System.Linq;
+using Features.Equipment.Events;
 using UnityEngine;
 
-namespace Equipment.Unity
+namespace Features.Equipment
 {
     public class EquipmentController : MonoBehaviour
     {
         [SerializeField] private SlotData[] EquipmentSlots;
 
-        public readonly ItemEquippedEvent OnItemEquippedEvent = new();
+        public readonly ItemEquippedEvent OnItemEquipped = new();
 
-        public readonly ItemUnequipEvent OnItemUnequipEvent = new();
+        public readonly ItemUnequipEvent OnItemUnequipRequested = new();
+
         private Container m_Container;
+
+        private EquipmentUIManager UIManager;
 
         public string[] AvailableSlots => EquipmentSlots.Select(x => x.slotType).ToArray();
 
-        public IReadOnlyList<EquipmentContainerItem> EquippedItems => m_Container.EquippedItems;
+        public IReadOnlyList<EquipmentContainerItem> ContainerSlots => m_Container.ContainerSlots;
 
         public void Awake()
         {
             m_Container = new Container(AvailableSlots);
         }
 
+        public void WithUI(IEquipmentUIData prefab, Transform container)
+        {
+            UIManager = new EquipmentUIManager();
+
+            UIManager.SetSource(this,
+                () =>
+                {
+                    var instance = Instantiate(prefab.gameObject, container);
+                    return instance.GetComponentInChildren<IEquipmentUIData>();
+                },
+                controller => DestroyImmediate(controller.gameObject));
+        }
+
         public void RequestUnequip(EquipmentContainerItem slot)
         {
-            OnItemUnequipEvent.Invoke(slot);
+            OnItemUnequipRequested.Invoke(slot);
         }
 
         public void HandleEquipRequest(EquipRequest request)
@@ -33,11 +50,11 @@ namespace Equipment.Unity
 
             if (!result.Succeeded) return;
 
-            OnItemEquipped(result);
-            OnItemEquippedEvent.Invoke(result);
+            HandleItemEquipped(result);
+            OnItemEquipped.Invoke(result);
         }
 
-        private void OnItemEquipped(EquipResult result)
+        private void HandleItemEquipped(EquipResult result)
         {
             if (ContainerFor(result.EquipmentContainerItem.Slot).InstanceParent == null) return;
 

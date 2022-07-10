@@ -1,6 +1,6 @@
 using System;
 
-namespace Equipment
+namespace Features.Equipment
 {
     public class EquipmentContainerItem
     {
@@ -9,5 +9,7 @@ namespace Equipment
         public IEquipmentItem Main;
 
         public string Slot;
+
+        public bool IsEmpty => Main == null;
     }
 }

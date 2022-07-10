@@ -1,4 +1,4 @@
-namespace Equipment
+namespace Features.Equipment
 {
     public class EquipResult
     {
