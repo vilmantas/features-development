@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Stats.Unity
 {
-    public class StatsController : MonoBehaviour
+    public class StatController : MonoBehaviour
     {
         [HideInInspector] public StatsChangedEvent OnStatsChanged = new();
 

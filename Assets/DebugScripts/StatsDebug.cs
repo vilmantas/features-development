@@ -1,19 +1,17 @@
 using System.Collections.Generic;
-using Stats;
-using Stats.Unity;
 using UnityEngine;
 
 namespace DebugScripts
 {
     public class StatsDebug : MonoBehaviour
     {
-        private StatsController m_StatsController;
+        private StatController m_StatController;
 
         private void Start()
         {
-            m_StatsController = GetComponentInChildren<StatsController>();
+            m_StatController = GetComponentInChildren<StatController>();
 
-            m_StatsController.OnStatsChanged.AddListener(LogStats);
+            m_StatController.OnStatsChanged.AddListener(LogStats);
         }
 
         private void LogStats(StatsChangedEventArgs arg0)
@@ -26,7 +24,7 @@ namespace DebugScripts
 
         public void AddStat()
         {
-            m_StatsController.ApplyStatModifiers(new StatGroup(new List<Stat>()
+            m_StatController.ApplyStatModifiers(new StatGroup(new List<Stat>()
             {
                 new("Strength", 1),
                 new("Defence", 1),

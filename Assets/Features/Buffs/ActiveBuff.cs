@@ -10,6 +10,7 @@ namespace Features.Buffs
         internal readonly ResourceContainer Counter;
 
         public readonly BuffBase Metadata;
+        
         private Action<ActiveBuff> m_OnStackAdded;
 
         private Action<ActiveBuff> m_OnStackRemoved;

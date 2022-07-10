@@ -10,19 +10,26 @@ namespace Features.Character
 {
     public class CharacterManager : MonoBehaviour
     {
-        private BuffController m_BuffsController;
+        private BuffController m_BuffController;
 
         private CombatController m_CombatController;
 
         private EquipmentController m_EquipmentController;
 
         private HealthController m_HealthController;
+        
         private InventoryController m_InventoryController;
 
-        private StatsController m_StatsController;
+        private StatController m_StatController;
 
         public void DoSetup()
         {
+            m_BuffController = GetComponentInChildren<BuffController>();
+            m_CombatController = GetComponentInChildren<CombatController>();
+            m_EquipmentController = GetComponentInChildren<EquipmentController>();
+            m_HealthController = GetComponentInChildren<HealthController>();
+            m_InventoryController = GetComponentInChildren<InventoryController>();
+            m_StatController = GetComponentInChildren<StatController>();
         }
     }
 }

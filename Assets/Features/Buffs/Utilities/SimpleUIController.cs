@@ -1,9 +1,10 @@
+using Features.Buffs.UI;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Utilities.RadialTimer;
 
-namespace Features.Buffs.UI
+namespace Features.Buffs.Utilities
 {
     public class SimpleUIController : MonoBehaviour, IBuffUI
     {

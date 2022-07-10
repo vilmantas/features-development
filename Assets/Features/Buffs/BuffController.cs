@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Features.Buffs.Events;
 using Features.Buffs.UI;
 using UnityEngine;
 using UnityEngine.Events;
@@ -25,12 +26,14 @@ namespace Features.Buffs
 
         public IReadOnlyList<ActiveBuff> ActiveBuffs => Container.Buffs.Where(x => !x.IsDepleted).ToList();
 
-        private void Start()
+        private void Awake()
         {
-            UIManager = new BuffUIManager();
-
-            Container = new BuffContainer().RegisterCallbacks(OnBuffRemoved.Invoke, OnBuffAdded.Invoke,
-                OnBuffStackRemoved.Invoke, OnBuffStackAdded.Invoke);
+            Container = new BuffContainer()
+                .RegisterCallbacks(
+                OnBuffRemoved.Invoke, OnBuffAdded.Invoke,
+                OnBuffStackRemoved.Invoke, 
+                OnBuffStackAdded.Invoke
+                );
         }
 
         private void Update()
@@ -42,6 +45,8 @@ namespace Features.Buffs
 
         public void WithUI(IBuffUI prefab, Transform container)
         {
+            UIManager = new BuffUIManager();
+
             UIManager.SetSource(this,
                 () =>
                 {
@@ -65,33 +70,5 @@ namespace Features.Buffs
         {
             Container.Receive(buff);
         }
-    }
-
-
-    [Serializable]
-    public class BuffRemovedEvent : UnityEvent<ActiveBuff>
-    {
-    }
-
-
-    [Serializable]
-    public class BuffAddedEvent : UnityEvent<ActiveBuff>
-    {
-    }
-
-    [Serializable]
-    public class BuffStackRemovedEvent : UnityEvent<ActiveBuff>
-    {
-    }
-
-
-    [Serializable]
-    public class BuffStackAddedEvent : UnityEvent<ActiveBuff>
-    {
-    }
-
-    [Serializable]
-    public class BuffTickOccuredEvent : UnityEvent<float>
-    {
     }
 }

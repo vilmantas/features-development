@@ -1,8 +1,3 @@
-using Features.Equipment;
-using Features.Inventory;
-using Inventory;
-using Inventory.Abstract.Internal;
-using Inventory.Unity;
 using UnityEngine;
 using Utilities.ItemsContainer;
 
@@ -12,13 +7,13 @@ namespace DebugScripts
     {
         public Transform UIContainer;
 
-        public BaseInventoryUIData baseInventoryUIPrefab;
-
         public FakeItem_SO Arrows;
 
         public FakeItem_SO Axe;
 
         public FakeItem_SO Pickaxe;
+
+        public BaseInventoryUIData baseInventoryUIPrefab;
 
         private InventoryController m_InventoryController;
 
@@ -66,12 +61,13 @@ namespace DebugScripts
         }
     }
 
-    public class FakeItemInstance
+    public class FakeItemInstance : IItemInstance
     {
         public readonly EquipmentData EquipmentData;
         public readonly FakeItemMetadata Metadata;
 
         public readonly StorageData StorageData;
+        private IItemInstance m_ItemInstanceImplementation;
 
         public FakeItemInstance(FakeItemMetadata metadata)
         {
@@ -81,6 +77,8 @@ namespace DebugScripts
 
             StorageData = new StorageData(this, metadata.MaxStack);
         }
+
+        IItemMetadata IItemInstance.Metadata => m_ItemInstanceImplementation.Metadata;
 
         public override bool Equals(object other)
         {
@@ -105,13 +103,9 @@ namespace DebugScripts
         }
     }
 
-    public class FakeItemMetadata
+    public class FakeItemMetadata : IItemMetadata
     {
-        public readonly int MaxStack;
         public readonly GameObject ModelPrefab;
-        public readonly string Name;
-        public readonly Sprite Sprite;
-
 
         public FakeItemMetadata(string name, Sprite sprite, GameObject modelPrefab, int maxStack = 1)
         {
@@ -120,6 +114,10 @@ namespace DebugScripts
             ModelPrefab = modelPrefab;
             MaxStack = maxStack;
         }
+
+        public string Name { get; }
+        public Sprite Sprite { get; }
+        public int MaxStack { get; }
     }
 
     public class EquipmentData : IEquipmentItem<FakeItemInstance>

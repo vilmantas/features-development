@@ -10,7 +10,7 @@ namespace Stats.Unity
 
         private Dictionary<string, StatsUIData> Datas = new();
 
-        private StatsController m_CurrentSource;
+        private StatController m_CurrentSource;
 
         private CanvasGroup m_MainGroup;
         private RectTransform m_UIItemsGrid;
@@ -27,7 +27,7 @@ namespace Stats.Unity
             }
         }
 
-        public void SetSource(StatsController source)
+        public void SetSource(StatController source)
         {
             if (m_CurrentSource != null) RemoveCurrentSource();
 
