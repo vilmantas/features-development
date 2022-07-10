@@ -14,19 +14,19 @@ namespace DebugScripts.Buffs
 
         public void GiveTicker()
         {
-            BuffController.Receive(new BuffBase("Simple", 5f), gameObject);
+            BuffController.Add(new BuffBase("Simple", 5f), gameObject);
         }
 
         public void GiveTacker()
         {
-            BuffController.Receive(new BuffBase("Stackable", 5f, 5), gameObject);
+            BuffController.Add(new BuffBase("Stackable", 5f, 5), gameObject);
         }
 
         public void GiveTicking()
         {
-            var interval = new BuffBase("Intervaling", 5f).WithInterval(0.5f, () => Debug.Log("Tick!"));
+            var interval = new BuffBase("Intervaling", 5f).WithInterval(0.5f);
 
-            BuffController.Receive(interval, gameObject);
+            BuffController.Add(interval, gameObject);
         }
     }
 }

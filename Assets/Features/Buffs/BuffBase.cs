@@ -1,5 +1,3 @@
-using System;
-
 namespace Features.Buffs
 {
     public class BuffBase
@@ -17,19 +15,16 @@ namespace Features.Buffs
 
         public bool TickingEnabled { get; private set; }
 
-        public Action OnTick { get; private set; }
-
         public float TickInterval { get; private set; }
 
         public bool TickImmediateExecution { get; private set; }
 
-        public BuffBase WithInterval(float tickInterval, Action onTick, bool executeImmediately = false)
+        public BuffBase WithInterval(float tickInterval, bool executeImmediately = false)
         {
             TickImmediateExecution = executeImmediately;
             TickInterval = tickInterval;
-            OnTick = onTick;
 
-            TickingEnabled = onTick != null && tickInterval >= ActiveBuff.BUFF_INTERVAL_MIN;
+            TickingEnabled = tickInterval >= ActiveBuff.BUFF_INTERVAL_MIN;
 
             return this;
         }

@@ -8,6 +8,8 @@ namespace Features.Buffs
 {
     public class BuffController : MonoBehaviour
     {
+        [HideInInspector] public BuffAddRequestEvent OnBuffAddRequested = new();
+
         [HideInInspector] public BuffAddedEvent OnBuffAdded = new();
 
         [HideInInspector] public BuffRemovedEvent OnBuffRemoved = new();
@@ -16,7 +18,9 @@ namespace Features.Buffs
 
         [HideInInspector] public BuffStackRemovedEvent OnBuffStackRemoved = new();
 
-        [HideInInspector] public BuffTickOccuredEvent OnTickOccured = new();
+        [HideInInspector] public BuffTickOccurredEvent OnBuffTickOccurred = new();
+
+        [HideInInspector] public BuffTimerTickEvent OnTimerTick = new();
 
         private BuffContainer Container;
 
@@ -28,9 +32,11 @@ namespace Features.Buffs
         {
             Container = new BuffContainer()
                 .RegisterCallbacks(
-                    OnBuffRemoved.Invoke, OnBuffAdded.Invoke,
+                    OnBuffRemoved.Invoke,
+                    OnBuffAdded.Invoke,
                     OnBuffStackRemoved.Invoke,
-                    OnBuffStackAdded.Invoke
+                    OnBuffStackAdded.Invoke,
+                    OnBuffTickOccurred.Invoke
                 );
         }
 
@@ -38,7 +44,7 @@ namespace Features.Buffs
         {
             Container.Tick(Time.deltaTime);
 
-            OnTickOccured?.Invoke(Time.deltaTime);
+            OnTimerTick?.Invoke(Time.deltaTime);
         }
 
         public void WithUI(IBuffUI prefab, Transform container)
@@ -64,7 +70,12 @@ namespace Features.Buffs
             Container.Remove(buff);
         }
 
-        public void Receive(BuffBase buff, GameObject source)
+        public void AttemptAdd(BuffBase buff, GameObject source)
+        {
+            OnBuffAddRequested.Invoke(buff, source);
+        }
+
+        public void Add(BuffBase buff, GameObject source)
         {
             Container.Receive(buff, source);
         }

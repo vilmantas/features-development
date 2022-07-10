@@ -4,7 +4,7 @@ using UnityEngine.Events;
 namespace Features.Buffs.Events
 {
     [Serializable]
-    public class BuffTickOccuredEvent : UnityEvent<float>
+    public class BuffTickOccurredEvent : UnityEvent<ActiveBuff>
     {
     }
 }

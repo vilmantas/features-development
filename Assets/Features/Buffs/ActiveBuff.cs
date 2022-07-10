@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 using Utilities;
 
 namespace Features.Buffs
@@ -15,8 +16,10 @@ namespace Features.Buffs
 
         private Action<ActiveBuff> m_OnStackRemoved;
 
+        private Action<ActiveBuff> m_OnTickOccurred;
 
-        internal ActiveBuff(BuffBase metadata, object source)
+
+        internal ActiveBuff(BuffBase metadata, GameObject source)
         {
             Source = source;
             Metadata = metadata;
@@ -28,7 +31,7 @@ namespace Features.Buffs
             ResetDuration();
         }
 
-        public object Source { get; }
+        public GameObject Source { get; }
 
         public float DurationLeft { get; private set; }
 
@@ -38,13 +41,14 @@ namespace Features.Buffs
 
         public int Stacks => Counter.Current;
 
-        internal ActiveBuff RegisterCallbacks(Action<ActiveBuff> onStackRemoved,
-            Action<ActiveBuff> onStackAdded)
+        internal void RegisterCallbacks(
+            Action<ActiveBuff> onStackRemoved,
+            Action<ActiveBuff> onStackAdded,
+            Action<ActiveBuff> onTickOccured)
         {
             m_OnStackAdded = onStackAdded;
             m_OnStackRemoved = onStackRemoved;
-
-            return this;
+            m_OnTickOccurred = onTickOccured;
         }
 
         public void Tick(float delta)
@@ -85,7 +89,7 @@ namespace Features.Buffs
 
         public void OnIntervalTick(float offset = 0)
         {
-            Metadata.OnTick();
+            m_OnTickOccurred?.Invoke(this);
 
             TimeBeforeNextTick = Metadata.TickInterval - Math.Abs(offset);
         }

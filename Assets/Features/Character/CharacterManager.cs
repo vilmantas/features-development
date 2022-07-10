@@ -31,15 +31,22 @@ namespace Features.Character
             m_InventoryController = GetComponentInChildren<InventoryController>();
             m_StatController = GetComponentInChildren<StatController>();
 
+            m_BuffController.OnBuffAddRequested.AddListener(HandleBuffAddRequest);
+
             m_BuffController.OnBuffAdded.AddListener(HandleBuffAdded);
             m_BuffController.OnBuffRemoved.AddListener(HandleBuffRemoved);
+        }
+
+        private void HandleBuffAddRequest(BuffBase buff, GameObject source)
+        {
+            m_BuffController.Add(buff, source);
         }
 
         private void HandleBuffRemoved(ActiveBuff buff)
         {
             if (!ImplementationRegistered(buff, out var implementation)) return;
 
-            var payload = new BuffActivationPayload(buff.Source as GameObject, gameObject, buff);
+            var payload = new BuffActivationPayload(buff.Source, gameObject, buff);
 
             implementation.OnRemove(payload);
         }
@@ -48,7 +55,7 @@ namespace Features.Character
         {
             if (!ImplementationRegistered(buff, out var implementation)) return;
 
-            var payload = new BuffActivationPayload(buff.Source as GameObject, gameObject, buff);
+            var payload = new BuffActivationPayload(buff.Source, gameObject, buff);
 
             implementation.OnReceive(payload);
         }

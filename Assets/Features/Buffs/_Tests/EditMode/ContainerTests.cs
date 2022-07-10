@@ -23,7 +23,7 @@ namespace BuffContainerTests
         protected BuffBase WithMinimumInterval;
 
 
-        public void TickCallback()
+        public void TickCallback(ActiveBuff buff)
         {
             tickCalls++;
         }
@@ -58,13 +58,14 @@ namespace BuffContainerTests
         [SetUp]
         public void SetUp()
         {
-            _sut = new BuffContainer().RegisterCallbacks(OnRemoved, OnAdded, OnStackRemoved, OnStackAdded);
+            _sut = new BuffContainer().RegisterCallbacks(OnRemoved, OnAdded, OnStackRemoved, OnStackAdded,
+                TickCallback);
 
-            WithInterval = new BuffBase("Interval", 5f).WithInterval(1f, TickCallback);
+            WithInterval = new BuffBase("Interval", 5f).WithInterval(1f);
 
-            WithMinimumInterval = new BuffBase("IntervalMin", 5f).WithInterval(0.1f, TickCallback);
+            WithMinimumInterval = new BuffBase("IntervalMin", 5f).WithInterval(0.1f);
 
-            WithImmediateIntervalExecution = new BuffBase("IntervalMin", 5f).WithInterval(100f, TickCallback, true);
+            WithImmediateIntervalExecution = new BuffBase("IntervalMin", 5f).WithInterval(100f, true);
 
             stackAddCalls = stackRemoveCalls = removeCalls = addCalls = tickCalls = 0;
         }

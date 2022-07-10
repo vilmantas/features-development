@@ -71,14 +71,14 @@ namespace Features.Buffs.UI
         private void SubscribeToSource()
         {
             m_Source.OnBuffAdded.AddListener(HandleAdd);
-            m_Source.OnTickOccured.AddListener(HandleTick);
+            m_Source.OnTimerTick.AddListener(HandleTick);
             m_Source.OnBuffRemoved.AddListener(HandleRemove);
         }
 
         private void UnsubscribeFromSource()
         {
             m_Source.OnBuffAdded.RemoveListener(HandleAdd);
-            m_Source.OnTickOccured.RemoveListener(HandleTick);
+            m_Source.OnTimerTick.RemoveListener(HandleTick);
             m_Source.OnBuffRemoved.RemoveListener(HandleRemove);
         }
     }
