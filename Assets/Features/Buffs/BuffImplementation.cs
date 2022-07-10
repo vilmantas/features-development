@@ -1,24 +1,26 @@
 using System;
-using Features.Buffs;
 
 namespace Features.Buffs
 {
-    public class BuffImplementation<T>
+    public class BuffImplementation
     {
-        public BuffImplementation(Action<T> onReceive, string name, Action<T> onRemove, Action<T> onTick)
+        public BuffImplementation(string name,
+            Action<BuffActivationPayload> onReceive,
+            Action<BuffActivationPayload> onRemove,
+            Action<BuffActivationPayload> onTick)
         {
-            OnReceive = onReceive;
             Name = name;
+            OnReceive = onReceive;
             OnRemove = onRemove;
             OnTick = onTick;
         }
 
         public string Name { get; }
 
-        public Action<T> OnReceive { get; }
-        
-        public Action<T> OnRemove { get; }
-        
-        public Action<T> OnTick { get; }
+        public Action<BuffActivationPayload> OnReceive { get; }
+
+        public Action<BuffActivationPayload> OnRemove { get; }
+
+        public Action<BuffActivationPayload> OnTick { get; }
     }
 }

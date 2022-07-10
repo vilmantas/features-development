@@ -52,11 +52,16 @@ namespace Features.Buffs
 
         public void Receive(BuffBase buff, int stacks = 1)
         {
+            Receive(buff, null, 1);
+        }
+
+        public void Receive(BuffBase buff, object source, int stacks = 1)
+        {
             var existingBuff = BuffByName(buff.Name);
 
             if (existingBuff == null)
             {
-                existingBuff = new ActiveBuff(buff);
+                existingBuff = new ActiveBuff(buff, source);
 
                 existingBuff.AddStacks(stacks);
 

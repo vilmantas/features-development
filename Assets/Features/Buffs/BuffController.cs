@@ -1,10 +1,8 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Features.Buffs.Events;
 using Features.Buffs.UI;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Features.Buffs
 {
@@ -30,9 +28,9 @@ namespace Features.Buffs
         {
             Container = new BuffContainer()
                 .RegisterCallbacks(
-                OnBuffRemoved.Invoke, OnBuffAdded.Invoke,
-                OnBuffStackRemoved.Invoke, 
-                OnBuffStackAdded.Invoke
+                    OnBuffRemoved.Invoke, OnBuffAdded.Invoke,
+                    OnBuffStackRemoved.Invoke,
+                    OnBuffStackAdded.Invoke
                 );
         }
 
@@ -66,9 +64,9 @@ namespace Features.Buffs
             Container.Remove(buff);
         }
 
-        public void Receive(BuffBase buff)
+        public void Receive(BuffBase buff, GameObject source)
         {
-            Container.Receive(buff);
+            Container.Receive(buff, source);
         }
     }
 }

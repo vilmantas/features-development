@@ -10,21 +10,25 @@ namespace Features.Buffs
         internal readonly ResourceContainer Counter;
 
         public readonly BuffBase Metadata;
-        
+
         private Action<ActiveBuff> m_OnStackAdded;
 
         private Action<ActiveBuff> m_OnStackRemoved;
 
 
-        internal ActiveBuff(BuffBase metadata)
+        internal ActiveBuff(BuffBase metadata, object source)
         {
+            Source = source;
             Metadata = metadata;
+
             Counter = new ResourceContainer(metadata.MaxStack);
 
             TimeBeforeNextTick = metadata.TickImmediateExecution ? 0f : metadata.TickInterval;
 
             ResetDuration();
         }
+
+        public object Source { get; }
 
         public float DurationLeft { get; private set; }
 
