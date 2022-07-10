@@ -1,0 +1,22 @@
+{
+  "name": "Features",
+  "rootNamespace": "",
+  "references": [
+    "GUID:c4b50847751629d4ca38b8693afa5107",
+    "GUID:49be512e81e7bbb48b624053a3e6a921",
+    "GUID:f62d8eb63b0bda246aa47d3230354ad3",
+    "GUID:72972902fa1af5c4fa766b2b3c53664d",
+    "GUID:8609044b58cf65c46991eb7b27bfd69b",
+    "GUID:b248bf9c1cd5bfe44b9dcd5ce7143ba2",
+    "GUID:c12482efbd645f84e8b34ee01be9653b"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}

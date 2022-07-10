@@ -9,15 +9,15 @@ namespace Features.Buffs
 {
     public class BuffController : MonoBehaviour
     {
-        public BuffAddedEvent OnBuffAdded = new();
+        [HideInInspector] public BuffAddedEvent OnBuffAdded = new();
 
-        public BuffRemovedEvent OnBuffRemoved = new();
+        [HideInInspector] public BuffRemovedEvent OnBuffRemoved = new();
 
-        public BuffStackAddedEvent OnBuffStackAdded = new();
+        [HideInInspector] public BuffStackAddedEvent OnBuffStackAdded = new();
 
-        public BuffStackRemovedEvent OnBuffStackRemoved = new();
+        [HideInInspector] public BuffStackRemovedEvent OnBuffStackRemoved = new();
 
-        public BuffTickOccuredEvent OnTickOccured = new();
+        [HideInInspector] public BuffTickOccuredEvent OnTickOccured = new();
 
         private BuffContainer Container;
 

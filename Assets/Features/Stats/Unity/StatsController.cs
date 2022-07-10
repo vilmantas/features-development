@@ -1,11 +1,10 @@
+using System;
 using UnityEngine;
 
 namespace Stats.Unity
 {
     public class StatsController : MonoBehaviour
     {
-        [SerializeField] private Preset StartingStats;
-
         [HideInInspector] public StatsChangedEvent OnStatsChanged = new();
 
         private Manager Manager;
@@ -13,9 +12,7 @@ namespace Stats.Unity
 
         public void Awake()
         {
-            var startingStats = StartingStats == null ? null : StartingStats.Stats();
-
-            Manager = new Manager(startingStats);
+            Manager = new Manager(Array.Empty<Stat>());
         }
 
         public void ApplyStatModifiers(StatGroup request)
