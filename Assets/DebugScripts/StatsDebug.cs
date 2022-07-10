@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using Stats;
+using Stats.Unity;
 using UnityEngine;
 
 namespace DebugScripts

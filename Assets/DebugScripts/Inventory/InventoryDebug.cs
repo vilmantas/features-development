@@ -1,3 +1,9 @@
+using Features.Equipment;
+using Features.Inventory;
+using Features.Inventory.Utilities;
+using Inventory;
+using Inventory.Abstract.Internal;
+using Inventory.Unity;
 using UnityEngine;
 using Utilities.ItemsContainer;
 
