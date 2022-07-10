@@ -1,3 +1,4 @@
+using System;
 using Features.Buffs;
 using Features.Combat;
 using Features.Equipment;
@@ -35,6 +36,13 @@ namespace Features.Character
 
             m_BuffController.OnBuffAdded.AddListener(HandleBuffAdded);
             m_BuffController.OnBuffRemoved.AddListener(HandleBuffRemoved);
+
+            m_BuffController.OnBuffTickOccurred.AddListener(HandleBuffTick);
+        }
+
+        private void HandleBuffTick(ActiveBuff buff)
+        {
+            ActivateBuff(buff, impl => impl.OnTick);
         }
 
         private void HandleBuffAddRequest(BuffBase buff, GameObject source)
@@ -44,20 +52,21 @@ namespace Features.Character
 
         private void HandleBuffRemoved(ActiveBuff buff)
         {
-            if (!ImplementationRegistered(buff, out var implementation)) return;
-
-            var payload = new BuffActivationPayload(buff.Source, gameObject, buff);
-
-            implementation.OnRemove(payload);
+            ActivateBuff(buff, impl => impl.OnRemove);
         }
 
         private void HandleBuffAdded(ActiveBuff buff)
+        {
+            ActivateBuff(buff, impl => impl.OnReceive);
+        }
+
+        private void ActivateBuff(ActiveBuff buff, Func<BuffImplementation, Action<BuffActivationPayload>> action)
         {
             if (!ImplementationRegistered(buff, out var implementation)) return;
 
             var payload = new BuffActivationPayload(buff.Source, gameObject, buff);
 
-            implementation.OnReceive(payload);
+            action(implementation)(payload);
         }
 
         private static bool ImplementationRegistered(ActiveBuff buff, out BuffImplementation implementation)
