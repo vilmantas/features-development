@@ -14,6 +14,8 @@ namespace Features.Buffs
 
         [HideInInspector] public BuffRemovedEvent OnBuffRemoved = new();
 
+        [HideInInspector] public BuffDurationResetEvent OnBuffDurationReset = new();
+
         [HideInInspector] public BuffStackAddedEvent OnBuffStackAdded = new();
 
         [HideInInspector] public BuffStackRemovedEvent OnBuffStackRemoved = new();
@@ -36,7 +38,8 @@ namespace Features.Buffs
                     OnBuffAdded.Invoke,
                     OnBuffStackRemoved.Invoke,
                     OnBuffStackAdded.Invoke,
-                    OnBuffTickOccurred.Invoke
+                    OnBuffTickOccurred.Invoke,
+                    OnBuffDurationReset.Invoke
                 );
         }
 
@@ -47,7 +50,7 @@ namespace Features.Buffs
             OnTimerTick?.Invoke(Time.deltaTime);
         }
 
-        public void WithUI(IBuffUI prefab, Transform container)
+        public void WithUI(IBuffUIData prefab, Transform container)
         {
             UIManager = new BuffUIManager();
 
@@ -55,7 +58,7 @@ namespace Features.Buffs
                 () =>
                 {
                     var instance = Instantiate(prefab.gameObject, container);
-                    return instance.GetComponentInChildren<IBuffUI>();
+                    return instance.GetComponentInChildren<IBuffUIData>();
                 },
                 controller => DestroyImmediate(controller.gameObject));
         }

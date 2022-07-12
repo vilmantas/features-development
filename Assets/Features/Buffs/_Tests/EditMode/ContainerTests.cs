@@ -12,9 +12,9 @@ namespace BuffContainerTests
         protected readonly BuffBase Stackable = new("Stackable", 5f, MaxStackLimit);
         protected BuffContainer _sut;
 
-        protected ActiveBuff LastRemoved, LastStackRemoved, LastStackAdded, LastAdded;
+        protected ActiveBuff LastRemoved, LastStackRemoved, LastStackAdded, LastAdded, LastReset;
 
-        protected int tickCalls, addCalls, removeCalls, stackAddCalls, stackRemoveCalls;
+        protected int tickCalls, addCalls, removeCalls, stackAddCalls, stackRemoveCalls, resetCallbacks;
 
         protected BuffBase WithImmediateIntervalExecution;
 
@@ -51,6 +51,12 @@ namespace BuffContainerTests
             LastStackRemoved = buff;
             stackRemoveCalls++;
         }
+
+        public void OnDurationReset(ActiveBuff buff)
+        {
+            resetCallbacks++;
+            LastReset = buff;
+        }
     }
 
     public class General : TestData
@@ -59,7 +65,7 @@ namespace BuffContainerTests
         public void SetUp()
         {
             _sut = new BuffContainer().RegisterCallbacks(OnRemoved, OnAdded, OnStackRemoved, OnStackAdded,
-                TickCallback);
+                TickCallback, OnDurationReset);
 
             WithInterval = new BuffBase("Interval", 5f).WithInterval(1f);
 

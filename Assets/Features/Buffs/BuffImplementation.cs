@@ -7,12 +7,14 @@ namespace Features.Buffs
         public BuffImplementation(string name,
             Action<BuffActivationPayload> onReceive,
             Action<BuffActivationPayload> onRemove,
-            Action<BuffActivationPayload> onTick)
+            Action<BuffActivationPayload> onTick,
+            Action<BuffActivationPayload> onDurationReset)
         {
             Name = name;
             OnReceive = onReceive;
             OnRemove = onRemove;
             OnTick = onTick;
+            OnDurationReset = onDurationReset;
         }
 
         public string Name { get; }
@@ -22,5 +24,7 @@ namespace Features.Buffs
         public Action<BuffActivationPayload> OnRemove { get; }
 
         public Action<BuffActivationPayload> OnTick { get; }
+
+        public Action<BuffActivationPayload> OnDurationReset { get; }
     }
 }

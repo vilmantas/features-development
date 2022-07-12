@@ -18,11 +18,6 @@ namespace ResourceContainerTests
 
     public class General : TestData
     {
-        public void Initialize()
-        {
-            m_SUT = new ResourceContainer(m_Max, m_currentAmount);
-        }
-
         [SetUp]
         public void Setup()
         {

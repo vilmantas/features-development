@@ -5,15 +5,16 @@ namespace Features.Buffs.UI
 {
     public class BuffUIManager
     {
-        private Dictionary<string, (IBuffUI ui, ActiveBuff buff)> m_Buffs = new();
+        private Dictionary<string, (IBuffUIData ui, ActiveBuff buff)> m_Buffs = new();
 
-        private Action<IBuffUI> m_DestroyAction;
+        private Action<IBuffUIData> m_DestroyAction;
 
-        private Func<IBuffUI> m_InstantiationFunc;
+        private Func<IBuffUIData> m_InstantiationFunc;
 
         private BuffController m_Source;
 
-        public void SetSource(BuffController controller, Func<IBuffUI> instantiationFunc, Action<IBuffUI> destroyAction)
+        public void SetSource(BuffController controller, Func<IBuffUIData> instantiationFunc,
+            Action<IBuffUIData> destroyAction)
         {
             m_Source = controller;
 
@@ -63,7 +64,7 @@ namespace Features.Buffs.UI
         {
             var timer = m_InstantiationFunc.Invoke();
 
-            timer.Setup(arg0);
+            timer.SetData(arg0);
 
             m_Buffs.Add(arg0.Metadata.Name, (timer, arg0));
         }
