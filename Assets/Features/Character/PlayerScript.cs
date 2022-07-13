@@ -4,6 +4,9 @@ namespace Features.Character
 {
     public class PlayerScript : MonoBehaviour
     {
-        public GameObject Object;
+        private void Start()
+        {
+            GetComponentInChildren<CharacterManager>().DoSetup();
+        }
     }
 }

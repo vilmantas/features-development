@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Features.Buffs
 {
     public class BuffBase
@@ -5,11 +7,21 @@ namespace Features.Buffs
         public readonly float Duration;
         public readonly int MaxStack;
         public readonly string Name;
+        public readonly Sprite Sprite;
+
+        public BuffBase(string name, float duration, Sprite sprite, int maxStack = 1)
+        {
+            Name = name;
+            Duration = duration;
+            Sprite = sprite;
+            MaxStack = maxStack;
+        }
 
         public BuffBase(string name, float duration, int maxStack = 1)
         {
             Name = name;
             Duration = duration;
+            Sprite = null;
             MaxStack = maxStack;
         }
 

@@ -11,11 +11,10 @@ namespace Features.Buffs
         internal readonly ResourceContainer Counter;
 
         public readonly BuffBase Metadata;
+        private Action<ActiveBuff> m_OnDurationReset;
 
         private Action<ActiveBuff> m_OnStackAdded;
-
         private Action<ActiveBuff> m_OnStackRemoved;
-
         private Action<ActiveBuff> m_OnTickOccurred;
 
 
@@ -44,11 +43,13 @@ namespace Features.Buffs
         internal void RegisterCallbacks(
             Action<ActiveBuff> onStackRemoved,
             Action<ActiveBuff> onStackAdded,
-            Action<ActiveBuff> onTickOccured)
+            Action<ActiveBuff> onTickOccured,
+            Action<ActiveBuff> onDurationReset)
         {
             m_OnStackAdded = onStackAdded;
             m_OnStackRemoved = onStackRemoved;
             m_OnTickOccurred = onTickOccured;
+            m_OnDurationReset = onDurationReset;
         }
 
         public void Tick(float delta)
@@ -107,7 +108,10 @@ namespace Features.Buffs
         {
             Counter.Receive(stacks, out int leftovers);
 
-            m_OnStackAdded?.Invoke(this);
+            if (leftovers != stacks)
+            {
+                m_OnStackAdded?.Invoke(this);
+            }
 
             if (leftovers > 0)
             {
@@ -115,8 +119,18 @@ namespace Features.Buffs
             }
         }
 
-        internal void RemoveStacks(int stacks) => Counter.Reduce(stacks);
+        internal void RemoveStacks(int stacks)
+        {
+            Counter.Reduce(stacks);
 
-        internal void ResetDuration(float offset = 0f) => DurationLeft = Metadata.Duration - offset;
+            m_OnStackRemoved?.Invoke(this);
+        }
+
+        internal void ResetDuration(float offset = 0f)
+        {
+            DurationLeft = Metadata.Duration - offset;
+
+            m_OnDurationReset?.Invoke(this);
+        }
     }
 }

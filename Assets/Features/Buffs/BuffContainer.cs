@@ -11,6 +11,7 @@ namespace Features.Buffs
         private ConcurrentDictionary<string, ActiveBuff> m_Buffs;
 
         private Action<ActiveBuff> m_OnBuffAdded;
+        private Action<ActiveBuff> m_OnBuffDurationReset;
         private Action<ActiveBuff> m_OnBuffRemoved;
         private Action<ActiveBuff> m_OnBuffStackAdded;
         private Action<ActiveBuff> m_OnBuffStackRemoved;
@@ -28,7 +29,8 @@ namespace Features.Buffs
             Action<ActiveBuff> onBuffAdded,
             Action<ActiveBuff> onBuffStackRemoved,
             Action<ActiveBuff> onBuffStackAdded,
-            Action<ActiveBuff> onBuffTickOccurred
+            Action<ActiveBuff> onBuffTickOccurred,
+            Action<ActiveBuff> onBuffDurationReset
         )
         {
             m_OnBuffAdded = onBuffAdded;
@@ -38,6 +40,8 @@ namespace Features.Buffs
             m_OnBuffStackRemoved = onBuffStackRemoved;
 
             m_OnBuffTickOccurred = onBuffTickOccurred;
+
+            m_OnBuffDurationReset = onBuffDurationReset;
 
             return this;
         }
@@ -73,7 +77,8 @@ namespace Features.Buffs
 
                 existingBuff.AddStacks(stacks);
 
-                existingBuff.RegisterCallbacks(m_OnBuffStackRemoved, m_OnBuffStackAdded, m_OnBuffTickOccurred);
+                existingBuff.RegisterCallbacks(m_OnBuffStackRemoved, m_OnBuffStackAdded, m_OnBuffTickOccurred,
+                    m_OnBuffDurationReset);
 
                 m_Buffs.TryAdd(buff.Name, existingBuff);
 

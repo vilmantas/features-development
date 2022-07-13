@@ -9,7 +9,7 @@ namespace DebugScripts.Buffs
         public GameObject UIContainer;
         public BuffController BuffController;
 
-        public SimpleUIController UIPrefab;
+        public BuffUIDataController UIPrefab;
 
         private void Start()
         {

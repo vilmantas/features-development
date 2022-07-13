@@ -25,12 +25,14 @@ namespace Features.Character
 
         public void DoSetup()
         {
-            m_BuffController = GetComponentInChildren<BuffController>();
-            m_CombatController = GetComponentInChildren<CombatController>();
-            m_EquipmentController = GetComponentInChildren<EquipmentController>();
-            m_HealthController = GetComponentInChildren<HealthController>();
-            m_InventoryController = GetComponentInChildren<InventoryController>();
-            m_StatController = GetComponentInChildren<StatController>();
+            var root = transform.root;
+
+            m_BuffController = root.GetComponentInChildren<BuffController>();
+            m_CombatController = root.GetComponentInChildren<CombatController>();
+            m_EquipmentController = root.GetComponentInChildren<EquipmentController>();
+            m_HealthController = root.GetComponentInChildren<HealthController>();
+            m_InventoryController = root.GetComponentInChildren<InventoryController>();
+            m_StatController = root.GetComponentInChildren<StatController>();
 
             m_BuffController.OnBuffAddRequested.AddListener(HandleBuffAddRequest);
 
@@ -38,6 +40,12 @@ namespace Features.Character
             m_BuffController.OnBuffRemoved.AddListener(HandleBuffRemoved);
 
             m_BuffController.OnBuffTickOccurred.AddListener(HandleBuffTick);
+            m_BuffController.OnBuffDurationReset.AddListener(HandleBuffDurationReset);
+        }
+
+        private void HandleBuffDurationReset(ActiveBuff buff)
+        {
+            ActivateBuff(buff, impl => impl.OnDurationReset);
         }
 
         private void HandleBuffTick(ActiveBuff buff)
@@ -64,14 +72,14 @@ namespace Features.Character
         {
             if (!ImplementationRegistered(buff, out var implementation)) return;
 
-            var payload = new BuffActivationPayload(buff.Source, gameObject, buff);
+            var payload = new BuffActivationPayload(buff.Source, transform.root.gameObject, buff);
 
-            action(implementation)(payload);
+            action(implementation)?.Invoke(payload);
         }
 
         private static bool ImplementationRegistered(ActiveBuff buff, out BuffImplementation implementation)
         {
-            if (BuffImplementationRegistry.Implementations.TryGetValue(buff.Metadata.Name,
+            if (!BuffImplementationRegistry.Implementations.TryGetValue(buff.Metadata.Name,
                     out implementation))
             {
                 Debug.Log($"Implementation missing for buff: {buff.Metadata.Name}");

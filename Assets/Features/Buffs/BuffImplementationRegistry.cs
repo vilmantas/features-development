@@ -4,6 +4,6 @@ namespace Features.Buffs
 {
     public static class BuffImplementationRegistry
     {
-        public static ConcurrentDictionary<string, BuffImplementation> Implementations;
+        public static readonly ConcurrentDictionary<string, BuffImplementation> Implementations = new();
     }
 }
