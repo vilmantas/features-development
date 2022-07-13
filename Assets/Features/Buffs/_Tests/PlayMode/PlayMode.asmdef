@@ -1,10 +1,10 @@
 {
-    "name": "PlayMode",
+    "name": "Features.Buffs.Tests.PlayMode",
     "rootNamespace": "",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "Utilities"
+        "Feature.Buffs"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
