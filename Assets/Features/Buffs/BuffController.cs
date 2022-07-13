@@ -10,6 +10,8 @@ namespace Features.Buffs
     {
         [HideInInspector] public BuffAddRequestEvent OnBuffAddRequested = new();
 
+        [HideInInspector] public BuffRemoveRequestEvent OnBuffRemoveRequested = new();
+
         [HideInInspector] public BuffAddedEvent OnBuffAdded = new();
 
         [HideInInspector] public BuffRemovedEvent OnBuffRemoved = new();
@@ -73,14 +75,19 @@ namespace Features.Buffs
             Container.Remove(buff);
         }
 
+        public void Add(BuffBase buff, GameObject source)
+        {
+            Container.Receive(buff, source);
+        }
+
         public void AttemptAdd(BuffBase buff, GameObject source)
         {
             OnBuffAddRequested.Invoke(buff, source);
         }
 
-        public void Add(BuffBase buff, GameObject source)
+        public void AttemptRemove(BuffBase buff)
         {
-            Container.Receive(buff, source);
+            OnBuffRemoveRequested.Invoke(buff);
         }
     }
 }
