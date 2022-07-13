@@ -1,5 +1,5 @@
 using Features.Buffs;
-using Features.Character.Buffs;
+using Features.Health;
 using UnityEngine;
 
 namespace DebugScripts.Character
@@ -8,26 +8,44 @@ namespace DebugScripts.Character
     {
         public GameObject Target;
 
-        public Buff_SO Buff;
+        public Buff_SO ShifterBuff;
 
-        private BuffBase m_BuffBase;
+        public Buff_SO LifterBuff;
 
-        private void Start()
-        {
-            var lifer = LifterImplementation.Implementation;
+        public Buff_SO Reducer;
 
-            BuffImplementationRegistry.Implementations.TryAdd(lifer.Name, lifer);
-
-            m_BuffBase = Buff.Base;
-        }
-
-        public void CastDebuff()
+        public void CastLifter()
         {
             var controller = Target.GetComponentInChildren<BuffController>();
 
             if (controller == null) return;
 
-            controller.AttemptAdd(m_BuffBase, gameObject);
+            controller.AttemptAdd(LifterBuff.Base, gameObject);
+        }
+
+        public void CastShifter()
+        {
+            var controller = Target.GetComponentInChildren<BuffController>();
+
+            if (controller == null) return;
+
+            controller.AttemptAdd(ShifterBuff.Base, gameObject);
+        }
+
+        public void CastHealingReducer()
+        {
+            var controller = Target.GetComponentInChildren<BuffController>();
+
+            if (controller == null) return;
+
+            controller.AttemptAdd(Reducer.Base, gameObject);
+        }
+
+        public void AttemptHeal()
+        {
+            var controller = Target.GetComponentInChildren<HealthController>();
+
+            controller.AttemptHealing(10);
         }
 
         public void OnReceive(BuffActivationPayload payload)

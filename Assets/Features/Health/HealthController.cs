@@ -10,9 +10,13 @@ namespace Features.Health
 
         [Range(1, 100)] [SerializeField] private int MaximumHealth = 10;
 
-        [HideInInspector] public DamageReceived DamageReceived = new();
+        [HideInInspector] public DamageReceivedEvent OnDamageReceived = new();
 
-        [HideInInspector] public HealingReceived HealingReceived = new();
+        [HideInInspector] public HealingReceivedEvent OnHealingReceived = new();
+
+        [HideInInspector] public HealingAttemptedEvent OnHealingAttempted;
+
+        [HideInInspector] public DamageAttemptedEvent OnDamagingAttempted = new();
 
         private ResourceContainer Model;
 
@@ -25,13 +29,37 @@ namespace Features.Health
             Model = new ResourceContainer(MaximumHealth, StartingHealth);
         }
 
+        public void AttemptHealing(int amount)
+        {
+            if (OnHealingAttempted.GetPersistentEventCount() == 0)
+            {
+                Receive(amount);
+            }
+            else
+            {
+                OnHealingAttempted.Invoke(new HealthChangeAttemptedEventArgs(this, amount));
+            }
+        }
+
+        public void AttemptDamaging(int amount)
+        {
+            if (OnDamagingAttempted.GetPersistentEventCount() == 0)
+            {
+                Reduce(amount);
+            }
+            else
+            {
+                OnDamagingAttempted.Invoke(new HealthChangeAttemptedEventArgs(this, amount));
+            }
+        }
+
         public void Reduce(int amount)
         {
             var before = Model.Current;
 
             if (!Model.Reduce(amount)) return;
 
-            DamageReceived.Invoke(new HealthChangeResult(before, Model.Current, amount));
+            OnDamageReceived.Invoke(new HealthChangeEventArgs(before, Model.Current, amount));
         }
 
         public void Receive(int amount)
@@ -40,7 +68,7 @@ namespace Features.Health
 
             if (!Model.Receive(amount)) return;
 
-            HealingReceived.Invoke(new HealthChangeResult(before, Model.Current, amount));
+            OnHealingReceived.Invoke(new HealthChangeEventArgs(before, Model.Current, amount));
         }
     }
 }

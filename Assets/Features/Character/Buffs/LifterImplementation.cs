@@ -5,7 +5,12 @@ namespace Features.Character.Buffs
 {
     public static class LifterImplementation
     {
-        public static readonly BuffImplementation Implementation = new("Lifter", OnReceive, OnRemove, null, null);
+        [RuntimeInitializeOnLoadMethod]
+        private static void Register()
+        {
+            BuffImplementation implementation = new("Lifter", OnReceive, OnRemove, null, null);
+            BuffImplementationRegistry.Implementations.TryAdd(implementation.Name, implementation);
+        }
 
         private static void OnReceive(BuffActivationPayload payload)
         {

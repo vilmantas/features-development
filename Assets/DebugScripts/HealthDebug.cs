@@ -14,13 +14,13 @@ public class HealthDebug : MonoBehaviour
     {
         Text.text = $"{HealthController.CurrentHealth}/{HealthController.MaxHealth}";
 
-        HealthController.DamageReceived.AddListener(result =>
+        HealthController.OnDamageReceived.AddListener(result =>
         {
             Text.text = $"{result.After}/{HealthController.MaxHealth}";
             Text2.text = $"{result.ActualChange}";
         });
 
-        HealthController.HealingReceived.AddListener(result =>
+        HealthController.OnHealingReceived.AddListener(result =>
         {
             Text.text = $"{result.After}/{HealthController.MaxHealth}";
             Text2.text = $"+{result.ActualChange}";
