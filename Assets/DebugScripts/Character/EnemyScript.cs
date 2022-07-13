@@ -1,4 +1,5 @@
 using Features.Buffs;
+using Features.Character.Buffs;
 using UnityEngine;
 
 namespace DebugScripts.Character
@@ -13,11 +14,11 @@ namespace DebugScripts.Character
 
         private void Start()
         {
-            var i = new BuffImplementation("Lifter", OnReceive, OnRemove, null, null);
+            var lifer = LifterImplementation.Implementation;
 
-            BuffImplementationRegistry.Implementations.TryAdd(i.Name, i);
+            BuffImplementationRegistry.Implementations.TryAdd(lifer.Name, lifer);
 
-            m_BuffBase = Buff.GetBase();
+            m_BuffBase = Buff.Base;
         }
 
         public void CastDebuff()

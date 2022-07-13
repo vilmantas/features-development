@@ -11,12 +11,13 @@ namespace Features.Buffs
         internal readonly ResourceContainer Counter;
 
         public readonly BuffBase Metadata;
-        private Action<ActiveBuff> m_OnDurationReset;
 
+        private Action<ActiveBuff> m_OnDurationReset;
         private Action<ActiveBuff> m_OnStackAdded;
         private Action<ActiveBuff> m_OnStackRemoved;
         private Action<ActiveBuff> m_OnTickOccurred;
 
+        public IBuffState State;
 
         internal ActiveBuff(BuffBase metadata, GameObject source)
         {

@@ -13,6 +13,19 @@ namespace Features.Buffs
 
         public Sprite Sprite;
 
-        public BuffBase GetBase() => new BuffBase(Name, Duration, Sprite, MaxStacks);
+        public BuffBase Base
+        {
+            get => new BuffBase(Name, Duration, Sprite, MaxStacks);
+        }
+
+        public BuffImplementation Implementation
+        {
+            get
+            {
+                BuffImplementationRegistry.Implementations.TryGetValue(Name, out var impl);
+
+                return impl;
+            }
+        }
     }
 }
