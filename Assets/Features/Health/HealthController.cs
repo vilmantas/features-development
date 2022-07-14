@@ -11,13 +11,9 @@ namespace Features.Health
 
         [Range(1, 100)] [SerializeField] private int MaximumHealth = 10;
 
-        public DamageReceivedEvent OnDamageReceived = new();
+        public Action<HealthChangeEventArgs> OnDamageReceived;
 
-        public HealingReceivedEvent OnHealingReceived = new();
-
-        public HealingAttemptedEvent OnHealingAttempted = new();
-
-        public DamageAttemptedEvent OnDamagingAttempted = new();
+        public Action<HealthChangeEventArgs> OnHealingReceived;
 
         public Func<HealthChangeAttemptedEventArgs, HealthChangeInterceptedEventArgs>
             OnDamagingAttemptedNew;
@@ -82,7 +78,7 @@ namespace Features.Health
 
             if (!Model.Reduce(amount)) return;
 
-            OnDamageReceived.Invoke(new HealthChangeEventArgs(before, Model.Current, amount));
+            OnDamageReceived?.Invoke(new HealthChangeEventArgs(this, before, Model.Current, amount));
         }
 
         private void Receive(int amount)
@@ -91,7 +87,7 @@ namespace Features.Health
 
             if (!Model.Receive(amount)) return;
 
-            OnHealingReceived.Invoke(new HealthChangeEventArgs(before, Model.Current, amount));
+            OnHealingReceived?.Invoke(new HealthChangeEventArgs(this, before, Model.Current, amount));
         }
     }
 }

@@ -1,4 +1,5 @@
 using Features.Health;
+using Features.Health.Events;
 using TMPro;
 using UnityEngine;
 
@@ -14,16 +15,14 @@ public class HealthDebug : MonoBehaviour
     {
         Text.text = $"{HealthController.CurrentHealth}/{HealthController.MaxHealth}";
 
-        HealthController.OnDamageReceived.AddListener(result =>
-        {
-            Text.text = $"{result.After}/{HealthController.MaxHealth}";
-            Text2.text = $"{result.ActualChange}";
-        });
+        HealthController.OnDamageReceived += OnHealthChanged;
 
-        HealthController.OnHealingReceived.AddListener(result =>
-        {
-            Text.text = $"{result.After}/{HealthController.MaxHealth}";
-            Text2.text = $"+{result.ActualChange}";
-        });
+        HealthController.OnHealingReceived += OnHealthChanged;
+    }
+
+    private void OnHealthChanged(HealthChangeEventArgs args)
+    {
+        Text.text = $"{args.After}/{args.Source.MaxHealth}";
+        Text2.text = $"+{args.ActualChange}";
     }
 }

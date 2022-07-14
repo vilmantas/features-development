@@ -1,6 +1,7 @@
 using Features.Buffs;
 using Features.Equipment;
 using Features.Health;
+using Features.Health.Events;
 using Features.Inventory;
 using Inventory.Unity;
 using TMPro;
@@ -37,15 +38,18 @@ public class UIManager : MonoBehaviour
 
         HPText.text = $"{hpController.CurrentHealth.ToString()}/{hpController.MaxHealth.ToString()}";
 
-        hpController.OnDamageReceived.AddListener(c =>
-            HPText.text = $"{c.After.ToString()}/{hpController.MaxHealth.ToString()}");
-        hpController.OnHealingReceived.AddListener(c =>
-            HPText.text = $"{c.After.ToString()}/{hpController.MaxHealth.ToString()}");
+        hpController.OnDamageReceived += OnHealthChanged;
+        hpController.OnHealingReceived += OnHealthChanged;
 
         buffController.WithUI(BuffPrefab, BuffContainer.transform);
 
         inventoryController.WithUI(InventoryPrefab, InventoryContainer.transform);
 
         equipmentController.WithUI(EquipmentPrefab, EquipmentContainer.transform);
+    }
+
+    public void OnHealthChanged(HealthChangeEventArgs args)
+    {
+        HPText.text = $"{args.After.ToString()}/{args.Source.MaxHealth.ToString()}";
     }
 }
