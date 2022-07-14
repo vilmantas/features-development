@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 7448484088917539942}
   - component: {fileID: 5055195367837423274}
   m_Layer: 5
-  m_Name: Image
+  m_Name: stacks_container
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -321,7 +321,7 @@ RectTransform:
   - {fileID: 1184365603874038515}
   - {fileID: 6752508014027485646}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -345,6 +345,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 8750236294105416085}
     m_Modifications:
     - target: {fileID: 6334866076748947456, guid: 021099734a55c3a48a6eb10df54a1dee, type: 3}
@@ -444,6 +445,7 @@ PrefabInstance:
       value: 0.50980395
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 021099734a55c3a48a6eb10df54a1dee, type: 3}
 --- !u!224 &3352616209994566061 stripped
 RectTransform:

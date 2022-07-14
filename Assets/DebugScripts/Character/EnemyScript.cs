@@ -15,63 +15,6 @@ namespace DebugScripts.Character
 
         public Buff_SO Reducer;
 
-        private Action<int> x;
-
-        private Func<int, int> fun;
-
-        private void Start()
-        {
-            x?.Invoke(5);
-
-            x += MethodA;
-
-            x?.Invoke(10);
-
-            x -= MethodA;
-
-            x?.Invoke(20);
-
-            x -= MethodA;
-
-            x -= MethodA;
-
-            x?.Invoke(30);
-
-            x += MethodA;
-
-            x += MethodA;
-
-            x?.Invoke(40);
-
-            x -= MethodA;
-
-            x?.Invoke(50);
-
-            Debug.Log(x == null);
-
-            Debug.Log("------");
-
-            fun += MethodB;
-
-            fun += x => x / 2;
-
-            foreach (Func<int, int> ff in fun.GetInvocationList())
-            {
-                Debug.Log(ff(5));
-            }
-
-        }
-
-        public void MethodA(int a)
-        {
-            Debug.Log(a * 4);
-        }
-
-        public int MethodB(int a)
-        {
-            return a * a;
-        }
-
         public void CastLifter()
         {
             var controller = Target.GetComponentInChildren<BuffController>();

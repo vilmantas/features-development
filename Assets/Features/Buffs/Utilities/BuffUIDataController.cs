@@ -1,4 +1,5 @@
 using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 using Utilities.RadialTimer;
 
@@ -8,6 +9,7 @@ namespace Features.Buffs.Utilities
     {
         private Image m_Sprite;
         private TextMeshProUGUI m_StacksText;
+        private Transform m_StacksContainer;
         private RadialTimerController m_TimerController;
 
         public override void BuffTickCallback(ActiveBuff buff)
@@ -20,8 +22,11 @@ namespace Features.Buffs.Utilities
         public override void OnSetData(ActiveBuff buff)
         {
             m_TimerController = GetComponentInChildren<RadialTimerController>();
+            m_StacksContainer = transform.Find("stacks_container");
             m_StacksText = GetComponentInChildren<TextMeshProUGUI>();
             m_Sprite = transform.Find("sprite").GetComponent<Image>();
+
+            m_StacksContainer.gameObject.SetActive(buff.Stacks > 1);
 
             if (buff.Metadata.Sprite != null)
             {
