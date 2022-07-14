@@ -1,3 +1,4 @@
+using System;
 using Features.Health.Events;
 using UnityEngine;
 using Utilities;
@@ -10,13 +11,15 @@ namespace Features.Health
 
         [Range(1, 100)] [SerializeField] private int MaximumHealth = 10;
 
-        [HideInInspector] public DamageReceivedEvent OnDamageReceived = new();
+        public DamageReceivedEvent OnDamageReceived = new();
 
-        [HideInInspector] public HealingReceivedEvent OnHealingReceived = new();
+        public HealingReceivedEvent OnHealingReceived = new();
 
-        [HideInInspector] public HealingAttemptedEvent OnHealingAttempted;
+        public HealingAttemptedEvent OnHealingAttempted = new();
 
-        [HideInInspector] public DamageAttemptedEvent OnDamagingAttempted = new();
+        public DamageAttemptedEvent OnDamagingAttempted = new();
+
+        public Func<HealthChangeAttemptedEventArgs, HealthChangeInterceptedEventArgs> OnHealingAttemptedNew;
 
         private ResourceContainer Model;
 
@@ -31,13 +34,15 @@ namespace Features.Health
 
         public void AttemptHealing(int amount)
         {
-            if (OnHealingAttempted.GetPersistentEventCount() == 0)
+            if (OnHealingAttemptedNew == null)
             {
                 Receive(amount);
             }
             else
             {
-                OnHealingAttempted.Invoke(new HealthChangeAttemptedEventArgs(this, amount));
+                var delegates = OnHealingAttemptedNew.GetInvocationList();
+
+                var z = OnHealingAttemptedNew(new HealthChangeAttemptedEventArgs(this, amount));
             }
         }
 
