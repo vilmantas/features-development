@@ -18,14 +18,14 @@ namespace Features.Character.Buffs
         {
             var ctrl = payload.Target.GetComponentInChildren<HealthController>();
 
-            ctrl.OnHealingAttemptedNew += HealingLimiter;
+            ctrl.OnBeforeHeal += HealingLimiter;
         }
 
         private static void OnRemove(BuffActivationPayload payload)
         {
             var ctrl = payload.Target.GetComponentInChildren<HealthController>();
 
-            ctrl.OnHealingAttemptedNew -= HealingLimiter;
+            ctrl.OnBeforeHeal -= HealingLimiter;
         }
 
         private static HealthChangeInterceptedEventArgs HealingLimiter(HealthChangeAttemptedEventArgs args)

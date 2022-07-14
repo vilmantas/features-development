@@ -9,32 +9,32 @@ namespace Features.Health
     {
         [Range(1, 100)] [SerializeField] private int StartingHealth = 10;
 
-        [Range(1, 100)] [SerializeField] private int MaximumHealth = 10;
+        [Range(1, 100)] [SerializeField] private int MaximumHealth = 50;
 
-        public Action<HealthChangeEventArgs> OnDamageReceived;
+        public Action<HealthChangeEventArgs> OnDamage;
 
-        public Action<HealthChangeEventArgs> OnHealingReceived;
-
-        public Func<HealthChangeAttemptedEventArgs, HealthChangeInterceptedEventArgs>
-            OnDamagingAttemptedNew;
+        public Action<HealthChangeEventArgs> OnHeal;
 
         public Func<HealthChangeAttemptedEventArgs, HealthChangeInterceptedEventArgs>
-            OnHealingAttemptedNew;
+            OnBeforeDamage;
 
-        private ResourceContainer Model;
+        public Func<HealthChangeAttemptedEventArgs, HealthChangeInterceptedEventArgs>
+            OnBeforeHeal;
 
-        public int CurrentHealth => Model.Current;
+        private ResourceContainer m_Model;
 
-        public int MaxHealth => Model.Max;
+        public int CurrentHealth => m_Model.Current;
+
+        public int MaxHealth => m_Model.Max;
 
         private void Awake()
         {
-            Model = new ResourceContainer(MaximumHealth, StartingHealth);
+            m_Model = new ResourceContainer(MaximumHealth, StartingHealth);
         }
 
         public void Heal(int amount)
         {
-            if (OnHealingAttemptedNew == null)
+            if (OnBeforeHeal == null)
             {
                 Receive(amount);
             }
@@ -42,7 +42,7 @@ namespace Features.Health
             {
                 var resultAmount = amount;
 
-                foreach (Func<HealthChangeAttemptedEventArgs, HealthChangeInterceptedEventArgs> interceptor in OnHealingAttemptedNew.GetInvocationList())
+                foreach (Func<HealthChangeAttemptedEventArgs, HealthChangeInterceptedEventArgs> interceptor in OnBeforeHeal.GetInvocationList())
                 {
                     resultAmount = interceptor(new HealthChangeAttemptedEventArgs(this, amount))
                         .NewAmount;
@@ -54,7 +54,7 @@ namespace Features.Health
 
         public void Damage(int amount)
         {
-            if (OnDamagingAttemptedNew == null)
+            if (OnBeforeDamage == null)
             {
                 Reduce(amount);
             }
@@ -62,7 +62,7 @@ namespace Features.Health
             {
                 var resultAmount = amount;
 
-                foreach (Func<HealthChangeAttemptedEventArgs, HealthChangeInterceptedEventArgs> interceptor in OnDamagingAttemptedNew.GetInvocationList())
+                foreach (Func<HealthChangeAttemptedEventArgs, HealthChangeInterceptedEventArgs> interceptor in OnBeforeDamage.GetInvocationList())
                 {
                     resultAmount = interceptor(new HealthChangeAttemptedEventArgs(this, amount))
                         .NewAmount;
@@ -74,20 +74,20 @@ namespace Features.Health
 
         private void Reduce(int amount)
         {
-            var before = Model.Current;
+            var before = m_Model.Current;
 
-            if (!Model.Reduce(amount)) return;
+            if (!m_Model.Reduce(amount)) return;
 
-            OnDamageReceived?.Invoke(new HealthChangeEventArgs(this, before, Model.Current, amount));
+            OnDamage?.Invoke(new HealthChangeEventArgs(this, before, m_Model.Current, amount));
         }
 
         private void Receive(int amount)
         {
-            var before = Model.Current;
+            var before = m_Model.Current;
 
-            if (!Model.Receive(amount)) return;
+            if (!m_Model.Receive(amount)) return;
 
-            OnHealingReceived?.Invoke(new HealthChangeEventArgs(this, before, Model.Current, amount));
+            OnHeal?.Invoke(new HealthChangeEventArgs(this, before, m_Model.Current, amount));
         }
     }
 }

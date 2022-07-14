@@ -15,9 +15,9 @@ public class HealthDebug : MonoBehaviour
     {
         Text.text = $"{HealthController.CurrentHealth}/{HealthController.MaxHealth}";
 
-        HealthController.OnDamageReceived += OnHealthChanged;
+        HealthController.OnDamage += OnHealthChanged;
 
-        HealthController.OnHealingReceived += OnHealthChanged;
+        HealthController.OnHeal += OnHealthChanged;
     }
 
     private void OnHealthChanged(HealthChangeEventArgs args)

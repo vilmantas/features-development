@@ -38,8 +38,8 @@ public class UIManager : MonoBehaviour
 
         HPText.text = $"{hpController.CurrentHealth.ToString()}/{hpController.MaxHealth.ToString()}";
 
-        hpController.OnDamageReceived += OnHealthChanged;
-        hpController.OnHealingReceived += OnHealthChanged;
+        hpController.OnDamage += OnHealthChanged;
+        hpController.OnHeal += OnHealthChanged;
 
         buffController.WithUI(BuffPrefab, BuffContainer.transform);
 
