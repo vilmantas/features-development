@@ -19,7 +19,11 @@ namespace Features.Health
 
         public DamageAttemptedEvent OnDamagingAttempted = new();
 
-        public Func<HealthChangeAttemptedEventArgs, HealthChangeInterceptedEventArgs> OnHealingAttemptedNew;
+        public Func<HealthChangeAttemptedEventArgs, HealthChangeInterceptedEventArgs>
+            OnDamagingAttemptedNew;
+
+        public Func<HealthChangeAttemptedEventArgs, HealthChangeInterceptedEventArgs>
+            OnHealingAttemptedNew;
 
         private ResourceContainer Model;
 
@@ -32,7 +36,7 @@ namespace Features.Health
             Model = new ResourceContainer(MaximumHealth, StartingHealth);
         }
 
-        public void AttemptHealing(int amount)
+        public void Heal(int amount)
         {
             if (OnHealingAttemptedNew == null)
             {
@@ -40,25 +44,39 @@ namespace Features.Health
             }
             else
             {
-                var delegates = OnHealingAttemptedNew.GetInvocationList();
+                var resultAmount = amount;
 
-                var z = OnHealingAttemptedNew(new HealthChangeAttemptedEventArgs(this, amount));
+                foreach (Func<HealthChangeAttemptedEventArgs, HealthChangeInterceptedEventArgs> interceptor in OnHealingAttemptedNew.GetInvocationList())
+                {
+                    resultAmount = interceptor(new HealthChangeAttemptedEventArgs(this, amount))
+                        .NewAmount;
+                }
+
+                Receive(resultAmount);
             }
         }
 
-        public void AttemptDamaging(int amount)
+        public void Damage(int amount)
         {
-            if (OnDamagingAttempted.GetPersistentEventCount() == 0)
+            if (OnDamagingAttemptedNew == null)
             {
                 Reduce(amount);
             }
             else
             {
-                OnDamagingAttempted.Invoke(new HealthChangeAttemptedEventArgs(this, amount));
+                var resultAmount = amount;
+
+                foreach (Func<HealthChangeAttemptedEventArgs, HealthChangeInterceptedEventArgs> interceptor in OnDamagingAttemptedNew.GetInvocationList())
+                {
+                    resultAmount = interceptor(new HealthChangeAttemptedEventArgs(this, amount))
+                        .NewAmount;
+                }
+
+                Reduce(resultAmount);
             }
         }
 
-        public void Reduce(int amount)
+        private void Reduce(int amount)
         {
             var before = Model.Current;
 
@@ -67,7 +85,7 @@ namespace Features.Health
             OnDamageReceived.Invoke(new HealthChangeEventArgs(before, Model.Current, amount));
         }
 
-        public void Receive(int amount)
+        private void Receive(int amount)
         {
             var before = Model.Current;
 

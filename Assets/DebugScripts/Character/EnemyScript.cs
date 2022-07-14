@@ -103,7 +103,7 @@ namespace DebugScripts.Character
         {
             var controller = Target.GetComponentInChildren<HealthController>();
 
-            controller.AttemptHealing(10);
+            controller.Heal(10);
         }
 
         public void OnReceive(BuffActivationPayload payload)

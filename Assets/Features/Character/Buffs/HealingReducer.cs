@@ -18,19 +18,19 @@ namespace Features.Character.Buffs
         {
             var ctrl = payload.Target.GetComponentInChildren<HealthController>();
 
-            ctrl.OnHealingAttempted.AddListener(HealingLimiter);
+            ctrl.OnHealingAttemptedNew += HealingLimiter;
         }
 
         private static void OnRemove(BuffActivationPayload payload)
         {
             var ctrl = payload.Target.GetComponentInChildren<HealthController>();
 
-            ctrl.OnHealingAttempted.RemoveListener(HealingLimiter);
+            ctrl.OnHealingAttemptedNew -= HealingLimiter;
         }
 
-        private static void HealingLimiter(HealthChangeAttemptedEventArgs args)
+        private static HealthChangeInterceptedEventArgs HealingLimiter(HealthChangeAttemptedEventArgs args)
         {
-            args.Target.Receive(args.Amount - 1);
+            return new HealthChangeInterceptedEventArgs(args, args.Amount / 2);
         }
     }
 }
