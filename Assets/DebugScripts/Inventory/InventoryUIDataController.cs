@@ -1,5 +1,6 @@
 using System;
 using Features.Inventory;
+using Features.Inventory.Utilities;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -57,7 +58,7 @@ namespace DebugScripts
                     ? String.Empty
                     : data.Item.StackableData.Current.ToString();
 
-                var metadata = (data.Item.Parent as FakeItemInstance).Metadata;
+                var metadata = (data.Item.Parent as IItemInstance).Metadata;
 
                 if (metadata.Sprite == null)
                 {

@@ -26,42 +26,42 @@ namespace Features.Equipment
                 return EquipBySlotType(request);
             }
 
-            return !Manager.CanEquipItem(request.Item) ? Failed(request) : EquipByItem(request);
+            return !Manager.CanEquipItem(request.ItemInstance) ? Failed(request) : EquipByItem(request);
         }
 
         private EquipResult EquipByItem(EquipRequest request)
         {
-            var item = request.Item;
-            var slot = item.mainSlot;
+            var item = request.ItemInstance;
+            var slot = item.Metadata.MainSlot;
 
-            if (!Manager.EmptySlotPresent(item.mainSlot) && Manager.EmptySlotPresent(item.secondarySlot))
+            if (!Manager.EmptySlotPresent(slot) && Manager.EmptySlotPresent(item.Metadata.SecondarySlot))
             {
-                slot = item.secondarySlot;
+                slot = item.Metadata.SecondarySlot;
             }
 
-            var result = Manager.EquipOrReplace(slot, request.Item, out var prevItem);
+            var result = Manager.EquipOrReplace(slot, request.ItemInstance, out var prevItem);
 
             return EquipResult(request, result, prevItem);
         }
 
         private EquipResult EquipBySlotType(EquipRequest request)
         {
-            var item = Manager.EquipOrReplace(request.SlotType, request.Item, out var prevItem);
+            var item = Manager.EquipOrReplace(request.SlotType, request.ItemInstance, out var prevItem);
 
             return EquipResult(request, item, prevItem);
         }
 
         private EquipResult EquipBySlotId(EquipRequest request)
         {
-            var item = Manager.EquipOrReplace(request.SlotId, request.Item, out var prevItem);
+            var item = Manager.EquipOrReplace(request.SlotId, request.ItemInstance, out var prevItem);
 
             return EquipResult(request, item, prevItem);
         }
 
         private EquipResult EquipResult(EquipRequest request, EquipmentContainerItem equipmentContainerItem,
-            IEquipmentItem prevItem)
+            IEquipmentItemInstance prevItemInstance)
         {
-            return new EquipResult(request, equipmentContainerItem, prevItem, true);
+            return new EquipResult(request, equipmentContainerItem, prevItemInstance, true);
         }
 
         private static EquipResult Failed(EquipRequest request)

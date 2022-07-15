@@ -58,7 +58,7 @@ namespace Features.Equipment
         {
             if (ContainerFor(result.EquipmentContainerItem.Slot).InstanceParent == null) return;
 
-            if (result.UnequippedItemBase != null)
+            if (result.UnequippedItemInstanceBase != null)
             {
                 HandleRemoveEquip(result.EquipmentContainerItem.Slot);
             }
@@ -78,15 +78,15 @@ namespace Features.Equipment
             DestroyImmediate(container.Instance);
         }
 
-        private void HandleEquip(IEquipmentItem itemDefinition, string slot)
+        private void HandleEquip(IEquipmentItemInstance itemInstanceDefinition, string slot)
         {
-            if (itemDefinition.ModelPrefab == null) return;
+            if (itemInstanceDefinition.Metadata.ModelPrefab == null) return;
 
             var container = ContainerFor(slot);
 
             if (container == null) return;
 
-            container.Instance = Instantiate(itemDefinition.ModelPrefab, container.InstanceParent);
+            container.Instance = Instantiate(itemInstanceDefinition.Metadata.ModelPrefab, container.InstanceParent);
         }
 
         private SlotData ContainerFor(string slot) => EquipmentSlots.FirstOrDefault(x => x.slotType == slot);

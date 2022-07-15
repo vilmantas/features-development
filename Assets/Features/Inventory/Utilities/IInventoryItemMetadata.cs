@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Features.Inventory.Utilities
 {
-    public interface IItemMetadata
+    public interface IInventoryItemMetadata
     {
         string Name { get; }
         Sprite Sprite { get; }

@@ -35,41 +35,41 @@ namespace Features.Equipment
 
         private EquipmentContainerItem FirstSlot(string slot) => m_EquippedItems.First(x => x.Slot == slot);
 
-        public bool CanEquipItem(IEquipmentItem item)
+        public bool CanEquipItem(IEquipmentItemInstance itemInstance)
         {
-            return SlotPresent(item.mainSlot) || SlotPresent(item.secondarySlot);
+            return SlotPresent(itemInstance.Metadata.MainSlot) || SlotPresent(itemInstance.Metadata.SecondarySlot);
         }
 
-        public EquipmentContainerItem EquipOrReplace(string slot, IEquipmentItem item, out IEquipmentItem previousItem)
+        public EquipmentContainerItem EquipOrReplace(string slot, IEquipmentItemInstance itemInstance, out IEquipmentItemInstance previousItemInstance)
         {
-            previousItem = null;
+            previousItemInstance = null;
 
             if (!SlotPresent(slot)) return null;
 
             var equippedItem = EmptySlotPresent(slot) ? EmptySlot(slot) : FirstSlot(slot);
 
-            return EquipToSlot(item, equippedItem, out previousItem);
+            return EquipToSlot(itemInstance, equippedItem, out previousItemInstance);
         }
 
-        public EquipmentContainerItem EquipOrReplace(Guid slotId, IEquipmentItem item, out IEquipmentItem previousItem)
+        public EquipmentContainerItem EquipOrReplace(Guid slotId, IEquipmentItemInstance itemInstance, out IEquipmentItemInstance previousItemInstance)
         {
-            previousItem = null;
+            previousItemInstance = null;
 
             var equipmentSlot = SlotById(slotId);
 
-            return equipmentSlot != null ? EquipToSlot(item, equipmentSlot, out previousItem) : null;
+            return equipmentSlot != null ? EquipToSlot(itemInstance, equipmentSlot, out previousItemInstance) : null;
         }
 
-        private static EquipmentContainerItem EquipToSlot(IEquipmentItem item, EquipmentContainerItem equipmentSlot,
-            out IEquipmentItem previousItem)
+        private static EquipmentContainerItem EquipToSlot(IEquipmentItemInstance itemInstance, EquipmentContainerItem equipmentSlot,
+            out IEquipmentItemInstance previousItemInstance)
         {
-            previousItem = null;
+            previousItemInstance = null;
 
-            if (equipmentSlot.Main != null && equipmentSlot.Main.Combine(item)) return equipmentSlot;
+            if (equipmentSlot.Main != null && equipmentSlot.Main.Combine(itemInstance)) return equipmentSlot;
 
-            previousItem = equipmentSlot.Main;
+            previousItemInstance = equipmentSlot.Main;
 
-            equipmentSlot.Main = item;
+            equipmentSlot.Main = itemInstance;
 
             return equipmentSlot;
         }

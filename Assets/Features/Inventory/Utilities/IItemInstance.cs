@@ -4,6 +4,6 @@ namespace Features.Inventory.Utilities
 {
     public interface IItemInstance
     {
-        IItemMetadata Metadata { get; }
+        IInventoryItemMetadata Metadata { get; }
     }
 }

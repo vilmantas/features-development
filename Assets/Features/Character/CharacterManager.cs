@@ -1,5 +1,6 @@
 using System;
 using Features.Buffs;
+using Features.Character.Items;
 using Features.Combat;
 using Features.Equipment;
 using Features.Health;
@@ -41,6 +42,8 @@ namespace Features.Character
 
             m_BuffController.OnBuffTickOccurred.AddListener(HandleBuffTick);
             m_BuffController.OnBuffDurationReset.AddListener(HandleBuffDurationReset);
+
+            m_InventoryController.OnActionSelected += (data, s) => m_EquipmentController.HandleEquipRequest(new EquipRequest() { ItemInstance = data.ParentCast<CharacterItemInstance>()});
         }
 
         private void HandleBuffDurationReset(ActiveBuff buff)

@@ -1,6 +1,8 @@
 using System;
 using Features.Buffs;
+using Features.Character.Items;
 using Features.Health;
+using Features.Inventory;
 using UnityEngine;
 
 namespace DebugScripts.Character
@@ -14,6 +16,16 @@ namespace DebugScripts.Character
         public Buff_SO LifterBuff;
 
         public Buff_SO Reducer;
+
+        public CharacterItem_SO Item;
+
+        public void GiveItem()
+        {
+            var controller = Target.GetComponentInChildren<InventoryController>();
+
+            controller.HandleRequest(
+                ChangeRequestFactory.Add(Item.ToMetadata.ToInstance.StorageData, 1));
+        }
 
         public void CastLifter()
         {

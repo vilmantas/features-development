@@ -43,11 +43,11 @@ namespace DebugScripts.Equipment
             }
             else
             {
-                Count.text = item.Main.IsStackable ? item.Main.GetAmmoText : string.Empty;
+                Count.text = item.Main.Metadata.IsStackable ? item.Main.GetAmmoText : string.Empty;
 
-                if (item.Main.Sprite != null)
+                if (item.Main.Metadata.Sprite != null)
                 {
-                    ItemIcon.sprite = item.Main.Sprite;
+                    ItemIcon.sprite = item.Main.Metadata.Sprite;
                     ItemIcon.gameObject.SetActive(true);
                     Placeholder.gameObject.SetActive(false);
                 }

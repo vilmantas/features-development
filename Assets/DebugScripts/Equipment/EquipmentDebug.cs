@@ -29,7 +29,7 @@ namespace DebugScripts.Equipment
             var request = new EquipRequest()
             {
                 SlotType = "Basef",
-                Item = FakeItem.GetInstance.EquipmentData
+                ItemInstance = FakeItem.GetInstance.EquipmentData
             };
 
             m_EquipmentController.HandleEquipRequest(request);
@@ -40,7 +40,7 @@ namespace DebugScripts.Equipment
             var req = new EquipRequest()
             {
                 SlotType = arg0.Slot,
-                Item = null
+                ItemInstance = null
             };
 
             m_EquipmentController.HandleEquipRequest(req);
@@ -55,7 +55,7 @@ namespace DebugScripts.Equipment
             var request = new EquipRequest()
             {
                 SlotType = "Basef2",
-                Item = arrows.EquipmentData,
+                ItemInstance = arrows.EquipmentData,
             };
 
             m_EquipmentController.HandleEquipRequest(request);

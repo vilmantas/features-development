@@ -3,6 +3,7 @@ using Features.Equipment;
 using Features.Health;
 using Features.Health.Events;
 using Features.Inventory;
+using Features.Stats.Base;
 using TMPro;
 using UnityEngine;
 
@@ -16,6 +17,8 @@ public class UIManager : MonoBehaviour
 
     public GameObject EquipmentContainer;
 
+    public GameObject StatsContainer;
+
     public TextMeshProUGUI HPText;
 
     public BaseBuffUIData BuffPrefab;
@@ -24,6 +27,7 @@ public class UIManager : MonoBehaviour
 
     public BaseEquipmentUIData EquipmentPrefab;
 
+    public BaseStatUIData StatPrefab;
 
     private void Start()
     {
@@ -35,6 +39,8 @@ public class UIManager : MonoBehaviour
 
         var hpController = Character.GetComponentInChildren<HealthController>();
 
+        var statsController = Character.GetComponentInChildren<StatsController>();
+
         HPText.text = $"{hpController.CurrentHealth.ToString()}/{hpController.MaxHealth.ToString()}";
 
         hpController.OnDamage += OnHealthChanged;
@@ -45,6 +51,8 @@ public class UIManager : MonoBehaviour
         inventoryController.WithUI(InventoryPrefab, InventoryContainer.transform);
 
         equipmentController.WithUI(EquipmentPrefab, EquipmentContainer.transform);
+
+        statsController.WithUI(StatPrefab, StatsContainer.transform);
     }
 
     public void OnHealthChanged(HealthChangeEventArgs args)

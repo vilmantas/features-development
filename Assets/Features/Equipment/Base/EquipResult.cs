@@ -7,14 +7,14 @@ namespace Features.Equipment
 
         public readonly bool Succeeded;
 
-        public readonly IEquipmentItem UnequippedItemBase;
+        public readonly IEquipmentItemInstance UnequippedItemInstanceBase;
 
         public EquipResult(EquipRequest request, EquipmentContainerItem equipmentContainerItem,
-            IEquipmentItem unequippedItemBase, bool succeeded)
+            IEquipmentItemInstance unequippedItemInstanceBase, bool succeeded)
         {
             Request = request;
             Succeeded = succeeded;
-            UnequippedItemBase = unequippedItemBase;
+            UnequippedItemInstanceBase = unequippedItemInstanceBase;
             EquipmentContainerItem = equipmentContainerItem;
         }
 
@@ -23,6 +23,6 @@ namespace Features.Equipment
             Request = request;
         }
 
-        public IEquipmentItem<T> UnequippedItem<T>() where T : class => UnequippedItemBase as IEquipmentItem<T>;
+        public IEquipmentItemInstance<T> UnequippedItem<T>() where T : class => UnequippedItemInstanceBase as IEquipmentItemInstance<T>;
     }
 }

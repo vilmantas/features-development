@@ -6,7 +6,7 @@ namespace Features.Equipment
     {
         public readonly Guid Id = Guid.NewGuid();
 
-        public IEquipmentItem Main;
+        public IEquipmentItemInstance Main;
 
         public string Slot;
 

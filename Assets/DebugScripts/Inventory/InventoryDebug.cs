@@ -68,12 +68,12 @@ namespace DebugScripts
     public class FakeItemInstance : IItemInstance
     {
         public readonly EquipmentData EquipmentData;
-        public readonly FakeItemMetadata Metadata;
+        public readonly FakeInventoryItemMetadata Metadata;
 
         public readonly StorageData StorageData;
         private IItemInstance m_ItemInstanceImplementation;
 
-        public FakeItemInstance(FakeItemMetadata metadata)
+        public FakeItemInstance(FakeInventoryItemMetadata metadata)
         {
             Metadata = metadata;
 
@@ -82,7 +82,7 @@ namespace DebugScripts
             StorageData = new StorageData(this, metadata.MaxStack);
         }
 
-        IItemMetadata IItemInstance.Metadata => m_ItemInstanceImplementation.Metadata;
+        IInventoryItemMetadata IItemInstance.Metadata => m_ItemInstanceImplementation.Metadata;
 
         public override bool Equals(object other)
         {
@@ -107,11 +107,11 @@ namespace DebugScripts
         }
     }
 
-    public class FakeItemMetadata : IItemMetadata
+    public class FakeInventoryItemMetadata : IInventoryItemMetadata
     {
         public readonly GameObject ModelPrefab;
 
-        public FakeItemMetadata(string name, Sprite sprite, GameObject modelPrefab, int maxStack = 1)
+        public FakeInventoryItemMetadata(string name, Sprite sprite, GameObject modelPrefab, int maxStack = 1)
         {
             Name = name;
             Sprite = sprite;
@@ -124,8 +124,10 @@ namespace DebugScripts
         public int MaxStack { get; }
     }
 
-    public class EquipmentData : IEquipmentItem<FakeItemInstance>
+    public class EquipmentData : IEquipmentItemInstance<FakeItemInstance>
     {
+        private IEquipmentItemInstance<FakeItemInstance> m_EquipmentItemInstanceImplementation;
+
         public EquipmentData(FakeItemInstance parent, string mainSlot, string secondarySlot)
         {
             Parent = parent;
@@ -140,15 +142,17 @@ namespace DebugScripts
         public FakeItemInstance Parent { get; }
         public string mainSlot { get; }
         public string secondarySlot { get; }
+        public IEquipmentItemMetadata Metadata => m_EquipmentItemInstanceImplementation.Metadata;
+
         public string GetAmmoText => IsStackable ? CurrentAmount.ToString() : string.Empty;
 
         public bool IsStackable => Parent.StorageData.StackableData.Max > 1;
 
         public int CurrentAmount => Parent.StorageData.StackableData.Current;
 
-        public bool Combine(IEquipmentItem other)
+        public bool Combine(IEquipmentItemInstance other)
         {
-            if (other is not IEquipmentItem<FakeItemInstance> otherItem) return false;
+            if (other is not IEquipmentItemInstance<FakeItemInstance> otherItem) return false;
 
             if (!otherItem.Parent.Equals(Parent)) return false;
 

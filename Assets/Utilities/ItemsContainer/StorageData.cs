@@ -2,6 +2,22 @@ using System;
 
 namespace Utilities.ItemsContainer
 {
+    public class StorageData<T> : StorageData where T: class
+    {
+        public T Parent
+        {
+            get => ParentCast<T>();
+        }
+
+        public StorageData(T parent, int maxStackSize = 1) : base(parent, maxStackSize)
+        {
+        }
+
+        public StorageData(StorageData<T> original) : base(original)
+        {
+        }
+    }
+
     public class StorageData
     {
         internal readonly Guid Id = Guid.NewGuid();

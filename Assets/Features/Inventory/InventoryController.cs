@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Features.Inventory.Events;
 using Features.Inventory;
@@ -11,7 +12,7 @@ namespace Features.Inventory
     {
         [Range(1, 50)] public int Size = 20;
 
-        public readonly ActionSelectedEvent OnActionSelected = new();
+        public Action<StorageData, string> OnActionSelected;
 
         public readonly ChangeRequestHandledEvent OnChangeRequestHandled = new();
 
@@ -85,7 +86,7 @@ namespace Features.Inventory
 
         public void HandleItemAction(ContainerItem container, string action)
         {
-            OnActionSelected.Invoke(container.Item, action);
+            OnActionSelected?.Invoke(container.Item, action);
         }
 
         public void HandleItemContextOpen(ContainerItem container)

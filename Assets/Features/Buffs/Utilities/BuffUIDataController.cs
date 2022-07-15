@@ -13,11 +13,6 @@ namespace Features.Buffs.Utilities
         private Transform m_StacksContainer;
         private RadialTimerController m_TimerController;
 
-        private void Start()
-        {
-            Debug.Log("Lmaooo");
-        }
-
         public override void BuffTickCallback(ActiveBuff buff)
         {
             m_TimerController.SetFillAmount(buff.Metadata.Duration, buff.DurationLeft);
