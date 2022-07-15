@@ -1,7 +1,7 @@
 using System;
 using Utilities.ItemsContainer;
 
-namespace Inventory
+namespace Features.Inventory
 {
     public static class ChangeRequestFactory
     {

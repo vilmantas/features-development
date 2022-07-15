@@ -1,6 +1,6 @@
 using System;
 
-namespace Stats
+namespace Features.Stats.Base
 {
     [Serializable]
     public class Stat

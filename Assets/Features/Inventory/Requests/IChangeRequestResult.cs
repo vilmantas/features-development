@@ -1,4 +1,4 @@
-namespace Inventory.Abstract.Internal
+namespace Features.Inventory.Abstract.Internal
 {
     public interface IChangeRequestResult
     {

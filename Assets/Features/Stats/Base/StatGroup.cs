@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Stats
+namespace Features.Stats.Base
 {
     [Serializable]
     public class StatGroup

@@ -1,4 +1,4 @@
-namespace Stats
+namespace Features.Stats.Base
 {
     public class StatsChangedEventArgs
     {

@@ -1,5 +1,5 @@
 using System;
-using Inventory.Abstract.Internal;
+using Features.Inventory.Abstract.Internal;
 using UnityEngine.Events;
 
 namespace Features.Inventory.Events

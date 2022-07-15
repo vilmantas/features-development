@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Utilities.ItemsContainer;
 
-namespace Inventory.Unity
+namespace Features.Inventory
 {
     public class BaseInventoryUIData : MonoBehaviour,
         IBeginDragHandler,

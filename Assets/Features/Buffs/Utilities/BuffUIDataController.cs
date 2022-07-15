@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,6 +12,11 @@ namespace Features.Buffs.Utilities
         private TextMeshProUGUI m_StacksText;
         private Transform m_StacksContainer;
         private RadialTimerController m_TimerController;
+
+        private void Start()
+        {
+            Debug.Log("Lmaooo");
+        }
 
         public override void BuffTickCallback(ActiveBuff buff)
         {

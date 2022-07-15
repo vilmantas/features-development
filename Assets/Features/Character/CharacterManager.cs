@@ -4,7 +4,7 @@ using Features.Combat;
 using Features.Equipment;
 using Features.Health;
 using Features.Inventory;
-using Stats.Unity;
+using Features.Stats.Base;
 using UnityEngine;
 
 namespace Features.Character
@@ -21,7 +21,7 @@ namespace Features.Character
 
         private InventoryController m_InventoryController;
 
-        private StatController m_StatController;
+        private StatsController m_StatsController;
 
         public void DoSetup()
         {
@@ -32,7 +32,7 @@ namespace Features.Character
             m_EquipmentController = root.GetComponentInChildren<EquipmentController>();
             m_HealthController = root.GetComponentInChildren<HealthController>();
             m_InventoryController = root.GetComponentInChildren<InventoryController>();
-            m_StatController = root.GetComponentInChildren<StatController>();
+            m_StatsController = root.GetComponentInChildren<StatsController>();
 
             m_BuffController.OnBuffAddRequested.AddListener(HandleBuffAddRequest);
 

@@ -1,8 +1,8 @@
 using System;
-using Inventory.Abstract.Internal;
+using Features.Inventory.Abstract.Internal;
 using Utilities.ItemsContainer;
 
-namespace Inventory
+namespace Features.Inventory
 {
     public class RemoveRequest : IChangeRequest
     {

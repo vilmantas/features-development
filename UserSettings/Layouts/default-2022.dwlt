@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PixelRect:
     serializedVersion: 2
-    x: 2560
-    y: 53
-    width: 2560
-    height: 1387
+    x: 0
+    y: 66
+    width: 1728
+    height: 966
   m_ShowMode: 4
-  m_Title: Project
+  m_Title: Game
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -44,8 +44,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 2560
-    height: 1387
+    width: 1728
+    height: 966
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
   m_UseTopView: 1
@@ -69,7 +69,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 2560
+    width: 1728
     height: 30
   m_MinSize: {x: 0, y: 0}
   m_MaxSize: {x: 0, y: 0}
@@ -90,8 +90,8 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
-    y: 1367
-    width: 2560
+    y: 946
+    width: 1728
     height: 20
   m_MinSize: {x: 0, y: 0}
   m_MaxSize: {x: 0, y: 0}
@@ -114,12 +114,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 30
-    width: 2560
-    height: 1337
+    width: 1728
+    height: 916
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 237
+  controlID: 64
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -139,12 +139,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1955
-    height: 1337
+    width: 1320.5
+    height: 916
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 242
+  controlID: 65
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -165,12 +165,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1955
-    height: 752.5
+    width: 1320.5
+    height: 590.5
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 307
+  controlID: 66
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -188,10 +188,10 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 291.5
-    height: 752.5
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+    width: 194.5
+    height: 590.5
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
@@ -212,12 +212,12 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 291.5
+    x: 194.5
     y: 0
-    width: 965.5
-    height: 752.5
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+    width: 651.5
+    height: 590.5
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
@@ -238,12 +238,12 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 1257
+    x: 846
     y: 0
-    width: 698
-    height: 752.5
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+    width: 474.5
+    height: 590.5
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -267,13 +267,13 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
-    y: 752.5
-    width: 1955
-    height: 584.5
+    y: 590.5
+    width: 1320.5
+    height: 325.5
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 243
+  controlID: 76
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -291,8 +291,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1302.5
-    height: 584.5
+    width: 880.5
+    height: 325.5
   m_MinSize: {x: 231, y: 271}
   m_MaxSize: {x: 10001, y: 10021}
   m_ActualView: {fileID: 19}
@@ -316,12 +316,12 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 1302.5
+    x: 880.5
     y: 0
-    width: 652.5
-    height: 584.5
-  m_MinSize: {x: 102, y: 121}
-  m_MaxSize: {x: 4002, y: 4021}
+    width: 440
+    height: 325.5
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 20}
   m_Panes:
   - {fileID: 20}
@@ -342,10 +342,10 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 1955
+    x: 1320.5
     y: 0
-    width: 605
-    height: 1337
+    width: 407.5
+    height: 916
   m_MinSize: {x: 276, y: 71}
   m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 21}
@@ -369,7 +369,7 @@ MonoBehaviour:
   m_MaxSize: {x: 4000, y: 4000}
   m_TitleContent:
     m_Text: Console
-    m_Image: {fileID: -4950941429401207979, guid: 0000000000000000d000000000000000, type: 0}
+    m_Image: {fileID: 111653112392082826, guid: 0000000000000000d000000000000000, type: 0}
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
@@ -397,14 +397,14 @@ MonoBehaviour:
   m_MaxSize: {x: 4000, y: 4000}
   m_TitleContent:
     m_Text: Hierarchy
-    m_Image: {fileID: -3734745235275155857, guid: 0000000000000000d000000000000000, type: 0}
+    m_Image: {fileID: -590624980919486359, guid: 0000000000000000d000000000000000, type: 0}
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 2560
-    y: 83
-    width: 290.5
-    height: 731.5
+    x: 0
+    y: 96
+    width: 193.5
+    height: 569.5
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -412,9 +412,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: f8060000
+      m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 34fbffff
+      m_ExpandedIDs: 32fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -454,14 +454,14 @@ MonoBehaviour:
   m_MaxSize: {x: 4000, y: 4000}
   m_TitleContent:
     m_Text: Game
-    m_Image: {fileID: 4621777727084837110, guid: 0000000000000000d000000000000000, type: 0}
+    m_Image: {fileID: -2087823869225018852, guid: 0000000000000000d000000000000000, type: 0}
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 2851.5
-    y: 83
-    width: 963.5
-    height: 731.5
+    x: 194.5
+    y: 96
+    width: 649.5
+    height: 569.5
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -472,7 +472,7 @@ MonoBehaviour:
   m_ShowGizmos: 0
   m_TargetDisplay: 0
   m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
-  m_TargetSize: {x: 963.5, y: 710.5}
+  m_TargetSize: {x: 649.5, y: 548.5}
   m_TextureFilterMode: 0
   m_TextureHideFlags: 61
   m_RenderIMGUI: 1
@@ -492,10 +492,10 @@ MonoBehaviour:
     m_VRangeLocked: 0
     hZoomLockedByDefault: 0
     vZoomLockedByDefault: 0
-    m_HBaseRangeMin: -240.875
-    m_HBaseRangeMax: 240.875
-    m_VBaseRangeMin: -177.625
-    m_VBaseRangeMax: 177.625
+    m_HBaseRangeMin: -162.375
+    m_HBaseRangeMax: 162.375
+    m_VBaseRangeMin: -137.125
+    m_VBaseRangeMax: 137.125
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
     m_VAllowExceedBaseRangeMin: 1
@@ -513,23 +513,23 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 21
-      width: 963.5
-      height: 710.5
+      width: 649.5
+      height: 548.5
     m_Scale: {x: 2, y: 2}
-    m_Translation: {x: 481.75, y: 355.25}
+    m_Translation: {x: 324.75, y: 274.25}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -240.875
-      y: -177.625
-      width: 481.75
-      height: 355.25
+      x: -162.375
+      y: -137.125
+      width: 324.75
+      height: 274.25
     m_MinimalGUI: 1
   m_defaultScale: 2
-  m_LastWindowPixelSize: {x: 1927, y: 1463}
+  m_LastWindowPixelSize: {x: 1299, y: 1139}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000
@@ -553,14 +553,14 @@ MonoBehaviour:
   m_MaxSize: {x: 4000, y: 4000}
   m_TitleContent:
     m_Text: Scene
-    m_Image: {fileID: 8634526014445323508, guid: 0000000000000000d000000000000000, type: 0}
+    m_Image: {fileID: 2318424515335265636, guid: 0000000000000000d000000000000000, type: 0}
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 3817
-    y: 83
-    width: 696
-    height: 731.5
+    x: 846
+    y: 96
+    width: 472.5
+    height: 569.5
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -570,8 +570,8 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: -173.5, y: -26}
+      snapOffset: {x: -176, y: -26}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 3
       id: Tool Settings
       index: 0
@@ -806,9 +806,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -13.907041, y: -0.40752602, z: -5.2062044}
+    m_Target: {x: -13.840056, y: -0.57584953, z: -9.182306}
     speed: 2
-    m_Value: {x: -13.907041, y: -0.40752602, z: -5.2062044}
+    m_Value: {x: -13.840056, y: -0.57584953, z: -9.182306}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -854,13 +854,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.13222708, y: 0.65814006, z: -0.11895186, w: -0.7315869}
+    m_Target: {x: -0.12179091, y: 0.7315749, z: -0.13562691, w: -0.6569409}
     speed: 2
-    m_Value: {x: -0.132227, y: 0.65813965, z: -0.11895178, w: -0.73158646}
+    m_Value: {x: -0.12179086, y: 0.73157465, z: -0.13562687, w: -0.65694064}
   m_Size:
-    m_Target: 10
+    m_Target: 16.445707
     speed: 2
-    m_Value: 10
+    m_Value: 16.445707
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -901,14 +901,14 @@ MonoBehaviour:
   m_MaxSize: {x: 10000, y: 10000}
   m_TitleContent:
     m_Text: Project
-    m_Image: {fileID: -5179483145760003458, guid: 0000000000000000d000000000000000, type: 0}
+    m_Image: {fileID: -7501376956915960154, guid: 0000000000000000d000000000000000, type: 0}
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 2560
-    y: 835.5
-    width: 1301.5
-    height: 563.5
+    x: 0
+    y: 686.5
+    width: 879.5
+    height: 304.5
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -926,22 +926,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/DebugScripts/Character
+    - Assets/Features/Buffs/Utilities
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/DebugScripts/Character
+  - Assets/Features/Buffs/Utilities
   m_LastFoldersGridSize: -1
   m_LastProjectPath: /Users/vilmantas/Desktop/Code/features-development
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 9a5c0000
-    m_LastClickedID: 23706
-    m_ExpandedIDs: 00000000365c0000385c00003a5c00003c5c0000765c000000ca9a3b
+    m_SelectedIDs: 905c0000
+    m_LastClickedID: 23696
+    m_ExpandedIDs: 00000000705c0000725c0000745c0000765c0000785c00007a5c000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -969,7 +969,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000365c0000385c00003a5c00003c5c0000
+    m_ExpandedIDs: 00000000705c0000725c0000745c0000765c0000785c00007a5c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1013,7 +1013,7 @@ MonoBehaviour:
       m_IsRenaming: 0
       m_OriginalEventType: 11
       m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 9}
+      m_ClientGUIView: {fileID: 0}
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
       m_InstanceID: 0
@@ -1045,21 +1045,21 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 3862.5
-    y: 835.5
-    width: 650.5
-    height: 563.5
+    x: 880.5
+    y: 686.5
+    width: 438
+    height: 304.5
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
     m_SaveData: []
   m_Spl:
-    ID: 361
+    ID: 167
     splitterInitialOffset: 0
     currentActiveSplitter: -1
     realSizes:
-    - 370.5
-    - 123.5
+    - 175.5
+    - 58.5
     relativeSizes:
     - 0.75
     - 0.25
@@ -1069,7 +1069,7 @@ MonoBehaviour:
     maxSizes:
     - 0
     - 0
-    lastTotalSize: 494
+    lastTotalSize: 234
     splitSize: 6
     xOffset: 0
     m_Version: 1
@@ -1077,17 +1077,250 @@ MonoBehaviour:
     oldMinSizes: 
     oldMaxSizes: 
     oldSplitSize: 0
-  m_TestTypeToolbarIndex: 1
+  m_TestTypeToolbarIndex: 0
   m_PlayModeTestListGUI:
-    m_Window: {fileID: 0}
-    m_NewResultList: []
-    m_ResultText: 
+    m_Window: {fileID: 20}
+    m_NewResultList:
+    - id: 1020
+      uniqueId: '[features-development][suite]'
+      name: features-development
+      fullName: features-development
+      resultStatus: 1
+      duration: 0.1198153
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 
+      parentUniqueId: 
+    - id: 1025
+      uniqueId: '[Features.Buffs.Tests.PlayMode][/Users/vilmantas/Desktop/Code/features-development/Library/ScriptAssemblies/Features.Buffs.Tests.PlayMode.dll][suite]'
+      name: Features.Buffs.Tests.PlayMode.dll
+      fullName: /Users/vilmantas/Desktop/Code/features-development/Library/ScriptAssemblies/Features.Buffs.Tests.PlayMode.dll
+      resultStatus: 1
+      duration: 0.051581
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1020
+      parentUniqueId: '[features-development][suite]'
+    - id: 1021
+      uniqueId: Features.Buffs.Tests.PlayMode.dll/[Features.Buffs.Tests.PlayMode][BuffControllerTests][suite]
+      name: BuffControllerTests
+      fullName: BuffControllerTests
+      resultStatus: 1
+      duration: 0.0491922
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1025
+      parentUniqueId: '[Features.Buffs.Tests.PlayMode][/Users/vilmantas/Desktop/Code/features-development/Library/ScriptAssemblies/Features.Buffs.Tests.PlayMode.dll][suite]'
+    - id: 1023
+      uniqueId: Features.Buffs.Tests.PlayMode.dll/BuffControllerTests/[Features.Buffs.Tests.PlayMode][BuffControllerTests.ItReportsWhenBuffAddingIsAttempted]
+      name: ItReportsWhenBuffAddingIsAttempted
+      fullName: BuffControllerTests.ItReportsWhenBuffAddingIsAttempted
+      resultStatus: 1
+      duration: 0.020507
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1021
+      parentUniqueId: Features.Buffs.Tests.PlayMode.dll/[Features.Buffs.Tests.PlayMode][BuffControllerTests][suite]
+    - id: 1024
+      uniqueId: Features.Buffs.Tests.PlayMode.dll/BuffControllerTests/[Features.Buffs.Tests.PlayMode][BuffControllerTests.ItReportsWhenBuffRemovingIsAttempted]
+      name: ItReportsWhenBuffRemovingIsAttempted
+      fullName: BuffControllerTests.ItReportsWhenBuffRemovingIsAttempted
+      resultStatus: 1
+      duration: 0.0068467
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1021
+      parentUniqueId: Features.Buffs.Tests.PlayMode.dll/[Features.Buffs.Tests.PlayMode][BuffControllerTests][suite]
+    - id: 1022
+      uniqueId: Features.Buffs.Tests.PlayMode.dll/BuffControllerTests/[Features.Buffs.Tests.PlayMode][BuffControllerTests.ItReportsWhenTimerTicks]
+      name: ItReportsWhenTimerTicks
+      fullName: BuffControllerTests.ItReportsWhenTimerTicks
+      resultStatus: 1
+      duration: 0.011987
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1021
+      parentUniqueId: Features.Buffs.Tests.PlayMode.dll/[Features.Buffs.Tests.PlayMode][BuffControllerTests][suite]
+    - id: 1008
+      uniqueId: '[Features.Health.PlayMode][/Users/vilmantas/Desktop/Code/features-development/Library/ScriptAssemblies/Features.Health.PlayMode.dll][suite]'
+      name: Features.Health.PlayMode.dll
+      fullName: /Users/vilmantas/Desktop/Code/features-development/Library/ScriptAssemblies/Features.Health.PlayMode.dll
+      resultStatus: 1
+      duration: 0.108412
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1000
+      parentUniqueId: '[features-development][suite]'
+    - id: 1006
+      uniqueId: Features.Health.PlayMode.dll/[Features.Health.PlayMode][HealthControllerTests][suite]
+      name: HealthControllerTests
+      fullName: HealthControllerTests
+      resultStatus: 1
+      duration: 0.1050203
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1008
+      parentUniqueId: '[Features.Health.PlayMode][/Users/vilmantas/Desktop/Code/features-development/Library/ScriptAssemblies/Features.Health.PlayMode.dll][suite]'
+    - id: 1007
+      uniqueId: Features.Health.PlayMode.dll/HealthControllerTests/[Features.Health.PlayMode][HealthControllerTests.ItCallsDamageInterceptorCallbacks]
+      name: ItCallsDamageInterceptorCallbacks
+      fullName: HealthControllerTests.ItCallsDamageInterceptorCallbacks
+      resultStatus: 1
+      duration: 0.0210011
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1006
+      parentUniqueId: Features.Health.PlayMode.dll/[Features.Health.PlayMode][HealthControllerTests][suite]
+    - id: 1008
+      uniqueId: Features.Health.PlayMode.dll/HealthControllerTests/[Features.Health.PlayMode][HealthControllerTests.ItCallsHealInterceptorCallbacks]
+      name: ItCallsHealInterceptorCallbacks
+      fullName: HealthControllerTests.ItCallsHealInterceptorCallbacks
+      resultStatus: 1
+      duration: 0.0082866
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1006
+      parentUniqueId: Features.Health.PlayMode.dll/[Features.Health.PlayMode][HealthControllerTests][suite]
+    - id: 1007
+      uniqueId: Features.Health.PlayMode.dll/HealthControllerTests/[Features.Health.PlayMode][HealthControllerTests.ItIncreasesHealthWhenHealing]
+      name: ItIncreasesHealthWhenHealing
+      fullName: HealthControllerTests.ItIncreasesHealthWhenHealing
+      resultStatus: 1
+      duration: 0.0139459
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1006
+      parentUniqueId: Features.Health.PlayMode.dll/[Features.Health.PlayMode][HealthControllerTests][suite]
+    - id: 1008
+      uniqueId: Features.Health.PlayMode.dll/HealthControllerTests/[Features.Health.PlayMode][HealthControllerTests.ItLowersHealthWhenDamaged]
+      name: ItLowersHealthWhenDamaged
+      fullName: HealthControllerTests.ItLowersHealthWhenDamaged
+      resultStatus: 1
+      duration: 0.0170036
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1006
+      parentUniqueId: Features.Health.PlayMode.dll/[Features.Health.PlayMode][HealthControllerTests][suite]
+    - id: 1008
+      uniqueId: Features.Health.PlayMode.dll/HealthControllerTests/[Features.Health.PlayMode][HealthControllerTests.ItUsesValueFromDamageInterceptors]
+      name: ItUsesValueFromDamageInterceptors
+      fullName: HealthControllerTests.ItUsesValueFromDamageInterceptors
+      resultStatus: 1
+      duration: 0.0212391
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1006
+      parentUniqueId: Features.Health.PlayMode.dll/[Features.Health.PlayMode][HealthControllerTests][suite]
+    - id: 1010
+      uniqueId: Features.Health.PlayMode.dll/HealthControllerTests/[Features.Health.PlayMode][HealthControllerTests.ItUsesValueFromHealInterceptors]
+      name: ItUsesValueFromHealInterceptors
+      fullName: HealthControllerTests.ItUsesValueFromHealInterceptors
+      resultStatus: 1
+      duration: 0.0124748
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1006
+      parentUniqueId: Features.Health.PlayMode.dll/[Features.Health.PlayMode][HealthControllerTests][suite]
+    m_ResultText: HealthControllerTests (0.105s)
     m_ResultStacktrace: 
     m_TestListState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: 
+      m_SelectedIDs: 16eea657
+      m_LastClickedID: 1470557718
+      m_ExpandedIDs: e6779a830633258573d72bb7ce6783cab3cdc1ea0ab66311419466336d7d033eb320cc4816eea657ab096070ffffff7f
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1111,7 +1344,8 @@ MonoBehaviour:
       NotRunHidden: 0
       m_SearchString: 
       selectedCategoryMask: 0
-      availableCategories: []
+      availableCategories:
+      - Uncategorized
     m_SelectedOption: 0
   m_EditModeTestListGUI:
     m_Window: {fileID: 20}
@@ -2071,14 +2305,14 @@ MonoBehaviour:
   m_MaxSize: {x: 4000, y: 4000}
   m_TitleContent:
     m_Text: Inspector
-    m_Image: {fileID: -440750813802333266, guid: 0000000000000000d000000000000000, type: 0}
+    m_Image: {fileID: -6905738622615590433, guid: 0000000000000000d000000000000000, type: 0}
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 4515
-    y: 83
-    width: 604
-    height: 1316
+    x: 1320.5
+    y: 96
+    width: 406.5
+    height: 895
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Features.Inventory.Events;
-using Inventory;
-using Inventory.Abstract.Internal;
+using Features.Inventory;
+using Features.Inventory.Abstract.Internal;
 using UnityEngine;
 using Utilities.ItemsContainer;
 

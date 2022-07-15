@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 
-namespace Stats
+namespace Features.Stats.Base
 {
-    public class Manager
+    internal class Manager
     {
         private readonly List<StatGroup> AppliedModifiers = new();
 

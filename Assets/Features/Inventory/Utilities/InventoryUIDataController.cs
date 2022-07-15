@@ -1,5 +1,5 @@
 using System;
-using Inventory.Unity;
+using Features.Inventory;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

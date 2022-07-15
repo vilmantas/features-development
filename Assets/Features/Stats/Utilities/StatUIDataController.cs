@@ -1,11 +1,12 @@
+using Features.Stats.Base;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Stats.Unity
+namespace Features.Stats.Base
 {
     [ExecuteAlways]
-    public class StatsUIData : MonoBehaviour
+    public class StatUIDataController : BaseStatUIData
     {
         [HideInInspector] public TextMeshProUGUI Title;
 
@@ -13,7 +14,7 @@ namespace Stats.Unity
 
         [HideInInspector] public Image Background;
 
-        private void Awake()
+        public override void OnAwake()
         {
             var children = GetComponentsInChildren<TextMeshProUGUI>();
 
@@ -33,10 +34,10 @@ namespace Stats.Unity
             Background = GetComponentInChildren<Image>();
         }
 
-        public void SetData(string stat, int value)
+        public override void OnSetData(Stat stat)
         {
-            Title.text = stat;
-            Value.text = value.ToString();
+            Title.text = stat.Name;
+            Value.text = stat.Value.ToString();
         }
     }
 }

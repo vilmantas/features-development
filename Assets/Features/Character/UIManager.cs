@@ -3,7 +3,6 @@ using Features.Equipment;
 using Features.Health;
 using Features.Health.Events;
 using Features.Inventory;
-using Inventory.Unity;
 using TMPro;
 using UnityEngine;
 
