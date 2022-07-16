@@ -22,7 +22,5 @@ namespace Features.Equipment
         {
             Request = request;
         }
-
-        public IEquipmentItemInstance<T> UnequippedItem<T>() where T : class => UnequippedItemInstanceBase as IEquipmentItemInstance<T>;
     }
 }

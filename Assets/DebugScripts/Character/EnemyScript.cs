@@ -1,8 +1,7 @@
-using System;
 using Features.Buffs;
-using Features.Character.Items;
 using Features.Health;
 using Features.Inventory;
+using Features.Items;
 using UnityEngine;
 
 namespace DebugScripts.Character
@@ -17,7 +16,7 @@ namespace DebugScripts.Character
 
         public Buff_SO Reducer;
 
-        public CharacterItem_SO Item;
+        public Item_SO Item;
 
         public void GiveItem()
         {

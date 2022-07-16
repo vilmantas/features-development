@@ -100,8 +100,6 @@ namespace Features.Buffs
         {
             RemoveStacks(1);
 
-            m_OnStackRemoved?.Invoke(this);
-
             ResetDuration(Math.Abs(offset));
         }
 

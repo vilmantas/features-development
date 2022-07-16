@@ -9,17 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5ab64626ff74ea3b637167b01a88e6b, type: 3}
-  m_Name: Bling
+  m_Script: {fileID: 11500000, guid: d568eb4627e704b2b8571d09f992c2ca, type: 3}
+  m_Name: Blinger
   m_EditorClassIdentifier: 
-  Name: Big Bling
+  Name: Blinger
   MainSlot: Head
   SecondarySlot: 
-  Sprite: {fileID: 21300000, guid: 5ec65cc2078551944ba07f6136eb548b, type: 3}
+  Sprite: {fileID: 21300000, guid: cc15788561d402c4495178a6b6352431, type: 3}
   ModelPrefab: {fileID: 6191115075417870643, guid: 20e9bd911d9ee7e4eadb7efe718f548c, type: 3}
-  MaxStack: 0
   Stats:
   - Name: Strength
+    Value: 5
+  - Name: Defence
     Value: 3
-  - Name: Constitution
-    Value: 1

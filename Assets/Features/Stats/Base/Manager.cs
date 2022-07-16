@@ -31,7 +31,11 @@ namespace Features.Stats.Base
 
         public StatGroup RemoveModifier(StatGroup request)
         {
-            AppliedModifiers.Remove(request);
+            var index = AppliedModifiers.IndexOf(request);
+
+            if (index == -1) return Current;
+
+            AppliedModifiers.RemoveAt(index);
 
             CalculateNewStats();
 

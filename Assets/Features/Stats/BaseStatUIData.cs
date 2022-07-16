@@ -1,5 +1,3 @@
-using System;
-using Features.Stats.Base;
 using UnityEngine;
 
 namespace Features.Stats.Base
@@ -13,6 +11,8 @@ namespace Features.Stats.Base
 
         public void SetData(Stat stat)
         {
+            name = stat.Name;
+
             OnSetData(stat);
         }
 
@@ -22,7 +22,6 @@ namespace Features.Stats.Base
 
         public virtual void OnSetData(Stat stat)
         {
-
         }
     }
 }

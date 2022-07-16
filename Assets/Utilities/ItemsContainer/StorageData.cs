@@ -2,19 +2,19 @@ using System;
 
 namespace Utilities.ItemsContainer
 {
-    public class StorageData<T> : StorageData where T: class
+    public class StorageData<T> : StorageData where T : class
     {
-        public T Parent
-        {
-            get => ParentCast<T>();
-        }
-
         public StorageData(T parent, int maxStackSize = 1) : base(parent, maxStackSize)
         {
         }
 
         public StorageData(StorageData<T> original) : base(original)
         {
+        }
+
+        public T Parent
+        {
+            get => ParentCast<T>();
         }
     }
 
@@ -34,6 +34,10 @@ namespace Utilities.ItemsContainer
 
             StackableData = new ResourceContainer(original.StackableData.Max);
         }
+
+        public int Current => StackableData.Current;
+
+        public int Max => StackableData.Max;
 
         public object Parent { get; }
 

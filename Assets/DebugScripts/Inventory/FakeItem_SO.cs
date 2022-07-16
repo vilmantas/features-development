@@ -15,6 +15,6 @@ namespace DebugScripts
 
         public FakeInventoryItemMetadata GetMetadata => new(Name, Sprite, Model, MaxStack);
 
-        public FakeItemInstance GetInstance => new(GetMetadata);
+        public FakeInventoryItemInstance GetInstance => new(GetMetadata);
     }
 }

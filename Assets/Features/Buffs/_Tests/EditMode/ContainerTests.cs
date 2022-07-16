@@ -54,8 +54,8 @@ namespace BuffContainerTests
 
         public void OnDurationReset(ActiveBuff buff)
         {
-            resetCallbacks++;
             LastReset = buff;
+            resetCallbacks++;
         }
     }
 
@@ -220,15 +220,13 @@ namespace BuffContainerTests
         [Test]
         public void ItNotifiesEachTimeWhenStacksGetAdded()
         {
-            _sut.Receive(Stackable, Stackable.MaxStack);
-
             _sut.Receive(Stackable);
 
             _sut.Receive(Stackable);
 
             _sut.Receive(Stackable);
 
-            Assert.AreEqual(3, stackAddCalls);
+            Assert.AreEqual(2, stackAddCalls);
             Assert.AreSame(Stackable, LastStackAdded.Metadata);
         }
 

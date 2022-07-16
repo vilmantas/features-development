@@ -43,7 +43,7 @@ namespace DebugScripts.Equipment
             }
             else
             {
-                Count.text = item.Main.Metadata.IsStackable ? item.Main.GetAmmoText : string.Empty;
+                Count.text = item.Main.GetAmmoText;
 
                 if (item.Main.Metadata.Sprite != null)
                 {

@@ -18,9 +18,4 @@ namespace Features.Equipment
         int CurrentAmount { get; }
         public bool Combine(IEquipmentItemInstance other);
     }
-
-    public interface IEquipmentItemInstance<out T> : IEquipmentItemInstance
-    {
-        T Parent { get; }
-    }
 }

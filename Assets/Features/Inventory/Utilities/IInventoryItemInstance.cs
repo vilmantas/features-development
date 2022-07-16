@@ -1,8 +1,6 @@
-using UnityEngine;
-
 namespace Features.Inventory.Utilities
 {
-    public interface IItemInstance
+    public interface IInventoryItemInstance
     {
         IInventoryItemMetadata Metadata { get; }
     }

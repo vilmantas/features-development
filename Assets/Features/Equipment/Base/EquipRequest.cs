@@ -9,6 +9,5 @@ namespace Features.Equipment
         public string SlotType;
 
         public bool IsForSpecificSlot => !string.IsNullOrEmpty(SlotType);
-        public IEquipmentItemInstance<T> SourceItem<T>() where T : class => ItemInstance as IEquipmentItemInstance<T>;
     }
 }

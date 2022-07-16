@@ -19,9 +19,9 @@ namespace DebugScripts.Equipment
         {
             m_EquipmentController = GetComponentInChildren<EquipmentController>();
 
-            m_EquipmentController.OnItemEquipped.AddListener(ItemEquipped);
+            m_EquipmentController.OnItemEquipped += ItemEquipped;
 
-            m_EquipmentController.OnItemUnequipRequested.AddListener(HandleUnequipRequest);
+            m_EquipmentController.OnItemUnequipRequested += HandleUnequipRequest;
 
 
             m_EquipmentController.WithUI(UIPrefab, UIContainer);

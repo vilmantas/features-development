@@ -1,7 +1,7 @@
 using Features.Equipment;
 using Features.Inventory;
-using Features.Inventory.Utilities;
 using Features.Inventory.Abstract.Internal;
+using Features.Inventory.Utilities;
 using UnityEngine;
 using Utilities.ItemsContainer;
 
@@ -23,7 +23,7 @@ namespace DebugScripts
 
         private void Start()
         {
-            InventoryItemFactories.Register(typeof(FakeItemInstance), wtf);
+            InventoryItemFactories.Register(typeof(FakeInventoryItemInstance), wtf);
 
             m_InventoryController = GetComponentInChildren<InventoryController>();
 
@@ -34,9 +34,9 @@ namespace DebugScripts
 
         private StorageData wtf(StorageData arg)
         {
-            var itemInstance = arg.Parent as FakeItemInstance;
+            var itemInstance = arg.Parent as FakeInventoryItemInstance;
 
-            return new FakeItemInstance(itemInstance.Metadata).StorageData;
+            return new FakeInventoryItemInstance(itemInstance.Metadata).StorageData;
         }
 
         private void ChangeRequestHandled(IChangeRequestResult arg0)
@@ -65,15 +65,15 @@ namespace DebugScripts
         }
     }
 
-    public class FakeItemInstance : IItemInstance
+    public class FakeInventoryItemInstance : IInventoryItemInstance
     {
         public readonly EquipmentData EquipmentData;
         public readonly FakeInventoryItemMetadata Metadata;
 
         public readonly StorageData StorageData;
-        private IItemInstance m_ItemInstanceImplementation;
+        private IInventoryItemInstance m_InventoryItemInstanceImplementation;
 
-        public FakeItemInstance(FakeInventoryItemMetadata metadata)
+        public FakeInventoryItemInstance(FakeInventoryItemMetadata metadata)
         {
             Metadata = metadata;
 
@@ -82,21 +82,21 @@ namespace DebugScripts
             StorageData = new StorageData(this, metadata.MaxStack);
         }
 
-        IInventoryItemMetadata IItemInstance.Metadata => m_ItemInstanceImplementation.Metadata;
+        IInventoryItemMetadata IInventoryItemInstance.Metadata => m_InventoryItemInstanceImplementation.Metadata;
 
         public override bool Equals(object other)
         {
-            if (other is not FakeItemInstance b) return false;
+            if (other is not FakeInventoryItemInstance b) return false;
 
             return Metadata.Name.Equals(b.Metadata.Name);
         }
 
-        public static bool operator !=(FakeItemInstance a, FakeItemInstance b)
+        public static bool operator !=(FakeInventoryItemInstance a, FakeInventoryItemInstance b)
         {
             return a?.Metadata.Name != b?.Metadata.Name;
         }
 
-        public static bool operator ==(FakeItemInstance a, FakeItemInstance b)
+        public static bool operator ==(FakeInventoryItemInstance a, FakeInventoryItemInstance b)
         {
             return a?.Metadata.Name == b?.Metadata.Name;
         }
@@ -124,11 +124,11 @@ namespace DebugScripts
         public int MaxStack { get; }
     }
 
-    public class EquipmentData : IEquipmentItemInstance<FakeItemInstance>
+    public class EquipmentData : IEquipmentItemInstance
     {
-        private IEquipmentItemInstance<FakeItemInstance> m_EquipmentItemInstanceImplementation;
+        private IEquipmentItemInstance m_EquipmentItemInstanceImplementation;
 
-        public EquipmentData(FakeItemInstance parent, string mainSlot, string secondarySlot)
+        public EquipmentData(FakeInventoryItemInstance parent, string mainSlot, string secondarySlot)
         {
             Parent = parent;
             this.mainSlot = mainSlot;
@@ -139,31 +139,31 @@ namespace DebugScripts
 
         public GameObject ModelPrefab { get; }
         public Sprite Sprite { get; }
-        public FakeItemInstance Parent { get; }
+        public FakeInventoryItemInstance Parent { get; }
         public string mainSlot { get; }
         public string secondarySlot { get; }
+
+        public bool IsStackable => Parent.StorageData.StackableData.Max > 1;
         public IEquipmentItemMetadata Metadata => m_EquipmentItemInstanceImplementation.Metadata;
 
         public string GetAmmoText => IsStackable ? CurrentAmount.ToString() : string.Empty;
-
-        public bool IsStackable => Parent.StorageData.StackableData.Max > 1;
 
         public int CurrentAmount => Parent.StorageData.StackableData.Current;
 
         public bool Combine(IEquipmentItemInstance other)
         {
-            if (other is not IEquipmentItemInstance<FakeItemInstance> otherItem) return false;
+            if (other is not FakeInventoryItemInstance otherItem) return false;
 
-            if (!otherItem.Parent.Equals(Parent)) return false;
+            if (!otherItem.Equals(Parent)) return false;
 
             if (!IsStackable) return false;
 
-            var amountToAdd = otherItem.CurrentAmount;
+            var amountToAdd = otherItem.EquipmentData.CurrentAmount;
 
-            Parent.StorageData.StackableData.Receive(otherItem.CurrentAmount,
+            Parent.StorageData.StackableData.Receive(otherItem.EquipmentData.CurrentAmount,
                 out int leftovers);
 
-            otherItem.Parent.StorageData.StackableData.Reduce(otherItem.CurrentAmount - leftovers, out _);
+            otherItem.StorageData.StackableData.Reduce(otherItem.EquipmentData.CurrentAmount - leftovers, out _);
 
             return true;
         }

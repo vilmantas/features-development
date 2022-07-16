@@ -58,7 +58,7 @@ namespace DebugScripts
                     ? String.Empty
                     : data.Item.StackableData.Current.ToString();
 
-                var metadata = (data.Item.Parent as IItemInstance).Metadata;
+                var metadata = (data.Item.Parent as IInventoryItemInstance).Metadata;
 
                 if (metadata.Sprite == null)
                 {

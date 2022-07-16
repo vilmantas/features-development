@@ -1,5 +1,4 @@
 using System;
-using Features.Inventory;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -81,6 +80,8 @@ namespace Features.Inventory
             m_InventoryItemContainer = data;
 
             Blocker.enabled = data.IsEmpty;
+
+            name = data.Id.ToString();
 
             OnSetData(data);
         }

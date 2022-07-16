@@ -61,12 +61,12 @@ namespace Features.Equipment
 
         private void SubscribeToSource()
         {
-            m_Source.OnItemEquipped.AddListener(OnItemEquippedEventHandler);
+            m_Source.OnItemEquipped += OnItemEquippedEventHandler;
         }
 
         private void UnsubscribeFromSource()
         {
-            m_Source.OnItemEquipped.RemoveListener(OnItemEquippedEventHandler);
+            m_Source.OnItemEquipped -= OnItemEquippedEventHandler;
         }
     }
 }

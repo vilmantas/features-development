@@ -1,5 +1,4 @@
 using System;
-using Features.Inventory;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -57,7 +56,7 @@ namespace Features.Inventory.Utilities
                     ? String.Empty
                     : data.Item.StackableData.Current.ToString();
 
-                var metadata = (data.Item.Parent as IItemInstance).Metadata;
+                var metadata = (data.Item.Parent as IInventoryItemInstance).Metadata;
 
                 if (metadata.Sprite == null)
                 {

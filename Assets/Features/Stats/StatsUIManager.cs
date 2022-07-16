@@ -5,13 +5,12 @@ namespace Features.Stats.Base
 {
     public class StatsUIManager
     {
-        private StatsController m_Source;
-
-        private Func<IStatUIData> m_InstantiationFunc;
+        private Dictionary<string, IStatUIData> Datas = new();
 
         private Action<IStatUIData> m_DestroyAction;
 
-        private Dictionary<string, IStatUIData> Datas = new();
+        private Func<IStatUIData> m_InstantiationFunc;
+        private StatsController m_Source;
 
         public void SetSource(StatsController source, Func<IStatUIData> instantiationFunc,
             Action<IStatUIData> destroyAction)
@@ -33,6 +32,7 @@ namespace Features.Stats.Base
 
         private void OnStatsChanged(StatsChangedEventArgs args)
         {
+            ClearUI();
             DisplayNewUI();
         }
 

@@ -1,6 +1,6 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Features.Equipment.Events;
 using UnityEngine;
 
 namespace Features.Equipment
@@ -9,11 +9,11 @@ namespace Features.Equipment
     {
         [SerializeField] private SlotData[] EquipmentSlots;
 
-        public readonly ItemEquippedEvent OnItemEquipped = new();
-
-        public readonly ItemUnequipEvent OnItemUnequipRequested = new();
-
         private Container m_Container;
+
+        public Action<EquipResult> OnItemEquipped;
+
+        public Action<EquipmentContainerItem> OnItemUnequipRequested;
 
         private EquipmentUIManager UIManager;
 
@@ -39,9 +39,9 @@ namespace Features.Equipment
                 controller => DestroyImmediate(controller.gameObject));
         }
 
-        public void RequestUnequip(EquipmentContainerItem slot)
+        public void RequestUnequip(EquipmentContainerItem containerItem)
         {
-            OnItemUnequipRequested.Invoke(slot);
+            OnItemUnequipRequested?.Invoke(containerItem);
         }
 
         public void HandleEquipRequest(EquipRequest request)
@@ -51,7 +51,7 @@ namespace Features.Equipment
             if (!result.Succeeded) return;
 
             HandleItemEquipped(result);
-            OnItemEquipped.Invoke(result);
+            OnItemEquipped?.Invoke(result);
         }
 
         private void HandleItemEquipped(EquipResult result)
