@@ -25,6 +25,11 @@ namespace Features.Inventory
             return new RemoveRequest() {SourceInventoryItemBase = item};
         }
 
+        public static RemoveRequest RemoveExact(StorageData data)
+        {
+            return new RemoveRequest() {SourceInventoryItemBase = data, RemoveExact = true};
+        }
+
         public static RemoveRequest Remove(AddRequestResult addRequestResult)
         {
             return new RemoveRequest()

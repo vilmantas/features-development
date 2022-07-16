@@ -12,16 +12,10 @@ namespace Features.Character
         {
             m_BuffController = transform.root.GetComponentInChildren<BuffController>();
 
-            m_BuffController.OnBuffAddRequested.AddListener(HandleBuffAddRequest);
-
-            m_BuffController.OnBuffAdded.AddListener(HandleBuffAdded);
-            m_BuffController.OnBuffRemoved.AddListener(HandleBuffRemoved);
-
-            m_BuffController.OnBuffTickOccurred.AddListener(HandleBuffTick);
-            m_BuffController.OnBuffDurationReset.AddListener(HandleBuffDurationReset);
+            Subscribe();
         }
 
-        private void SubscribeBuffs()
+        private void Subscribe()
         {
             m_BuffController.OnBuffAddRequested.AddListener(HandleBuffAddRequest);
 

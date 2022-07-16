@@ -7,7 +7,10 @@ namespace Features.Inventory
     public class RemoveRequest : IChangeRequest
     {
         public int Amount;
+
         public Guid Id;
+
+        public bool RemoveExact;
 
         public StorageData SourceInventoryItemBase;
     }

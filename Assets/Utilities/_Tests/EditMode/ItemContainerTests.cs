@@ -150,7 +150,7 @@ namespace ItemContainerTests
 
             Assert.IsTrue(SUT.SlotsWithData.Any(x => ReferenceEquals(x.Item, target)));
 
-            SUT.RemoveExact(target);
+            SUT.RemoveExact(target, out int amountRemoved);
 
             Assert.IsFalse(SUT.SlotsWithData.Any(x => ReferenceEquals(x.Item, target)));
         }

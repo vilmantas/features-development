@@ -8,6 +8,8 @@ namespace Features.Items
 {
     public class ItemMetadata : IInventoryItemMetadata, IEquipmentItemMetadata
     {
+        public readonly Guid Id = Guid.NewGuid();
+
         public ItemMetadata(string name, Sprite sprite, int maxStack, StatGroup stats, string mainSlot,
             string secondarySlot, GameObject modelPrefab)
         {

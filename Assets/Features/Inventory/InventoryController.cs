@@ -1,8 +1,7 @@
 using System;
 using System.Collections.Generic;
-using Features.Inventory.Events;
-using Features.Inventory;
 using Features.Inventory.Abstract.Internal;
+using Features.Inventory.Events;
 using UnityEngine;
 using Utilities.ItemsContainer;
 
@@ -12,13 +11,13 @@ namespace Features.Inventory
     {
         [Range(1, 50)] public int Size = 20;
 
-        public Action<StorageData, string> OnActionSelected;
-
         public readonly ChangeRequestHandledEvent OnChangeRequestHandled = new();
 
         public readonly ContextRequestEvent OnContextRequested = new();
 
         private Container m_Container;
+
+        public Action<StorageData, string> OnActionSelected;
 
         private InventoryUIManager UIManager;
 
@@ -58,8 +57,18 @@ namespace Features.Inventory
                     result = new AddRequestResult(addRequest, amountAdded > 0, amountAdded);
                     break;
                 case RemoveRequest removeRequest:
-                    m_Container.Remove(removeRequest.SourceInventoryItemBase, removeRequest.Amount,
-                        out var amountRemoved);
+                    int amountRemoved;
+
+                    if (removeRequest.RemoveExact)
+                    {
+                        m_Container.RemoveExact(removeRequest.SourceInventoryItemBase, out amountRemoved);
+                    }
+                    else
+                    {
+                        m_Container.Remove(removeRequest.SourceInventoryItemBase, removeRequest.Amount,
+                            out amountRemoved);
+                    }
+
 
                     result = new RemoveRequestResult(removeRequest, amountRemoved > 0, amountRemoved);
                     break;

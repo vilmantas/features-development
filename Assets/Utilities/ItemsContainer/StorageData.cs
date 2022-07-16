@@ -12,7 +12,7 @@ namespace Utilities.ItemsContainer
         {
         }
 
-        public T Parent
+        public new T Parent
         {
             get => ParentCast<T>();
         }

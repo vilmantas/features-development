@@ -71,9 +71,9 @@ namespace Utilities.ItemsContainer
             return true;
         }
 
-        public void RemoveExact(StorageData item)
+        public void RemoveExact(StorageData data, out int amountRemoved)
         {
-            RemoveByStorageId(item);
+            RemoveByStorageId(data, out amountRemoved);
         }
 
         public void Remove(StorageData item)
@@ -124,11 +124,15 @@ namespace Utilities.ItemsContainer
             }
         }
 
-        private void RemoveByStorageId(StorageData item)
+        private void RemoveByStorageId(StorageData data, out int amountRemoved)
         {
-            var x = SlotsWithData.FirstOrDefault(x => x.Item.Id == item.Id);
+            amountRemoved = 0;
+
+            var x = SlotsWithData.FirstOrDefault(x => x.Item.Id == data.Id);
 
             if (x == null) return;
+
+            amountRemoved = x.m_Item.Current;
 
             x.m_Item = null;
         }

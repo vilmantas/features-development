@@ -25,7 +25,7 @@ namespace Features.Items
         {
             if (other is not ItemInstance otherItem) return false;
 
-            if (otherItem.Metadata.Name != Metadata.Name) return false;
+            if (otherItem.Metadata.Id != Metadata.Id) return false;
 
             if (!Metadata.IsStackable) return false;
 
