@@ -8,7 +8,7 @@ namespace Features.Buffs
     {
         public const float BUFF_INTERVAL_MIN = 0.1f;
         internal readonly ResourceContainer Counter;
-        public float OverrideDuration { get; }
+        public float OverrideDuration { get; set; }
         public readonly BuffBase Metadata;
 
         public float Duration =>

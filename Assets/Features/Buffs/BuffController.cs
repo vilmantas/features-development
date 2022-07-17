@@ -120,7 +120,7 @@ namespace Features.Buffs
         {
             if (opt.RequestHandled) return;
 
-            Container.Receive(opt.Buff, opt.Source);
+            Container.Receive(opt.Buff, opt.Source, opt.Stacks, opt.Duration);
         }
 
         public void AttemptAdd(BuffAddOptions opt)

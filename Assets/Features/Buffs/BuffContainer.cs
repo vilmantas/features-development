@@ -64,6 +64,11 @@ namespace Features.Buffs
             }
             else
             {
+                if (Math.Abs(existingBuff.Duration - duration) > 0.0001f)
+                {
+                    existingBuff.OverrideDuration = duration;
+                }
+
                 existingBuff.AddStacks(stacks);
             }
         }
