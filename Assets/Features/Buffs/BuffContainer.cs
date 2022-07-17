@@ -67,13 +67,13 @@ namespace Features.Buffs
             Receive(buff, null, stacks);
         }
 
-        public void Receive(BuffBase buff, GameObject source, int stacks = 1)
+        public void Receive(BuffBase buff, GameObject source, int stacks = 1, float duration = -1f)
         {
             var existingBuff = BuffByName(buff.Name);
 
             if (existingBuff == null)
             {
-                existingBuff = new ActiveBuff(buff, source);
+                existingBuff = new ActiveBuff(buff, source, duration);
 
                 existingBuff.AddStacks(stacks);
 

@@ -239,5 +239,18 @@ namespace BuffContainerTests
 
             Assert.AreEqual(1, tickCalls);
         }
+
+        [Test]
+        public void ItCanReceiveBuffsWithCustomDuration()
+        {
+            float newDuration = 100f;
+
+            _sut.Receive(Simple, null, 1, newDuration);
+
+            _sut.Tick(Simple.Duration + 1f);
+
+            Assert.AreEqual(_sut.Buffs.Count, 1);
+            Assert.AreEqual(_sut.Buffs.First().Duration, newDuration);
+        }
     }
 }
