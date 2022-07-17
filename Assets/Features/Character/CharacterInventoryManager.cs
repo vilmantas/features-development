@@ -24,6 +24,31 @@ namespace Features.Character
         private void Subscribe()
         {
             m_EquipmentController.OnItemEquipped += OnItemEquipped;
+            m_EquipmentController.OnItemUnequipRequested += OnItemUnequipRequested;
+        }
+
+        private void OnItemUnequipRequested(EquipmentContainerItem containerItem)
+        {
+            var instance = containerItem.Main as ItemInstance;
+
+            if (instance == null) return;
+
+            if (!m_InventoryController.CanReceive(instance.StorageData, out int maxAmount)) return;
+
+            if (maxAmount >= instance.CurrentAmount)
+            {
+                m_EquipmentController.HandleEquipRequest(new EquipRequest()
+                    {ItemInstance = null, SlotType = containerItem.Slot});
+            }
+            else
+            {
+                var result = m_InventoryController.HandleRequest(
+                    ChangeRequestFactory.Add(instance.StorageData)) as AddRequestResult;
+
+                instance.StorageData.StackableData.Reduce(result.AmountAdded);
+
+                m_EquipmentController.NotifyItemChanged(containerItem);
+            }
         }
 
         private void OnItemEquipped(EquipResult result)

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Features.Inventory.Abstract.Internal;
 using Features.Inventory.Events;
 using UnityEngine;
@@ -27,6 +28,8 @@ namespace Features.Inventory
 
         public bool HasEmptySpace => !m_Container.IsFull;
 
+        public bool IsFull => m_Container.IsFull;
+
         public void Awake()
         {
             UIManager = new InventoryUIManager();
@@ -43,6 +46,23 @@ namespace Features.Inventory
                     return instance.GetComponentInChildren<IInventoryUIData>();
                 },
                 controller => DestroyImmediate(controller.gameObject));
+        }
+
+        public bool CanReceive(StorageData request, out int maxAmount)
+        {
+            maxAmount = 0;
+
+            if (IsFull && request.StackableData.Max == 1) return false;
+
+            var stackSize = request.StackableData.Max;
+
+            maxAmount = m_Container.SlotsWithoutData.Count * stackSize;
+
+            var existingItems = m_Container.SlotsWithItem(request);
+
+            maxAmount += existingItems.Sum(x => x.Item.Max - x.Item.Current);
+
+            return maxAmount != 0;
         }
 
         public IChangeRequestResult HandleRequest(IChangeRequest request)

@@ -54,6 +54,17 @@ namespace Features.Equipment
             OnItemEquipped?.Invoke(result);
         }
 
+        public void NotifyItemChanged(EquipmentContainerItem item)
+        {
+            if (ContainerSlots.Any(x => x.Id == item.Id))
+            {
+                var result = new EquipResult(new EquipRequest() {ItemInstance = item.Main}, item,
+                    null, true);
+
+                OnItemEquipped?.Invoke(result);
+            }
+        }
+
         private void HandleItemEquipped(EquipResult result)
         {
             if (ContainerFor(result.EquipmentContainerItem.Slot).InstanceParent == null) return;

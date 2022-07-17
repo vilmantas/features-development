@@ -18,29 +18,6 @@ namespace Features.Character
             m_EquipmentController = root.GetComponentInChildren<EquipmentController>();
 
             m_StatsController = root.GetComponentInChildren<StatsController>();
-
-            m_EquipmentController.OnItemEquipped += OnItemEquipped;
-
-            m_EquipmentController.OnItemUnequipRequested += OnItemUnequipRequested;
-        }
-
-        private void OnItemUnequipRequested(EquipmentContainerItem containerItem)
-        {
-            m_EquipmentController.HandleEquipRequest(new EquipRequest()
-                {ItemInstance = null, SlotType = containerItem.Slot});
-        }
-
-        private void OnItemEquipped(EquipResult result)
-        {
-            if (result.UnequippedItemInstanceBase is ItemInstance unequippedItemInstanceBase)
-            {
-                m_StatsController.RemoveStatModifier(unequippedItemInstanceBase.Metadata.Stats);
-            }
-
-            if (result.EquipmentContainerItem.Main is ItemInstance equipmentItemInstance)
-            {
-                m_StatsController.ApplyStatModifiers(equipmentItemInstance.Metadata.Stats);
-            }
         }
     }
 }

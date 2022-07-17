@@ -27,8 +27,10 @@ namespace Utilities.ItemsContainer
         public IReadOnlyList<StorageData> Items => m_Items.Where(x => !x.IsEmpty).Select(x => x.Item).ToList();
         public IReadOnlyList<ContainerItem> Slots => m_Items.ToList();
         public IReadOnlyList<ContainerItem> SlotsWithData => m_Items.Where(x => !x.IsEmpty).ToList();
-
         public IReadOnlyList<ContainerItem> SlotsWithoutData => m_Items.Where(x => x.IsEmpty).ToList();
+
+        public IReadOnlyList<ContainerItem> SlotsWithItem(StorageData item) =>
+            SlotsWithData.Where(x => x.Item.Equals(item)).ToList();
         public bool IsEmpty => SlotsWithData.Count == 0;
         public bool IsFull => SlotsWithoutData.Count == 0;
 
