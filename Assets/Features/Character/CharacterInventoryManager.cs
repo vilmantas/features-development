@@ -55,9 +55,9 @@ namespace Features.Character
 
             if (instance == null) return;
 
-            if (!m_InventoryController.CanReceive(instance.StorageData, out int maxAmount)) return;
+            if (!m_InventoryController.CanReceive(instance.StorageData, out int maxAmountToAdd)) return;
 
-            if (maxAmount >= instance.CurrentAmount)
+            if (maxAmountToAdd >= instance.CurrentAmount)
             {
                 UnequipFromSlot(containerItem.Slot);
             }
