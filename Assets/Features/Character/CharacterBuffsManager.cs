@@ -1,5 +1,7 @@
 using System;
 using Features.Buffs;
+using Features.Equipment;
+using Features.Items;
 using UnityEngine;
 
 namespace Features.Character
@@ -8,9 +10,15 @@ namespace Features.Character
     {
         private BuffController m_BuffController;
 
+        private EquipmentController m_EquipmentController;
+
         public void Awake()
         {
-            m_BuffController = transform.root.GetComponentInChildren<BuffController>();
+            var root = transform.root;
+
+            m_BuffController = root.GetComponentInChildren<BuffController>();
+
+            m_EquipmentController = root.GetComponentInChildren<EquipmentController>();
 
             Subscribe();
         }
@@ -24,6 +32,20 @@ namespace Features.Character
 
             m_BuffController.OnBuffTickOccurred.AddListener(HandleBuffTick);
             m_BuffController.OnBuffDurationReset.AddListener(HandleBuffDurationReset);
+
+            m_EquipmentController.OnItemEquipped += HandleItemEquipped;
+        }
+
+        private void HandleItemEquipped(EquipResult obj)
+        {
+            if (obj.EquipmentContainerItem.IsEmpty) return;
+
+            if (obj.EquipmentContainerItem.Main is not ItemInstance instance) return;
+
+            foreach (var buff in instance.Metadata.Buffs)
+            {
+                m_BuffController.AttemptAdd(buff, gameObject);
+            }
         }
 
         private void HandleBuffDurationReset(ActiveBuff buff)

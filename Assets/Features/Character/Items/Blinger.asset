@@ -15,6 +15,7 @@ MonoBehaviour:
   Name: Blinger
   MainSlot: Head
   SecondarySlot: 
+  Count: 0
   MaxStack: 1
   Sprite: {fileID: 21300000, guid: cc15788561d402c4495178a6b6352431, type: 3}
   ModelPrefab: {fileID: 6191115075417870643, guid: 20e9bd911d9ee7e4eadb7efe718f548c, type: 3}
@@ -23,3 +24,5 @@ MonoBehaviour:
     Value: 5
   - Name: Defence
     Value: 3
+  Buffs:
+  - {fileID: 11400000, guid: 023ae4374b7b1f845b451c8f6647599e, type: 2}

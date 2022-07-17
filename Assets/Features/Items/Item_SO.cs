@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Linq;
+using Features.Buffs;
 using Features.Stats.Base;
 using UnityEngine;
 
@@ -15,9 +17,10 @@ namespace Features.Items
         public Sprite Sprite;
         public GameObject ModelPrefab;
         public List<Stat> Stats;
+        public Buff_SO[] Buffs;
 
         public ItemMetadata ToMetadata => new(Name, Sprite, MaxStack,
-            new StatGroup(Stats.ToArray()), MainSlot, SecondarySlot, ModelPrefab);
+            new StatGroup(Stats.ToArray()), MainSlot, SecondarySlot, ModelPrefab, Buffs.Select(x => x.Base).ToList());
 
         public ItemInstance ToInstance()
         {
