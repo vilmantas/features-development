@@ -1,9 +1,11 @@
+using System;
 using Features.Equipment;
 using Features.Inventory;
 using Features.Inventory.Abstract.Internal;
 using Features.Inventory.Utilities;
 using UnityEngine;
 using Utilities.ItemsContainer;
+using Random = UnityEngine.Random;
 
 namespace DebugScripts
 {
@@ -65,7 +67,7 @@ namespace DebugScripts
         }
     }
 
-    public class FakeInventoryItemInstance : IInventoryItemInstance
+    public class FakeInventoryItemInstance : IInventoryItemInstance, IEquatable<object>
     {
         public readonly EquipmentData EquipmentData;
         public readonly FakeInventoryItemMetadata Metadata;

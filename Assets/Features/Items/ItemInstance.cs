@@ -5,7 +5,7 @@ using Utilities.ItemsContainer;
 
 namespace Features.Items
 {
-    public class ItemInstance : IInventoryItemInstance, IEquipmentItemInstance
+    public class ItemInstance : IInventoryItemInstance, IEquipmentItemInstance, IEquatable<object>
     {
         public readonly Guid Id = Guid.NewGuid();
 
@@ -25,7 +25,7 @@ namespace Features.Items
         {
             if (other is not ItemInstance otherItem) return false;
 
-            if (otherItem.Metadata.Id != Metadata.Id) return false;
+            if (!otherItem.Metadata.Name.Equals(Metadata.Name)) return false;
 
             if (!Metadata.IsStackable) return false;
 
@@ -34,11 +34,23 @@ namespace Features.Items
             StorageData.StackableData.Receive(amountToAdd,
                 out int leftovers);
 
+            if (amountToAdd == leftovers)
+            {
+                return false;
+            }
+
             otherItem.StorageData.StackableData.Reduce(amountToAdd - leftovers, out _);
 
             return true;
         }
 
         IInventoryItemMetadata IInventoryItemInstance.Metadata => Metadata;
+
+        public override bool Equals(object obj)
+        {
+            if (obj is not ItemInstance instance) return false;
+
+            return instance.Metadata.Name.Equals(Metadata.Name);
+        }
     }
 }

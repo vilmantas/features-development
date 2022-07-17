@@ -2,7 +2,7 @@ using System;
 
 namespace Utilities.ItemsContainer
 {
-    public class StorageData<T> : StorageData where T : class
+    public class StorageData<T> : StorageData where T : class, IEquatable<object>
     {
         public StorageData(T parent, int maxStackSize = 1) : base(parent, maxStackSize)
         {
@@ -22,7 +22,7 @@ namespace Utilities.ItemsContainer
     {
         internal readonly Guid Id = Guid.NewGuid();
 
-        public StorageData(object parent, int maxStackSize = 1)
+        public StorageData(IEquatable<object> parent, int maxStackSize = 1)
         {
             Parent = parent;
             StackableData = new ResourceContainer(maxStackSize);
@@ -39,7 +39,7 @@ namespace Utilities.ItemsContainer
 
         public int Max => StackableData.Max;
 
-        public object Parent { get; }
+        public IEquatable<object> Parent { get; }
 
         public ResourceContainer StackableData { get; }
 

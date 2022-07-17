@@ -65,7 +65,10 @@ namespace Features.Equipment
         {
             previousItemInstance = null;
 
-            if (equipmentSlot.Main != null && equipmentSlot.Main.Combine(itemInstance)) return equipmentSlot;
+            if (!equipmentSlot.IsEmpty && equipmentSlot.Main.Combine(itemInstance))
+            {
+                return equipmentSlot;
+            }
 
             previousItemInstance = equipmentSlot.Main;
 

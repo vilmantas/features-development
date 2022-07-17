@@ -18,12 +18,22 @@ namespace DebugScripts.Character
 
         public Item_SO Item;
 
+        public Item_SO Ammo;
+
         public void GiveItem()
         {
             var controller = Target.GetComponentInChildren<InventoryController>();
 
             controller.HandleRequest(
                 ChangeRequestFactory.Add(Item.ToMetadata.ToInstance.StorageData, 1));
+        }
+
+        public void GiveStackable()
+        {
+            var controller = Target.GetComponentInChildren<InventoryController>();
+
+            controller.HandleRequest(
+                ChangeRequestFactory.Add(Ammo.ToInstance().StorageData));
         }
 
         public void CastLifter()

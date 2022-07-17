@@ -1,8 +1,9 @@
+using System;
 using Utilities.ItemsContainer;
 
 namespace DebugScripts
 {
-    public class StorableItemDebug
+    public class StorableItemDebug : IEquatable<object>
     {
         public StorageData item;
 

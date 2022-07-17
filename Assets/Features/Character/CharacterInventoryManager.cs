@@ -33,6 +33,15 @@ namespace Features.Character
                 m_InventoryController.HandleRequest(ChangeRequestFactory.RemoveExact(equippedItem.StorageData));
             }
 
+            if (result.Request.ItemInstance is ItemInstance requestItem)
+            {
+                if (requestItem.StorageData.Current == 0)
+                {
+                    m_InventoryController.HandleRequest(
+                        ChangeRequestFactory.RemoveExact(requestItem.StorageData));
+                }
+            }
+
             if (result.UnequippedItemInstanceBase is ItemInstance unequippedItem)
             {
                 m_InventoryController.HandleRequest(ChangeRequestFactory.Add(unequippedItem.StorageData));

@@ -5,6 +5,22 @@ using Utilities.ItemsContainer;
 
 namespace ItemContainerTests
 {
+    public class TestClass : IEquatable<object>
+    {
+        public TestClass(string name)
+        {
+            Name = name;
+        }
+
+        public string Name { get; }
+
+        public bool Equals(TestClass other)
+        {
+            if (other == null) return false;
+
+            return Name.Equals(other.Name);
+        }
+    }
     public class TestData
     {
         public Func<StorageData, StorageData> FakeFactory =
@@ -12,9 +28,9 @@ namespace ItemContainerTests
 
         public int m_ContainerSize = 5;
 
-        public StorageData SimpleItem = new("Test 1");
+        public StorageData SimpleItem = new(new TestClass("Test 1"));
 
-        public StorageData StackableItem = new("Test 2", 5);
+        public StorageData StackableItem = new(new TestClass("Test 2"), 5);
         public Container SUT;
     }
 
@@ -25,9 +41,9 @@ namespace ItemContainerTests
         {
             SUT = new Container(FakeFactory, m_ContainerSize);
 
-            SimpleItem = new StorageData("Test 1");
+            SimpleItem = new StorageData(new TestClass("Test 1"));
 
-            StackableItem = new StorageData("Test 2", 5);
+            StackableItem = new StorageData(new TestClass("Test 2"), 5);
         }
 
         [Test]
@@ -185,7 +201,7 @@ namespace ItemContainerTests
 
             var originalSlotItem = SUT.SlotsWithData.First().Item;
 
-            var replacement = new StorageData("Lol");
+            var replacement = new StorageData(new TestClass("Lol"));
 
             SUT.ReplaceExact(originalSlot.Id, replacement);
 

@@ -37,7 +37,7 @@ namespace Features.Items
 
         public StatGroup Stats { get; }
 
-        public ItemInstance ToInstance => new ItemInstance(this);
+        public ItemInstance ToInstance => new (this);
         public GameObject ModelPrefab { get; }
         public string MainSlot { get; }
         public string SecondarySlot { get; }
