@@ -1,30 +1,72 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Features.Buffs.Events;
 using Features.Buffs.UI;
 using UnityEngine;
 
 namespace Features.Buffs
 {
+    public class BuffAddOptions
+    {
+        public BuffBase Buff { get; set;}
+        public GameObject Source { get; set;}
+        public int Stacks { get; set; }
+        public float Duration { get; set;}
+        public bool RequestHandled { get; set; }
+
+        public BuffAddOptions()
+        {
+        }
+
+        public BuffAddOptions(BuffBase buff, GameObject source)
+        {
+            Buff = buff;
+            Source = source;
+        }
+
+        public BuffAddOptions(BuffBase buff, GameObject source, int stacks)
+        {
+            Buff = buff;
+            Source = source;
+            Stacks = stacks;
+        }
+    }
+
+    public class BuffRemoveOptions
+    {
+        public BuffBase Buff { get; set; }
+        public bool RequestHandled { get; set; }
+
+        public BuffRemoveOptions()
+        {
+
+        }
+
+        public BuffRemoveOptions(BuffBase buff)
+        {
+            Buff = buff;
+        }
+    }
+
     public class BuffController : MonoBehaviour
     {
-        [HideInInspector] public BuffAddRequestEvent OnBuffAddRequested = new();
+        public Action<BuffAddOptions> OnBeforeBuffAdd;
 
-        [HideInInspector] public BuffRemoveRequestEvent OnBuffRemoveRequested = new();
+        public Action<BuffRemoveOptions> OnBeforeBuffRemoved;
 
-        [HideInInspector] public BuffAddedEvent OnBuffAdded = new();
+        public Action<ActiveBuff> OnBuffAdded;
 
-        [HideInInspector] public BuffRemovedEvent OnBuffRemoved = new();
+        public Action<ActiveBuff> OnBuffRemoved;
 
-        [HideInInspector] public BuffDurationResetEvent OnBuffDurationReset = new();
+        public Action<ActiveBuff> OnBuffDurationReset;
 
-        [HideInInspector] public BuffStackAddedEvent OnBuffStackAdded = new();
+        public Action<ActiveBuff> OnBuffStackAdded;
 
-        [HideInInspector] public BuffStackRemovedEvent OnBuffStackRemoved = new();
+        public Action<ActiveBuff> OnBuffStackRemoved;
 
-        [HideInInspector] public BuffTickOccurredEvent OnBuffTickOccurred = new();
+        public Action<ActiveBuff> OnBuffTickOccurred;
 
-        [HideInInspector] public BuffTimerTickEvent OnTimerTick = new();
+        public Action<float> OnTimerTick;
 
         private BuffContainer Container;
 
@@ -34,15 +76,14 @@ namespace Features.Buffs
 
         private void Awake()
         {
-            Container = new BuffContainer()
-                .RegisterCallbacks(
-                    OnBuffRemoved.Invoke,
-                    OnBuffAdded.Invoke,
-                    OnBuffStackRemoved.Invoke,
-                    OnBuffStackAdded.Invoke,
-                    OnBuffTickOccurred.Invoke,
-                    OnBuffDurationReset.Invoke
-                );
+            Container = new BuffContainer();
+
+            Container.OnBuffAdded += activeBuff => OnBuffAdded?.Invoke(activeBuff);
+            Container.OnBuffDurationReset += activeBuff => OnBuffDurationReset?.Invoke(activeBuff);
+            Container.OnBuffRemoved += activeBuff => OnBuffRemoved?.Invoke(activeBuff);
+            Container.OnBuffStackAdded += activeBuff => OnBuffStackAdded?.Invoke(activeBuff);
+            Container.OnBuffStackRemoved += activeBuff => OnBuffStackRemoved?.Invoke(activeBuff);
+            Container.OnBuffTickOccurred += activeBuff => OnBuffTickOccurred?.Invoke(activeBuff);
         }
 
         private void Update()
@@ -70,24 +111,28 @@ namespace Features.Buffs
             UIManager.RemoveSource();
         }
 
-        public void Remove(BuffBase buff)
+        public void Remove(BuffRemoveOptions opt)
         {
-            Container.Remove(buff);
+            Container.Remove(opt.Buff);
         }
 
-        public void Add(BuffBase buff, GameObject source)
+        public void Add(BuffAddOptions opt)
         {
-            Container.Receive(buff, source);
+            if (opt.RequestHandled) return;
+
+            Container.Receive(opt.Buff, opt.Source);
         }
 
-        public void AttemptAdd(BuffBase buff, GameObject source)
+        public void AttemptAdd(BuffAddOptions opt)
         {
-            OnBuffAddRequested.Invoke(buff, source);
+            OnBeforeBuffAdd?.Invoke(opt);
+            Add(opt);
         }
 
-        public void AttemptRemove(BuffBase buff)
+        public void AttemptRemove(BuffRemoveOptions opt)
         {
-            OnBuffRemoveRequested.Invoke(buff);
+            OnBeforeBuffRemoved?.Invoke(opt);
+            Remove(opt);
         }
     }
 }

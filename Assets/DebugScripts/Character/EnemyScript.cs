@@ -42,7 +42,7 @@ namespace DebugScripts.Character
 
             if (controller == null) return;
 
-            controller.AttemptAdd(LifterBuff.Base, gameObject);
+            controller.AttemptAdd(new (LifterBuff.Base, gameObject));
         }
 
         public void CastShifter()
@@ -51,7 +51,7 @@ namespace DebugScripts.Character
 
             if (controller == null) return;
 
-            controller.AttemptAdd(ShifterBuff.Base, gameObject);
+            controller.AttemptAdd(new BuffAddOptions() { Buff = ShifterBuff.Base, Source = gameObject});
         }
 
         public void CastHealingReducer()
@@ -60,7 +60,7 @@ namespace DebugScripts.Character
 
             if (controller == null) return;
 
-            controller.AttemptAdd(Reducer.Base, gameObject);
+            controller.AttemptAdd(new (Reducer.Base, gameObject));
         }
 
         public void AttemptHeal()

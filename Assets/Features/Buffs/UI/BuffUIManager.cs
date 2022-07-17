@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Features.Buffs.UI
 {
@@ -71,16 +72,16 @@ namespace Features.Buffs.UI
 
         private void SubscribeToSource()
         {
-            m_Source.OnBuffAdded.AddListener(HandleAdd);
-            m_Source.OnTimerTick.AddListener(HandleTick);
-            m_Source.OnBuffRemoved.AddListener(HandleRemove);
+            m_Source.OnBuffAdded += HandleAdd;
+            m_Source.OnTimerTick += HandleTick;
+            m_Source.OnBuffRemoved += HandleRemove;
         }
 
         private void UnsubscribeFromSource()
         {
-            m_Source.OnBuffAdded.RemoveListener(HandleAdd);
-            m_Source.OnTimerTick.RemoveListener(HandleTick);
-            m_Source.OnBuffRemoved.RemoveListener(HandleRemove);
+            m_Source.OnBuffAdded -= HandleAdd;
+            m_Source.OnTimerTick -= HandleTick;
+            m_Source.OnBuffRemoved -= HandleRemove;
         }
     }
 }

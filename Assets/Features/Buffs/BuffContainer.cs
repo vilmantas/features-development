@@ -10,12 +10,12 @@ namespace Features.Buffs
     {
         private ConcurrentDictionary<string, ActiveBuff> m_Buffs;
 
-        private Action<ActiveBuff> m_OnBuffAdded;
-        private Action<ActiveBuff> m_OnBuffDurationReset;
-        private Action<ActiveBuff> m_OnBuffRemoved;
-        private Action<ActiveBuff> m_OnBuffStackAdded;
-        private Action<ActiveBuff> m_OnBuffStackRemoved;
-        private Action<ActiveBuff> m_OnBuffTickOccurred;
+        public Action<ActiveBuff> OnBuffAdded;
+        public Action<ActiveBuff> OnBuffDurationReset;
+        public Action<ActiveBuff> OnBuffRemoved;
+        public Action<ActiveBuff> OnBuffStackAdded;
+        public Action<ActiveBuff> OnBuffStackRemoved;
+        public Action<ActiveBuff> OnBuffTickOccurred;
 
         public BuffContainer()
         {
@@ -23,28 +23,6 @@ namespace Features.Buffs
         }
 
         public IReadOnlyList<ActiveBuff> Buffs => m_Buffs.Values.ToList();
-
-        public BuffContainer RegisterCallbacks(
-            Action<ActiveBuff> onBuffRemoved,
-            Action<ActiveBuff> onBuffAdded,
-            Action<ActiveBuff> onBuffStackRemoved,
-            Action<ActiveBuff> onBuffStackAdded,
-            Action<ActiveBuff> onBuffTickOccurred,
-            Action<ActiveBuff> onBuffDurationReset
-        )
-        {
-            m_OnBuffAdded = onBuffAdded;
-            m_OnBuffRemoved = onBuffRemoved;
-
-            m_OnBuffStackAdded = onBuffStackAdded;
-            m_OnBuffStackRemoved = onBuffStackRemoved;
-
-            m_OnBuffTickOccurred = onBuffTickOccurred;
-
-            m_OnBuffDurationReset = onBuffDurationReset;
-
-            return this;
-        }
 
         public void Tick(float deltaTime)
         {
@@ -57,7 +35,7 @@ namespace Features.Buffs
             {
                 if (m_Buffs.TryRemove(depletedBuff.Key, out var removedBuff))
                 {
-                    m_OnBuffRemoved?.Invoke(removedBuff);
+                    OnBuffRemoved?.Invoke(removedBuff);
                 }
             }
         }
@@ -77,12 +55,12 @@ namespace Features.Buffs
 
                 existingBuff.AddStacks(stacks);
 
-                existingBuff.RegisterCallbacks(m_OnBuffStackRemoved, m_OnBuffStackAdded, m_OnBuffTickOccurred,
-                    m_OnBuffDurationReset);
+                existingBuff.RegisterCallbacks(OnBuffStackRemoved, OnBuffStackAdded, OnBuffTickOccurred,
+                    OnBuffDurationReset);
 
                 m_Buffs.TryAdd(buff.Name, existingBuff);
 
-                m_OnBuffAdded?.Invoke(existingBuff);
+                OnBuffAdded?.Invoke(existingBuff);
             }
             else
             {

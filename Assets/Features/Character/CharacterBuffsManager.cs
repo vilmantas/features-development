@@ -25,13 +25,13 @@ namespace Features.Character
 
         private void Subscribe()
         {
-            m_BuffController.OnBuffAddRequested.AddListener(HandleBuffAddRequest);
+            m_BuffController.OnBeforeBuffAdd += HandleBuffAddRequest;
 
-            m_BuffController.OnBuffAdded.AddListener(HandleBuffAdded);
-            m_BuffController.OnBuffRemoved.AddListener(HandleBuffRemoved);
+            m_BuffController.OnBuffAdded += HandleBuffAdded;
+            m_BuffController.OnBuffRemoved += HandleBuffRemoved;
 
-            m_BuffController.OnBuffTickOccurred.AddListener(HandleBuffTick);
-            m_BuffController.OnBuffDurationReset.AddListener(HandleBuffDurationReset);
+            m_BuffController.OnBuffTickOccurred += HandleBuffTick;
+            m_BuffController.OnBuffDurationReset += HandleBuffDurationReset;
 
             m_EquipmentController.OnItemEquipped += HandleItemEquipped;
         }
@@ -44,7 +44,7 @@ namespace Features.Character
 
             foreach (var buff in instance.Metadata.Buffs)
             {
-                m_BuffController.AttemptAdd(buff, gameObject);
+                m_BuffController.AttemptAdd(new () { Buff = buff, Source = gameObject });
             }
         }
 
@@ -58,9 +58,9 @@ namespace Features.Character
             ActivateBuff(buff, impl => impl.OnTick);
         }
 
-        private void HandleBuffAddRequest(BuffBase buff, GameObject source)
+        private void HandleBuffAddRequest(BuffAddOptions opt)
         {
-            m_BuffController.Add(buff, source);
+            opt.RequestHandled = false;
         }
 
         private void HandleBuffRemoved(ActiveBuff buff)

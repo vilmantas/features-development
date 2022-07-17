@@ -20,7 +20,7 @@ public class BuffControllerTests
     [UnityTest]
     public IEnumerator ItReportsWhenTimerTicks()
     {
-        SUT.OnTimerTick.AddListener(OnBuffTImerTick);
+        SUT.OnTimerTick += OnBuffTImerTick;
 
         yield return null;
 
@@ -32,9 +32,9 @@ public class BuffControllerTests
     {
         int callbacks = 0;
 
-        SUT.OnBuffAddRequested.AddListener((buff, source) => callbacks++);
+        SUT.OnBeforeBuffAdd += opts => callbacks++;
 
-        SUT.AttemptAdd(new BuffBase("", 1f), SUT.gameObject);
+        SUT.AttemptAdd(new () { Buff = new BuffBase("", 1f), Source = SUT.gameObject });
 
         Assert.AreEqual(callbacks, 1);
 
@@ -46,9 +46,9 @@ public class BuffControllerTests
     {
         int callbacks = 0;
 
-        SUT.OnBuffRemoveRequested.AddListener((buff) => callbacks++);
+        SUT.OnBeforeBuffRemoved += opt => callbacks++;
 
-        SUT.AttemptRemove(new BuffBase("", 1f));
+        SUT.AttemptRemove(new BuffRemoveOptions(new BuffBase("", 1f)));
 
         Assert.AreEqual(callbacks, 1);
 

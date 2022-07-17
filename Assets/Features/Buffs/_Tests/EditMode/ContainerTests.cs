@@ -64,8 +64,14 @@ namespace BuffContainerTests
         [SetUp]
         public void SetUp()
         {
-            _sut = new BuffContainer().RegisterCallbacks(OnRemoved, OnAdded, OnStackRemoved, OnStackAdded,
-                TickCallback, OnDurationReset);
+            _sut = new BuffContainer();
+
+            _sut.OnBuffAdded += OnAdded;
+            _sut.OnBuffRemoved += OnRemoved;
+            _sut.OnBuffStackRemoved += OnStackRemoved;
+            _sut.OnBuffStackAdded += OnStackAdded;
+            _sut.OnBuffTickOccurred += TickCallback;
+            _sut.OnBuffDurationReset += OnDurationReset;
 
             WithInterval = new BuffBase("Interval", 5f).WithInterval(1f);
 
