@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Features.Health;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
@@ -11,6 +12,8 @@ namespace _SampleGames.Survivr
         private NavMeshAgent m_NavMeshAgent;
 
         private Transform m_Target;
+
+        private bool m_IsExpended = false;
         
         private void Start()
         {
@@ -25,9 +28,19 @@ namespace _SampleGames.Survivr
             StartCoroutine(FollowTarget());
         }
 
-        private void OnCollisionEnter(Collision collision)
+        public void Damage(CharacterController target)
         {
-            print(collision.collider.name);
+            if (m_IsExpended) return;
+            
+            var healthController = target.GetComponentInChildren<HealthController>();
+
+            if (healthController == null) return;
+
+            m_IsExpended = true;
+            
+            healthController.Damage(3);
+
+            Destroy(gameObject, 0.3f);
         }
 
         private IEnumerator FollowTarget()

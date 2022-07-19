@@ -17,9 +17,15 @@ namespace _SampleGames.Survivr
             UserInputManager.OnGroundClicked += OnGroundClicked;
         }
 
-        private void OnCollisionEnter(Collision collision)
+        private void OnTriggerEnter(Collider collision)
         {
-            print(collision.collider.transform.root.name);
+            var colliderRoot = collision.transform.root;
+
+            var enemyController = colliderRoot.GetComponent<EnemyController>();
+
+            if (enemyController == null) return;
+            
+            enemyController.Damage(this);
         }
 
         private void OnGroundClicked(Vector3 point)
