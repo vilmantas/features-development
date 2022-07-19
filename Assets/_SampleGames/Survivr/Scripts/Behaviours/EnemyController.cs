@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Features.Health;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
@@ -13,11 +14,15 @@ namespace _SampleGames.Survivr
 
         private Transform m_Target;
 
+        private TextMeshPro m_Text;
+
         private bool m_IsExpended = false;
         
         private void Start()
         {
             m_NavMeshAgent = GetComponent<NavMeshAgent>();
+
+            m_Text = GetComponentInChildren<TextMeshPro>();
 
             var player = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController>(); 
             
@@ -26,6 +31,8 @@ namespace _SampleGames.Survivr
             m_NavMeshAgent.speed = Random.Range(player.Speed - 3, player.Speed + 1);
 
             StartCoroutine(FollowTarget());
+
+            StartCoroutine(SelfDestruct(3f));
         }
 
         public void Damage(CharacterController target)
@@ -41,6 +48,22 @@ namespace _SampleGames.Survivr
             healthController.Damage(3);
 
             Destroy(gameObject, 0.3f);
+        }
+
+        private IEnumerator SelfDestruct(float delaySeconds)
+        {
+            while (delaySeconds >= 0)
+            {
+                delaySeconds -= 0.1f;
+
+                yield return new WaitForSeconds(0.1f);
+
+                m_Text.text = delaySeconds.ToString("0.0");
+            }
+
+            yield return new WaitForSeconds(delaySeconds);
+
+            DestroyImmediate(gameObject);
         }
 
         private IEnumerator FollowTarget()
