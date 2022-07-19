@@ -15,6 +15,8 @@ namespace Features.Health
 
         public Action<HealthChangeEventArgs> OnHeal;
 
+        public Action<HealthChangeEventArgs> OnChange;
+
         public Func<HealthChangeAttemptedEventArgs, HealthChangeInterceptedEventArgs>
             OnBeforeDamage;
 
@@ -78,7 +80,10 @@ namespace Features.Health
 
             if (!m_Model.Reduce(amount)) return;
 
-            OnDamage?.Invoke(new HealthChangeEventArgs(this, before, m_Model.Current, amount));
+            var change = new HealthChangeEventArgs(this, before, m_Model.Current, amount);
+            
+            OnDamage?.Invoke(change);
+            OnChange?.Invoke(change);
         }
 
         private void Receive(int amount)
@@ -87,7 +92,10 @@ namespace Features.Health
 
             if (!m_Model.Receive(amount)) return;
 
-            OnHeal?.Invoke(new HealthChangeEventArgs(this, before, m_Model.Current, amount));
+            var change = new HealthChangeEventArgs(this, before, m_Model.Current, amount);
+            
+            OnHeal?.Invoke(change);
+            OnChange?.Invoke(change);
         }
     }
 }
