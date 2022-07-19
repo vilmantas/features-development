@@ -11,6 +11,8 @@ namespace Features.Health
 
         [Range(1, 100)] [SerializeField] private int MaximumHealth = 50;
 
+        public Action OnDeath;
+        
         public Action<HealthChangeEventArgs> OnDamage;
 
         public Action<HealthChangeEventArgs> OnHeal;
@@ -72,6 +74,10 @@ namespace Features.Health
 
                 Reduce(resultAmount);
             }
+
+            if (!m_Model.IsEmpty) return;
+            
+            OnDeath?.Invoke();
         }
 
         private void Reduce(int amount)

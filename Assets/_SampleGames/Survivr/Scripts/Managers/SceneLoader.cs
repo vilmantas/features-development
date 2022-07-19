@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,7 +10,7 @@ namespace _SampleGames.Survivr
     {
         private void Start()
         {
-            // SceneManager.sceneLoaded += SceneManagerOnsceneLoaded;
+            // SceneManager.sceneLoaded += SceneManagerOnSceneLoaded;
             //
             // SceneManager.LoadScene("_SampleGames/Survivr/Scenes/Level", LoadSceneMode.Additive);
             // SceneManager.LoadScene("_SampleGames/Survivr/Scenes/Lighting", LoadSceneMode.Additive);
@@ -24,9 +25,14 @@ namespace _SampleGames.Survivr
         {
             foreach (var rootGameObject in SceneManager.GetSceneByName(name).GetRootGameObjects())
             {
-                var manager = rootGameObject.GetComponent<IManager>();
+                var managers = new List<IManager>();
+                
+                managers.AddRange(rootGameObject.GetComponentsInChildren<IManager>());
 
-                manager?.Initialize();
+                foreach (var manager in managers)
+                {
+                    manager?.Initialize();
+                }
             }
         }
     }

@@ -4,9 +4,9 @@ namespace _SampleGames.Survivr
 {
     public class PlayerManager : MonoBehaviour, IManager
     {
-        public LevelManager LevelManager;
+        [HideInInspector] public LevelManager LevelManager;
 
-        public CharacterController Player;
+        [HideInInspector] public CharacterController Player;
         
         public void Initialize()
         {
