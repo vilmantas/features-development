@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using _SampleGames.Survivr.Scripts;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,6 +17,8 @@ namespace _SampleGames.Survivr
             // SceneManager.LoadScene("_SampleGames/Survivr/Scenes/Lighting", LoadSceneMode.Additive);
             // SceneManager.LoadScene("_SampleGames/Survivr/Scenes/Gameplay", LoadSceneMode.Additive);
             
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName("Level"));
+            
             InitializeScene("Level");
             
             InitializeScene("Gameplay");
@@ -23,17 +26,10 @@ namespace _SampleGames.Survivr
 
         private static void InitializeScene(string name)
         {
-            foreach (var rootGameObject in SceneManager.GetSceneByName(name).GetRootGameObjects())
-            {
-                var managers = new List<IManager>();
-                
-                managers.AddRange(rootGameObject.GetComponentsInChildren<IManager>());
+            var initializer = SceneManager.GetSceneByName(name).GetRootGameObjects()
+                .First(x => x.GetComponent<SceneInitializer>() != null).GetComponent<SceneInitializer>();
 
-                foreach (var manager in managers)
-                {
-                    manager?.Initialize();
-                }
-            }
+            initializer.StartScene();
         }
     }
 }

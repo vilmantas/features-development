@@ -4,13 +4,13 @@ using UnityEngine;
 
 namespace _SampleGames.Survivr
 {
-    public class CameraManager : MonoBehaviour, IManager
+    public class CameraManager : Manager
     {
         private GameObject m_Character;
 
         public CinemachineVirtualCamera m_Camera;
         
-        public void Initialize()
+        public override void Initialize()
         {
             m_Character = GameObject.FindGameObjectWithTag("Player");
 

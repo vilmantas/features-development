@@ -5,13 +5,13 @@ using Random = UnityEngine.Random;
 
 namespace _SampleGames.Survivr
 {
-    public class EnemyManager : MonoBehaviour, IManager
+    public class EnemyManager : Manager
     {
         private Transform m_Character;
 
         private LevelManager m_LevelManager;
 
-        public void Initialize()
+        public override void Initialize()
         {
             m_Character = GameObject.FindGameObjectWithTag("Player").transform;
 

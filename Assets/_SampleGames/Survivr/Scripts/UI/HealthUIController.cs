@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace _SampleGames.Survivr
 {
-    public class HealthUIController : MonoBehaviour, IManager
+    public class HealthUIController : Manager
     {
         private GameObject m_Character;
 
@@ -13,7 +13,7 @@ namespace _SampleGames.Survivr
 
         private SimpleLoadingBarController m_HealthBar;
 
-        public void Initialize()
+        public override void Initialize()
         {
             m_Character = GameObject.FindGameObjectWithTag("Player");
 

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace _SampleGames.Survivr
 {
-    public class LevelManager : MonoBehaviour, IManager
+    public class LevelManager : Manager
     {
         public Action LevelInitialized;
 
@@ -15,7 +15,7 @@ namespace _SampleGames.Survivr
 
         public Transform Spawn;
         
-        public void Initialize()
+        public override void Initialize()
         {
             Spawn = GameObject.FindGameObjectWithTag("Respawn").transform;
         }

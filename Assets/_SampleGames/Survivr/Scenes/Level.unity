@@ -132,9 +132,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1109868013}
+  - component: {fileID: 1109868015}
   - component: {fileID: 1109868014}
   m_Layer: 0
-  m_Name: LevelManager
+  m_Name: SceneInitializer
   m_TagString: LevelManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -172,6 +173,20 @@ MonoBehaviour:
   - {fileID: 1417620701940800581, guid: 0964071f5086c486b8528901466d82a3, type: 3}
   SpawnIntervalSeconds: 2.45
   Spawn: {fileID: 1731677747}
+--- !u!114 &1109868015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1109868012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db1b9de07dd84eafa8e5dfd929ac0b65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Managers:
+  - {fileID: 1109868014}
 --- !u!1 &1731677746
 GameObject:
   m_ObjectHideFlags: 0
