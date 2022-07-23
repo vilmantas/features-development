@@ -5,8 +5,6 @@ namespace _SampleGames.Survivr
 {
     public class LevelManager : Manager
     {
-        public Action LevelInitialized;
-
         public CharacterController PlayerPrefab;
         
         public EnemyController[] LevelEnemies;

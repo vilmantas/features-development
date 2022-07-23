@@ -1,5 +1,6 @@
 using System;
 using Features.Health;
+using Features.Health.Events;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -44,7 +45,12 @@ namespace _SampleGames.Survivr
 
             m_HealthController = GetComponentInChildren<HealthController>();
 
-            m_HealthController.OnChange += args =>
+            m_HealthController.OnChange += HandleChange();
+        }
+
+        private Action<HealthChangeEventArgs> HandleChange()
+        {
+            return args =>
             {
                 if (args.After > 0) return;
                 
@@ -66,6 +72,13 @@ namespace _SampleGames.Survivr
         private void OnGroundClicked(Vector3 point)
         {
             m_Agent.SetDestination(point);
+        }
+
+        private void OnDestroy()
+        {
+            UserInputManager.OnGroundClicked -= OnGroundClicked;
+            
+            m_HealthController.OnChange -= HandleChange();
         }
     }
 }
