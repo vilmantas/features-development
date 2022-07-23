@@ -4,5 +4,17 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/_SampleGames/Survivr/Scenes/__INIT.unity
+    guid: 6f91f00713f534d31b04582f4ddf051e
+  - enabled: 1
+    path: Assets/_SampleGames/Survivr/Scenes/Level.unity
+    guid: 0a20b9468000c4e6d91606171b9a340f
+  - enabled: 1
+    path: Assets/_SampleGames/Survivr/Scenes/Gameplay.unity
+    guid: d17c2e2a608e546bab8495e57567fc57
+  - enabled: 1
+    path: Assets/_SampleGames/Survivr/Scenes/Start.unity
+    guid: 7e11d44ddee0b435f88254ceca1827cc
   m_configObjects: {}

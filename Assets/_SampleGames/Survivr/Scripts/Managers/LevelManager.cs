@@ -7,7 +7,7 @@ namespace _SampleGames.Survivr
     {
         public Action LevelInitialized;
 
-        public CharacterController Player;
+        public CharacterController PlayerPrefab;
         
         public EnemyController[] LevelEnemies;
 
@@ -22,7 +22,7 @@ namespace _SampleGames.Survivr
 
         public CharacterController InstantiatePlayer()
         {
-            return Instantiate(Player, Spawn.position, Quaternion.identity);
+            return Instantiate(PlayerPrefab, Spawn.position, Quaternion.identity);
         }
     }
 }

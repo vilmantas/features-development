@@ -1,4 +1,5 @@
 using System;
+using Features.Health;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,10 +8,14 @@ namespace _SampleGames.Survivr
     public class CharacterController : MonoBehaviour
     {
         private NavMeshAgent m_Agent;
-        
-        public Action StartedMoving;
 
-        public Action Stopped;
+        private HealthController m_HealthController;
+        
+        public Action OnStartedMoving;
+
+        public Action OnStopped;
+
+        public Action OnDeath;
 
         public float Speed => m_Agent.speed;
 
@@ -22,12 +27,12 @@ namespace _SampleGames.Survivr
             
             if (velocity != m_PrevVelocity && m_PrevVelocity == Vector3.zero)
             {
-                StartedMoving?.Invoke();
+                OnStartedMoving?.Invoke();
             }
 
             if (velocity == Vector3.zero)
             {
-                Stopped?.Invoke();
+                OnStopped?.Invoke();
             }
         }
 
@@ -36,6 +41,15 @@ namespace _SampleGames.Survivr
             m_Agent = GetComponentInChildren<NavMeshAgent>();
             
             UserInputManager.OnGroundClicked += OnGroundClicked;
+
+            m_HealthController = GetComponentInChildren<HealthController>();
+
+            m_HealthController.OnChange += args =>
+            {
+                if (args.After > 0) return;
+                
+                OnDeath?.Invoke();
+            };
         }
 
         private void OnTriggerEnter(Collider collision)

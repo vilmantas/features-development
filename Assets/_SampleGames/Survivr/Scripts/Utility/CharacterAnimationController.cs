@@ -15,9 +15,9 @@ namespace _SampleGames.Survivr.Scripts.Utility
 
             m_CharacterController = transform.root.GetComponent<CharacterController>();
 
-            m_CharacterController.StartedMoving += () => m_Animator.SetBool("IsMoving", true);
+            m_CharacterController.OnStartedMoving += () => m_Animator.SetBool("IsMoving", true);
             
-            m_CharacterController.Stopped += () => m_Animator.SetBool("IsMoving", false);
+            m_CharacterController.OnStopped += () => m_Animator.SetBool("IsMoving", false);
         }
     }
 }
