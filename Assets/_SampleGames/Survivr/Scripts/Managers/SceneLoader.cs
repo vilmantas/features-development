@@ -21,7 +21,7 @@ namespace _SampleGames.Survivr
 
             bool levelLoaded = false;
             bool gameplayLoaded = false;
-            bool uiLoaded = false;
+            bool gameUILoaded = false;
 
             for (int i = 0; i < SceneManager.sceneCount; i++)
             {
@@ -37,9 +37,9 @@ namespace _SampleGames.Survivr
                     gameplayLoaded = true;
                 }
 
-                if (scene.name.StartsWith("UI"))
+                if (scene.name.StartsWith("Game_UI"))
                 {
-                    uiLoaded = true;
+                    gameUILoaded = true;
                 }
             }
 
@@ -47,7 +47,7 @@ namespace _SampleGames.Survivr
 
             UnloadScene = "__INIT";
             
-            if (!levelLoaded && !gameplayLoaded && !uiLoaded)
+            if (!levelLoaded && !gameplayLoaded && !gameUILoaded)
             {
                 WaitingForScenes.Add("Start", false);
                 
@@ -57,7 +57,7 @@ namespace _SampleGames.Survivr
             {
                 WaitingForScenes.Add("Level", levelLoaded);
                 WaitingForScenes.Add("Gameplay", gameplayLoaded);
-                WaitingForScenes.Add("UI", uiLoaded);
+                WaitingForScenes.Add("Game_UI", gameUILoaded);
                 
                 SetActiveScene = "Level";
                 
@@ -71,9 +71,9 @@ namespace _SampleGames.Survivr
                     SceneManager.LoadSceneAsync("_SampleGames/Survivr/Scenes/Gameplay", LoadSceneMode.Additive);
                 }
 
-                if (!uiLoaded)
+                if (!gameUILoaded)
                 {
-                    SceneManager.LoadSceneAsync("_SampleGames/Survivr/Scenes/UI", LoadSceneMode.Additive);
+                    SceneManager.LoadSceneAsync("_SampleGames/Survivr/Scenes/Game_UI", LoadSceneMode.Additive);
                 }
             }
         }
@@ -94,9 +94,9 @@ namespace _SampleGames.Survivr
 
             if (!WaitingForScenes.All(x => x.Value)) return;
             
-            SetActiveSceneAfterLoad();
+            SetActiveSceneSafe(SetActiveScene);
 
-            UnloadSceneAfterLoad();
+            UnloadSceneSafe(UnloadScene);
             
             InitializeWaitingScenes();
             
@@ -122,11 +122,11 @@ namespace _SampleGames.Survivr
             }
         }
 
-        private void UnloadSceneAfterLoad()
+        private void UnloadSceneSafe(string scene)
         {
-            if (!string.IsNullOrEmpty(UnloadScene))
+            if (!string.IsNullOrEmpty(scene))
             {
-                var unloadScene = SceneManager.GetSceneByName(UnloadScene);
+                var unloadScene = SceneManager.GetSceneByName(scene);
 
                 if (unloadScene.isLoaded)
                 {
@@ -135,27 +135,41 @@ namespace _SampleGames.Survivr
             }
         }
 
-        private void SetActiveSceneAfterLoad()
+        private void SetActiveSceneSafe(string scene)
         {
-            if (!string.IsNullOrEmpty(SetActiveScene))
+            if (!string.IsNullOrEmpty(scene))
             {
-                var activeScene = SceneManager.GetSceneByName(SetActiveScene);
+                var activeScene = SceneManager.GetSceneByName(scene);
 
                 SceneManager.SetActiveScene(activeScene);
             }
+        }
+
+        public void LoadPause()
+        {
+            WaitingForScenes.Add("Pause_UI", false);
+            
+            SceneManager.sceneLoaded += WaitForScenes;
+
+            SceneManager.LoadSceneAsync("_SampleGames/Survivr/Scenes/Pause_UI", LoadSceneMode.Additive);
+        }
+
+        public void UnloadPause()
+        {
+            UnloadSceneSafe("Pause_UI");
         }
 
         public void LoadGame()
         {
             WaitingForScenes.Add("Level", false);
             WaitingForScenes.Add("Gameplay", false);
-            WaitingForScenes.Add("UI", false);
+            WaitingForScenes.Add("Game_UI", false);
             
             SceneManager.sceneLoaded += WaitForScenes;
 
             SceneManager.LoadSceneAsync("_SampleGames/Survivr/Scenes/Level");
             SceneManager.LoadSceneAsync("_SampleGames/Survivr/Scenes/Gameplay", LoadSceneMode.Additive);
-            SceneManager.LoadSceneAsync("_SampleGames/Survivr/Scenes/UI", LoadSceneMode.Additive);
+            SceneManager.LoadSceneAsync("_SampleGames/Survivr/Scenes/Game_UI", LoadSceneMode.Additive);
         }
 
         public void LoadMenu()

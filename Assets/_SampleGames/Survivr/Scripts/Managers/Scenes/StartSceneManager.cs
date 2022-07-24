@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace _SampleGames.Survivr
 {
-    public class StartScreenManager : Manager
+    public class StartSceneManager : Manager
     {
         private Button StartButton;
         

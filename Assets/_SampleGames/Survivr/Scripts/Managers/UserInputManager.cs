@@ -12,6 +12,11 @@ namespace _SampleGames.Survivr
 
         private void Update()
         {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                GameManager.Instance.TogglePause();
+            }
+            
             if (Input.GetMouseButtonUp(0))
             {
                 if (EventSystem.current != null &&

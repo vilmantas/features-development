@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace _SampleGames.Survivr
 {
-    public class LevelManager : Manager
+    public class LevelSceneManager : Manager
     {
         public CharacterController PlayerPrefab;
         

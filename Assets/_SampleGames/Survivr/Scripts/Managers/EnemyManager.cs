@@ -9,13 +9,13 @@ namespace _SampleGames.Survivr
     {
         private Transform m_Character;
 
-        private LevelManager m_LevelManager;
+        private LevelSceneManager m_LevelSceneManager;
 
         public override void Initialize()
         {
             m_Character = GameObject.FindGameObjectWithTag("Player").transform;
 
-            m_LevelManager = GameObject.FindGameObjectWithTag(nameof(LevelManager)).GetComponent<LevelManager>();
+            m_LevelSceneManager = GameObject.FindGameObjectWithTag(nameof(LevelSceneManager)).GetComponent<LevelSceneManager>();
 
             StartCoroutine(SpawnEnemies());
         }
@@ -24,7 +24,7 @@ namespace _SampleGames.Survivr
         {
             while (true)
             {
-                yield return new WaitForSeconds(m_LevelManager.SpawnIntervalSeconds);
+                yield return new WaitForSeconds(m_LevelSceneManager.SpawnIntervalSeconds);
 
                 var position = m_Character.position;
 
@@ -44,7 +44,7 @@ namespace _SampleGames.Survivr
 
         private EnemyController GetRandomEnemy()
         {
-            return m_LevelManager.LevelEnemies[Random.Range(0, m_LevelManager.LevelEnemies.Length)];
+            return m_LevelSceneManager.LevelEnemies[Random.Range(0, m_LevelSceneManager.LevelEnemies.Length)];
         }
     }
 }

@@ -6,19 +6,19 @@ namespace _SampleGames.Survivr
     {
         [HideInInspector] public GameManager GameManager;
         
-        [HideInInspector] public LevelManager LevelManager;
+        [HideInInspector] public LevelSceneManager LevelSceneManager;
 
         [HideInInspector] public CharacterController Player;
         
         public override void Initialize()
         {
-            LevelManager = GameObject.FindGameObjectWithTag(nameof(LevelManager))
-                .GetComponent<LevelManager>();
+            LevelSceneManager = GameObject.FindGameObjectWithTag(nameof(LevelSceneManager))
+                .GetComponent<LevelSceneManager>();
 
             GameManager = GameObject.FindGameObjectWithTag(nameof(GameManager))
                 .GetComponent<GameManager>();
             
-            Player = LevelManager.InstantiatePlayer();
+            Player = LevelSceneManager.InstantiatePlayer();
 
             Player.OnDeath += () => GameManager.LoadMenu();
 
