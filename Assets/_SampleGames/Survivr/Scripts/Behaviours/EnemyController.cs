@@ -10,6 +10,8 @@ namespace _SampleGames.Survivr
 {
     public class EnemyController : MonoBehaviour
     {
+        public float TimeToLive;
+        
         private NavMeshAgent m_NavMeshAgent;
 
         private Transform m_Target;
@@ -32,7 +34,7 @@ namespace _SampleGames.Survivr
 
             StartCoroutine(FollowTarget());
 
-            StartCoroutine(SelfDestruct(3f));
+            StartCoroutine(SelfDestruct(TimeToLive));
         }
 
         public void Damage(CharacterController target)
