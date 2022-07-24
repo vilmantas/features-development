@@ -12,8 +12,7 @@ namespace _SampleGames.Survivr.Scripts
         {
             foreach (var manager in Managers)
             {
-                print("Initializing: " + manager.transform.root.name);
-                manager.Initialize();
+                manager.StartInit();
             }
         }
     }

@@ -191,9 +191,38 @@ namespace _SampleGames.Survivr
             var initializer = scene.GetRootGameObjects()
                 .FirstOrDefault(x => x.GetComponent<SceneInitializer>() != null)?.GetComponent<SceneInitializer>();
 
-            if (initializer == null) return;
+            if (initializer != null)
+            {
+                initializer.StartScene();
+            }
+            else
+            {
+                var roots = scene.GetRootGameObjects();
 
-            initializer.StartScene();
+                var managers = new List<Manager>();
+                
+                foreach (var root in roots)
+                {
+                    var main = root.GetComponent<Manager>();
+
+                    if (main != null)
+                    {
+                        managers.Add(main);
+                    }
+
+                    var children = root.GetComponentsInChildren<Manager>();
+
+                    if (children.Any())
+                    {
+                        managers.AddRange(children);
+                    }
+                }
+
+                foreach (var manager in managers)
+                {
+                    manager.Initialize();
+                }
+            }
         }
     }
 }

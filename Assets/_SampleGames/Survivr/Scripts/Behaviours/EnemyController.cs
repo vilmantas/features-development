@@ -14,15 +14,23 @@ namespace _SampleGames.Survivr
         
         private NavMeshAgent m_NavMeshAgent;
 
+        private ParticleSystem m_DeathParticles;
+
         private Transform m_Target;
 
         private TextMeshPro m_Text;
 
         private bool m_IsExpended = false;
+
+        private Transform m_Mesh;
         
         private void Start()
         {
+            m_Mesh = transform.Find("mesh");
+                
             m_NavMeshAgent = GetComponent<NavMeshAgent>();
+
+            m_DeathParticles = GetComponentInChildren<ParticleSystem>();
 
             m_Text = GetComponentInChildren<TextMeshPro>();
 
@@ -49,7 +57,20 @@ namespace _SampleGames.Survivr
             
             healthController.Damage(3);
 
-            Destroy(gameObject, 0.3f);
+            BeginDestroy();
+        }
+
+        private void BeginDestroy()
+        {
+            m_Mesh.gameObject.SetActive(false);
+
+            m_NavMeshAgent.isStopped = true;
+            
+            StopAllCoroutines();
+            
+            m_DeathParticles.Play();
+            
+            Destroy(gameObject, 6f);
         }
 
         private IEnumerator SelfDestruct(float delaySeconds)
@@ -65,7 +86,7 @@ namespace _SampleGames.Survivr
 
             yield return new WaitForSeconds(delaySeconds);
 
-            DestroyImmediate(gameObject);
+            BeginDestroy();
         }
 
         private IEnumerator FollowTarget()
