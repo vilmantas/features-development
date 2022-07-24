@@ -94,13 +94,36 @@ namespace _SampleGames.Survivr
 
             if (!WaitingForScenes.All(x => x.Value)) return;
             
-            if (!string.IsNullOrEmpty(SetActiveScene))
-            {
-                var activeScene = SceneManager.GetSceneByName(SetActiveScene);
-                
-                SceneManager.SetActiveScene(activeScene);
-            }
+            SetActiveSceneAfterLoad();
 
+            UnloadSceneAfterLoad();
+            
+            InitializeWaitingScenes();
+            
+            ResetWaitingMethod();
+        }
+
+        private void ResetWaitingMethod()
+        {
+            UnloadScene = string.Empty;
+
+            SetActiveScene = string.Empty;
+
+            WaitingForScenes.Clear();
+
+            SceneManager.sceneLoaded -= WaitForScenes;
+        }
+
+        private void InitializeWaitingScenes()
+        {
+            foreach (var waitForScene in WaitingForScenes)
+            {
+                InitializeScene(waitForScene.Key);
+            }
+        }
+
+        private void UnloadSceneAfterLoad()
+        {
             if (!string.IsNullOrEmpty(UnloadScene))
             {
                 var unloadScene = SceneManager.GetSceneByName(UnloadScene);
@@ -110,19 +133,16 @@ namespace _SampleGames.Survivr
                     SceneManager.UnloadSceneAsync(unloadScene);
                 }
             }
-            
-            foreach (var waitForScene in WaitingForScenes)
+        }
+
+        private void SetActiveSceneAfterLoad()
+        {
+            if (!string.IsNullOrEmpty(SetActiveScene))
             {
-                InitializeScene(waitForScene.Key);
+                var activeScene = SceneManager.GetSceneByName(SetActiveScene);
+
+                SceneManager.SetActiveScene(activeScene);
             }
-            
-            UnloadScene = string.Empty;
-            
-            SetActiveScene = string.Empty;
-            
-            WaitingForScenes.Clear();
-            
-            SceneManager.sceneLoaded -= WaitForScenes;
         }
 
         public void LoadGame()
