@@ -8,11 +8,11 @@ namespace _SampleGames.Survivr
     {
         public int HealValue = 1;
 
-        private bool Used = false;
+        private bool m_IsExpended;
         
         private void OnTriggerEnter(Collider other)
         {
-            if (Used) return;
+            if (m_IsExpended) return;
             
             var character = other.transform.root.GetComponent<CharacterController>();
 
@@ -22,7 +22,7 @@ namespace _SampleGames.Survivr
 
             if (health == null) return;
             
-            Used = true;
+            m_IsExpended = true;
             
             health.Heal(HealValue);
 

@@ -57,18 +57,7 @@ namespace _SampleGames.Survivr
                 OnDeath?.Invoke();
             };
         }
-
-        private void OnTriggerEnter(Collider collision)
-        {
-            var colliderRoot = collision.transform.root;
-
-            var enemyController = colliderRoot.GetComponent<EnemyController>();
-
-            if (enemyController == null) return;
-            
-            enemyController.Damage(this);
-        }
-
+        
         private void OnGroundClicked(Vector3 point)
         {
             m_Agent.SetDestination(point);

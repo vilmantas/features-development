@@ -31,6 +31,11 @@ namespace Features.Health
 
         public int MaxHealth => m_Model.Max;
 
+        public void Initialize(int current, int max)
+        {
+            m_Model = new ResourceContainer(current, max);
+        }
+        
         private void Awake()
         {
             m_Model = new ResourceContainer(MaximumHealth, StartingHealth);

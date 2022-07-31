@@ -36,9 +36,7 @@ namespace _SampleGames.Survivr
 
                 var spawnPos = position + dir * Random.Range(20, 50);
                 
-                var newEnemy = Instantiate(GetRandomEnemy(), spawnPos, Quaternion.identity);
-
-                newEnemy.TimeToLive = Random.Range(5f, 20f);
+                Instantiate(GetRandomEnemy(), spawnPos, Quaternion.identity);
             }
         }
 
