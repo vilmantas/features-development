@@ -29,7 +29,7 @@ namespace _SampleGames.Survivr
         {
             SetUpDamageOverTime();
 
-            m_Mesh = transform.Find("mesh");
+            m_Mesh = transform.Find("model");
 
             m_Health = GetComponentInChildren<HealthController>();
             
