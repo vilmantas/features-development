@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 7a36e75403ade44e1bfa9e0d508e20d4, type: 2}
 --- !u!1 &2431696
 GameObject:
   m_ObjectHideFlags: 0
@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameManager: {fileID: 0}
-  LevelManager: {fileID: 0}
+  LevelSceneManager: {fileID: 0}
   Player: {fileID: 5390045234017944949, guid: dbb4ded0b5c6d481283f58b30fbc8f49, type: 3}
 --- !u!1 &394763206
 GameObject:
@@ -537,7 +537,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.0080516, y: 1}
+    m_SensorSize: {x: 0.9049563, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
