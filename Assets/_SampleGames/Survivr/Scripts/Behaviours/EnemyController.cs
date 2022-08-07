@@ -43,6 +43,8 @@ namespace _SampleGames.Survivr
 
             m_Text = GetComponentInChildren<TextMeshPro>();
 
+            SetHealthText(m_Health.CurrentHealth, m_Health.MaxHealth);
+
             var player = FindObjectOfType<PlayerManager>().Player; 
             
             m_Target = player.transform;
@@ -67,7 +69,12 @@ namespace _SampleGames.Survivr
 
         private void OnDamage(HealthChangeEventArgs obj)
         {
-            m_Text.text = obj.After + "/" + obj.Source.MaxHealth;
+            SetHealthText(obj.After, obj.Source.MaxHealth);
+        }
+
+        private void SetHealthText(int after, int max)
+        {
+            m_Text.text = after + "/" + max;
         }
 
         private void HandleDeath()
