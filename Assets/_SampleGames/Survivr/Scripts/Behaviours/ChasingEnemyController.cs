@@ -9,7 +9,7 @@ using Random = UnityEngine.Random;
 
 namespace _SampleGames.Survivr
 {
-    public class EnemyController : MonoBehaviour
+    public class ChasingEnemyController : MonoBehaviour
     {
         private NavMeshAgent m_NavMeshAgent;
 
@@ -25,10 +25,8 @@ namespace _SampleGames.Survivr
 
         private HealthController m_Health;
         
-        private void Start()
+        private void Awake()
         {
-            SetUpDamageOverTime();
-
             m_Mesh = transform.Find("model");
 
             m_Health = GetComponentInChildren<HealthController>();
@@ -42,29 +40,19 @@ namespace _SampleGames.Survivr
             m_DeathParticles = GetComponentInChildren<ParticleSystem>();
 
             m_Text = GetComponentInChildren<TextMeshPro>();
-
-            SetHealthText(m_Health.CurrentHealth, m_Health.MaxHealth);
-
-            var player = FindObjectOfType<PlayerManager>().Player; 
-            
-            m_Target = player.transform;
-
-            m_NavMeshAgent.speed = Random.Range(player.Speed - 3, player.Speed + 1);
-
-            StartCoroutine(FollowTarget());
         }
 
-        private void SetUpDamageOverTime()
+        public void Initialize(int health, CharacterController target)
         {
-            var dmg = GetComponentInChildren<DamageOverTime>();
+            m_Health.Initialize(health, health);
+            
+            SetHealthText(m_Health.CurrentHealth, m_Health.MaxHealth);
+            
+            m_Target = target.transform;
 
-            dmg.Damage = 1;
+            m_NavMeshAgent.speed = Random.Range(target.Speed - 3, target.Speed + 1);
 
-            dmg.Interval = Random.Range(0.5f, 1f);
-
-            dmg.Health = 25;
-
-            dmg.Initialize();
+            StartCoroutine(FollowTarget());
         }
 
         private void OnDamage(HealthChangeEventArgs obj)

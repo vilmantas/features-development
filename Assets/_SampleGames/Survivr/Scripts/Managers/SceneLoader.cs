@@ -21,13 +21,15 @@ namespace _SampleGames.Survivr
 
             var ignoreStart = false;
 
-            for (int i = 0; i < SceneManager.sceneCount; i++)
+            for (var i = 0; i < SceneManager.sceneCount; i++)
             {
                 var scene = SceneManager.GetSceneAt(i);
 
                 if (scene.name.StartsWith("Level") || scene.name.StartsWith("Gameplay") || scene.name.StartsWith("Game_UI"))
                 {
                     ignoreStart = true;
+
+                    break;
                 }
             }
 
@@ -49,7 +51,7 @@ namespace _SampleGames.Survivr
                 
                 foreach (var s in scenesToLoad)
                 {
-                    for (int i = 0; i < SceneManager.sceneCount; i++)
+                    for (var i = 0; i < SceneManager.sceneCount; i++)
                     {
                         var scene = SceneManager.GetSceneAt(i);
                         
@@ -66,6 +68,8 @@ namespace _SampleGames.Survivr
                     }
                     
                     WaitingForScenes.Add(s, false);
+
+                    sceneLoading = false;
                 }
             }
             
@@ -74,7 +78,7 @@ namespace _SampleGames.Survivr
 
         private void WaitForScenes(Scene scene, LoadSceneMode mode)
         {
-            for (int i = 0; i < SceneManager.sceneCount; i++)
+            for (var i = 0; i < SceneManager.sceneCount; i++)
             {
                 var s = SceneManager.GetSceneAt(i);
                 

@@ -12,15 +12,11 @@ namespace _SampleGames.Survivr
 
         [Range(0.1f, 5f)] public float Interval;
 
-        public int Health;
-
         private HealthController m_Health;
         
         public void Initialize()
         {
             m_Health = transform.root.GetComponentInChildren<HealthController>();
-            
-            m_Health.Initialize(Health, Health);
             
             if (m_Health == null) return;
             
