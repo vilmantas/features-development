@@ -7,7 +7,7 @@ namespace _SampleGames.Survivr
     {
         public CharacterController PlayerPrefab;
         
-        public ChasingEnemyController[] LevelEnemies;
+        public EnemyController[] LevelEnemies;
 
         [Range(1, 10)] public float SpawnIntervalSeconds;
 

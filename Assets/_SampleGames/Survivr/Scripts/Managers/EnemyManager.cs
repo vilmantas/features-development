@@ -41,7 +41,7 @@ namespace _SampleGames.Survivr
             }
         }
 
-        private static void AddDamageOverTime(ChasingEnemyController enemy)
+        private static void AddDamageOverTime(EnemyController enemy)
         {
             var systemsContainer = enemy.GetComponentInChildren<SystemsContainer>();
 
@@ -77,7 +77,7 @@ namespace _SampleGames.Survivr
             return spawnPos;
         }
 
-        private ChasingEnemyController GetRandomEnemy()
+        private EnemyController GetRandomEnemy()
         {
             return m_LevelSceneManager.LevelEnemies[Random.Range(0, m_LevelSceneManager.LevelEnemies.Length)];
         }

@@ -9,14 +9,7 @@ using Random = UnityEngine.Random;
 
 namespace _SampleGames.Survivr
 {
-    public class EnemyController : MonoBehaviour
-    {
-        public virtual void Initialize(int health, CharacterController target)
-        {
-        }
-    }
-    
-    public class ChasingEnemyController : EnemyController
+    public class SprinterEnemyController : EnemyController
     {
         private NavMeshAgent m_NavMeshAgent;
 
@@ -48,7 +41,7 @@ namespace _SampleGames.Survivr
 
             m_Text = GetComponentInChildren<TextMeshPro>();
         }
-
+        
         public override void Initialize(int health, CharacterController target)
         {
             m_Health.Initialize(health, health);
@@ -57,11 +50,25 @@ namespace _SampleGames.Survivr
             
             m_Target = target.transform;
 
-            m_NavMeshAgent.speed = Random.Range(target.Speed - 3, target.Speed + 1);
+            m_NavMeshAgent.speed = Random.Range(target.Speed + 10, target.Speed + 20);
 
             StartCoroutine(FollowTarget());
         }
+        
+        private IEnumerator FollowTarget()
+        {
+            var navMesh = m_Target.root.GetComponent<NavMeshAgent>();
+            
+            while (true)
+            {
+                m_NavMeshAgent.SetDestination(navMesh.destination);
 
+                if (m_IsExpended) break;
+                
+                yield return new WaitForSeconds(3);
+            }
+        }
+        
         private void OnDamage(HealthChangeEventArgs obj)
         {
             SetHealthText(obj.After, obj.Source.MaxHealth);
@@ -71,25 +78,12 @@ namespace _SampleGames.Survivr
         {
             m_Text.text = after + "/" + max;
         }
-
+        
         private void HandleDeath()
         {
             BeginDestroy();
         }
-
-        private void Damage(CharacterController target)
-        {
-            if (m_IsExpended) return;
-            
-            var healthController = target.GetComponentInChildren<HealthController>();
-
-            if (healthController == null) return;
-
-            healthController.Damage(3);
-
-            BeginDestroy();
-        }
-
+        
         private void BeginDestroy()
         {
             m_IsExpended = true;
@@ -102,19 +96,9 @@ namespace _SampleGames.Survivr
             
             StopAllCoroutines();
             
-            m_DeathParticles.Play();
+            // m_DeathParticles.Play();
             
             Destroy(gameObject, 6f);
-        }
-
-        private IEnumerator FollowTarget()
-        {
-            while (true)
-            {
-                m_NavMeshAgent.SetDestination(m_Target.position);
-
-                yield return new WaitForSeconds(0.3f);
-            }
         }
         
         private void OnTriggerEnter(Collider collision)
@@ -127,6 +111,18 @@ namespace _SampleGames.Survivr
             
             Damage(characterController);
         }
+        
+        private void Damage(CharacterController target)
+        {
+            if (m_IsExpended) return;
+            
+            var healthController = target.GetComponentInChildren<HealthController>();
 
+            if (healthController == null) return;
+
+            healthController.Damage(3);
+
+            BeginDestroy();
+        }
     }
 }
