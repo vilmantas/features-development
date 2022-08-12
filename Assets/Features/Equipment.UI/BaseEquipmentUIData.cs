@@ -1,4 +1,4 @@
-using Features.Equipment.Events;
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -7,8 +7,6 @@ namespace Features.Equipment.UI
 {
     public class BaseEquipmentUIData : MonoBehaviour, IPointerClickHandler, IEquipmentUIData
     {
-        private readonly EquipmentButtonPressEvent m_EquipmentButtonPressEvent = new();
-
         private Image Blocker;
 
         private EquipmentContainerItem m_EquipmentContainer;
@@ -28,6 +26,9 @@ namespace Features.Equipment.UI
             OnAwake();
         }
 
+        public Action<EquipmentContainerItem> OnPressed { get; set; }
+
+
         public void SetData(EquipmentContainerItem item)
         {
             m_EquipmentContainer = item;
@@ -38,8 +39,6 @@ namespace Features.Equipment.UI
 
             OnSetData(item);
         }
-
-        public EquipmentButtonPressEvent OnPressed => m_EquipmentButtonPressEvent;
 
         public void OnPointerClick(PointerEventData eventData)
         {

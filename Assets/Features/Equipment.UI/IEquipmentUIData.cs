@@ -1,11 +1,11 @@
-using Features.Equipment.Events;
+using System;
 using UnityEngine;
 
 namespace Features.Equipment.UI
 {
     public interface IEquipmentUIData
     {
-        EquipmentButtonPressEvent OnPressed { get; }
+        Action<EquipmentContainerItem> OnPressed { get; set; }
 
         GameObject gameObject { get; }
 

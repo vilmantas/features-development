@@ -32,7 +32,7 @@ namespace Features.Equipment.UI
             {
                 var data = m_InstantiationFunc();
 
-                data.OnPressed.AddListener(ActivateItem);
+                data.OnPressed += ActivateItem;
 
                 data.SetData(item);
 
