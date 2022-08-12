@@ -19,13 +19,12 @@ namespace Features.Items
         public List<Stat> Stats;
         public Buff_SO[] Buffs;
 
-        public ItemMetadata ToMetadata => new(Name, Sprite, MaxStack,
-            new StatGroup(Stats.ToArray()), MainSlot, SecondarySlot, ModelPrefab, Buffs.Select(x => x.Base).ToList());
-
-        public ItemInstance ToInstance()
+        public ItemInstance MakeInstance()
         {
-            var instance = new ItemInstance(ToMetadata);
-            instance.StorageData.StackableData.Receive(Count);
+            var metadata = ItemMetadataRegistry.Registry[Name];
+
+            var instance = ItemFactory.ToInstance(metadata, Count);
+
             return instance;
         }
     }

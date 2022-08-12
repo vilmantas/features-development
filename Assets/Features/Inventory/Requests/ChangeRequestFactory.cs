@@ -5,6 +5,11 @@ namespace Features.Inventory
 {
     public static class ChangeRequestFactory
     {
+        public static AddRequest Add(IEquatable<object> item, int amount)
+        {
+            return new AddRequest() {SourceInventoryItemBase = new StorageData(item), Amount = amount};
+        }
+        
         public static AddRequest Add(StorageData item, int amount)
         {
             return new AddRequest() {SourceInventoryItemBase = item, Amount = amount};

@@ -4,6 +4,7 @@ using Features.Health.Events;
 using Features.Inventory;
 using Features.Inventory.Abstract.Internal;
 using Features.Inventory.Events;
+using Features.Items;
 using UnityEngine;
 using UnityEngine.AI;
 using Utilities.ItemsContainer;
@@ -43,43 +44,13 @@ namespace _SampleGames.Survivr
             }
         }
 
-        class MyClass : IEquatable<object>
-        {
-            public MyClass(string name)
-            {
-                Name = name;
-            }
-
-            private string Name { get; set; }
-
-            private bool Equals(MyClass other)
-            {
-                return Name == other.Name;
-            }
-
-            public override bool Equals(object obj)
-            {
-                if (ReferenceEquals(null, obj)) return false;
-                if (ReferenceEquals(this, obj)) return true;
-                if (obj.GetType() != this.GetType()) return false;
-                return Equals((MyClass) obj);
-            }
-
-            public override int GetHashCode()
-            {
-                throw new NotImplementedException();
-            }
-        }
-
         private void Awake()
         {
             m_InventoryController = GetComponentInChildren<InventoryController>();
             
-            m_InventoryController.Initialize();
+            m_InventoryController.OnChangeRequestHandled.AddListener(HandleInventoryChange);
             
-            m_InventoryController.OnChangeRequestHandled.AddListener(Wtf);
-
-            m_InventoryController.HandleRequest(ChangeRequestFactory.Add(new StorageData(new MyClass("wtf"), 1)));
+            m_InventoryController.OnActionSelected += OnActionSelected;
             
             m_Agent = GetComponentInChildren<NavMeshAgent>();
             
@@ -90,9 +61,11 @@ namespace _SampleGames.Survivr
             m_HealthController.OnChange += HandleChange;
         }
 
-        private void Wtf(IChangeRequestResult handledEvent)
+        private void HandleInventoryChange(IChangeRequestResult handledEvent)
         {
-            print("Handled");
+            if (handledEvent.Request is not AddRequest req) return;
+
+            var z = req.SourceInventoryItemBase.Parent as ItemInstance;
         }
 
         private void HandleChange(HealthChangeEventArgs args)
@@ -105,6 +78,17 @@ namespace _SampleGames.Survivr
         private void OnGroundClicked(Vector3 point)
         {
             m_Agent.SetDestination(point);
+        }
+        
+        private void OnActionSelected(StorageData arg1, string arg2)
+        {
+            var itemInstance = arg1.ParentCast<ItemInstance>();
+
+            if (itemInstance.Metadata.Name != "Healing Potion") return;
+            
+            m_HealthController.Heal(10);
+            
+            m_InventoryController.HandleRequest(ChangeRequestFactory.RemoveExact(arg1));
         }
 
         private void OnDestroy()

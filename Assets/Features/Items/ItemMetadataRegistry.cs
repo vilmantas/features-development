@@ -5,17 +5,17 @@ namespace Features.Items
 {
     public static class ItemMetadataRegistry
     {
-        private static readonly ConcurrentDictionary<string, object> m_MetadataDictionary = new();
+        private static readonly ConcurrentDictionary<string, ItemMetadata> m_MetadataDictionary = new();
 
-        public static IReadOnlyDictionary<string, object> Registry => m_MetadataDictionary;
+        public static IReadOnlyDictionary<string, ItemMetadata> Registry => m_MetadataDictionary;
 
-        public static void RegisterMetadata(object metadata)
+        public static void RegisterMetadata(ItemMetadata metadata)
         {
-            var type = metadata.GetType().ToString();
+            var name = metadata.Name;
 
-            if (m_MetadataDictionary.TryGetValue(type, out var _)) return;
+            if (m_MetadataDictionary.TryGetValue(name, out var _)) return;
 
-            m_MetadataDictionary.TryAdd(type, metadata);
+            m_MetadataDictionary.TryAdd(name, metadata);
         }
     }
 }

@@ -126,7 +126,6 @@ namespace Features.Inventory.UI
     }
 }
 
-
 [Serializable]
 public class InventoryButtonPressEvent : UnityEvent<PointerEventData.InputButton, ContainerItem>
 {

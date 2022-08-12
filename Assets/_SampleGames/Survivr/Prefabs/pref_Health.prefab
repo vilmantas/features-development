@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HealValue: 1
+  ItemMetadata: {fileID: 11400000, guid: 5bce0bb601212494fb377259c769cb1e, type: 2}
 --- !u!1 &5052810624652589608
 GameObject:
   m_ObjectHideFlags: 0
@@ -74,7 +75,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1986167964715858985}
+  - {fileID: 4559214966671916321}
   m_Father: {fileID: 1986167965685220926}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -137,8 +138,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 38ea31d40d96746459a70ac6df94e0d7, type: 3}
---- !u!4 &1986167964715858985 stripped
+--- !u!4 &4559214966671916321 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 2186432887470006925, guid: 38ea31d40d96746459a70ac6df94e0d7, type: 3}
+  m_CorrespondingSourceObject: {fileID: 4215960543138685829, guid: 38ea31d40d96746459a70ac6df94e0d7, type: 3}
   m_PrefabInstance: {fileID: 416455550491401892}
   m_PrefabAsset: {fileID: 0}

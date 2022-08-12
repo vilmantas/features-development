@@ -25,7 +25,7 @@ namespace DebugScripts.Character
             var controller = Target.GetComponentInChildren<InventoryController>();
 
             controller.HandleRequest(
-                ChangeRequestFactory.Add(Item.ToMetadata.ToInstance.StorageData, 1));
+                ChangeRequestFactory.Add(Item.MakeInstance().StorageData, 1));
         }
 
         public void GiveStackable()
@@ -33,7 +33,7 @@ namespace DebugScripts.Character
             var controller = Target.GetComponentInChildren<InventoryController>();
 
             controller.HandleRequest(
-                ChangeRequestFactory.Add(Ammo.ToInstance().StorageData));
+                ChangeRequestFactory.Add(Ammo.MakeInstance().StorageData));
         }
 
         public void CastLifter()
