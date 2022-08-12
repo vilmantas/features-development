@@ -1,8 +1,12 @@
 using System;
 using Features.Health;
 using Features.Health.Events;
+using Features.Inventory;
+using Features.Inventory.Abstract.Internal;
+using Features.Inventory.Events;
 using UnityEngine;
 using UnityEngine.AI;
+using Utilities.ItemsContainer;
 
 namespace _SampleGames.Survivr
 {
@@ -11,6 +15,8 @@ namespace _SampleGames.Survivr
         private NavMeshAgent m_Agent;
 
         private HealthController m_HealthController;
+
+        private InventoryController m_InventoryController;
         
         public Action OnStartedMoving;
 
@@ -37,25 +43,63 @@ namespace _SampleGames.Survivr
             }
         }
 
+        class MyClass : IEquatable<object>
+        {
+            public MyClass(string name)
+            {
+                Name = name;
+            }
+
+            private string Name { get; set; }
+
+            private bool Equals(MyClass other)
+            {
+                return Name == other.Name;
+            }
+
+            public override bool Equals(object obj)
+            {
+                if (ReferenceEquals(null, obj)) return false;
+                if (ReferenceEquals(this, obj)) return true;
+                if (obj.GetType() != this.GetType()) return false;
+                return Equals((MyClass) obj);
+            }
+
+            public override int GetHashCode()
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         private void Awake()
         {
+            m_InventoryController = GetComponentInChildren<InventoryController>();
+            
+            m_InventoryController.Initialize();
+            
+            m_InventoryController.OnChangeRequestHandled.AddListener(Wtf);
+
+            m_InventoryController.HandleRequest(ChangeRequestFactory.Add(new StorageData(new MyClass("wtf"), 1)));
+            
             m_Agent = GetComponentInChildren<NavMeshAgent>();
             
             UserInputManager.OnGroundClicked += OnGroundClicked;
 
             m_HealthController = GetComponentInChildren<HealthController>();
 
-            m_HealthController.OnChange += HandleChange();
+            m_HealthController.OnChange += HandleChange;
         }
 
-        private Action<HealthChangeEventArgs> HandleChange()
+        private void Wtf(IChangeRequestResult handledEvent)
         {
-            return args =>
-            {
-                if (args.After > 0) return;
+            print("Handled");
+        }
+
+        private void HandleChange(HealthChangeEventArgs args)
+        {
+            if (args.After > 0) return;
                 
-                OnDeath?.Invoke();
-            };
+            OnDeath?.Invoke();
         }
         
         private void OnGroundClicked(Vector3 point)
@@ -67,7 +111,7 @@ namespace _SampleGames.Survivr
         {
             UserInputManager.OnGroundClicked -= OnGroundClicked;
             
-            m_HealthController.OnChange -= HandleChange();
+            m_HealthController.OnChange -= HandleChange;
         }
     }
 }

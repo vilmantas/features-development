@@ -3,6 +3,7 @@ using Features.Equipment;
 using Features.Health;
 using Features.Health.Events;
 using Features.Inventory;
+using Features.Inventory.UI;
 using Features.Stats.Base;
 using TMPro;
 using UnityEngine;
@@ -48,7 +49,7 @@ public class UIManager : MonoBehaviour
 
         buffController.WithUI(BuffPrefab, BuffContainer.transform);
 
-        inventoryController.WithUI(InventoryPrefab, InventoryContainer.transform);
+        // inventoryController.WithUI(InventoryPrefab, InventoryContainer.transform);
 
         equipmentController.WithUI(EquipmentPrefab, EquipmentContainer.transform);
 

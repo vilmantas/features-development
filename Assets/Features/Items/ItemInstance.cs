@@ -1,6 +1,6 @@
 using System;
 using Features.Equipment;
-using Features.Inventory.Utilities;
+using Features.Inventory.UI.Utilities;
 using Utilities.ItemsContainer;
 
 namespace Features.Items
@@ -48,9 +48,7 @@ namespace Features.Items
 
         public override bool Equals(object obj)
         {
-            if (obj is not ItemInstance instance) return false;
-
-            return instance.Metadata.Name.Equals(Metadata.Name);
+            return obj is ItemInstance instance && instance.Metadata.Name.Equals(Metadata.Name);
         }
     }
 }

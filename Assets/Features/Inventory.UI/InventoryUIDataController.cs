@@ -1,10 +1,11 @@
 using System;
+using Features.Inventory.UI.Utilities;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Utilities.ItemsContainer;
 
-namespace Features.Inventory.Utilities
+namespace Features.Inventory.UI
 {
     public class InventoryUIDataController : BaseInventoryUIData
     {

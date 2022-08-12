@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Features.Buffs;
 using Features.Equipment;
-using Features.Inventory.Utilities;
+using Features.Inventory.UI.Utilities;
 using Features.Stats.Base;
 using UnityEngine;
 

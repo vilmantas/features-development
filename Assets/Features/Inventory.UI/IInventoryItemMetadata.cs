@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Features.Inventory.Utilities
+namespace Features.Inventory.UI.Utilities
 {
     public interface IInventoryItemMetadata
     {

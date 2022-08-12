@@ -20,8 +20,6 @@ namespace Features.Inventory
 
         public Action<StorageData, string> OnActionSelected;
 
-        private InventoryUIManager UIManager;
-
         public IEnumerable<StorageData> Items => m_Container.Items;
 
         public IEnumerable<ContainerItem> Slots => m_Container.Slots;
@@ -30,22 +28,14 @@ namespace Features.Inventory
 
         public bool IsFull => m_Container.IsFull;
 
-        public void Awake()
+        public void Initialize()
         {
-            UIManager = new InventoryUIManager();
-
             m_Container = new Container(InventoryItemFactories.MakeItem, Size);
         }
-
-        public void WithUI(IInventoryUIData prefab, Transform container)
+        
+        public void Awake()
         {
-            UIManager.SetSource(this,
-                () =>
-                {
-                    var instance = Instantiate(prefab.gameObject, container);
-                    return instance.GetComponentInChildren<IInventoryUIData>();
-                },
-                controller => DestroyImmediate(controller.gameObject));
+            m_Container = new Container(InventoryItemFactories.MakeItem, Size);
         }
 
         public bool CanReceive(StorageData request, out int maxAmount)

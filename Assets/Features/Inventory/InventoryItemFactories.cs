@@ -25,7 +25,7 @@ namespace Features.Inventory
         {
             var type = original.Parent.GetType().ToString();
 
-            if (!InventoryItemFactories.Registry.TryGetValue(type, out var factory))
+            if (!Registry.TryGetValue(type, out var factory))
             {
                 throw new NotSupportedException($"Factory not registered for type {type}");
             }

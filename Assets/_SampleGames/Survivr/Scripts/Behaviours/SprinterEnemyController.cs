@@ -61,9 +61,9 @@ namespace _SampleGames.Survivr
             
             while (true)
             {
-                m_NavMeshAgent.SetDestination(navMesh.destination);
-
                 if (m_IsExpended) break;
+                
+                m_NavMeshAgent.SetDestination(navMesh.destination);
                 
                 yield return new WaitForSeconds(3);
             }
@@ -94,8 +94,6 @@ namespace _SampleGames.Survivr
 
             m_Text.enabled = false;
             
-            StopAllCoroutines();
-            
             // m_DeathParticles.Play();
             
             Destroy(gameObject, 6f);
@@ -120,7 +118,7 @@ namespace _SampleGames.Survivr
 
             if (healthController == null) return;
 
-            healthController.Damage(3);
+            healthController.Damage(0);
 
             BeginDestroy();
         }

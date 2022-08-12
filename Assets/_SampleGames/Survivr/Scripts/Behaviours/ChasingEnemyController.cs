@@ -14,6 +14,11 @@ namespace _SampleGames.Survivr
         public virtual void Initialize(int health, CharacterController target)
         {
         }
+
+        private void OnDestroy()
+        {
+            StopAllCoroutines();
+        }
     }
     
     public class ChasingEnemyController : EnemyController
@@ -100,8 +105,6 @@ namespace _SampleGames.Survivr
 
             m_Text.enabled = false;
             
-            StopAllCoroutines();
-            
             m_DeathParticles.Play();
             
             Destroy(gameObject, 6f);
@@ -111,6 +114,8 @@ namespace _SampleGames.Survivr
         {
             while (true)
             {
+                if (m_IsExpended) break;
+                
                 m_NavMeshAgent.SetDestination(m_Target.position);
 
                 yield return new WaitForSeconds(0.3f);

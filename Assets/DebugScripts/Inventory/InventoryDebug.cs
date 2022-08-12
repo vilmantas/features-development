@@ -2,7 +2,8 @@ using System;
 using Features.Equipment;
 using Features.Inventory;
 using Features.Inventory.Abstract.Internal;
-using Features.Inventory.Utilities;
+using Features.Inventory.UI;
+using Features.Inventory.UI.Utilities;
 using UnityEngine;
 using Utilities.ItemsContainer;
 using Random = UnityEngine.Random;
@@ -31,7 +32,7 @@ namespace DebugScripts
 
             m_InventoryController.OnChangeRequestHandled.AddListener(ChangeRequestHandled);
 
-            m_InventoryController.WithUI(baseInventoryUIPrefab, UIContainer.transform);
+            // m_InventoryController.WithUI(baseInventoryUIPrefab, UIContainer.transform);
         }
 
         private StorageData wtf(StorageData arg)

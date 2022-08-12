@@ -1,7 +1,7 @@
 using UnityEngine;
 using Utilities.ItemsContainer;
 
-namespace Features.Inventory
+namespace Features.Inventory.UI
 {
     public interface IInventoryUIData
     {

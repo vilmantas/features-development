@@ -1,6 +1,7 @@
 using System;
 using Features.Inventory;
-using Features.Inventory.Utilities;
+using Features.Inventory.UI;
+using Features.Inventory.UI.Utilities;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

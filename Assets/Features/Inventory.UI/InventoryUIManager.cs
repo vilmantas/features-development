@@ -5,7 +5,7 @@ using Features.Inventory.Abstract.Internal;
 using UnityEngine.EventSystems;
 using Utilities.ItemsContainer;
 
-namespace Features.Inventory
+namespace Features.Inventory.UI
 {
     public class InventoryUIManager
     {
