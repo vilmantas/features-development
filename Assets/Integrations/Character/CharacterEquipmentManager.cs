@@ -1,5 +1,4 @@
 using Features.Equipment;
-using Features.Items;
 using Features.Stats.Base;
 using UnityEngine;
 

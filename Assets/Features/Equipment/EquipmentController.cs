@@ -15,8 +15,6 @@ namespace Features.Equipment
 
         public Action<EquipmentContainerItem> OnItemUnequipRequested;
 
-        private EquipmentUIManager UIManager;
-
         public string[] AvailableSlots => EquipmentSlots.Select(x => x.slotType).ToArray();
 
         public IReadOnlyList<EquipmentContainerItem> ContainerSlots => m_Container.ContainerSlots;
@@ -24,19 +22,6 @@ namespace Features.Equipment
         public void Awake()
         {
             m_Container = new Container(AvailableSlots);
-        }
-
-        public void WithUI(IEquipmentUIData prefab, Transform container)
-        {
-            UIManager = new EquipmentUIManager();
-
-            UIManager.SetSource(this,
-                () =>
-                {
-                    var instance = Instantiate(prefab.gameObject, container);
-                    return instance.GetComponentInChildren<IEquipmentUIData>();
-                },
-                controller => DestroyImmediate(controller.gameObject));
         }
 
         public void RequestUnequip(EquipmentContainerItem containerItem)
