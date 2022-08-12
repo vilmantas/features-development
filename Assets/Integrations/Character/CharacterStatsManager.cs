@@ -1,4 +1,3 @@
-using System;
 using Features.Equipment;
 using Features.Items;
 using Features.Stats.Base;
@@ -8,9 +7,8 @@ namespace Features.Character
 {
     public class CharacterStatsManager : MonoBehaviour
     {
-        private StatsController m_StatsController;
-
         private EquipmentController m_EquipmentController;
+        private StatsController m_StatsController;
 
         private void Awake()
         {

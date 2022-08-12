@@ -41,7 +41,9 @@ namespace Features.Items
 
         public StatGroup Stats { get; }
 
-        public ItemInstance ToInstance => new (this);
+        public ItemInstance ToInstance => new(this);
+
+        public List<BuffBase> Buffs { get; }
         public GameObject ModelPrefab { get; }
         public string MainSlot { get; }
         public string SecondarySlot { get; }
@@ -49,7 +51,5 @@ namespace Features.Items
         public string Name { get; }
         public Sprite Sprite { get; }
         public int MaxStack { get; }
-
-        public List<BuffBase> Buffs { get; }
     }
 }

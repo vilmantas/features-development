@@ -17,6 +17,12 @@ namespace Features.Items
 
         public ItemMetadata Metadata { get; }
         public StorageData<ItemInstance> StorageData { get; }
+
+        public override bool Equals(object obj)
+        {
+            return obj is ItemInstance instance && instance.Metadata.Name.Equals(Metadata.Name);
+        }
+
         public string GetAmmoText => StorageData.Max > 1 ? StorageData.Current.ToString() : string.Empty;
         public int CurrentAmount => StorageData.StackableData.Current;
         IEquipmentItemMetadata IEquipmentItemInstance.Metadata => Metadata;
@@ -45,10 +51,5 @@ namespace Features.Items
         }
 
         IInventoryItemMetadata IInventoryItemInstance.Metadata => Metadata;
-
-        public override bool Equals(object obj)
-        {
-            return obj is ItemInstance instance && instance.Metadata.Name.Equals(Metadata.Name);
-        }
     }
 }

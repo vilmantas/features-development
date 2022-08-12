@@ -12,7 +12,7 @@ namespace Features.Items
         public static void RegisterFactory()
         {
             InventoryItemFactories.Register(typeof(ItemInstance), Factory);
-            
+
             Item_SO[] allItems = Resources.LoadAll<Item_SO>("");
 
             foreach (var item in allItems)
@@ -27,7 +27,7 @@ namespace Features.Items
 
             return new ItemInstance(item.Metadata).StorageData;
         }
-        
+
         private static ItemMetadata ToMetadata(Item_SO prefab)
         {
             return new(
