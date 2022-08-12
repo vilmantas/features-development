@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Features.Equipment.Utilities
+namespace Features.Equipment.UI
 {
     public class EquipmentUIDataController : BaseEquipmentUIData
     {

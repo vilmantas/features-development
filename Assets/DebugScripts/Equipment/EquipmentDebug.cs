@@ -1,4 +1,5 @@
 using Features.Equipment;
+using Features.Equipment.UI;
 using UnityEngine;
 
 namespace DebugScripts.Equipment
@@ -22,9 +23,6 @@ namespace DebugScripts.Equipment
             m_EquipmentController.OnItemEquipped += ItemEquipped;
 
             m_EquipmentController.OnItemUnequipRequested += HandleUnequipRequest;
-
-
-            m_EquipmentController.WithUI(UIPrefab, UIContainer);
 
             var request = new EquipRequest()
             {

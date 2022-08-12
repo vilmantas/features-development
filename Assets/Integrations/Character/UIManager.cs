@@ -1,5 +1,6 @@
 using Features.Buffs;
 using Features.Equipment;
+using Features.Equipment.UI;
 using Features.Health;
 using Features.Health.Events;
 using Features.Inventory;
@@ -51,7 +52,7 @@ public class UIManager : MonoBehaviour
 
         // inventoryController.WithUI(InventoryPrefab, InventoryContainer.transform);
 
-        equipmentController.WithUI(EquipmentPrefab, EquipmentContainer.transform);
+        // equipmentController.WithUI(EquipmentPrefab, EquipmentContainer.transform);
 
         statsController.WithUI(StatPrefab, StatsContainer.transform);
     }

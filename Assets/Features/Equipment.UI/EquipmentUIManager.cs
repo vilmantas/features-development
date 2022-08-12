@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Features.Equipment
+namespace Features.Equipment.UI
 {
     public class EquipmentUIManager
     {

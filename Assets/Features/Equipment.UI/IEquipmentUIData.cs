@@ -1,7 +1,7 @@
 using Features.Equipment.Events;
 using UnityEngine;
 
-namespace Features.Equipment
+namespace Features.Equipment.UI
 {
     public interface IEquipmentUIData
     {

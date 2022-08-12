@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace Features.Equipment
+namespace Features.Equipment.UI
 {
     public class BaseEquipmentUIData : MonoBehaviour, IPointerClickHandler, IEquipmentUIData
     {
