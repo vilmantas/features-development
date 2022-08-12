@@ -1,4 +1,3 @@
-using Features.Equipment;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
