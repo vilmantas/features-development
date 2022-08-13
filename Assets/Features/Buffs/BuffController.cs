@@ -1,19 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Features.Buffs.UI;
 using UnityEngine;
 
 namespace Features.Buffs
 {
     public class BuffAddOptions
     {
-        public BuffBase Buff { get; set;}
-        public GameObject Source { get; set;}
-        public int Stacks { get; set; }
-        public float Duration { get; set;}
-        public bool RequestHandled { get; set; }
-
         public BuffAddOptions()
         {
         }
@@ -30,35 +23,41 @@ namespace Features.Buffs
             Source = source;
             Stacks = stacks;
         }
+
+        public BuffBase Buff { get; set; }
+        public GameObject Source { get; set; }
+        public int Stacks { get; set; }
+        public float Duration { get; set; }
+        public bool RequestHandled { get; set; }
     }
 
     public class BuffRemoveOptions
     {
-        public BuffBase Buff { get; set; }
-        public bool RequestHandled { get; set; }
-
         public BuffRemoveOptions()
         {
-
         }
 
         public BuffRemoveOptions(BuffBase buff)
         {
             Buff = buff;
         }
+
+        public BuffBase Buff { get; set; }
+        public bool RequestHandled { get; set; }
     }
 
     public class BuffController : MonoBehaviour
     {
+        private BuffContainer Container;
         public Action<BuffAddOptions> OnBeforeBuffAdd;
 
         public Action<BuffRemoveOptions> OnBeforeBuffRemoved;
 
         public Action<ActiveBuff> OnBuffAdded;
 
-        public Action<ActiveBuff> OnBuffRemoved;
-
         public Action<ActiveBuff> OnBuffDurationReset;
+
+        public Action<ActiveBuff> OnBuffRemoved;
 
         public Action<ActiveBuff> OnBuffStackAdded;
 
@@ -68,9 +67,7 @@ namespace Features.Buffs
 
         public Action<float> OnTimerTick;
 
-        private BuffContainer Container;
-
-        private BuffUIManager UIManager;
+        // private BuffUIManager UIManager;
 
         public IReadOnlyList<ActiveBuff> ActiveBuffs => Container.Buffs.Where(x => !x.IsDepleted).ToList();
 
@@ -92,24 +89,24 @@ namespace Features.Buffs
 
             OnTimerTick?.Invoke(Time.deltaTime);
         }
-
-        public void WithUI(IBuffUIData prefab, Transform container)
-        {
-            UIManager = new BuffUIManager();
-
-            UIManager.SetSource(this,
-                () =>
-                {
-                    var instance = Instantiate(prefab.gameObject, container);
-                    return instance.GetComponentInChildren<IBuffUIData>();
-                },
-                controller => DestroyImmediate(controller.gameObject));
-        }
-
-        public void RemoveUI()
-        {
-            UIManager.RemoveSource();
-        }
+        //
+        // public void WithUI(IBuffUIData prefab, Transform container)
+        // {
+        //     UIManager = new BuffUIManager();
+        //
+        //     UIManager.SetSource(this,
+        //         () =>
+        //         {
+        //             var instance = Instantiate(prefab.gameObject, container);
+        //             return instance.GetComponentInChildren<IBuffUIData>();
+        //         },
+        //         controller => DestroyImmediate(controller.gameObject));
+        // }
+        //
+        // public void RemoveUI()
+        // {
+        //     UIManager.RemoveSource();
+        // }
 
         public void Remove(BuffRemoveOptions opt)
         {

@@ -23,7 +23,7 @@ public class UIManager : MonoBehaviour
 
     public TextMeshProUGUI HPText;
 
-    public BaseBuffUIData BuffPrefab;
+    // public BaseBuffUIData BuffPrefab;
 
     public BaseInventoryUIData InventoryPrefab;
 
@@ -48,7 +48,7 @@ public class UIManager : MonoBehaviour
         hpController.OnDamage += OnHealthChanged;
         hpController.OnHeal += OnHealthChanged;
 
-        buffController.WithUI(BuffPrefab, BuffContainer.transform);
+        // buffController.WithUI(BuffPrefab, BuffContainer.transform);
 
         // inventoryController.WithUI(InventoryPrefab, InventoryContainer.transform);
 

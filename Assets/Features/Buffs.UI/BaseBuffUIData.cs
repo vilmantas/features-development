@@ -1,7 +1,6 @@
-using Features.Buffs.UI;
 using UnityEngine;
 
-namespace Features.Buffs
+namespace Features.Buffs.UI
 {
     public class BaseBuffUIData : MonoBehaviour, IBuffUIData
     {

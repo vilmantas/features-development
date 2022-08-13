@@ -1,16 +1,15 @@
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Utilities.RadialTimer;
 
-namespace Features.Buffs.Utilities
+namespace Features.Buffs.UI.Utilities
 {
     public class BuffUIDataController : BaseBuffUIData
     {
         private Image m_Sprite;
-        private TextMeshProUGUI m_StacksText;
         private Transform m_StacksContainer;
+        private TextMeshProUGUI m_StacksText;
         private RadialTimerController m_TimerController;
 
         public override void BuffTickCallback(ActiveBuff buff)

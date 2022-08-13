@@ -1,5 +1,5 @@
 using Features.Buffs;
-using Features.Buffs.Utilities;
+using Features.Buffs.UI.Utilities;
 using UnityEngine;
 
 namespace DebugScripts.Buffs
@@ -13,7 +13,7 @@ namespace DebugScripts.Buffs
 
         private void Start()
         {
-            BuffController.WithUI(UIPrefab, UIContainer.transform);
+            // BuffController.WithUI(UIPrefab, UIContainer.transform);
         }
     }
 }
