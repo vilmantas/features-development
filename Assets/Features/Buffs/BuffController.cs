@@ -67,8 +67,6 @@ namespace Features.Buffs
 
         public Action<float> OnTimerTick;
 
-        // private BuffUIManager UIManager;
-
         public IReadOnlyList<ActiveBuff> ActiveBuffs => Container.Buffs.Where(x => !x.IsDepleted).ToList();
 
         private void Awake()
@@ -89,24 +87,6 @@ namespace Features.Buffs
 
             OnTimerTick?.Invoke(Time.deltaTime);
         }
-        //
-        // public void WithUI(IBuffUIData prefab, Transform container)
-        // {
-        //     UIManager = new BuffUIManager();
-        //
-        //     UIManager.SetSource(this,
-        //         () =>
-        //         {
-        //             var instance = Instantiate(prefab.gameObject, container);
-        //             return instance.GetComponentInChildren<IBuffUIData>();
-        //         },
-        //         controller => DestroyImmediate(controller.gameObject));
-        // }
-        //
-        // public void RemoveUI()
-        // {
-        //     UIManager.RemoveSource();
-        // }
 
         public void Remove(BuffRemoveOptions opt)
         {

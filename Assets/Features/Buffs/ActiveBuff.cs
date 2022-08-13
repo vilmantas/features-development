@@ -8,11 +8,7 @@ namespace Features.Buffs
     {
         public const float BUFF_INTERVAL_MIN = 0.1f;
         internal readonly ResourceContainer Counter;
-        public float OverrideDuration { get; set; }
         public readonly BuffBase Metadata;
-
-        public float Duration =>
-            OverrideDuration > 0 ? OverrideDuration : Metadata.Duration;
 
         private Action<ActiveBuff> m_OnDurationReset;
         private Action<ActiveBuff> m_OnStackAdded;
@@ -38,6 +34,11 @@ namespace Features.Buffs
             ResetDuration();
         }
 
+        public float OverrideDuration { get; set; }
+
+        public float Duration =>
+            OverrideDuration > 0 ? OverrideDuration : Metadata.Duration;
+
         public GameObject Source { get; }
 
         public float DurationLeft { get; private set; }
@@ -47,6 +48,8 @@ namespace Features.Buffs
         public bool IsDepleted => Counter.IsEmpty;
 
         public int Stacks => Counter.Current;
+
+        public int MaxStacks => Counter.Max;
 
         internal void RegisterCallbacks(
             Action<ActiveBuff> onStackRemoved,

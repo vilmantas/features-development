@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace DebugScripts.Buffs
 {
-    public class BuffDebug : MonoBehaviour
+    public class BuffDebugHelper : MonoBehaviour
     {
         private BuffController BuffController;
 
@@ -14,19 +14,19 @@ namespace DebugScripts.Buffs
 
         public void GiveTicker()
         {
-            BuffController.Add(new BuffAddOptions(new BuffBase("Simple", 5f), gameObject));
+            BuffController.Add(new BuffAddOptions(new BuffBase("Simple", 5f), gameObject) {Stacks = 1});
         }
 
         public void GiveTacker()
         {
-            BuffController.Add(new (new BuffBase("Stackable", 5f, 5), gameObject));
+            BuffController.Add(new(new BuffBase("Stackable", 5f, 5), gameObject) {Stacks = 1});
         }
 
         public void GiveTicking()
         {
             var buffInterval = new BuffBase("Intervaling", 5f).WithInterval(0.5f);
 
-            BuffController.Add(new (buffInterval, gameObject));
+            BuffController.Add(new(buffInterval, gameObject) {Stacks = 1});
         }
     }
 }

@@ -297,6 +297,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -469,8 +470,9 @@ GameObject:
   - component: {fileID: 495231271}
   - component: {fileID: 495231273}
   - component: {fileID: 495231272}
+  - component: {fileID: 495231274}
   m_Layer: 5
-  m_Name: f
+  m_Name: buff_container
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -493,7 +495,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -218, y: -34}
+  m_AnchoredPosition: {x: -788, y: 258}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &495231272
@@ -534,6 +536,20 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &495231274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 495231270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45c245763f3f4881899e0a0277594152, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Character: {fileID: 1995373482}
+  UIPrefab: {fileID: 4186330393480318477, guid: 94fa097a8aa35c74ab6874eb8626542c, type: 3}
 --- !u!1 &524009280
 GameObject:
   m_ObjectHideFlags: 0
@@ -1278,21 +1294,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 952b78e4fede4ded8d215dc6dc237a3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnBuffAdded:
-    m_PersistentCalls:
-      m_Calls: []
-  OnBuffRemoved:
-    m_PersistentCalls:
-      m_Calls: []
-  OnBuffStackAdded:
-    m_PersistentCalls:
-      m_Calls: []
-  OnBuffStackRemoved:
-    m_PersistentCalls:
-      m_Calls: []
-  OnTickOccured:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &1604411246
 GameObject:
   m_ObjectHideFlags: 0
@@ -1436,9 +1437,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f7f7c25902b4016b1f4f50ee9205b16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BuffController: {fileID: 1416664286}
-  UIPrefab: {fileID: 4186330393480318477, guid: 94fa097a8aa35c74ab6874eb8626542c, type: 3}
-  UIContainer: {fileID: 495231270}
 --- !u!1 &2001924333
 GameObject:
   m_ObjectHideFlags: 0

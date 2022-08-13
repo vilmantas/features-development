@@ -26,7 +26,7 @@ namespace Features.Buffs.UI.Utilities
             m_StacksText = GetComponentInChildren<TextMeshProUGUI>();
             m_Sprite = transform.Find("sprite").GetComponent<Image>();
 
-            m_StacksContainer.gameObject.SetActive(buff.Stacks > 1);
+            m_StacksContainer.gameObject.SetActive(buff.MaxStacks > 1);
 
             if (buff.Metadata.Sprite != null)
             {
