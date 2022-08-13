@@ -1,18 +1,14 @@
 using Features.Equipment;
-using Features.Equipment.UI;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace DebugScripts.Equipment
 {
     public class EquipmentDebug : MonoBehaviour
     {
-        public Transform UIContainer;
+        [FormerlySerializedAs("FakeItem")] public DebugItem_SO debugItem;
 
-        public BaseEquipmentUIData UIPrefab;
-
-        public FakeItem_SO FakeItem;
-
-        public FakeItem_SO Arrows;
+        public DebugItem_SO Arrows;
 
         private EquipmentController m_EquipmentController;
 
@@ -27,7 +23,7 @@ namespace DebugScripts.Equipment
             var request = new EquipRequest()
             {
                 SlotType = "Basef",
-                ItemInstance = FakeItem.GetInstance.EquipmentData
+                ItemInstance = debugItem.GetInstance.DebugEquipmentData
             };
 
             m_EquipmentController.HandleEquipRequest(request);
@@ -53,7 +49,7 @@ namespace DebugScripts.Equipment
             var request = new EquipRequest()
             {
                 SlotType = "Basef2",
-                ItemInstance = arrows.EquipmentData,
+                ItemInstance = arrows.DebugEquipmentData,
             };
 
             m_EquipmentController.HandleEquipRequest(request);

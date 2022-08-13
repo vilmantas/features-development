@@ -1,13 +1,14 @@
 using System;
+using Features.Inventory.UI;
 using Features.Inventory.UI.Utilities;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Utilities.ItemsContainer;
 
-namespace Features.Inventory.UI
+namespace DebugScripts
 {
-    public class InventoryUIDataController : BaseInventoryUIData
+    public class InventoryDebugUIDataController : BaseInventoryUIData
     {
         [HideInInspector] public TextMeshProUGUI Title;
 

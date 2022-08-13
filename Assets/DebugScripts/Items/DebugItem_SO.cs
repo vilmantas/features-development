@@ -3,7 +3,7 @@ using UnityEngine;
 namespace DebugScripts
 {
     [CreateAssetMenu(menuName = "Fake Item", fileName = "rename_me")]
-    public class FakeItem_SO : ScriptableObject
+    public class DebugItem_SO : ScriptableObject
     {
         public string Name;
 
@@ -13,8 +13,8 @@ namespace DebugScripts
 
         public GameObject Model;
 
-        public FakeInventoryItemMetadata GetMetadata => new(Name, Sprite, Model, MaxStack);
+        public DebugItemMetadata GetMetadata => new(Name, Sprite, Model, "", "", true);
 
-        public FakeInventoryItemInstance GetInstance => new(GetMetadata);
+        public DebugItemInstance GetInstance => new(GetMetadata);
     }
 }
