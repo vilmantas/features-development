@@ -13,7 +13,7 @@ namespace DebugScripts
 
         public GameObject Model;
 
-        public DebugItemMetadata GetMetadata => new(Name, Sprite, Model, "", "", true);
+        public DebugItemMetadata GetMetadata => new(Name, Sprite, Model, "", "", MaxStack > 1, MaxStack);
 
         public DebugItemInstance GetInstance => new(GetMetadata);
     }

@@ -4,7 +4,7 @@ using UnityEngine.Serialization;
 
 namespace DebugScripts.Equipment
 {
-    public class EquipmentDebug : MonoBehaviour
+    public class EquipmentDebugCharacter : MonoBehaviour
     {
         [FormerlySerializedAs("FakeItem")] public DebugItem_SO debugItem;
 

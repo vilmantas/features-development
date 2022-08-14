@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -167,6 +167,7 @@ GameObject:
   - component: {fileID: 311179169}
   - component: {fileID: 311179172}
   - component: {fileID: 311179171}
+  - component: {fileID: 311179173}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -272,6 +273,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
   m_VerticalFit: 2
+--- !u!114 &311179173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 311179167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa7eacbd7e47416bb60b5916296e5240, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Character: {fileID: 593006911}
+  UIPrefab: {fileID: 7215477826357433508, guid: c036800cb7a1e0b458428a7bca88cf47, type: 3}
 --- !u!1 &593006906
 GameObject:
   m_ObjectHideFlags: 0
@@ -384,9 +399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31a13c80c4d94fd9ba818a8fb718298d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UIContainer: {fileID: 311179168}
-  UIPrefab: {fileID: 7215477826357433508, guid: c036800cb7a1e0b458428a7bca88cf47, type: 3}
-  FakeItem: {fileID: 11400000, guid: 2712bdda30181b84cb636ff0de239be0, type: 2}
+  debugItem: {fileID: 11400000, guid: 2712bdda30181b84cb636ff0de239be0, type: 2}
   Arrows: {fileID: 11400000, guid: 28a1367cd23772544a0090f7372058a0, type: 2}
 --- !u!1 &638706971
 GameObject:
@@ -549,6 +562,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0

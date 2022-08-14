@@ -29,18 +29,18 @@ namespace DebugScripts
 
         public bool Combine(IEquipmentItemInstance other)
         {
-            if (other is not DebugItemInstance otherItem) return false;
+            if (other is not DebugEquipmentData otherItem) return false;
 
-            if (!otherItem.Equals(Parent)) return false;
+            if (!otherItem.Parent.Equals(Parent)) return false;
 
             if (!IsStackable) return false;
 
-            var amountToAdd = otherItem.DebugEquipmentData.CurrentAmount;
+            var amountToAdd = otherItem.CurrentAmount;
 
-            Parent.StorageData.StackableData.Receive(otherItem.DebugEquipmentData.CurrentAmount,
+            Parent.StorageData.StackableData.Receive(otherItem.CurrentAmount,
                 out int leftovers);
 
-            otherItem.StorageData.StackableData.Reduce(otherItem.DebugEquipmentData.CurrentAmount - leftovers, out _);
+            otherItem.Parent.StorageData.StackableData.Reduce(otherItem.CurrentAmount - leftovers, out _);
 
             return true;
         }
