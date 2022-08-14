@@ -33,7 +33,10 @@ namespace Features.Character
             m_BuffController.OnBuffTickOccurred += HandleBuffTick;
             m_BuffController.OnBuffDurationReset += HandleBuffDurationReset;
 
-            m_EquipmentController.OnItemEquipped += HandleItemEquipped;
+            if (m_EquipmentController != null)
+            {
+                m_EquipmentController.OnItemEquipped += HandleItemEquipped;
+            }
         }
 
         private void HandleItemEquipped(EquipResult obj)
@@ -51,12 +54,12 @@ namespace Features.Character
 
         private void HandleBuffDurationReset(ActiveBuff buff)
         {
-            ActivateBuff(buff, impl => impl.OnDurationReset);
+            BuffActivationHelper.Activate(buff, impl => impl.OnDurationReset, transform.root.gameObject);
         }
 
         private void HandleBuffTick(ActiveBuff buff)
         {
-            ActivateBuff(buff, impl => impl.OnTick);
+            BuffActivationHelper.Activate(buff, impl => impl.OnTick, transform.root.gameObject);
         }
 
         private void HandleBuffAddRequest(BuffAddOptions opt)
@@ -66,33 +69,12 @@ namespace Features.Character
 
         private void HandleBuffRemoved(ActiveBuff buff)
         {
-            ActivateBuff(buff, impl => impl.OnRemove);
+            BuffActivationHelper.Activate(buff, impl => impl.OnRemove, transform.root.gameObject);
         }
 
         private void HandleBuffAdded(ActiveBuff buff)
         {
-            ActivateBuff(buff, impl => impl.OnReceive);
-        }
-
-        private void ActivateBuff(ActiveBuff buff, Func<BuffImplementation, Action<BuffActivationPayload>> action)
-        {
-            if (!ImplementationRegistered(buff, out var implementation)) return;
-
-            var payload = new BuffActivationPayload(buff.Source, transform.root.gameObject, buff);
-
-            action(implementation)?.Invoke(payload);
-        }
-
-        private static bool ImplementationRegistered(ActiveBuff buff, out BuffImplementation implementation)
-        {
-            if (!BuffImplementationRegistry.Implementations.TryGetValue(buff.Metadata.Name,
-                    out implementation))
-            {
-                Debug.Log($"Implementation missing for buff: {buff.Metadata.Name}");
-            }
-
-            return BuffImplementationRegistry.Implementations.TryGetValue(buff.Metadata.Name,
-                out implementation);
+            BuffActivationHelper.Activate(buff, impl => impl.OnReceive, transform.root.gameObject);
         }
     }
 }

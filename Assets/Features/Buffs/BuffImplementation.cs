@@ -2,8 +2,18 @@ using System;
 
 namespace Features.Buffs
 {
-    public class BuffImplementation
+    public sealed class BuffImplementation
     {
+        public readonly string Name;
+
+        public readonly Action<BuffActivationPayload> OnDurationReset;
+
+        public readonly Action<BuffActivationPayload> OnReceive;
+
+        public readonly Action<BuffActivationPayload> OnRemove;
+
+        public readonly Action<BuffActivationPayload> OnTick;
+
         public BuffImplementation(string name,
             Action<BuffActivationPayload> onReceive,
             Action<BuffActivationPayload> onRemove,
@@ -16,15 +26,5 @@ namespace Features.Buffs
             OnTick = onTick;
             OnDurationReset = onDurationReset;
         }
-
-        public string Name { get; }
-
-        public Action<BuffActivationPayload> OnReceive { get; }
-
-        public Action<BuffActivationPayload> OnRemove { get; }
-
-        public Action<BuffActivationPayload> OnTick { get; }
-
-        public Action<BuffActivationPayload> OnDurationReset { get; }
     }
 }

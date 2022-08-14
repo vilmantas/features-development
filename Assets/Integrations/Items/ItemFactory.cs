@@ -38,7 +38,8 @@ namespace Features.Items
                 prefab.MainSlot,
                 prefab.SecondarySlot,
                 prefab.ModelPrefab,
-                prefab.Buffs.Select(x => x.Base).ToList());
+                prefab.Buffs.Select(x => x.Base).ToList(),
+                prefab.Action.Base);
         }
 
         public static ItemInstance ToInstance(ItemMetadata metadata, int count)

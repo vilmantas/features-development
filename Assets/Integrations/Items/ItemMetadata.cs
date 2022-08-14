@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Features.Actions;
 using Features.Buffs;
 using Features.Equipment;
 using Features.Inventory.UI.Utilities;
@@ -13,7 +14,7 @@ namespace Features.Items
         public readonly Guid Id = Guid.NewGuid();
 
         public ItemMetadata(string name, Sprite sprite, int maxStack, StatGroup stats, string mainSlot,
-            string secondarySlot, GameObject modelPrefab, List<BuffBase> buffs)
+            string secondarySlot, GameObject modelPrefab, List<BuffBase> buffs, ActionBase action)
         {
             Name = name;
             Sprite = sprite;
@@ -24,9 +25,11 @@ namespace Features.Items
             IsStackable = MaxStack > 1;
             ModelPrefab = modelPrefab;
             Buffs = buffs;
+            Action = action;
         }
 
-        public ItemMetadata(string name, Sprite sprite, int maxStack, GameObject modelPrefab, List<BuffBase> buffs)
+        public ItemMetadata(string name, Sprite sprite, int maxStack, GameObject modelPrefab, List<BuffBase> buffs,
+            ActionBase action)
         {
             Name = name;
             Sprite = sprite;
@@ -37,6 +40,7 @@ namespace Features.Items
             IsStackable = MaxStack > 1;
             ModelPrefab = modelPrefab;
             Buffs = buffs;
+            Action = action;
         }
 
         public StatGroup Stats { get; }
@@ -44,6 +48,7 @@ namespace Features.Items
         public ItemInstance ToInstance => new(this);
 
         public List<BuffBase> Buffs { get; }
+        public ActionBase Action { get; }
         public GameObject ModelPrefab { get; }
         public string MainSlot { get; }
         public string SecondarySlot { get; }

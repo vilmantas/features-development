@@ -20,4 +20,6 @@ MonoBehaviour:
   Sprite: {fileID: 0}
   ModelPrefab: {fileID: 0}
   Stats: []
-  Buffs: []
+  Buffs:
+  - {fileID: 11400000, guid: f8f868495d5d11145b3191830b66b886, type: 2}
+  Action: {fileID: 11400000, guid: 9887226a8d2271648a035def669f9fde, type: 2}

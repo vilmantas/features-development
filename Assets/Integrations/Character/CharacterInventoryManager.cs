@@ -1,3 +1,4 @@
+using Features.Actions;
 using Features.Equipment;
 using Features.Inventory;
 using Features.Items;
@@ -7,7 +8,9 @@ namespace Features.Character
 {
     public class CharacterInventoryManager : MonoBehaviour
     {
+        private ActionsController m_ActionsController;
         private EquipmentController m_EquipmentController;
+
         private InventoryController m_InventoryController;
 
         private void Awake()
@@ -18,13 +21,31 @@ namespace Features.Character
 
             m_EquipmentController = root.GetComponentInChildren<EquipmentController>();
 
+            m_ActionsController = root.GetComponentInChildren<ActionsController>();
+
             Subscribe();
         }
 
         private void Subscribe()
         {
-            m_EquipmentController.OnItemEquipped += OnItemEquipped;
-            m_EquipmentController.OnItemUnequipRequested += OnItemUnequipRequested;
+            if (m_EquipmentController)
+            {
+                m_EquipmentController.OnItemEquipped += OnItemEquipped;
+
+                m_EquipmentController.OnItemUnequipRequested += OnItemUnequipRequested;
+            }
+
+            if (m_ActionsController)
+            {
+                m_ActionsController.OnActionActivated += OnActionActivated;
+            }
+        }
+
+        private void OnActionActivated(ActionActivation obj)
+        {
+            if (obj.Payload.Source is not ItemInstance item) return;
+
+            m_InventoryController.HandleRequest(ChangeRequestFactory.RemoveExact(item.StorageData));
         }
 
         private void OnItemEquipped(EquipResult result)

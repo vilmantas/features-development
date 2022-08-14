@@ -2,11 +2,15 @@ using UnityEngine;
 
 namespace Features.Equipment
 {
-    public interface IEquipmentItemMetadata
+    public interface IEquipmentItemMetadataBase
     {
-        GameObject ModelPrefab { get; }
         string MainSlot { get; }
         string SecondarySlot { get; }
+    }
+
+    public interface IEquipmentItemMetadata : IEquipmentItemMetadataBase
+    {
+        GameObject ModelPrefab { get; }
         Sprite Sprite { get; }
         bool IsStackable { get; }
     }

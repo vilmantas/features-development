@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Features.Actions;
 using Features.Buffs;
 using Features.Stats.Base;
 using UnityEngine;
@@ -17,6 +18,7 @@ namespace Features.Items
         public GameObject ModelPrefab;
         public List<Stat> Stats;
         public Buff_SO[] Buffs;
+        public Action_SO Action;
 
         public ItemInstance MakeInstance()
         {
