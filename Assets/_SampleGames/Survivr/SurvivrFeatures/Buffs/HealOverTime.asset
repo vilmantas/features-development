@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: HealOverTime
   Duration: 10
-  MaxStacks: 0
+  MaxStacks: 1
+  Interval: 1
+  ExecuteTickImmediately: 0
   Sprite: {fileID: 0}

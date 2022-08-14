@@ -1,4 +1,5 @@
 using System;
+using Features.Actions;
 using Features.Buffs;
 using Features.Equipment;
 using Features.Items;
@@ -8,6 +9,7 @@ namespace Features.Character
 {
     public class CharacterBuffsManager : MonoBehaviour
     {
+        private ActionsController m_ActionsController;
         private BuffController m_BuffController;
 
         private EquipmentController m_EquipmentController;
@@ -19,6 +21,8 @@ namespace Features.Character
             m_BuffController = root.GetComponentInChildren<BuffController>();
 
             m_EquipmentController = root.GetComponentInChildren<EquipmentController>();
+
+            m_ActionsController = root.GetComponentInChildren<ActionsController>();
 
             Subscribe();
         }
@@ -33,9 +37,24 @@ namespace Features.Character
             m_BuffController.OnBuffTickOccurred += HandleBuffTick;
             m_BuffController.OnBuffDurationReset += HandleBuffDurationReset;
 
-            if (m_EquipmentController != null)
+            if (m_EquipmentController)
             {
                 m_EquipmentController.OnItemEquipped += HandleItemEquipped;
+            }
+
+            if (m_ActionsController)
+            {
+                m_ActionsController.OnActionActivated += OnActionActivated;
+            }
+        }
+
+        private void OnActionActivated(ActionActivation obj)
+        {
+            if (obj.Payload.Source is not ItemInstance item) return;
+
+            foreach (var metadataBuff in item.Metadata.Buffs)
+            {
+                m_BuffController.AttemptAdd(new BuffAddOptions(metadataBuff, transform.root.gameObject, 1));
             }
         }
 

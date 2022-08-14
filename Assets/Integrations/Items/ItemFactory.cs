@@ -38,7 +38,7 @@ namespace Features.Items
                 prefab.MainSlot,
                 prefab.SecondarySlot,
                 prefab.ModelPrefab,
-                prefab.Buffs.Select(x => x.Base).ToList(),
+                prefab.Buffs.Select(x => x.Base.WithInterval(x.Interval, x.ExecuteTickImmediately)).ToList(),
                 prefab.Action.Base);
         }
 

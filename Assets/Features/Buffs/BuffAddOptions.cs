@@ -8,12 +8,6 @@ namespace Features.Buffs
         {
         }
 
-        public BuffAddOptions(BuffBase buff, GameObject source)
-        {
-            Buff = buff;
-            Source = source;
-        }
-
         public BuffAddOptions(BuffBase buff, GameObject source, int stacks)
         {
             Buff = buff;
