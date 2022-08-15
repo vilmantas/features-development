@@ -56,8 +56,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8528586060890158862}
   - component: {fileID: 3657337074907592799}
-  - component: {fileID: 3493790554043441575}
   - component: {fileID: 459505154533542153}
+  - component: {fileID: 3493790554043441575}
   m_Layer: 0
   m_Name: pref_enemy_sprinter
   m_TagString: Untagged
@@ -105,18 +105,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &3493790554043441575
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8528586060890158857}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b276d59467744a4946c896c1f1a4bfe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &459505154533542153
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -133,6 +121,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &3493790554043441575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8528586060890158857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b276d59467744a4946c896c1f1a4bfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DeathParticles: {fileID: 3362278499367183013, guid: 352820cbc78e9b44eab59bbb2551b5fe, type: 3}
 --- !u!1 &8528586061099411775
 GameObject:
   m_ObjectHideFlags: 0

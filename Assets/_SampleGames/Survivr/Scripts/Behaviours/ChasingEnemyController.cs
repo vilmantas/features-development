@@ -11,13 +11,10 @@ namespace _SampleGames.Survivr
 {
     public class ChasingEnemyController : EnemyController
     {
-        private ParticleSystem m_DeathParticles;
-
         private HealthController m_Health;
 
         private bool m_IsExpended;
 
-        private Transform m_Mesh;
         private NavMeshAgent m_NavMeshAgent;
 
         private Transform m_Target;
@@ -26,7 +23,7 @@ namespace _SampleGames.Survivr
 
         private void Awake()
         {
-            m_Mesh = transform.Find("model");
+            MeshTransform = transform.Find("model").GetComponentInChildren<MeshRenderer>().transform;
 
             m_Health = GetComponentInChildren<HealthController>();
 
@@ -35,8 +32,6 @@ namespace _SampleGames.Survivr
             m_Health.OnDamage += OnDamage;
 
             m_NavMeshAgent = GetComponent<NavMeshAgent>();
-
-            m_DeathParticles = GetComponentInChildren<ParticleSystem>();
 
             m_Text = GetComponentInChildren<TextMeshPro>();
         }
@@ -97,17 +92,7 @@ namespace _SampleGames.Survivr
 
         private void BeginDestroy()
         {
-            m_IsExpended = true;
-
-            m_Mesh.gameObject.SetActive(false);
-
-            m_NavMeshAgent.isStopped = true;
-
-            m_Text.enabled = false;
-
-            m_DeathParticles.Play();
-
-            Destroy(gameObject, 6f);
+            DestroyWithParticles();
         }
 
         private IEnumerator FollowTarget()

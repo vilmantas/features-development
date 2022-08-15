@@ -13,13 +13,9 @@ namespace _SampleGames.Survivr
     {
         public GameObject BulletPrefab;
 
-        private ParticleSystem m_DeathParticles;
-
         private HealthController m_Health;
 
         private bool m_IsExpended;
-
-        private Transform m_Mesh;
 
         private NavMeshAgent m_NavMeshAgent;
 
@@ -35,7 +31,7 @@ namespace _SampleGames.Survivr
 
         private void Awake()
         {
-            m_Mesh = transform.Find("model");
+            MeshTransform = transform.Find("model").GetComponentInChildren<MeshRenderer>().transform;
 
             m_Health = GetComponentInChildren<HealthController>();
 
@@ -45,23 +41,7 @@ namespace _SampleGames.Survivr
 
             m_NavMeshAgent = GetComponent<NavMeshAgent>();
 
-            m_DeathParticles = GetComponentInChildren<ParticleSystem>();
-
             m_Text = GetComponentInChildren<TextMeshPro>();
-        }
-
-
-        private void OnDrawGizmos()
-        {
-            var heading = m_TargetTransform.position - transform.position;
-
-            var distance = heading.magnitude;
-
-            var direction = heading / distance;
-
-            Gizmos.DrawLine(transform.position + heading, transform.position + heading * 10f);
-
-            Gizmos.DrawWireSphere(m_TargetTransform.position, 2f);
         }
 
         private void OnTriggerEnter(Collider collision)
@@ -108,6 +88,8 @@ namespace _SampleGames.Survivr
         {
             while (true)
             {
+                if (m_IsExpended) break;
+
                 if (m_NavMeshAgent.velocity != Vector3.zero)
                 {
                     yield return new WaitForSeconds(0.1f);
@@ -147,17 +129,7 @@ namespace _SampleGames.Survivr
 
         private void BeginDestroy()
         {
-            m_IsExpended = true;
-
-            m_Mesh.gameObject.SetActive(false);
-
-            m_NavMeshAgent.isStopped = true;
-
-            m_Text.enabled = false;
-
-            m_DeathParticles.Play();
-
-            Destroy(gameObject, 6f);
+            DestroyWithParticles();
         }
 
         private IEnumerator FollowTarget()

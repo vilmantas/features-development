@@ -249,6 +249,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BuffsDisplay
       objectReference: {fileID: 0}
+    - target: {fileID: 3142378811540882892, guid: 275b70ab24bcd7b48a14c9ea739c2fc6, type: 3}
+      propertyPath: m_CellSize.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3142378811540882892, guid: 275b70ab24bcd7b48a14c9ea739c2fc6, type: 3}
+      propertyPath: m_CellSize.y
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 3142378811540882893, guid: 275b70ab24bcd7b48a14c9ea739c2fc6, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -432,6 +440,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1526148316031802950, guid: b807a82574d59e74392ac8ff2cb44e65, type: 3}
+      propertyPath: m_CellSize.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1526148316031802950, guid: b807a82574d59e74392ac8ff2cb44e65, type: 3}
+      propertyPath: m_CellSize.y
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: b807a82574d59e74392ac8ff2cb44e65, type: 3}
@@ -518,11 +534,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8756330633999901130, guid: ddc88caa6f28341b68b1488fa6a92260, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -569
+      value: -921
       objectReference: {fileID: 0}
     - target: {fileID: 8756330633999901130, guid: ddc88caa6f28341b68b1488fa6a92260, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 284
+      value: 494
       objectReference: {fileID: 0}
     - target: {fileID: 8756330633999901130, guid: ddc88caa6f28341b68b1488fa6a92260, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
