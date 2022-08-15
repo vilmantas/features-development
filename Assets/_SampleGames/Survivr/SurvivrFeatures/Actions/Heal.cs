@@ -1,5 +1,6 @@
 using Features.Actions;
 using Features.Health;
+using Features.Items;
 using UnityEngine;
 
 namespace _SampleGames.Survivr.SurvivrFeatures.Actions
@@ -30,7 +31,24 @@ namespace _SampleGames.Survivr.SurvivrFeatures.Actions
 
         private static HealActionPayload PayloadMake(ActionActivationPayload originalPayload)
         {
-            return new(originalPayload, 10);
+            var healAmount = 5;
+
+            if (originalPayload.Source is ItemInstance item)
+            {
+                return MakeItemPayload(item, originalPayload);
+            }
+
+            return new(originalPayload, healAmount);
+        }
+
+        private static HealActionPayload MakeItemPayload(ItemInstance item, ActionActivationPayload original)
+        {
+            if (item.Metadata.Name == "Healing Potion")
+            {
+                return new HealActionPayload(original, 10);
+            }
+
+            return new HealActionPayload(original, 5);
         }
 
         public class HealActionPayload : ActionActivationPayload

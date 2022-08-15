@@ -20,5 +20,16 @@ namespace Features.Actions
 
             OnActionActivated?.Invoke(activation);
         }
+
+        public void DoAction(ActionActivationPayload payload)
+        {
+            var activation = ActionActivationHelper.GetActivation(payload);
+
+            OnBeforeActionActivation?.Invoke(activation);
+
+            activation.Activate();
+
+            OnActionActivated?.Invoke(activation);
+        }
     }
 }

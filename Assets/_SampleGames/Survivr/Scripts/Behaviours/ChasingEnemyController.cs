@@ -1,52 +1,39 @@
-using System;
 using System.Collections;
+using _SampleGames.Survivr.SurvivrFeatures.Actions;
+using Features.Actions;
 using Features.Health;
 using Features.Health.Events;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
-using Random = UnityEngine.Random;
 
 namespace _SampleGames.Survivr
 {
-    public class EnemyController : MonoBehaviour
-    {
-        public virtual void Initialize(int health, CharacterController target)
-        {
-        }
-
-        private void OnDestroy()
-        {
-            StopAllCoroutines();
-        }
-    }
-    
     public class ChasingEnemyController : EnemyController
     {
-        private NavMeshAgent m_NavMeshAgent;
-
         private ParticleSystem m_DeathParticles;
+
+        private HealthController m_Health;
+
+        private bool m_IsExpended;
+
+        private Transform m_Mesh;
+        private NavMeshAgent m_NavMeshAgent;
 
         private Transform m_Target;
 
         private TextMeshPro m_Text;
 
-        private bool m_IsExpended;
-
-        private Transform m_Mesh;
-
-        private HealthController m_Health;
-        
         private void Awake()
         {
             m_Mesh = transform.Find("model");
 
             m_Health = GetComponentInChildren<HealthController>();
-            
+
             m_Health.OnDeath += HandleDeath;
-            
+
             m_Health.OnDamage += OnDamage;
-                
+
             m_NavMeshAgent = GetComponent<NavMeshAgent>();
 
             m_DeathParticles = GetComponentInChildren<ParticleSystem>();
@@ -54,12 +41,23 @@ namespace _SampleGames.Survivr
             m_Text = GetComponentInChildren<TextMeshPro>();
         }
 
+        private void OnTriggerEnter(Collider collision)
+        {
+            var colliderRoot = collision.transform.root;
+
+            var characterController = colliderRoot.GetComponent<CharacterController>();
+
+            if (characterController == null) return;
+
+            Damage(characterController);
+        }
+
         public override void Initialize(int health, CharacterController target)
         {
             m_Health.Initialize(health, health);
-            
+
             SetHealthText(m_Health.CurrentHealth, m_Health.MaxHealth);
-            
+
             m_Target = target.transform;
 
             m_NavMeshAgent.speed = Random.Range(target.Speed - 3, target.Speed + 1);
@@ -85,12 +83,14 @@ namespace _SampleGames.Survivr
         private void Damage(CharacterController target)
         {
             if (m_IsExpended) return;
-            
-            var healthController = target.GetComponentInChildren<HealthController>();
 
-            if (healthController == null) return;
+            var actionsController = target.GetComponentInChildren<ActionsController>();
 
-            healthController.Damage(3);
+            if (actionsController == null) return;
+
+            var payload = new ActionActivationPayload(new("Damage"), this, target.transform.root.gameObject);
+
+            actionsController.DoAction(new DamageActionPayload(payload, 5));
 
             BeginDestroy();
         }
@@ -98,15 +98,15 @@ namespace _SampleGames.Survivr
         private void BeginDestroy()
         {
             m_IsExpended = true;
-            
+
             m_Mesh.gameObject.SetActive(false);
 
             m_NavMeshAgent.isStopped = true;
 
             m_Text.enabled = false;
-            
+
             m_DeathParticles.Play();
-            
+
             Destroy(gameObject, 6f);
         }
 
@@ -115,23 +115,11 @@ namespace _SampleGames.Survivr
             while (true)
             {
                 if (m_IsExpended) break;
-                
+
                 m_NavMeshAgent.SetDestination(m_Target.position);
 
                 yield return new WaitForSeconds(0.3f);
             }
         }
-        
-        private void OnTriggerEnter(Collider collision)
-        {
-            var colliderRoot = collision.transform.root;
-
-            var characterController = colliderRoot.GetComponent<CharacterController>();
-
-            if (characterController == null) return;
-            
-            Damage(characterController);
-        }
-
     }
 }

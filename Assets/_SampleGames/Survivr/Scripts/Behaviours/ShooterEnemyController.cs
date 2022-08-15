@@ -9,8 +9,10 @@ using UnityEngine.AI;
 
 namespace _SampleGames.Survivr
 {
-    public class SprinterEnemyController : EnemyController
+    public class ShooterEnemyController : EnemyController
     {
+        public GameObject BulletPrefab;
+
         private ParticleSystem m_DeathParticles;
 
         private HealthController m_Health;
@@ -18,11 +20,18 @@ namespace _SampleGames.Survivr
         private bool m_IsExpended;
 
         private Transform m_Mesh;
+
         private NavMeshAgent m_NavMeshAgent;
 
-        private Transform m_Target;
+        private float m_ShootingDelay = 5f;
+
+        private CharacterController m_Target;
+
+        private Transform m_TargetTransform;
 
         private TextMeshPro m_Text;
+
+        private float m_TimeSinceLastShot = 0f;
 
         private void Awake()
         {
@@ -39,6 +48,20 @@ namespace _SampleGames.Survivr
             m_DeathParticles = GetComponentInChildren<ParticleSystem>();
 
             m_Text = GetComponentInChildren<TextMeshPro>();
+        }
+
+
+        private void OnDrawGizmos()
+        {
+            var heading = m_TargetTransform.position - transform.position;
+
+            var distance = heading.magnitude;
+
+            var direction = heading / distance;
+
+            Gizmos.DrawLine(transform.position + heading, transform.position + heading * 10f);
+
+            Gizmos.DrawWireSphere(m_TargetTransform.position, 2f);
         }
 
         private void OnTriggerEnter(Collider collision)
@@ -58,24 +81,52 @@ namespace _SampleGames.Survivr
 
             SetHealthText(m_Health.CurrentHealth, m_Health.MaxHealth);
 
-            m_Target = target.transform;
+            m_Target = target;
 
-            m_NavMeshAgent.speed = Random.Range(target.Speed + 10, target.Speed + 20);
+            m_TargetTransform = target.transform;
+
+            m_NavMeshAgent.speed = Random.Range(target.Speed - 3, target.Speed + 1);
 
             StartCoroutine(FollowTarget());
+
+            StartCoroutine(ShootingChecker());
+
+            StartCoroutine(ShootingTicker());
         }
 
-        private IEnumerator FollowTarget()
+        private IEnumerator ShootingTicker()
         {
-            var navMesh = m_Target.root.GetComponent<NavMeshAgent>();
-
             while (true)
             {
-                if (m_IsExpended) break;
+                yield return new WaitForSeconds(0.1f);
 
-                m_NavMeshAgent.SetDestination(navMesh.destination);
+                m_TimeSinceLastShot += 0.1f;
+            }
+        }
 
-                yield return new WaitForSeconds(3);
+        private IEnumerator ShootingChecker()
+        {
+            while (true)
+            {
+                if (m_NavMeshAgent.velocity != Vector3.zero)
+                {
+                    yield return new WaitForSeconds(0.1f);
+                    continue;
+                }
+
+                if (m_TimeSinceLastShot <= m_ShootingDelay)
+                {
+                    yield return new WaitForSeconds(0.1f);
+                    continue;
+                }
+
+                m_TimeSinceLastShot = 0f;
+
+                var bullet = Instantiate(BulletPrefab, transform.position, Quaternion.identity);
+
+                bullet.GetComponent<EnemyController>().Initialize(19, m_Target);
+
+                yield return new WaitForSeconds(0.1f);
             }
         }
 
@@ -104,9 +155,21 @@ namespace _SampleGames.Survivr
 
             m_Text.enabled = false;
 
-            // m_DeathParticles.Play();
+            m_DeathParticles.Play();
 
             Destroy(gameObject, 6f);
+        }
+
+        private IEnumerator FollowTarget()
+        {
+            while (true)
+            {
+                if (m_IsExpended) break;
+
+                m_NavMeshAgent.SetDestination(m_TargetTransform.position);
+
+                yield return new WaitForSeconds(0.3f);
+            }
         }
 
         private void Damage(CharacterController target)
@@ -119,7 +182,7 @@ namespace _SampleGames.Survivr
 
             var payload = new ActionActivationPayload(new("Damage"), this, target.transform.root.gameObject);
 
-            actionsController.DoAction(new DamageActionPayload(payload, 2));
+            actionsController.DoAction(new DamageActionPayload(payload, 5));
 
             BeginDestroy();
         }

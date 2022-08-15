@@ -170,6 +170,7 @@ MonoBehaviour:
   PlayerPrefab: {fileID: 5390045234017944949, guid: dbb4ded0b5c6d481283f58b30fbc8f49, type: 3}
   LevelEnemies:
   - {fileID: 1417620701940800581, guid: 0964071f5086c486b8528901466d82a3, type: 3}
+  - {fileID: 313894014799243715, guid: 4acc2b27c3a907541b2479416d240c7b, type: 3}
   - {fileID: 3493790554043441575, guid: fb109aae02db54f0e8758cf103ffd584, type: 3}
   SpawnIntervalSeconds: 2.45
   Spawn: {fileID: 1731677747}
