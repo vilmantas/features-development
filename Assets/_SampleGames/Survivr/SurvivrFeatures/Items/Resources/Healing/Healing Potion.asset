@@ -15,8 +15,8 @@ MonoBehaviour:
   Name: Healing Potion
   MainSlot: 
   SecondarySlot: 
-  Count: 0
-  MaxStack: 0
+  Count: 1
+  MaxStack: 1
   Sprite: {fileID: 0}
   ModelPrefab: {fileID: 0}
   Stats: []

@@ -52,7 +52,7 @@ namespace _SampleGames.Survivr
 
             if (characterController == null) return;
 
-            Damage(characterController);
+            DoDamage(characterController);
         }
 
         public override void Initialize(int health, CharacterController target)
@@ -144,7 +144,7 @@ namespace _SampleGames.Survivr
             }
         }
 
-        private void Damage(CharacterController target)
+        private void DoDamage(CharacterController target)
         {
             if (m_IsExpended) return;
 
@@ -152,7 +152,7 @@ namespace _SampleGames.Survivr
 
             if (actionsController == null) return;
 
-            var payload = new ActionActivationPayload(new("Damage"), this, target.transform.root.gameObject);
+            var payload = new ActionActivationPayload(new(nameof(Damage)), this, target.transform.root.gameObject);
 
             actionsController.DoAction(new DamageActionPayload(payload, 5));
 

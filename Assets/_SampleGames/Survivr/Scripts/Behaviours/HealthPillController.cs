@@ -1,4 +1,5 @@
-using Features.Inventory;
+using _SampleGames.Survivr.SurvivrFeatures.Actions;
+using Features.Actions;
 using Features.Items;
 using UnityEngine;
 
@@ -17,14 +18,15 @@ namespace _SampleGames.Survivr
 
             if (character == null) return;
 
-            var inventory = character.GetComponentInChildren<InventoryController>();
+            var actionPayload = new ActionActivationPayload(new ActionBase(nameof(PickupItem)), this, other.gameObject);
 
-            if (inventory)
-            {
-                var request = ChangeRequestFactory.Add(ItemMetadata.MakeInstance(), 1);
+            var item = ItemMetadata.MakeInstance();
 
-                inventory.HandleRequest(request);
-            }
+            item.StorageData.StackableData.Receive(ItemMetadata.Count);
+
+            var pickupPayload = new PickupItemActionPayload(actionPayload, item);
+
+            character.GetComponentInChildren<ActionsController>().DoAction(pickupPayload);
 
             Destroy(gameObject);
         }
