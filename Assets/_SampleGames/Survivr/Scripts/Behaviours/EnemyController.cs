@@ -36,5 +36,10 @@ namespace _SampleGames.Survivr
         public virtual void Initialize(int health, CharacterController target)
         {
         }
+
+        public virtual int CalculateDamage()
+        {
+            return 0;
+        }
     }
 }

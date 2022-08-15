@@ -104,9 +104,14 @@ namespace _SampleGames.Survivr
 
             var payload = new ActionActivationPayload(new(nameof(Damage)), this, target.transform.root.gameObject);
 
-            actionsController.DoAction(new DamageActionPayload(payload, 2));
+            actionsController.DoAction(new DamageActionPayload(payload, CalculateDamage()));
 
             BeginDestroy();
+        }
+
+        public override int CalculateDamage()
+        {
+            return 2;
         }
     }
 }

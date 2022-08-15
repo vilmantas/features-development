@@ -4,24 +4,20 @@ using UnityEngine;
 
 namespace _SampleGames.Survivr
 {
-    public class BulletController : EnemyController
+    public class BulletController : MonoBehaviour
     {
         public float Speed = 5f;
 
-        private ParticleSystem m_DeathParticles;
-
         private bool m_IsExpended;
 
-        private Transform m_Mesh;
-
         private Rigidbody m_Rigidbody;
+
+        private GameObject m_Source;
 
         private Transform m_Target;
 
         private void Awake()
         {
-            m_Mesh = transform.Find("model");
-
             m_Rigidbody = GetComponent<Rigidbody>();
         }
 
@@ -36,8 +32,10 @@ namespace _SampleGames.Survivr
             DoDamage(characterController);
         }
 
-        public override void Initialize(int health, CharacterController target)
+        public void Initialize(CharacterController target, GameObject source)
         {
+            m_Source = source;
+
             m_Target = target.transform;
 
             var position = m_Target.position;

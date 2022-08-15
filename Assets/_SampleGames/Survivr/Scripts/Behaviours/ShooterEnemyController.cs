@@ -106,7 +106,7 @@ namespace _SampleGames.Survivr
 
                 var bullet = Instantiate(BulletPrefab, transform.position, Quaternion.identity);
 
-                bullet.GetComponent<EnemyController>().Initialize(19, m_Target);
+                bullet.GetComponent<BulletController>().Initialize(m_Target, transform.root.gameObject);
 
                 yield return new WaitForSeconds(0.1f);
             }
@@ -154,9 +154,14 @@ namespace _SampleGames.Survivr
 
             var payload = new ActionActivationPayload(new(nameof(Damage)), this, target.transform.root.gameObject);
 
-            actionsController.DoAction(new DamageActionPayload(payload, 5));
+            actionsController.DoAction(new DamageActionPayload(payload, CalculateDamage()));
 
             BeginDestroy();
+        }
+
+        public override int CalculateDamage()
+        {
+            return 5;
         }
     }
 }
