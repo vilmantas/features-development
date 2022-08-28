@@ -39,7 +39,7 @@ namespace Features.Items
                 prefab.SecondarySlot,
                 prefab.ModelPrefab,
                 prefab.Buffs.Select(x => x.Base.WithInterval(x.Interval, x.ExecuteTickImmediately)).ToList(),
-                prefab.Action.Base);
+                prefab.Action == null ? null : prefab.Action.Base);
         }
 
         public static ItemInstance ToInstance(ItemMetadata metadata, int count)
