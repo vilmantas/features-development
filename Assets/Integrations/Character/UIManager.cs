@@ -51,7 +51,7 @@ public class UIManager : MonoBehaviour
 
         var buffUIManager = new BuffUIManager();
         
-        buffUIManager.SetSource(Character.GetComponentInChildren<BuffController>(),
+        buffUIManager.SetSource(buffController,
             () =>
             {
                 var instance = Instantiate(BuffPrefab.gameObject, BuffContainer.transform);
@@ -61,7 +61,7 @@ public class UIManager : MonoBehaviour
 
         var inventoryUIManager = new InventoryUIManager();
         
-        inventoryUIManager.SetSource(Character.GetComponentInChildren<InventoryController>(),
+        inventoryUIManager.SetSource(inventoryController,
             () =>
             {
                 var instance = Instantiate(InventoryPrefab.gameObject, InventoryContainer.transform);
@@ -71,7 +71,7 @@ public class UIManager : MonoBehaviour
 
         var equipmentUIManager = new EquipmentUIManager();
         
-        equipmentUIManager.SetSource(Character.GetComponentInChildren<EquipmentController>(),
+        equipmentUIManager.SetSource(equipmentController,
             () =>
             {
                 var instance = Instantiate(EquipmentPrefab.gameObject, EquipmentContainer.transform);
