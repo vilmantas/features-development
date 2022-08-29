@@ -1,4 +1,5 @@
 using Features.Buffs;
+using Features.Buffs.UI;
 using Features.Equipment;
 using Features.Equipment.UI;
 using Features.Health;
@@ -23,7 +24,7 @@ public class UIManager : MonoBehaviour
 
     public TextMeshProUGUI HPText;
 
-    // public BaseBuffUIData BuffPrefab;
+    public BaseBuffUIData BuffPrefab;
 
     public BaseInventoryUIData InventoryPrefab;
 
@@ -48,11 +49,35 @@ public class UIManager : MonoBehaviour
         hpController.OnDamage += OnHealthChanged;
         hpController.OnHeal += OnHealthChanged;
 
-        // buffController.WithUI(BuffPrefab, BuffContainer.transform);
+        var buffUIManager = new BuffUIManager();
+        
+        buffUIManager.SetSource(Character.GetComponentInChildren<BuffController>(),
+            () =>
+            {
+                var instance = Instantiate(BuffPrefab.gameObject, BuffContainer.transform);
+                return instance.GetComponentInChildren<IBuffUIData>();
+            },
+            controller => DestroyImmediate(controller.gameObject));
 
-        // inventoryController.WithUI(InventoryPrefab, InventoryContainer.transform);
+        var inventoryUIManager = new InventoryUIManager();
+        
+        inventoryUIManager.SetSource(Character.GetComponentInChildren<InventoryController>(),
+            () =>
+            {
+                var instance = Instantiate(InventoryPrefab.gameObject, InventoryContainer.transform);
+                return instance.GetComponentInChildren<IInventoryUIData>();
+            },
+            controller => DestroyImmediate(controller.gameObject));
 
-        // equipmentController.WithUI(EquipmentPrefab, EquipmentContainer.transform);
+        var equipmentUIManager = new EquipmentUIManager();
+        
+        equipmentUIManager.SetSource(Character.GetComponentInChildren<EquipmentController>(),
+            () =>
+            {
+                var instance = Instantiate(EquipmentPrefab.gameObject, EquipmentContainer.transform);
+                return instance.GetComponentInChildren<IEquipmentUIData>();
+            },
+            controller => DestroyImmediate(controller.gameObject));
 
         statsController.WithUI(StatPrefab, StatsContainer.transform);
     }
