@@ -21,6 +21,10 @@ namespace Features.Stats.Base
             m_DestroyAction = destroyAction;
 
             m_Source.OnStatsChanged += OnStatsChanged;
+            
+            ClearUI();
+            
+            DisplayNewUI();
         }
 
         public void RemoveCurrentSource()

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -374,6 +374,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1946291004}
   - {fileID: 1705413277}
   - {fileID: 1130598719}
   - {fileID: 920243419}
@@ -2647,33 +2648,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 952b78e4fede4ded8d215dc6dc237a3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnBuffAddRequested:
-    m_PersistentCalls:
-      m_Calls: []
-  OnBuffRemoveRequested:
-    m_PersistentCalls:
-      m_Calls: []
-  OnBuffAdded:
-    m_PersistentCalls:
-      m_Calls: []
-  OnBuffRemoved:
-    m_PersistentCalls:
-      m_Calls: []
-  OnBuffDurationReset:
-    m_PersistentCalls:
-      m_Calls: []
-  OnBuffStackAdded:
-    m_PersistentCalls:
-      m_Calls: []
-  OnBuffStackRemoved:
-    m_PersistentCalls:
-      m_Calls: []
-  OnBuffTickOccurred:
-    m_PersistentCalls:
-      m_Calls: []
-  OnTimerTick:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &1306926969
 GameObject:
   m_ObjectHideFlags: 0
@@ -3002,6 +2976,51 @@ MonoBehaviour:
   Reducer: {fileID: 11400000, guid: ab14bd8f7cd52f94588a8d42df54fe68, type: 2}
   Item: {fileID: 11400000, guid: 72d5aa7de389a3441a627c6dc975139a, type: 2}
   Ammo: {fileID: 11400000, guid: 65486bab36bfb4e2dab7d80ae586f820, type: 2}
+--- !u!1 &1507540901
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1507540902}
+  - component: {fileID: 1507540903}
+  m_Layer: 0
+  m_Name: Stats
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1507540902
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1507540901}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1946291004}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1507540903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1507540901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e411994c42b4abbac9b4de5d455f720, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Stats: {fileID: 11400000, guid: 931178ff843d2468ea7fb1d84ba051b5, type: 2}
 --- !u!1 &1564610688
 GameObject:
   m_ObjectHideFlags: 0
@@ -3887,6 +3906,38 @@ MonoBehaviour:
   InventoryPrefab: {fileID: 477678512454350374, guid: dbec5f46361c2a847bbc3cb604afa2d2, type: 3}
   EquipmentPrefab: {fileID: 7215477826357433508, guid: 1cbea6b0b757ae744b5720f2bcf124f2, type: 3}
   StatPrefab: {fileID: 2130802087908715573, guid: 47b331b148de3e04bac204794cb02971, type: 3}
+--- !u!1 &1946291003
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1946291004}
+  m_Layer: 0
+  m_Name: Initializers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1946291004
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1946291003}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1507540902}
+  m_Father: {fileID: 46052233}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2005874683
 GameObject:
   m_ObjectHideFlags: 0
