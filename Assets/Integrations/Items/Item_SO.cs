@@ -20,12 +20,23 @@ namespace Features.Items
         public Buff_SO[] Buffs;
         public Action_SO Action;
 
-        public ItemInstance MakeInstance()
+        public ItemInstance MakeEmptyInstance()
         {
             var metadata = ItemMetadataRegistry.Registry[Name];
 
             var instance = ItemFactory.ToInstance(metadata, Count);
 
+            return instance;
+        }
+        
+        public ItemInstance MakeInstanceWithCount()
+        {
+            var metadata = ItemMetadataRegistry.Registry[Name];
+
+            var instance = ItemFactory.ToInstance(metadata, Count);
+
+            instance.StorageData.StackableData.Receive(Count);
+            
             return instance;
         }
     }

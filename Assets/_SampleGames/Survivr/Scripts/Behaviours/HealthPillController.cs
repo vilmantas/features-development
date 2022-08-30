@@ -20,9 +20,7 @@ namespace _SampleGames.Survivr
 
             var actionPayload = new ActionActivationPayload(new ActionBase(nameof(PickupItem)), this, other.gameObject);
 
-            var item = ItemMetadata.MakeInstance();
-
-            item.StorageData.StackableData.Receive(ItemMetadata.Count);
+            var item = ItemMetadata.MakeInstanceWithCount();
 
             var pickupPayload = new PickupItemActionPayload(actionPayload, item);
 
