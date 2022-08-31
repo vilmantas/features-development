@@ -14,10 +14,9 @@ namespace Features.Actions
 
         public void Activate()
         {
-            var customPayload = Action.PayloadFactory.Invoke(Payload);
-
-
-            Action.ActivationAction.Invoke(customPayload);
+            var actionPayload = Action.PayloadFactory?.Invoke(Payload) ?? Payload;
+            
+            Action.ActivationAction.Invoke(actionPayload);
         }
     }
 }

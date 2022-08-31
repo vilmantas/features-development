@@ -22,15 +22,15 @@ namespace Features.Character
             m_InventoryController.OnActionSelected += OnActionSelected;
         }
 
-        private void OnActionSelected(StorageData arg1, string arg2)
+        private void OnActionSelected(StorageData source, string actionName)
         {
-            var item = arg1.ParentCast<ItemInstance>();
+            var item = source.ParentCast<ItemInstance>();
 
-            if (!arg2.Equals("Click")) return;
-
-            if (item.Metadata.Action == null) return;
-
-            m_ActionsController.DoAction(item.Metadata.Action, item);
+            var action = actionName == Constants.DefaultAction
+                ? item.Metadata.Action
+                : new ActionBase(actionName);
+            
+            m_ActionsController.DoAction(action, item);
         }
     }
 }

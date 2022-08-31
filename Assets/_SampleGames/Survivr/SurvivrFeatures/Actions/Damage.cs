@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace _SampleGames.Survivr.SurvivrFeatures.Actions
 {
-    public class Damage
+    public static class Damage
     {
         [RuntimeInitializeOnLoadMethod]
         private static void Register()

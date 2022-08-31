@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace Features.Stats.Base
 {
@@ -8,6 +9,8 @@ namespace Features.Stats.Base
     public class StatGroup
     {
         public readonly Guid Id = Guid.NewGuid();
+
+        public Stat this[string stat] => Stats.ContainsKey(stat) ? Stats[stat] : new Stat(stat, 0);
 
         private readonly Dictionary<string, Stat> m_Stats;
 

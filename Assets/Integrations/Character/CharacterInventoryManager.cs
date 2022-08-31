@@ -34,18 +34,6 @@ namespace Features.Character
 
                 m_EquipmentController.OnItemUnequipRequested += OnItemUnequipRequested;
             }
-
-            if (m_ActionsController)
-            {
-                m_ActionsController.OnActionActivated += OnActionActivated;
-            }
-        }
-
-        private void OnActionActivated(ActionActivation obj)
-        {
-            if (obj.Payload.Source is not ItemInstance item) return;
-
-            m_InventoryController.HandleRequest(ChangeRequestFactory.RemoveExact(item.StorageData));
         }
 
         private void OnItemEquipped(EquipResult result)

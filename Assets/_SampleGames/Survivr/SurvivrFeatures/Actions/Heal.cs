@@ -1,3 +1,4 @@
+using System;
 using Features.Actions;
 using Features.Health;
 using Features.Items;
@@ -16,12 +17,8 @@ namespace _SampleGames.Survivr.SurvivrFeatures.Actions
 
         private static void OnActivation(ActionActivationPayload payload)
         {
-            if (payload is not HealActionPayload healPayload)
-            {
-                Debug.LogWarning("Invalid payload for heal action.");
-                return;
-            }
-
+            var healPayload = payload as HealActionPayload;
+            
             var health = payload.Target.GetComponentInChildren<HealthController>();
 
             if (!health) return;
@@ -31,24 +28,20 @@ namespace _SampleGames.Survivr.SurvivrFeatures.Actions
 
         private static HealActionPayload PayloadMake(ActionActivationPayload originalPayload)
         {
-            var healAmount = 5;
+            if (originalPayload is HealActionPayload healActionPayload) return healActionPayload;
 
             if (originalPayload.Source is ItemInstance item)
-            {
-                return MakeItemPayload(item, originalPayload);
-            }
-
-            return new(originalPayload, healAmount);
+                return PayloadForItem(originalPayload, item);
+            
+            throw new InvalidOperationException(
+                $"Invalid payload passed to heal action {originalPayload.GetType().Name}");
         }
 
-        private static HealActionPayload MakeItemPayload(ItemInstance item, ActionActivationPayload original)
+        private static HealActionPayload PayloadForItem(ActionActivationPayload originalPayload, ItemInstance item)
         {
-            if (item.Metadata.Name == "Healing Potion")
-            {
-                return new HealActionPayload(original, 10);
-            }
-
-            return new HealActionPayload(original, 5);
+            var healAmount = item.Metadata.Stats["Healing"].Value;
+            
+            return new HealActionPayload(originalPayload, healAmount);
         }
 
         public class HealActionPayload : ActionActivationPayload

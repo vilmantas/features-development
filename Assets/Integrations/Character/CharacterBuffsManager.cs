@@ -41,21 +41,6 @@ namespace Features.Character
             {
                 m_EquipmentController.OnItemEquipped += HandleItemEquipped;
             }
-
-            if (m_ActionsController)
-            {
-                m_ActionsController.OnActionActivated += OnActionActivated;
-            }
-        }
-
-        private void OnActionActivated(ActionActivation obj)
-        {
-            if (obj.Payload.Source is not ItemInstance item) return;
-
-            foreach (var metadataBuff in item.Metadata.Buffs)
-            {
-                m_BuffController.AttemptAdd(new BuffAddOptions(metadataBuff, transform.root.gameObject, 1));
-            }
         }
 
         private void HandleItemEquipped(EquipResult obj)

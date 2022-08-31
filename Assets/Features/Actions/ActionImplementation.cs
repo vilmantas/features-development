@@ -16,5 +16,12 @@ namespace Features.Actions
             ActivationAction = activationAction;
             PayloadFactory = payloadFactory;
         }
+        
+        public ActionImplementation(string name,
+            Action<ActionActivationPayload> activationAction)
+        {
+            Name = name;
+            ActivationAction = activationAction;
+        }
     }
 }

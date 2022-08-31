@@ -66,7 +66,7 @@ namespace Features.Inventory.UI
         {
             if (button == PointerEventData.InputButton.Left)
             {
-                m_Source.HandleItemAction(container, "Click");
+                m_Source.HandleItemAction(container, Constants.DefaultAction);
             }
             else
             {

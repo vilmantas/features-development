@@ -1,3 +1,4 @@
+using System;
 using Features.Actions;
 using Features.Inventory;
 using Features.Items;
@@ -5,7 +6,7 @@ using UnityEngine;
 
 namespace _SampleGames.Survivr.SurvivrFeatures.Actions
 {
-    public class PickupItem
+    public static class PickupItem
     {
         [RuntimeInitializeOnLoadMethod]
         private static void Register()
@@ -31,7 +32,7 @@ namespace _SampleGames.Survivr.SurvivrFeatures.Actions
         {
             if (originalPayload is PickupItemActionPayload pickupItemActionPayload) return pickupItemActionPayload;
 
-            return new(originalPayload, null);
+            throw new InvalidOperationException($"Pickup Item action for {originalPayload.Target.transform.root.name} received an empty payload");
         }
     }
 

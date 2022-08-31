@@ -15,8 +15,6 @@ namespace _SampleGames.Survivr
 
         private HealthController m_HealthController;
 
-        private InventoryController m_InventoryController;
-
         private Vector3 m_PrevVelocity = Vector3.zero;
 
         public Action OnDeath;
@@ -29,10 +27,6 @@ namespace _SampleGames.Survivr
 
         private void Awake()
         {
-            m_InventoryController = GetComponentInChildren<InventoryController>();
-
-            m_InventoryController.OnChangeRequestHandled.AddListener(HandleInventoryChange);
-
             m_Agent = GetComponentInChildren<NavMeshAgent>();
 
             UserInputManager.OnGroundClicked += OnGroundClicked;
@@ -62,13 +56,6 @@ namespace _SampleGames.Survivr
             UserInputManager.OnGroundClicked -= OnGroundClicked;
 
             m_HealthController.OnChange -= HandleChange;
-        }
-
-        private void HandleInventoryChange(IChangeRequestResult handledEvent)
-        {
-            if (handledEvent.Request is not AddRequest req) return;
-
-            var z = req.SourceInventoryItemBase.Parent as ItemInstance;
         }
 
         private void HandleChange(HealthChangeEventArgs args)
