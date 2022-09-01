@@ -1,7 +1,9 @@
+using System;
 using Features.Actions;
+using Features.Buffs;
 using Features.Equipment;
-using Features.Health;
 using Features.Items;
+using Features.Stats.Base;
 using UnityEngine;
 
 namespace Integrations.Actions
@@ -21,7 +23,31 @@ namespace Integrations.Actions
 
             var equipmentController = payload.Target.GetComponentInChildren<EquipmentController>();
             
-            equipmentController.HandleEquipRequest(equipActionPayload.EquipRequest);
+            var result = equipmentController.HandleEquipRequest(equipActionPayload.EquipRequest);
+
+            if (!result.Succeeded) return;
+
+            var item = equipActionPayload.ItemInstance;
+
+            var buffController = payload.Target.GetComponentInChildren<BuffController>();
+
+            if (buffController)
+            {
+                var buffs = item.Metadata.Buffs;
+
+                foreach (var buff in buffs)
+                {
+                    buffController.AttemptAdd(new()
+                        {Buff = buff, Source = null, Duration = Single.MaxValue, Stacks = 1});
+                }    
+            }
+
+            var statsController = payload.Target.GetComponentInChildren<StatsController>();
+
+            if (statsController)
+            {
+                statsController.ApplyStatModifiers(item.Metadata.Stats);
+            }
         }
 
         private static EquipActionPayload OnPayloadMake(ActionActivationPayload original)
@@ -30,18 +56,20 @@ namespace Integrations.Actions
 
             var request = new EquipRequest() { ItemInstance = item };
 
-            return new EquipActionPayload(original, request);
+            return new EquipActionPayload(original, request, item);
         }
     }
 
     public class EquipActionPayload : ActionActivationPayload
     {
         public EquipRequest EquipRequest { get; }
+        public ItemInstance ItemInstance { get; }
 
-        public EquipActionPayload(ActionActivationPayload original, EquipRequest request) : base(original.Action,
+        public EquipActionPayload(ActionActivationPayload original, EquipRequest request, ItemInstance itemInstance) : base(original.Action,
             original.Source, original.Target)
         {
             EquipRequest = request;
+            ItemInstance = itemInstance;
         }
     }
 }
