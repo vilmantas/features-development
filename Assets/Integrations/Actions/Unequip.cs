@@ -34,9 +34,8 @@ namespace Integrations.Actions
 
             if (!inventoryController)
             {
-                equipmentController.HandleEquipRequest(new EquipRequest()
-                    {ItemInstance = null, SlotType = equipActionPayload.ContainerSlot.Slot});
-                
+                UnequipItem(equipmentController, equipActionPayload);
+
                 return;
             }
             
@@ -44,19 +43,32 @@ namespace Integrations.Actions
             
             if (maxAmountToAdd >= instance.CurrentAmount)
             {
-                equipmentController.HandleEquipRequest(new EquipRequest()
-                    {ItemInstance = null, SlotType = equipActionPayload.ContainerSlot.Slot});
+                UnequipItem(equipmentController, equipActionPayload);
             }
             else
             {
-                var result = inventoryController.HandleRequest(
-                    ChangeRequestFactory.Add(instance.StorageData)) as AddRequestResult;
-                
-            
-                instance.StorageData.StackableData.Reduce(result.AmountAdded);
-            
-                equipmentController.NotifyItemChanged(equipActionPayload.ContainerSlot);
+                ReduceWithoutUnequipping(inventoryController, instance, equipmentController, equipActionPayload);
             }
+        }
+
+        private static void ReduceWithoutUnequipping(InventoryController inventoryController,
+            ItemInstance instance, EquipmentController equipmentController,
+            UnequipActionPayload equipActionPayload)
+        {
+            var result = inventoryController.HandleRequest(
+                ChangeRequestFactory.Add(instance.StorageData)) as AddRequestResult;
+
+
+            instance.StorageData.StackableData.Reduce(result.AmountAdded);
+
+            equipmentController.NotifyItemChanged(equipActionPayload.ContainerSlot);
+        }
+
+        private static void UnequipItem(EquipmentController equipmentController,
+            UnequipActionPayload equipActionPayload)
+        {
+            equipmentController.HandleEquipRequest(new EquipRequest()
+                {ItemInstance = null, SlotType = equipActionPayload.ContainerSlot.Slot});
         }
     }
 
