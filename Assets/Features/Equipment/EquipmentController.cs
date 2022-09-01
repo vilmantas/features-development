@@ -29,16 +29,14 @@ namespace Features.Equipment
             OnItemUnequipRequested?.Invoke(containerItem);
         }
 
-        public EquipResult HandleEquipRequest(EquipRequest request)
+        public void HandleEquipRequest(EquipRequest request)
         {
             var result = m_Container.Equip(request);
 
-            if (!result.Succeeded) return result;
+            if (!result.Succeeded) return;
 
             HandleItemEquipped(result);
             OnItemEquipped?.Invoke(result);
-
-            return result;
         }
 
         public void NotifyItemChanged(EquipmentContainerItem item)

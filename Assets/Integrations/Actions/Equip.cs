@@ -23,31 +23,7 @@ namespace Integrations.Actions
 
             var equipmentController = payload.Target.GetComponentInChildren<EquipmentController>();
             
-            var result = equipmentController.HandleEquipRequest(equipActionPayload.EquipRequest);
-
-            if (!result.Succeeded) return;
-
-            var item = equipActionPayload.ItemInstance;
-
-            var buffController = payload.Target.GetComponentInChildren<BuffController>();
-
-            if (buffController)
-            {
-                var buffs = item.Metadata.Buffs;
-
-                foreach (var buff in buffs)
-                {
-                    buffController.AttemptAdd(new()
-                        {Buff = buff, Source = null, Duration = Single.MaxValue, Stacks = 1});
-                }    
-            }
-
-            var statsController = payload.Target.GetComponentInChildren<StatsController>();
-
-            if (statsController)
-            {
-                statsController.ApplyStatModifiers(item.Metadata.Stats);
-            }
+            equipmentController.HandleEquipRequest(equipActionPayload.EquipRequest);
         }
 
         private static EquipActionPayload OnPayloadMake(ActionActivationPayload original)

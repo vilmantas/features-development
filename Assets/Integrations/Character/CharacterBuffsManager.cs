@@ -43,16 +43,23 @@ namespace Features.Character
             }
         }
 
-        private void HandleItemEquipped(EquipResult obj)
+        private void HandleItemEquipped(EquipResult result)
         {
-            if (obj.EquipmentContainerItem.IsEmpty) return;
-
-            if (obj.EquipmentContainerItem.Main is not ItemInstance instance) return;
-
-            foreach (var buff in instance.Metadata.Buffs)
+            if (result.UnequippedItemInstanceBase is ItemInstance unequippedItemInstanceBase)
             {
-                m_BuffController.AttemptAdd(new()
-                    {Buff = buff, Source = gameObject, Duration = Single.MaxValue, Stacks = 1});
+                foreach (var buff in unequippedItemInstanceBase.Metadata.Buffs)
+                {
+                    m_BuffController.AttemptRemove(new() { Buff = buff });
+                }
+            }
+
+            if (result.EquipmentContainerItem.Main is ItemInstance equipmentItemInstance)
+            {
+                foreach (var buff in equipmentItemInstance.Metadata.Buffs)
+                {
+                    m_BuffController.AttemptAdd(new()
+                        {Buff = buff, Source = gameObject, Duration = Single.MaxValue, Stacks = 1});
+                }
             }
         }
 

@@ -31,8 +31,6 @@ namespace Features.Character
             if (m_EquipmentController)
             {
                 m_EquipmentController.OnItemEquipped += OnItemEquipped;
-
-                m_EquipmentController.OnItemUnequipRequested += OnItemUnequipRequested;
             }
         }
 
@@ -56,40 +54,6 @@ namespace Features.Character
             {
                 m_InventoryController.HandleRequest(ChangeRequestFactory.Add(unequippedItem.StorageData));
             }
-        }
-
-        private void OnItemUnequipRequested(EquipmentContainerItem containerItem)
-        {
-            var instance = containerItem.Main as ItemInstance;
-
-            if (instance == null) return;
-
-            if (!m_InventoryController.CanReceive(instance.StorageData, out int maxAmountToAdd)) return;
-
-            if (maxAmountToAdd >= instance.CurrentAmount)
-            {
-                UnequipFromSlot(containerItem.Slot);
-            }
-            else
-            {
-                ReduceWithoutUnequipping(containerItem, instance);
-            }
-        }
-
-        private void UnequipFromSlot(string slot)
-        {
-            m_EquipmentController.HandleEquipRequest(new EquipRequest()
-                {ItemInstance = null, SlotType = slot});
-        }
-
-        private void ReduceWithoutUnequipping(EquipmentContainerItem containerItem, ItemInstance instance)
-        {
-            var result = m_InventoryController.HandleRequest(
-                ChangeRequestFactory.Add(instance.StorageData)) as AddRequestResult;
-
-            instance.StorageData.StackableData.Reduce(result.AmountAdded);
-
-            m_EquipmentController.NotifyItemChanged(containerItem);
         }
     }
 }

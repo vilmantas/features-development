@@ -20,3 +20,5 @@ MonoBehaviour:
   Sprite: {fileID: 21300000, guid: 76ddc0163be52174f99aa0153c165a58, type: 3}
   ModelPrefab: {fileID: 6191115075417870643, guid: 20e9bd911d9ee7e4eadb7efe718f548c, type: 3}
   Stats: []
+  Buffs: []
+  Action: {fileID: 11400000, guid: 1b0b911a9a2e34805bdb021ac53244f2, type: 2}
