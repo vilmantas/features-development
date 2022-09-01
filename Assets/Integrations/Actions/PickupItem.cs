@@ -4,7 +4,7 @@ using Features.Inventory;
 using Features.Items;
 using UnityEngine;
 
-namespace _SampleGames.Survivr.SurvivrFeatures.Actions
+namespace Integrations.Actions
 {
     public static class PickupItem
     {

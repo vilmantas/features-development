@@ -1,9 +1,11 @@
+using System;
 using System.ComponentModel;
 using Features.Actions;
 using Features.Health;
+using Features.Items;
 using UnityEngine;
 
-namespace _SampleGames.Survivr.SurvivrFeatures.Actions
+namespace Integrations.Actions
 {
     public static class Damage
     {

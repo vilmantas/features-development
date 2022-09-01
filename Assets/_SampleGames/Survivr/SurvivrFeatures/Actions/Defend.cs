@@ -4,6 +4,7 @@ using Features.Actions;
 using Features.Combat;
 using Features.Health;
 using Features.Stats.Base;
+using Integrations.Actions;
 using UnityEngine;
 
 namespace _SampleGames.Survivr.SurvivrFeatures.Actions
