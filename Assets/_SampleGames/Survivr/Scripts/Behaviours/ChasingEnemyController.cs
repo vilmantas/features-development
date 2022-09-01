@@ -1,8 +1,11 @@
 using System.Collections;
 using _SampleGames.Survivr.SurvivrFeatures.Actions;
+using _SampleGames.Survivr.SurvivrFeatures.Combat;
 using Features.Actions;
+using Features.Combat;
 using Features.Health;
 using Features.Health.Events;
+using Features.Stats.Base;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
@@ -11,8 +14,6 @@ namespace _SampleGames.Survivr
 {
     public class ChasingEnemyController : EnemyController
     {
-        private HealthController m_Health;
-
         private bool m_IsExpended;
 
         private NavMeshAgent m_NavMeshAgent;
@@ -24,13 +25,7 @@ namespace _SampleGames.Survivr
         private void Awake()
         {
             MeshTransform = transform.Find("model").GetComponentInChildren<MeshRenderer>().transform;
-
-            m_Health = GetComponentInChildren<HealthController>();
-
-            m_Health.OnDeath += HandleDeath;
-
-            m_Health.OnDamage += OnDamage;
-
+            
             m_NavMeshAgent = GetComponent<NavMeshAgent>();
 
             m_Text = GetComponentInChildren<TextMeshPro>();
@@ -44,14 +39,18 @@ namespace _SampleGames.Survivr
 
             if (characterController == null) return;
 
-            DoDamage(characterController);
+            Damage(characterController);
         }
 
-        public override void Initialize(int health, CharacterController target)
+        protected override void OnInitialize(int health, CharacterController target)
         {
-            m_Health.Initialize(health, health);
+            HealthController.OnDeath += HandleDeath;
 
-            SetHealthText(m_Health.CurrentHealth, m_Health.MaxHealth);
+            HealthController.OnDamage += OnDamage;
+            
+            HealthController.Initialize(health, health);
+
+            SetHealthText(HealthController.CurrentHealth, HealthController.MaxHealth);
 
             m_Target = target.transform;
 
@@ -75,18 +74,10 @@ namespace _SampleGames.Survivr
             BeginDestroy();
         }
 
-        private void DoDamage(CharacterController target)
+        protected override void AttackResultCallback(AttackResult result)
         {
-            if (m_IsExpended) return;
-
-            var actionsController = target.GetComponentInChildren<ActionsController>();
-
-            if (actionsController == null) return;
-
-            var payload = new ActionActivationPayload(new(nameof(Damage)), this, target.transform.root.gameObject);
-
-            actionsController.DoAction(new DamageActionPayload(payload, CalculateDamage()));
-
+            if (result.HitMetadataBase.DamageDealt < 1) return;
+            
             BeginDestroy();
         }
 
@@ -105,11 +96,6 @@ namespace _SampleGames.Survivr
 
                 yield return new WaitForSeconds(0.3f);
             }
-        }
-
-        public override int CalculateDamage()
-        {
-            return 5;
         }
     }
 }

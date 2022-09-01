@@ -1,5 +1,6 @@
 using System.Collections;
 using _SampleGames.Survivr.SurvivrFeatures.Actions;
+using _SampleGames.Survivr.SurvivrFeatures.Combat;
 using Features.Actions;
 using Features.Health;
 using Features.Health.Events;
@@ -11,8 +12,6 @@ namespace _SampleGames.Survivr
 {
     public class SprinterEnemyController : EnemyController
     {
-        private HealthController m_Health;
-
         private bool m_IsExpended;
 
         private NavMeshAgent m_NavMeshAgent;
@@ -24,12 +23,6 @@ namespace _SampleGames.Survivr
         private void Awake()
         {
             MeshTransform = transform.Find("model").GetComponentInChildren<MeshRenderer>().transform;
-
-            m_Health = GetComponentInChildren<HealthController>();
-
-            m_Health.OnDeath += HandleDeath;
-
-            m_Health.OnDamage += OnDamage;
 
             m_NavMeshAgent = GetComponent<NavMeshAgent>();
 
@@ -44,14 +37,18 @@ namespace _SampleGames.Survivr
 
             if (characterController == null) return;
 
-            DoDamage(characterController);
+            Damage(characterController);
         }
 
-        public override void Initialize(int health, CharacterController target)
+        protected override void OnInitialize(int health, CharacterController target)
         {
-            m_Health.Initialize(health, health);
+            HealthController.OnDeath += HandleDeath;
 
-            SetHealthText(m_Health.CurrentHealth, m_Health.MaxHealth);
+            HealthController.OnDamage += OnDamage;
+            
+            HealthController.Initialize(health, health);
+
+            SetHealthText(HealthController.CurrentHealth, HealthController.MaxHealth);
 
             m_Target = target.transform;
 
@@ -89,29 +86,16 @@ namespace _SampleGames.Survivr
             BeginDestroy();
         }
 
+        protected override void AttackResultCallback(AttackResult result)
+        {
+            if (result.HitMetadataBase.DamageDealt < 1) return;
+            
+            BeginDestroy();
+        }
+        
         private void BeginDestroy()
         {
             DestroyWithParticles();
-        }
-
-        private void DoDamage(CharacterController target)
-        {
-            if (m_IsExpended) return;
-
-            var actionsController = target.GetComponentInChildren<ActionsController>();
-
-            if (actionsController == null) return;
-
-            var payload = new ActionActivationPayload(new(nameof(Damage)), this, target.transform.root.gameObject);
-
-            actionsController.DoAction(new DamageActionPayload(payload, CalculateDamage()));
-
-            BeginDestroy();
-        }
-
-        public override int CalculateDamage()
-        {
-            return 2;
         }
     }
 }

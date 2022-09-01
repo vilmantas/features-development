@@ -17,7 +17,7 @@ namespace DebugScripts
         {
             m_CombatController = GetComponentInChildren<CombatController>();
             
-            m_CombatController.OnHit.AddListener((data, callback) =>
+            m_CombatController.OnHit += ((data, callback) =>
             {
                 OnHit(data, out var result);
                 
@@ -66,13 +66,13 @@ namespace DebugScripts
             return new AttackDebug(attackType);
         }
 
-        private void ResultCallback(AttackResult result)
+        private void ResultCallback(AttackResultOld resultOld)
         {
-            print($"{transform.name}: Attack result: {result}");
+            print($"{transform.name}: Attack result: {resultOld}");
             
-            var h = result.HitMetadataBase as HitDebug;
+            var h = resultOld.HitMetadataBase as HitDebug;
 
-            var d = result.AttackMetadataBase as AttackDebug;
+            var d = resultOld.AttackMetadataBase as AttackDebug;
 
             print(h != null ? $"Damage: {h.Damage}" : "Miss!");
         }

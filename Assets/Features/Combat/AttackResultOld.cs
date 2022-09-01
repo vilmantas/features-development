@@ -2,7 +2,7 @@ using Feature.Combat;
 
 namespace Features.Combat
 {
-    public class AttackResult
+    public class AttackResultOld
     {
         public readonly CombatController Defender;
 
@@ -10,7 +10,7 @@ namespace Features.Combat
         
         public readonly HitMetadataBase HitMetadataBase;
 
-        internal AttackResult(CombatController defender, AttackMetadataBase attackMetadataBase, HitMetadataBase hitMetadataBase)
+        internal AttackResultOld(CombatController defender, AttackMetadataBase attackMetadataBase, HitMetadataBase hitMetadataBase)
         {
             Defender = defender;
             AttackMetadataBase = attackMetadataBase;

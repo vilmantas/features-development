@@ -8,14 +8,14 @@ namespace Feature.Combat
 {
     public static class CombatManager
     {
-        public static void Attack(CombatController target, AttackMetadataBase metadataBase, Action<AttackResult> resultCallback)
+        public static void Attack(CombatController target, AttackMetadataBase attack, Action<AttackResultOld> resultCallback)
         {
-            Action<HitMetadataBase> hitCallback = b =>
+            Action<HitMetadataBase> hitCallback = attackResult =>
             {
-                resultCallback.Invoke((new AttackResult(target, metadataBase, b)));
+                resultCallback.Invoke((new AttackResultOld(target, attack, attackResult)));
             };
             
-            target.Hit(metadataBase, hitCallback);
+            target.Hit(attack, hitCallback);
         }
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using _SampleGames.Survivr.SurvivrFeatures.Actions;
+using _SampleGames.Survivr.SurvivrFeatures.Combat;
 using Features.Actions;
 using Features.Health;
 using Features.Health.Events;
@@ -12,8 +13,6 @@ namespace _SampleGames.Survivr
     public class ShooterEnemyController : EnemyController
     {
         public GameObject BulletPrefab;
-
-        private HealthController m_Health;
 
         private bool m_IsExpended;
 
@@ -33,12 +32,6 @@ namespace _SampleGames.Survivr
         {
             MeshTransform = transform.Find("model").GetComponentInChildren<MeshRenderer>().transform;
 
-            m_Health = GetComponentInChildren<HealthController>();
-
-            m_Health.OnDeath += HandleDeath;
-
-            m_Health.OnDamage += OnDamage;
-
             m_NavMeshAgent = GetComponent<NavMeshAgent>();
 
             m_Text = GetComponentInChildren<TextMeshPro>();
@@ -52,14 +45,18 @@ namespace _SampleGames.Survivr
 
             if (characterController == null) return;
 
-            DoDamage(characterController);
+            Damage(characterController);
         }
 
-        public override void Initialize(int health, CharacterController target)
+        protected override void OnInitialize(int health, CharacterController target)
         {
-            m_Health.Initialize(health, health);
+            HealthController.OnDeath += HandleDeath;
 
-            SetHealthText(m_Health.CurrentHealth, m_Health.MaxHealth);
+            HealthController.OnDamage += OnDamage;
+            
+            HealthController.Initialize(health, health);
+
+            SetHealthText(HealthController.CurrentHealth, HealthController.MaxHealth);
 
             m_Target = target;
 
@@ -143,25 +140,12 @@ namespace _SampleGames.Survivr
                 yield return new WaitForSeconds(0.3f);
             }
         }
-
-        private void DoDamage(CharacterController target)
+        
+        protected override void AttackResultCallback(AttackResult result)
         {
-            if (m_IsExpended) return;
-
-            var actionsController = target.GetComponentInChildren<ActionsController>();
-
-            if (actionsController == null) return;
-
-            var payload = new ActionActivationPayload(new(nameof(Damage)), this, target.transform.root.gameObject);
-
-            actionsController.DoAction(new DamageActionPayload(payload, CalculateDamage()));
-
+            if (result.HitMetadataBase.DamageDealt < 1) return;
+            
             BeginDestroy();
-        }
-
-        public override int CalculateDamage()
-        {
-            return 5;
         }
     }
 }
