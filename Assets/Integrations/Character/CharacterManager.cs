@@ -26,10 +26,6 @@ namespace Features.Character
         private void Awake()
         {
             ResolveSystems(transform.root);
-
-            m_InventoryController.OnActionSelected += (data, s) =>
-                m_EquipmentController.HandleEquipRequest(new EquipRequest()
-                    {ItemInstance = data.ParentCast<ItemInstance>()});
         }
 
         private void ResolveSystems(Transform root)

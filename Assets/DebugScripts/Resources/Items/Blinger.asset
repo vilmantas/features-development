@@ -26,3 +26,4 @@ MonoBehaviour:
     Value: 3
   Buffs:
   - {fileID: 11400000, guid: 023ae4374b7b1f845b451c8f6647599e, type: 2}
+  Action: {fileID: 11400000, guid: 1b0b911a9a2e34805bdb021ac53244f2, type: 2}

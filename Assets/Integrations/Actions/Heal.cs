@@ -6,12 +6,12 @@ using UnityEngine;
 
 namespace Integrations.Actions
 {
-    public class Heal
+    public static class Heal
     {
         [RuntimeInitializeOnLoadMethod]
         private static void Register()
         {
-            ActionImplementation implementation = new("Heal", OnActivation, PayloadMake);
+            ActionImplementation implementation = new(nameof(Heal), OnActivation, PayloadMake);
             ActionImplementationRegistry.Implementations.TryAdd(implementation.Name, implementation);
         }
 
