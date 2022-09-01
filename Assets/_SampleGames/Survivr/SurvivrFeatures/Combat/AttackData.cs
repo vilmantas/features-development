@@ -1,10 +1,9 @@
-using Features.Combat;
 using Features.Items;
 using UnityEngine;
 
 namespace _SampleGames.Survivr.SurvivrFeatures.Combat
 {
-    public class AttackData : AttackMetadataBase
+    public class AttackData
     {
         public readonly int Damage;
 
