@@ -19,11 +19,11 @@ namespace _SampleGames.Survivr
 
             if (character == null) return;
 
-            var actionPayload = new ActionActivationPayload(new ActionBase(nameof(PickupItem)), this, other.gameObject);
+            var actionPayload = new ActionActivationPayload(new ActionBase(nameof(LootItem)), this, other.gameObject);
 
             var item = ItemMetadata.MakeInstanceWithCount();
 
-            var pickupPayload = new PickupItemActionPayload(actionPayload, item);
+            var pickupPayload = new LootItemActionPayload(actionPayload, item);
 
             character.GetComponentInChildren<ActionsController>().DoAction(pickupPayload);
 
