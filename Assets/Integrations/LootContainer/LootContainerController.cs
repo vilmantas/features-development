@@ -17,7 +17,7 @@ namespace Integrations.LootContainer
 
         private Transform m_ItemSpawn;
 
-        public Action<CharacterManager, ItemInstance> OnContainerLooted;
+        public Action<Player, ItemInstance> OnContainerLooted;
 
         public bool Looted { get; set; }
 
@@ -32,7 +32,7 @@ namespace Integrations.LootContainer
 
         private void OnTriggerEnter(Collider other)
         {
-            var character = other.transform.root.GetComponentInChildren<CharacterManager>();
+            var character = other.transform.root.GetComponentInChildren<Player>();
 
             if (!character) return;
 
@@ -52,7 +52,7 @@ namespace Integrations.LootContainer
             m_ItemGameObject = Instantiate(m_ItemInstance.Metadata.ModelPrefab, parent);
         }
 
-        public void Loot(CharacterManager looter)
+        public void Loot(Player looter)
         {
             if (Looted) return;
 
