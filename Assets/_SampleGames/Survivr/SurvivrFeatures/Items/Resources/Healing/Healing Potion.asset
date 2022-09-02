@@ -18,7 +18,7 @@ MonoBehaviour:
   Count: 1
   MaxStack: 1
   Sprite: {fileID: 0}
-  ModelPrefab: {fileID: 0}
+  ModelPrefab: {fileID: 3587620037334694207, guid: 38ea31d40d96746459a70ac6df94e0d7, type: 3}
   Stats:
   - Name: Healing
     Value: 5
