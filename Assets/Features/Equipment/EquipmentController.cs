@@ -13,7 +13,11 @@ namespace Features.Equipment
 
         public Action<EquipResult> OnItemEquipped;
 
+        public Action<EquipResult> OnItemCombined;
+        
         public Action<EquipmentContainerItem> OnItemUnequipRequested;
+        
+        public Action<EquipmentContainerItem> OnSlotUpdated;
 
         public string[] AvailableSlots => EquipmentSlots.Select(x => x.slotType).ToArray();
 
@@ -35,18 +39,22 @@ namespace Features.Equipment
 
             if (!result.Succeeded) return;
 
-            HandleItemEquipped(result);
-            OnItemEquipped?.Invoke(result);
+            if (result.ItemsCombined)
+            {
+                OnItemCombined?.Invoke(result);
+            }
+            else
+            {
+                OnItemEquipped?.Invoke(result);
+                HandleItemEquipped(result);
+            }
         }
 
         public void NotifyItemChanged(EquipmentContainerItem item)
         {
             if (ContainerSlots.Any(x => x.Id == item.Id))
             {
-                var result = new EquipResult(new EquipRequest() {ItemInstance = item.Main}, item,
-                    null, true);
-
-                OnItemEquipped?.Invoke(result);
+                OnSlotUpdated?.Invoke(item);
             }
         }
 

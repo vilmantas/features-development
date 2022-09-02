@@ -16,6 +16,8 @@ namespace Features.Inventory
 
         public readonly ContextRequestEvent OnContextRequested = new();
 
+        public Action OnInventoryUpdated;
+
         private Container m_Container;
 
         public Action<StorageData, string> OnActionSelected;
@@ -36,6 +38,11 @@ namespace Features.Inventory
         public void Awake()
         {
             m_Container = new Container(InventoryItemFactories.MakeItem, Size);
+        }
+
+        public void NotifyChange()
+        {
+            OnInventoryUpdated?.Invoke();
         }
 
         public bool CanReceive(StorageData request, out int maxAmount)

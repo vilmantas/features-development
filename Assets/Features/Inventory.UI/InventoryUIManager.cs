@@ -82,6 +82,13 @@ namespace Features.Inventory.UI
         private void SubscribeToSource()
         {
             m_Source.OnChangeRequestHandled.AddListener(OnItemChangeRequestHandled);
+            m_Source.OnInventoryUpdated += ResetUI;
+        }
+        
+        private void ResetUI()
+        {
+            ClearUI();
+            DisplayNewUI();
         }
 
         private void UnsubscribeFromSource()

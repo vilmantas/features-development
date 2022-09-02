@@ -40,41 +40,64 @@ namespace Features.Equipment
             return SlotPresent(itemInstance.Metadata.MainSlot) || SlotPresent(itemInstance.Metadata.SecondarySlot);
         }
 
-        public EquipmentContainerItem EquipOrReplace(string slot, IEquipmentItemInstance itemInstance, out IEquipmentItemInstance previousItemInstance)
+        public EquipmentContainerItem EquipOrReplace(
+            string slot,
+            IEquipmentItemInstance itemInstance,
+            out IEquipmentItemInstance previousItemInstance,
+            out bool combinationSuccess
+            )
         {
+            combinationSuccess = false;
+            
             previousItemInstance = null;
 
             if (!SlotPresent(slot)) return null;
 
             var equippedItem = EmptySlotPresent(slot) ? EmptySlot(slot) : FirstSlot(slot);
 
+            combinationSuccess = TryCombine(itemInstance, equippedItem);
+
+            if (combinationSuccess) return equippedItem;
+            
             return EquipToSlot(itemInstance, equippedItem, out previousItemInstance);
         }
 
-        public EquipmentContainerItem EquipOrReplace(Guid slotId, IEquipmentItemInstance itemInstance, out IEquipmentItemInstance previousItemInstance)
+        public EquipmentContainerItem EquipOrReplace(
+            Guid slotId,
+            IEquipmentItemInstance itemInstance,
+            out IEquipmentItemInstance previousItemInstance,
+            out bool combinationSuccess
+            )
         {
+            combinationSuccess = false;
+            
             previousItemInstance = null;
 
             var equipmentSlot = SlotById(slotId);
 
-            return equipmentSlot != null ? EquipToSlot(itemInstance, equipmentSlot, out previousItemInstance) : null;
+            if (equipmentSlot == null) return null;
+
+            combinationSuccess = TryCombine(itemInstance, equipmentSlot);
+
+            if (combinationSuccess) return equipmentSlot;
+
+            return EquipToSlot(itemInstance, equipmentSlot, out previousItemInstance);
         }
 
         private static EquipmentContainerItem EquipToSlot(IEquipmentItemInstance itemInstance, EquipmentContainerItem equipmentSlot,
             out IEquipmentItemInstance previousItemInstance)
         {
-            previousItemInstance = null;
-
-            if (!equipmentSlot.IsEmpty && equipmentSlot.Main.Combine(itemInstance))
-            {
-                return equipmentSlot;
-            }
-
             previousItemInstance = equipmentSlot.Main;
 
             equipmentSlot.Main = itemInstance;
 
             return equipmentSlot;
+        }
+
+        private static bool TryCombine(IEquipmentItemInstance itemInstance,
+            EquipmentContainerItem slot)
+        {
+            return !slot.IsEmpty && slot.Main.Combine(itemInstance);
         }
     }
 }

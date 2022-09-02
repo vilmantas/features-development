@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Features.Equipment.UI
 {
@@ -62,6 +63,21 @@ namespace Features.Equipment.UI
         private void SubscribeToSource()
         {
             m_Source.OnItemEquipped += OnItemEquippedEventHandler;
+            m_Source.OnSlotUpdated += OnSlotUpdated;
+            m_Source.OnItemCombined += OnItemCombined;
+        }
+
+        private void OnItemCombined(EquipResult obj)
+        {
+            OnSlotUpdated(obj.EquipmentContainerItem);
+        }
+
+        private void OnSlotUpdated(EquipmentContainerItem obj)
+        {
+            if (Datas.ContainsKey(obj.Id))
+            {
+                Datas[obj.Id].SetData(obj);
+            }
         }
 
         private void UnsubscribeFromSource()

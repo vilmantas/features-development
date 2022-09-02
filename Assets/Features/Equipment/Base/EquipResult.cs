@@ -6,15 +6,17 @@ namespace Features.Equipment
         public readonly EquipRequest Request;
 
         public readonly bool Succeeded;
+        public readonly bool ItemsCombined;
 
         public readonly IEquipmentItemInstance UnequippedItemInstanceBase;
 
         public EquipResult(EquipRequest request, EquipmentContainerItem equipmentContainerItem,
-            IEquipmentItemInstance unequippedItemInstanceBase, bool succeeded)
+            IEquipmentItemInstance unequippedItemInstanceBase, bool itemsCombined, bool succeeded)
         {
             Request = request;
             Succeeded = succeeded;
             UnequippedItemInstanceBase = unequippedItemInstanceBase;
+            ItemsCombined = itemsCombined;
             EquipmentContainerItem = equipmentContainerItem;
         }
 

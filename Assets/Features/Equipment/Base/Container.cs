@@ -39,29 +39,29 @@ namespace Features.Equipment
                 slot = item.Metadata.SecondarySlot;
             }
 
-            var result = Manager.EquipOrReplace(slot, request.ItemInstance, out var prevItem);
+            var result = Manager.EquipOrReplace(slot, request.ItemInstance, out var prevItem, out var combined);
 
-            return EquipResult(request, result, prevItem);
+            return EquipResult(request, result, prevItem, combined);
         }
 
         private EquipResult EquipBySlotType(EquipRequest request)
         {
-            var item = Manager.EquipOrReplace(request.SlotType, request.ItemInstance, out var prevItem);
+            var item = Manager.EquipOrReplace(request.SlotType, request.ItemInstance, out var prevItem, out var combined);
 
-            return EquipResult(request, item, prevItem);
+            return EquipResult(request, item, prevItem, combined);
         }
 
         private EquipResult EquipBySlotId(EquipRequest request)
         {
-            var item = Manager.EquipOrReplace(request.SlotId, request.ItemInstance, out var prevItem);
+            var item = Manager.EquipOrReplace(request.SlotId, request.ItemInstance, out var prevItem, out var combined);
 
-            return EquipResult(request, item, prevItem);
+            return EquipResult(request, item, prevItem, combined);
         }
 
         private EquipResult EquipResult(EquipRequest request, EquipmentContainerItem equipmentContainerItem,
-            IEquipmentItemInstance prevItemInstance)
+            IEquipmentItemInstance prevItemInstance, bool itemsCombined)
         {
-            return new EquipResult(request, equipmentContainerItem, prevItemInstance, true);
+            return new EquipResult(request, equipmentContainerItem, prevItemInstance, itemsCombined, true);
         }
 
         private static EquipResult Failed(EquipRequest request)
