@@ -55,7 +55,7 @@ namespace Features.Inventory.UI
 
                 data.OnDragged.AddListener(MoveItem);
 
-                //data.SetData(item);
+                data.SetData(item);
 
                 Datas.Add(data);
             }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3142378811540882893}
   - component: {fileID: 3142378811540882892}
   - component: {fileID: 3142378811540882895}
-  - component: {fileID: 3142378811540882894}
+  - component: {fileID: 6844927282041015671}
   m_Layer: 5
   m_Name: pref_ui_Buffs
   m_TagString: Untagged
@@ -77,7 +77,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
   m_VerticalFit: 2
---- !u!114 &3142378811540882894
+--- !u!114 &6844927282041015671
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -86,7 +86,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3142378811540882882}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eec3ad939696456dbd1eb5a6afa01b3f, type: 3}
+  m_Script: {fileID: 11500000, guid: b25141f7f04d44a49cb57add1c8db2be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Prefab: {fileID: 4186330393480318477, guid: 94fa097a8aa35c74ab6874eb8626542c, type: 3}

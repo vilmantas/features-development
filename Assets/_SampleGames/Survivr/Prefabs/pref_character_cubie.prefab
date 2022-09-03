@@ -211,6 +211,7 @@ GameObject:
   - component: {fileID: 5390045234017944949}
   - component: {fileID: 5390045234017944948}
   - component: {fileID: 4918833734390581545}
+  - component: {fileID: 4587961556918771291}
   m_Layer: 0
   m_Name: pref_character_cubie
   m_TagString: Player
@@ -287,6 +288,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4587961556918771291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5390045234017944951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a2a88a1d4c24b0c9dbcd60fa5aca79f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExperimentalGeneration: 0
+  Buffs: 0
+  Inventory: 0
+  Equipment: 0
+  Stats: 0
+  Health: 0
 --- !u!1 &5390045234097015550
 GameObject:
   m_ObjectHideFlags: 0
@@ -427,7 +446,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbfed3c9488b3b2438397b997ca9a50c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &6529665964722606930
+--- !u!1 &6524458291285365163
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -435,8 +454,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3539193650890515992}
-  - component: {fileID: 7662211028123868942}
+  - component: {fileID: 1265017938965488543}
   m_Layer: 0
   m_Name: character
   m_TagString: Untagged
@@ -444,13 +462,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3539193650890515992
+--- !u!4 &1265017938965488543
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6529665964722606930}
+  m_GameObject: {fileID: 6524458291285365163}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -459,18 +477,6 @@ Transform:
   m_Father: {fileID: 3383627019146563529}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7662211028123868942
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6529665964722606930}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d614affc645b43b8a4e6709deb588c7f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7680296704569997670
 GameObject:
   m_ObjectHideFlags: 0
@@ -638,7 +644,7 @@ Transform:
   - {fileID: 5719108383918645155}
   - {fileID: 907508616485758178}
   - {fileID: 252618249550435347}
-  - {fileID: 3539193650890515992}
+  - {fileID: 1265017938965488543}
   m_Father: {fileID: 5390045234017944950}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

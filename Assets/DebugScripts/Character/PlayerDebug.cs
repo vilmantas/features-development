@@ -1,5 +1,3 @@
-using Features.Inventory;
-using Features.Inventory.UI;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -12,10 +10,6 @@ namespace DebugScripts.Character
 
         public LayerMask GroundLayer;
 
-        public InventoryUIController InventoryUI;
-
-        public bool Execute;
-
         private void Update()
         {
             if (Input.GetMouseButtonUp(0))
@@ -26,19 +20,6 @@ namespace DebugScripts.Character
                 {
                     NavAgent.destination = hit.point;
                 }
-            }
-
-            if (Execute)
-            {
-                Execute = false;
-
-                Debug.Log("What");
-
-                var inv = GetComponentInChildren<InventoryController>();
-
-                inv.Initialize();
-
-                InventoryUI.Initialize(inv);
             }
         }
     }

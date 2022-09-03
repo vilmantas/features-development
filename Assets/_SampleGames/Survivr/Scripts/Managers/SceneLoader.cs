@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using _SampleGames.Survivr.Scripts;
@@ -8,9 +7,8 @@ namespace _SampleGames.Survivr
 {
     public class SceneLoader : Manager
     {
-
         private readonly Dictionary<string, bool> WaitingForScenes = new();
-        
+
         private string SetActiveScene = string.Empty;
 
         private string UnloadScene = string.Empty;
@@ -25,7 +23,8 @@ namespace _SampleGames.Survivr
             {
                 var scene = SceneManager.GetSceneAt(i);
 
-                if (scene.name.StartsWith("Level") || scene.name.StartsWith("Gameplay") || scene.name.StartsWith("Game_UI"))
+                if (scene.name.StartsWith("Level") || scene.name.StartsWith("Gameplay") ||
+                    scene.name.StartsWith("Game_UI"))
                 {
                     ignoreStart = true;
 
@@ -34,27 +33,27 @@ namespace _SampleGames.Survivr
             }
 
             UnloadScene = "__INIT";
-            
+
             if (!ignoreStart)
             {
                 WaitingForScenes.Add("Start", false);
-                
+
                 SceneManager.LoadSceneAsync("_SampleGames/Survivr/Scenes/Start");
             }
             else
             {
                 SetActiveScene = "Level";
 
-                var scenesToLoad = new [] {"Level", "Gameplay", "Game_UI"};
+                var scenesToLoad = new[] {"Level", "Gameplay", "Game_UI"};
 
                 var sceneLoading = false;
-                
+
                 foreach (var s in scenesToLoad)
                 {
                     for (var i = 0; i < SceneManager.sceneCount; i++)
                     {
                         var scene = SceneManager.GetSceneAt(i);
-                        
+
                         if (scene.name != s) continue;
 
                         sceneLoading = true;
@@ -66,13 +65,13 @@ namespace _SampleGames.Survivr
                     {
                         SceneManager.LoadSceneAsync($"_SampleGames/Survivr/Scenes/{s}", LoadSceneMode.Additive);
                     }
-                    
+
                     WaitingForScenes.Add(s, false);
 
                     sceneLoading = false;
                 }
             }
-            
+
             SceneManager.sceneLoaded += WaitForScenes;
         }
 
@@ -81,7 +80,7 @@ namespace _SampleGames.Survivr
             for (var i = 0; i < SceneManager.sceneCount; i++)
             {
                 var s = SceneManager.GetSceneAt(i);
-                
+
                 if (!s.isLoaded) continue;
 
                 if (WaitingForScenes.ContainsKey(s.name))
@@ -91,13 +90,13 @@ namespace _SampleGames.Survivr
             }
 
             if (!WaitingForScenes.All(x => x.Value)) return;
-            
+
             SetActiveSceneSafe(SetActiveScene);
 
             UnloadSceneSafe(UnloadScene);
-            
+
             InitializeWaitingScenes();
-            
+
             ResetWaitingMethod();
         }
 
@@ -146,7 +145,7 @@ namespace _SampleGames.Survivr
         public void LoadPause()
         {
             WaitingForScenes.Add("Pause_UI", false);
-            
+
             SceneManager.sceneLoaded += WaitForScenes;
 
             SceneManager.LoadSceneAsync("_SampleGames/Survivr/Scenes/Pause_UI", LoadSceneMode.Additive);
@@ -162,7 +161,7 @@ namespace _SampleGames.Survivr
             WaitingForScenes.Add("Level", false);
             WaitingForScenes.Add("Gameplay", false);
             WaitingForScenes.Add("Game_UI", false);
-            
+
             SceneManager.sceneLoaded += WaitForScenes;
 
             SceneManager.LoadSceneAsync("_SampleGames/Survivr/Scenes/Level");
@@ -173,7 +172,7 @@ namespace _SampleGames.Survivr
         public void LoadMenu()
         {
             WaitingForScenes.Add("Start", false);
-            
+
             SceneManager.sceneLoaded += WaitForScenes;
 
             SceneManager.LoadScene("_SampleGames/Survivr/Scenes/Start");
@@ -198,16 +197,9 @@ namespace _SampleGames.Survivr
                 var roots = scene.GetRootGameObjects();
 
                 var managers = new List<Manager>();
-                
+
                 foreach (var root in roots)
                 {
-                    var main = root.GetComponent<Manager>();
-
-                    if (main != null)
-                    {
-                        managers.Add(main);
-                    }
-
                     var children = root.GetComponentsInChildren<Manager>();
 
                     if (children.Any())

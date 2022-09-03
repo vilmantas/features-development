@@ -1,24 +1,18 @@
-using Features.Buffs;
-using Features.Buffs.UI;
 using UnityEngine;
 
-namespace _SampleGames.Survivr
+namespace Features.Buffs.UI
 {
-    public class PlayerBuffsUIDisplay : Manager
+    public class BuffUIController : MonoBehaviour
     {
         public BaseBuffUIData Prefab;
 
         private BuffController m_BuffController;
 
-        private GameObject m_Character;
-
         private BuffUIManager m_UIManager;
 
-        public override void Initialize()
+        public void Initialize(BuffController buffController)
         {
-            m_Character = GameObject.FindGameObjectWithTag("Player");
-
-            m_BuffController = m_Character.GetComponentInChildren<BuffController>();
+            m_BuffController = buffController;
 
             m_UIManager = new BuffUIManager();
 
