@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Features.Buffs
 {
-    [CreateAssetMenu(menuName = "Buffs/Buff", fileName = "RENAME_ME")]
+    [CreateAssetMenu(menuName = "Buffs/New Buff", fileName = "New Buff")]
     public class Buff_SO : ScriptableObject
     {
         public string Name;

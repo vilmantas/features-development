@@ -12,8 +12,6 @@ namespace Features.Character
     {
         public class Character : MonoBehaviour
         {
-            public bool ExperimentalGeneration = false;
-
             public bool Buffs;
 
             public bool Inventory;
@@ -24,9 +22,19 @@ namespace Features.Character
 
             public bool Health;
 
+            [Range(1, 100)] public int MaxHealth = 20;
+
+            [Range(1, 100)] public int CurrentHealth = 10;
+
+            [Range(1, 100)] public int InventorySize = 5;
+
+            public SlotData[] EquipmentSlots = new[] {new SlotData() {slotType = "Main"}};
+
+            public Stats_SO BaseStats;
+
             private ActionsController m_ActionsController;
 
-            private CharacterActionsManager m_ActionsController2;
+            private CharacterActionsManager m_ActionsManager;
 
             private BuffController m_BuffController;
 
@@ -48,8 +56,6 @@ namespace Features.Character
 
             private void Awake()
             {
-                if (!ExperimentalGeneration) return;
-
                 var systemsParent = new GameObject("systems").transform;
 
                 var root = transform;
@@ -65,11 +71,15 @@ namespace Features.Character
                 if (Inventory)
                 {
                     NewMethod(systemsParent, "inventory", ref m_InventoryController);
+
+                    m_InventoryController.Initialize(InventorySize);
                 }
 
                 if (Equipment)
                 {
                     NewMethod(systemsParent, "equipment", ref m_EquipmentController);
+
+                    m_EquipmentController.Initialize(EquipmentSlots);
                 }
 
                 if (Buffs)
@@ -80,11 +90,18 @@ namespace Features.Character
                 if (Stats)
                 {
                     NewMethod(systemsParent, "stats", ref m_StatsController);
+
+                    if (BaseStats)
+                    {
+                        m_StatsController.Initialize(BaseStats.Stats);
+                    }
                 }
 
                 if (Health)
                 {
                     NewMethod(systemsParent, "health", ref m_HealthController);
+
+                    m_HealthController.Initialize(CurrentHealth, MaxHealth);
                 }
 
 

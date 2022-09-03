@@ -16,11 +16,11 @@ namespace Features.Inventory
 
         public readonly ContextRequestEvent OnContextRequested = new();
 
-        public Action OnInventoryUpdated;
-
         private Container m_Container;
 
         public Action<StorageData, string> OnActionSelected;
+
+        public Action OnInventoryUpdated;
 
         public IEnumerable<StorageData> Items => m_Container.Items;
 
@@ -30,13 +30,15 @@ namespace Features.Inventory
 
         public bool IsFull => m_Container.IsFull;
 
-        public void Initialize()
+        public void Awake()
         {
             m_Container = new Container(InventoryItemFactories.MakeItem, Size);
         }
-        
-        public void Awake()
+
+        public void Initialize(int size)
         {
+            Size = size;
+
             m_Container = new Container(InventoryItemFactories.MakeItem, Size);
         }
 

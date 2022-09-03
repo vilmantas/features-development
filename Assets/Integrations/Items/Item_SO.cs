@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Features.Items
 {
-    [CreateAssetMenu(menuName = "Items/Item", fileName = "RENAME_ME")]
+    [CreateAssetMenu(menuName = "Items/New Item", fileName = "New Item")]
     public class Item_SO : ScriptableObject
     {
         public string Name;
@@ -28,7 +28,7 @@ namespace Features.Items
 
             return instance;
         }
-        
+
         public ItemInstance MakeInstanceWithCount()
         {
             var metadata = ItemMetadataRegistry.Registry[Name];
@@ -36,7 +36,7 @@ namespace Features.Items
             var instance = ItemFactory.ToInstance(metadata, Count);
 
             instance.StorageData.StackableData.Receive(Count);
-            
+
             return instance;
         }
     }

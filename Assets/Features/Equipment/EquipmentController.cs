@@ -11,12 +11,12 @@ namespace Features.Equipment
 
         private Container m_Container;
 
+        public Action<EquipResult> OnItemCombined;
+
         public Action<EquipResult> OnItemEquipped;
 
-        public Action<EquipResult> OnItemCombined;
-        
         public Action<EquipmentContainerItem> OnItemUnequipRequested;
-        
+
         public Action<EquipmentContainerItem> OnSlotUpdated;
 
         public string[] AvailableSlots => EquipmentSlots.Select(x => x.slotType).ToArray();
@@ -25,7 +25,14 @@ namespace Features.Equipment
 
         public void Awake()
         {
-            m_Container = new Container(AvailableSlots);
+            m_Container = new Container(EquipmentSlots == null ? new string[] { } : AvailableSlots);
+        }
+
+        public void Initialize(SlotData[] slots)
+        {
+            EquipmentSlots = slots;
+
+            m_Container = new Container(EquipmentSlots == null ? new string[] { } : AvailableSlots);
         }
 
         public void RequestUnequip(EquipmentContainerItem containerItem)

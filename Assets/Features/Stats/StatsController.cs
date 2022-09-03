@@ -1,19 +1,22 @@
 using System;
-using Features.Stats.Base;
 using UnityEngine;
 
 namespace Features.Stats.Base
 {
     public class StatsController : MonoBehaviour
     {
-        [HideInInspector] public Action<StatsChangedEventArgs> OnStatsChanged;
-
         private Manager Manager;
+        [HideInInspector] public Action<StatsChangedEventArgs> OnStatsChanged;
         public StatGroup CurrentStats => Manager.Current;
 
         public void Awake()
         {
             Manager = new Manager(Array.Empty<Stat>());
+        }
+
+        public void Initialize(Stat[] stats)
+        {
+            Manager = new Manager(stats);
         }
 
         public void WithUI(IStatUIData prefab, Transform container)
