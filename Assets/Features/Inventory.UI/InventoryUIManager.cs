@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Features.Inventory;
 using Features.Inventory.Abstract.Internal;
 using UnityEngine.EventSystems;
 using Utilities.ItemsContainer;
@@ -56,7 +55,7 @@ namespace Features.Inventory.UI
 
                 data.OnDragged.AddListener(MoveItem);
 
-                data.SetData(item);
+                //data.SetData(item);
 
                 Datas.Add(data);
             }
@@ -84,7 +83,7 @@ namespace Features.Inventory.UI
             m_Source.OnChangeRequestHandled.AddListener(OnItemChangeRequestHandled);
             m_Source.OnInventoryUpdated += ResetUI;
         }
-        
+
         private void ResetUI()
         {
             ClearUI();
