@@ -1,4 +1,3 @@
-using Features.Stats.Base;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

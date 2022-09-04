@@ -1464,7 +1464,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Character: {fileID: 904091652}
-  UIPrefab: {fileID: 477678512454350374, guid: bea29dda395b53b47960b48941c2cead, type: 3}
+  UIPrefab: {fileID: 477678512454350374, guid: dbec5f46361c2a847bbc3cb604afa2d2, type: 3}
 --- !u!1001 &4217403310450629551
 PrefabInstance:
   m_ObjectHideFlags: 0

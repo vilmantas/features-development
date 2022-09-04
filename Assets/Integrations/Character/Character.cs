@@ -53,6 +53,8 @@ namespace Features.Character
 
             [HideInInspector] public InventoryController m_InventoryController;
 
+            [HideInInspector] public StatsController m_StatsController;
+
             private ActionsController m_ActionsController;
 
             private CharacterActionsManager m_ActionsManager;
@@ -64,8 +66,6 @@ namespace Features.Character
             private HealthController m_HealthController;
 
             private CharacterInventoryManager m_InventoryManager;
-
-            private StatsController m_StatsController;
 
             private CharacterStatsManager m_StatsManager;
 

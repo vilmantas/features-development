@@ -286,7 +286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Character: {fileID: 593006911}
-  UIPrefab: {fileID: 7215477826357433508, guid: c036800cb7a1e0b458428a7bca88cf47, type: 3}
+  UIPrefab: {fileID: 7215477826357433508, guid: 1cbea6b0b757ae744b5720f2bcf124f2, type: 3}
 --- !u!1 &593006906
 GameObject:
   m_ObjectHideFlags: 0

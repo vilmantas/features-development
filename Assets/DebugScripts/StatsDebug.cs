@@ -6,17 +6,24 @@ namespace DebugScripts
 {
     public class StatsDebug : MonoBehaviour
     {
-        private StatsController m_StatsController;
-
         public BaseStatUIData UIPrefab;
 
         public Transform UIContainer;
+        private StatsController m_StatsController;
 
         private void Start()
         {
             m_StatsController = GetComponentInChildren<StatsController>();
 
-            m_StatsController.WithUI(UIPrefab, UIContainer);
+            var statsUIManager = new StatsUIManager();
+
+            statsUIManager.SetSource(m_StatsController,
+                () =>
+                {
+                    var instance = Instantiate(UIPrefab.gameObject, UIContainer.transform);
+                    return instance.GetComponentInChildren<IStatUIData>();
+                },
+                controller => DestroyImmediate(controller.gameObject));
         }
 
         public void AddStat()

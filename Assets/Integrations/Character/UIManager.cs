@@ -50,7 +50,7 @@ public class UIManager : MonoBehaviour
         hpController.OnHeal += OnHealthChanged;
 
         var buffUIManager = new BuffUIManager();
-        
+
         buffUIManager.SetSource(buffController,
             () =>
             {
@@ -60,7 +60,7 @@ public class UIManager : MonoBehaviour
             controller => DestroyImmediate(controller.gameObject));
 
         var inventoryUIManager = new InventoryUIManager();
-        
+
         inventoryUIManager.SetSource(inventoryController,
             () =>
             {
@@ -70,7 +70,7 @@ public class UIManager : MonoBehaviour
             controller => DestroyImmediate(controller.gameObject));
 
         var equipmentUIManager = new EquipmentUIManager();
-        
+
         equipmentUIManager.SetSource(equipmentController,
             () =>
             {
@@ -79,7 +79,15 @@ public class UIManager : MonoBehaviour
             },
             controller => DestroyImmediate(controller.gameObject));
 
-        statsController.WithUI(StatPrefab, StatsContainer.transform);
+        var statsUIManager = new StatsUIManager();
+
+        statsUIManager.SetSource(statsController,
+            () =>
+            {
+                var instance = Instantiate(StatPrefab.gameObject, StatsContainer.transform);
+                return instance.GetComponentInChildren<IStatUIData>();
+            },
+            controller => DestroyImmediate(controller.gameObject));
     }
 
     public void OnHealthChanged(HealthChangeEventArgs args)

@@ -1,4 +1,3 @@
-using Features.Stats.Base;
 using UnityEngine;
 
 namespace Features.Stats.Base

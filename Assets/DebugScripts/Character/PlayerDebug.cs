@@ -2,6 +2,7 @@ using Features.Buffs.UI;
 using Features.Character;
 using Features.Equipment.UI;
 using Features.Inventory.UI;
+using Features.Stats.Base;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -21,6 +22,8 @@ namespace DebugScripts.Character
 
         public BuffUIController BuffUI;
 
+        public StatsUIController StatsUI;
+
         private void Start()
         {
             if (InventoryUI && PlayerInstance.Inventory)
@@ -36,6 +39,11 @@ namespace DebugScripts.Character
             if (BuffUI && PlayerInstance.Buffs)
             {
                 BuffUI.Initialize(PlayerInstance.m_BuffController);
+            }
+
+            if (StatsUI && PlayerInstance.Stats)
+            {
+                StatsUI.Initialize(PlayerInstance.m_StatsController);
             }
         }
 
