@@ -19,8 +19,6 @@ namespace Features.Equipment
 
         public Action<EquipResult> OnItemEquipped;
 
-        public Action<EquipmentContainerItem> OnItemUnequipRequested;
-
         public Action<EquipmentContainerItem> OnSlotUpdated;
 
         public string[] AvailableSlots => EquipmentSlots.Select(x => x.slotType).ToArray();
@@ -85,11 +83,11 @@ namespace Features.Equipment
             }
         }
 
-        public void NotifyItemChanged(EquipmentContainerItem item)
+        public void NotifyItemChanged(EquipmentContainerItem containerSlot)
         {
-            if (ContainerSlots.Any(x => x.Id == item.Id))
+            if (ContainerSlots.Any(x => x.Id == containerSlot.Id))
             {
-                OnSlotUpdated?.Invoke(item);
+                OnSlotUpdated?.Invoke(containerSlot);
             }
         }
 

@@ -18,8 +18,6 @@ namespace DebugScripts.Equipment
 
             m_EquipmentController.OnItemEquipped += ItemEquipped;
 
-            m_EquipmentController.OnItemUnequipRequested += HandleUnequipRequest;
-
             var request = new EquipRequest()
             {
                 Slot = "Basef",
@@ -27,17 +25,6 @@ namespace DebugScripts.Equipment
             };
 
             m_EquipmentController.HandleEquipRequest(request);
-        }
-
-        private void HandleUnequipRequest(EquipmentContainerItem arg0)
-        {
-            var req = new EquipRequest()
-            {
-                Slot = arg0.Slot,
-                Item = null
-            };
-
-            m_EquipmentController.HandleEquipRequest(req);
         }
 
         public void EquipArrows()
