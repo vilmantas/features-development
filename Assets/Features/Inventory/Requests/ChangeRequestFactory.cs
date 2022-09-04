@@ -1,4 +1,5 @@
 using System;
+using Features.Inventory.Requests;
 using Utilities.ItemsContainer;
 
 namespace Features.Inventory
@@ -7,32 +8,32 @@ namespace Features.Inventory
     {
         public static AddRequest Add(IEquatable<object> item, int amount)
         {
-            return new AddRequest() {SourceInventoryItemBase = new StorageData(item), Amount = amount};
+            return new AddRequest() {Item = new StorageData(item), Amount = amount};
         }
-        
+
         public static AddRequest Add(StorageData item, int amount)
         {
-            return new AddRequest() {SourceInventoryItemBase = item, Amount = amount};
+            return new AddRequest() {Item = item, Amount = amount};
         }
 
         public static AddRequest Add(StorageData item)
         {
-            return new AddRequest() {SourceInventoryItemBase = item, Amount = item.StackableData.Current};
+            return new AddRequest() {Item = item, Amount = item.Current};
         }
 
         public static RemoveRequest Remove(StorageData item, int amount)
         {
-            return new RemoveRequest() {SourceInventoryItemBase = item, Amount = amount};
+            return new RemoveRequest() {Item = item, Amount = amount};
         }
 
         public static RemoveRequest Remove(StorageData item)
         {
-            return new RemoveRequest() {SourceInventoryItemBase = item};
+            return new RemoveRequest() {Item = item, Amount = item.Current};
         }
 
-        public static RemoveRequest RemoveExact(StorageData data)
+        public static RemoveExactRequest RemoveExact(StorageData data)
         {
-            return new RemoveRequest() {SourceInventoryItemBase = data, RemoveExact = true};
+            return new RemoveExactRequest() {Item = data};
         }
 
         public static RemoveRequest Remove(AddRequestResult addRequestResult)
@@ -40,7 +41,7 @@ namespace Features.Inventory
             return new RemoveRequest()
             {
                 Amount = addRequestResult.AmountAdded,
-                SourceInventoryItemBase = addRequestResult.AddRequest.SourceInventoryItemBase
+                Item = addRequestResult.AddRequest.Item
             };
         }
 

@@ -1,12 +1,10 @@
 using Features.Inventory.Abstract.Internal;
 using Utilities.ItemsContainer;
 
-namespace Features.Inventory
+namespace Features.Inventory.Requests
 {
-    public class RemoveRequest : IChangeRequest
+    public class RemoveExactRequest : IChangeRequest
     {
-        public int Amount;
-
         public StorageData Item;
     }
 }

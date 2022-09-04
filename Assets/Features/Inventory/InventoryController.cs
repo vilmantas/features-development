@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Features.Inventory.Abstract.Internal;
 using Features.Inventory.Events;
+using Features.Inventory.Requests;
 using UnityEngine;
 using Utilities.ItemsContainer;
 
@@ -71,23 +72,19 @@ namespace Features.Inventory
             switch (request)
             {
                 case AddRequest addRequest:
-                    m_Container.Add(addRequest.SourceInventoryItemBase, addRequest.Amount, out var amountAdded);
+                    m_Container.Add(addRequest.Item, addRequest.Amount, out var amountAdded);
 
                     result = new AddRequestResult(addRequest, amountAdded > 0, amountAdded);
                     break;
+                case RemoveExactRequest removeExactRequest:
+
+                    m_Container.RemoveExact(removeExactRequest.Item, out int exactAmountRemoved);
+
+                    break;
                 case RemoveRequest removeRequest:
-                    int amountRemoved;
 
-                    if (removeRequest.RemoveExact)
-                    {
-                        m_Container.RemoveExact(removeRequest.SourceInventoryItemBase, out amountRemoved);
-                    }
-                    else
-                    {
-                        m_Container.Remove(removeRequest.SourceInventoryItemBase, removeRequest.Amount,
-                            out amountRemoved);
-                    }
-
+                    m_Container.Remove(removeRequest.Item, removeRequest.Amount,
+                        out int amountRemoved);
 
                     result = new RemoveRequestResult(removeRequest, amountRemoved > 0, amountRemoved);
                     break;

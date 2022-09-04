@@ -28,11 +28,11 @@ namespace Utilities.ItemsContainer
         public IReadOnlyList<ContainerItem> Slots => m_Items.ToList();
         public IReadOnlyList<ContainerItem> SlotsWithData => m_Items.Where(x => !x.IsEmpty).ToList();
         public IReadOnlyList<ContainerItem> SlotsWithoutData => m_Items.Where(x => x.IsEmpty).ToList();
+        public bool IsEmpty => SlotsWithData.Count == 0;
+        public bool IsFull => SlotsWithoutData.Count == 0;
 
         public IReadOnlyList<ContainerItem> SlotsWithItem(StorageData item) =>
             SlotsWithData.Where(x => x.Item.Equals(item)).ToList();
-        public bool IsEmpty => SlotsWithData.Count == 0;
-        public bool IsFull => SlotsWithoutData.Count == 0;
 
         public void Add(StorageData item)
         {
@@ -73,9 +73,9 @@ namespace Utilities.ItemsContainer
             return true;
         }
 
-        public void RemoveExact(StorageData data, out int amountRemoved)
+        public void RemoveExact(StorageData item, out int amountRemoved)
         {
-            RemoveByStorageId(data, out amountRemoved);
+            RemoveByStorageId(item.Id, out amountRemoved);
         }
 
         public void Remove(StorageData item)
@@ -126,11 +126,11 @@ namespace Utilities.ItemsContainer
             }
         }
 
-        private void RemoveByStorageId(StorageData data, out int amountRemoved)
+        private void RemoveByStorageId(Guid id, out int amountRemoved)
         {
             amountRemoved = 0;
 
-            var x = SlotsWithData.FirstOrDefault(x => x.Item.Id == data.Id);
+            var x = SlotsWithData.FirstOrDefault(x => x.Item.Id == id);
 
             if (x == null) return;
 

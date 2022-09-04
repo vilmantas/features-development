@@ -7,6 +7,6 @@ namespace Features.Inventory
     {
         public int Amount;
 
-        public StorageData SourceInventoryItemBase;
+        public StorageData Item;
     }
 }

@@ -1,8 +1,10 @@
+using System;
 using Features.Actions;
 using Features.Buffs;
 using Features.Equipment;
 using Features.Health;
 using Features.Inventory;
+using Features.Items;
 using Features.Stats.Base;
 using UnityEngine;
 
@@ -10,6 +12,13 @@ namespace Features.Character
 {
     public class CharacterC
     {
+        [Serializable]
+        public class StartingEquipmentItem
+        {
+            public Item_SO Item;
+            public string EquipmentSlot;
+        }
+
         public class Character : MonoBehaviour
         {
             public bool Buffs;
@@ -29,6 +38,10 @@ namespace Features.Character
             [Range(1, 100)] public int InventorySize = 5;
 
             public SlotData[] EquipmentSlots = new[] {new SlotData() {slotType = "Main"}};
+
+            public Item_SO[] StartingInventory;
+
+            public StartingEquipmentItem[] StartingEquipment;
 
             public Stats_SO BaseStats;
 
@@ -56,40 +69,77 @@ namespace Features.Character
 
             private void Awake()
             {
-                var systemsParent = new GameObject("systems").transform;
-
                 var root = transform;
 
-                systemsParent.parent = root;
+                AddSystems(root);
 
+                AddManagers(root);
+
+                foreach (var itemSo in StartingInventory)
+                {
+                    var itemInstance = itemSo.MakeInstanceWithCount();
+
+                    m_InventoryController.HandleRequest(ChangeRequestFactory.Add(itemInstance.StorageData));
+                }
+            }
+
+            private void AddManagers(Transform root)
+            {
                 var managersParent = new GameObject("managers").transform;
 
                 managersParent.parent = root;
 
-                NewMethod(systemsParent, "actions", ref m_ActionsController);
+                if (Inventory)
+                {
+                    AddComponent(managersParent, "inventory", ref m_InventoryManager);
+                }
+
+                if (Equipment)
+                {
+                    AddComponent(managersParent, "equipment", ref m_EquipmentManager);
+                }
+
+                if (Buffs)
+                {
+                    AddComponent(managersParent, "buffs", ref m_BuffsManager);
+                }
+
+                if (Stats)
+                {
+                    AddComponent(managersParent, "stats", ref m_StatsManager);
+                }
+            }
+
+            private void AddSystems(Transform root)
+            {
+                var systemsParent = new GameObject("systems").transform;
+
+                systemsParent.parent = root;
+
+                AddComponent(systemsParent, "actions", ref m_ActionsController);
 
                 if (Inventory)
                 {
-                    NewMethod(systemsParent, "inventory", ref m_InventoryController);
+                    AddComponent(systemsParent, "inventory", ref m_InventoryController);
 
                     m_InventoryController.Initialize(InventorySize);
                 }
 
                 if (Equipment)
                 {
-                    NewMethod(systemsParent, "equipment", ref m_EquipmentController);
+                    AddComponent(systemsParent, "equipment", ref m_EquipmentController);
 
                     m_EquipmentController.Initialize(EquipmentSlots);
                 }
 
                 if (Buffs)
                 {
-                    NewMethod(systemsParent, "buffs", ref m_BuffController);
+                    AddComponent(systemsParent, "buffs", ref m_BuffController);
                 }
 
                 if (Stats)
                 {
-                    NewMethod(systemsParent, "stats", ref m_StatsController);
+                    AddComponent(systemsParent, "stats", ref m_StatsController);
 
                     if (BaseStats)
                     {
@@ -99,34 +149,13 @@ namespace Features.Character
 
                 if (Health)
                 {
-                    NewMethod(systemsParent, "health", ref m_HealthController);
+                    AddComponent(systemsParent, "health", ref m_HealthController);
 
                     m_HealthController.Initialize(CurrentHealth, MaxHealth);
                 }
-
-
-                if (Inventory)
-                {
-                    NewMethod(managersParent, "inventory", ref m_InventoryManager);
-                }
-
-                if (Equipment)
-                {
-                    NewMethod(managersParent, "equipment", ref m_EquipmentManager);
-                }
-
-                if (Buffs)
-                {
-                    NewMethod(managersParent, "buffs", ref m_BuffsManager);
-                }
-
-                if (Stats)
-                {
-                    NewMethod(managersParent, "stats", ref m_StatsManager);
-                }
             }
 
-            private void NewMethod<T>(Transform parent, string componentName, ref T holder) where T : MonoBehaviour
+            private void AddComponent<T>(Transform parent, string componentName, ref T holder) where T : MonoBehaviour
             {
                 var i = new GameObject(componentName);
 
