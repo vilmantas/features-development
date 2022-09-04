@@ -23,6 +23,16 @@ namespace Features.Buffs.UI
             m_DestroyAction = destroyAction;
 
             SubscribeToSource();
+
+            DisplayUI();
+        }
+
+        private void DisplayUI()
+        {
+            foreach (var activeBuff in m_Source.ActiveBuffs)
+            {
+                HandleAdd(activeBuff);
+            }
         }
 
         public void RemoveSource()

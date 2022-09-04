@@ -6,10 +6,10 @@ namespace _SampleGames.Survivr.SurvivrFeatures.Buffs
 {
     public static class HealOverTime
     {
-        [RuntimeInitializeOnLoadMethod]
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         private static void Register()
         {
-            BuffImplementation implementation = new("HealOverTime", OnReceive, OnRemove, OnTick, OnDurationReset);
+            BuffImplementation implementation = new(nameof(HealOverTime), OnReceive, OnRemove, OnTick, OnDurationReset);
             BuffImplementationRegistry.Implementations.TryAdd(implementation.Name, implementation);
         }
 

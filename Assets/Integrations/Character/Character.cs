@@ -43,23 +43,25 @@ namespace Features.Character
 
             public StartingEquipmentItem[] StartingEquipment;
 
+            public Buff_SO[] StartingBuffs;
+
             public Stats_SO BaseStats;
+
+            [HideInInspector] public BuffController m_BuffController;
+
+            [HideInInspector] public EquipmentController m_EquipmentController;
+
+            [HideInInspector] public InventoryController m_InventoryController;
 
             private ActionsController m_ActionsController;
 
             private CharacterActionsManager m_ActionsManager;
 
-            private BuffController m_BuffController;
-
             private CharacterBuffsManager m_BuffsManager;
-
-            private EquipmentController m_EquipmentController;
 
             private CharacterEquipmentManager m_EquipmentManager;
 
             private HealthController m_HealthController;
-
-            private InventoryController m_InventoryController;
 
             private CharacterInventoryManager m_InventoryManager;
 
@@ -75,11 +77,26 @@ namespace Features.Character
 
                 AddManagers(root);
 
-                foreach (var itemSo in StartingInventory)
+                if (Inventory && StartingInventory != null && StartingInventory.Length > 0)
                 {
-                    var itemInstance = itemSo.MakeInstanceWithCount();
+                    foreach (var itemSo in StartingInventory)
+                    {
+                        if (!itemSo) continue;
 
-                    m_InventoryController.HandleRequest(ChangeRequestFactory.Add(itemInstance.StorageData));
+                        var itemInstance = itemSo.MakeInstanceWithCount();
+
+                        m_InventoryController.HandleRequest(ChangeRequestFactory.Add(itemInstance.StorageData));
+                    }
+                }
+
+                if (Buffs && StartingBuffs != null && StartingBuffs.Length > 0)
+                {
+                    foreach (var startingBuff in StartingBuffs)
+                    {
+                        if (!startingBuff) continue;
+
+                        m_BuffController.AttemptAdd(new(startingBuff.Base, gameObject, 1));
+                    }
                 }
             }
 

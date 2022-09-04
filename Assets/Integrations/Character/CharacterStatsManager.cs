@@ -18,7 +18,10 @@ namespace Features.Character
 
             m_EquipmentController = root.GetComponentInChildren<EquipmentController>();
 
-            m_EquipmentController.OnItemEquipped += OnItemEquipped;
+            if (m_EquipmentController)
+            {
+                m_EquipmentController.OnItemEquipped += OnItemEquipped;
+            }
         }
 
         private void OnItemEquipped(EquipResult result)
