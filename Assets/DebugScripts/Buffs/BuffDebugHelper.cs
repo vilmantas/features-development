@@ -10,6 +10,13 @@ namespace DebugScripts.Buffs
         private void Start()
         {
             BuffController = GetComponentInChildren<BuffController>();
+
+            BuffController.OnBuffTickOccurred += OnBuffTickOccurred;
+        }
+
+        private void OnBuffTickOccurred(ActiveBuff obj)
+        {
+            Debug.Log(obj.Metadata.Name + " Tick");
         }
 
         public void GiveTicker()

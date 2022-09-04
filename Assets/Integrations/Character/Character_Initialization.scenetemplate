@@ -60,15 +60,19 @@ MonoBehaviour:
   m_Name: Character_Initialization
   m_EditorClassIdentifier: 
   templateScene: {fileID: 102900000, guid: bc05c716b9a82d848a1e0b07b65e2d14, type: 3}
-  templateName: 
+  templateName: Character Testing
   description: 
   preview: {fileID: -2183858081181444821}
   dependencies:
   - dependency: {fileID: 919132149155446097, guid: 451d9a9248b216e4793a65a1961544a0, type: 3}
     instantiationMode: 0
+  - dependency: {fileID: 2100000, guid: b2e373b99f56543069f782c6e2b330db, type: 2}
+    instantiationMode: 0
   - dependency: {fileID: 5032716209500562685, guid: 0b555aae3e25cf94398871ea5656a5a5, type: 3}
     instantiationMode: 0
   - dependency: {fileID: 6725140403020356506, guid: c877b129ff71dc445bc5fef2f4f7e7df, type: 3}
+    instantiationMode: 0
+  - dependency: {fileID: 2800000, guid: fb74b3314617f4e2a8b86cae4f9e5039, type: 3}
     instantiationMode: 0
   - dependency: {fileID: 2800000, guid: f73b6ca91825b8547afa0eeb10eb4406, type: 3}
     instantiationMode: 0
