@@ -1,4 +1,3 @@
-using System;
 using Features.Equipment;
 using Features.Equipment.UI;
 using UnityEngine;
@@ -12,11 +11,11 @@ namespace DebugScripts.Equipment
         public BaseEquipmentUIData UIPrefab;
 
         private EquipmentUIManager m_UIManager;
-        
+
         private void Start()
         {
             m_UIManager = new EquipmentUIManager();
-            
+
             m_UIManager.SetSource(Character.GetComponentInChildren<EquipmentController>(),
                 () =>
                 {
