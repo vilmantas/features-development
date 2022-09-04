@@ -107,7 +107,7 @@ namespace Features.Character
 
                         var instance = equipmentItem.Item.MakeInstanceWithCount();
 
-                        var request = new EquipRequest() {ItemInstance = instance, SlotType = equipmentItem.Slot};
+                        var request = new EquipRequest() {Item = instance, Slot = equipmentItem.Slot};
 
                         m_EquipmentController.HandleEquipRequest(request);
                     }

@@ -11,6 +11,10 @@ namespace Features.Equipment
 
         private Container m_Container;
 
+        public Action<EquipRequest> OnBeforeEquip;
+
+        public Action<UnequipRequest> OnBeforeUnequip;
+
         public Action<EquipResult> OnItemCombined;
 
         public Action<EquipResult> OnItemEquipped;
@@ -35,13 +39,37 @@ namespace Features.Equipment
             m_Container = new Container(EquipmentSlots == null ? new string[] { } : AvailableSlots);
         }
 
-        public void RequestUnequip(EquipmentContainerItem containerItem)
+        public void UnequipItem(UnequipRequest request)
         {
-            OnItemUnequipRequested?.Invoke(containerItem);
+            if (OnBeforeUnequip != null)
+            {
+                foreach (var boxed in OnBeforeUnequip.GetInvocationList())
+                {
+                    if (boxed is not Action<UnequipRequest> castDel) continue;
+
+                    castDel.Invoke(request);
+                }
+            }
+
+            if (request.PreventDefault) return;
+
+            HandleEquipRequest(new() {SlotId = request.ContainerItem.Id});
         }
 
         public void HandleEquipRequest(EquipRequest request)
         {
+            if (OnBeforeEquip != null)
+            {
+                foreach (var @delegate in OnBeforeEquip.GetInvocationList())
+                {
+                    if (@delegate is not Action<EquipRequest> castedDel) continue;
+
+                    castedDel.Invoke(request);
+                }
+            }
+
+            if (request.PreventDefault) return;
+
             var result = m_Container.Equip(request);
 
             if (!result.Succeeded) return;

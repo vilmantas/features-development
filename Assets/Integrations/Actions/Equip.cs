@@ -1,9 +1,6 @@
-using System;
 using Features.Actions;
-using Features.Buffs;
 using Features.Equipment;
 using Features.Items;
-using Features.Stats.Base;
 using UnityEngine;
 
 namespace Integrations.Actions
@@ -22,7 +19,7 @@ namespace Integrations.Actions
             var equipActionPayload = payload as EquipActionPayload;
 
             var equipmentController = payload.Target.GetComponentInChildren<EquipmentController>();
-            
+
             equipmentController.HandleEquipRequest(equipActionPayload.EquipRequest);
         }
 
@@ -30,7 +27,7 @@ namespace Integrations.Actions
         {
             var item = original.Source as ItemInstance;
 
-            var request = new EquipRequest() { ItemInstance = item };
+            var request = new EquipRequest() {Item = item};
 
             return new EquipActionPayload(original, request, item);
         }
@@ -38,14 +35,15 @@ namespace Integrations.Actions
 
     public class EquipActionPayload : ActionActivationPayload
     {
-        public EquipRequest EquipRequest { get; }
-        public ItemInstance ItemInstance { get; }
-
-        public EquipActionPayload(ActionActivationPayload original, EquipRequest request, ItemInstance itemInstance) : base(original.Action,
-            original.Source, original.Target)
+        public EquipActionPayload(ActionActivationPayload original, EquipRequest request, ItemInstance itemInstance) :
+            base(original.Action,
+                original.Source, original.Target)
         {
             EquipRequest = request;
             ItemInstance = itemInstance;
         }
+
+        public EquipRequest EquipRequest { get; }
+        public ItemInstance ItemInstance { get; }
     }
 }

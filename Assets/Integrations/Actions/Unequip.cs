@@ -1,10 +1,7 @@
-using System;
 using Features.Actions;
-using Features.Buffs;
 using Features.Equipment;
 using Features.Inventory;
 using Features.Items;
-using Features.Stats.Base;
 using UnityEngine;
 
 namespace Integrations.Actions
@@ -23,13 +20,13 @@ namespace Integrations.Actions
             var equipActionPayload = payload as UnequipActionPayload;
 
             var equipmentController = payload.Target.GetComponentInChildren<EquipmentController>();
-            
+
             var instance = equipActionPayload.ContainerSlot.Main as ItemInstance;
-            
+
             if (instance == null) return;
 
             var inventoryController = payload.Target.GetComponentInChildren<InventoryController>();
-            
+
             int maxAmountToAdd;
 
             if (!inventoryController)
@@ -38,9 +35,9 @@ namespace Integrations.Actions
 
                 return;
             }
-            
+
             if (!inventoryController.CanReceive(instance.StorageData, out maxAmountToAdd)) return;
-            
+
             if (maxAmountToAdd >= instance.CurrentAmount)
             {
                 UnequipItem(equipmentController, equipActionPayload);
@@ -68,18 +65,19 @@ namespace Integrations.Actions
             UnequipActionPayload equipActionPayload)
         {
             equipmentController.HandleEquipRequest(new EquipRequest()
-                {ItemInstance = null, SlotType = equipActionPayload.ContainerSlot.Slot});
+                {Item = null, Slot = equipActionPayload.ContainerSlot.Slot});
         }
     }
 
     public class UnequipActionPayload : ActionActivationPayload
     {
-        public EquipmentContainerItem ContainerSlot { get; }
-
-        public UnequipActionPayload(ActionActivationPayload original, EquipmentContainerItem containerSlot) : base(original.Action,
+        public UnequipActionPayload(ActionActivationPayload original, EquipmentContainerItem containerSlot) : base(
+            original.Action,
             original.Source, original.Target)
         {
             ContainerSlot = containerSlot;
         }
+
+        public EquipmentContainerItem ContainerSlot { get; }
     }
 }

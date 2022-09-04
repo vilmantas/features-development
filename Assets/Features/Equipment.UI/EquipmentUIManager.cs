@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Features.Equipment.UI
 {
@@ -50,7 +49,7 @@ namespace Features.Equipment.UI
 
         private void ActivateItem(EquipmentContainerItem arg0)
         {
-            m_Source.RequestUnequip(arg0);
+            m_Source.UnequipItem(new() {ContainerItem = arg0});
         }
 
         private void OnItemEquippedEventHandler(EquipResult arg0)

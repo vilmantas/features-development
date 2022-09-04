@@ -4,10 +4,11 @@ namespace Features.Equipment
 {
     public class EquipRequest
     {
-        public IEquipmentItemInstance ItemInstance;
+        public IEquipmentItemInstance Item;
+        public bool PreventDefault;
+        public string Slot;
         public Guid SlotId;
-        public string SlotType;
 
-        public bool IsForSpecificSlot => !string.IsNullOrEmpty(SlotType);
+        public bool IsForSpecificSlot => !string.IsNullOrEmpty(Slot);
     }
 }

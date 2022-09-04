@@ -1,4 +1,3 @@
-using Features.Actions;
 using Features.Equipment;
 using Features.Inventory;
 using Features.Items;
@@ -28,15 +27,37 @@ namespace Features.Character
             if (m_EquipmentController)
             {
                 m_EquipmentController.OnItemEquipped += OnItemEquipped;
-                
+
                 m_EquipmentController.OnItemCombined += OnItemCombined;
+
+                m_EquipmentController.OnBeforeUnequip += OnBeforeUnequip;
+            }
+        }
+
+        private void OnBeforeUnequip(UnequipRequest obj)
+        {
+            if (obj.ContainerItem.Main is not ItemInstance item) return;
+
+            if (!m_InventoryController.CanReceive(item.StorageData, out int maxAmountToAdd)) return;
+
+            if (maxAmountToAdd <= item.CurrentAmount)
+            {
+                obj.PreventDefault = true;
+
+                var result = m_InventoryController.HandleRequest(
+                    ChangeRequestFactory.Add(item.StorageData)) as AddRequestResult;
+
+
+                item.StorageData.StackableData.Reduce(result.AmountAdded);
+
+                m_EquipmentController.NotifyItemChanged(obj.ContainerItem);
             }
         }
 
         private void OnItemCombined(EquipResult result)
         {
-            if (result.Request.ItemInstance is not ItemInstance requestItem) return;
-            
+            if (result.Request.Item is not ItemInstance requestItem) return;
+
             if (requestItem.StorageData.Current == 0)
             {
                 m_InventoryController.HandleRequest(
