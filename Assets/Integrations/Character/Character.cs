@@ -16,7 +16,7 @@ namespace Features.Character
         public class StartingEquipmentItem
         {
             public Item_SO Item;
-            public string EquipmentSlot;
+            public string Slot;
         }
 
         public class Character : MonoBehaviour
@@ -96,6 +96,20 @@ namespace Features.Character
                         if (!startingBuff) continue;
 
                         m_BuffController.AttemptAdd(new(startingBuff.Base, gameObject, 1));
+                    }
+                }
+
+                if (Equipment && StartingEquipment != null && StartingEquipment.Length > 0)
+                {
+                    foreach (var equipmentItem in StartingEquipment)
+                    {
+                        if (equipmentItem == null || equipmentItem.Item == null) continue;
+
+                        var instance = equipmentItem.Item.MakeInstanceWithCount();
+
+                        var request = new EquipRequest() {ItemInstance = instance, SlotType = equipmentItem.Slot};
+
+                        m_EquipmentController.HandleEquipRequest(request);
                     }
                 }
             }
