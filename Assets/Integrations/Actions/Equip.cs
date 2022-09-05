@@ -20,6 +20,8 @@ namespace Integrations.Actions
 
             var equipmentController = payload.Target.GetComponentInChildren<EquipmentController>();
 
+            if (!equipmentController) return;
+            
             equipmentController.HandleEquipRequest(equipActionPayload.EquipRequest);
         }
 

@@ -109,6 +109,7 @@ MonoBehaviour:
   InventoryUI: {fileID: 0}
   EquipmentUI: {fileID: 0}
   BuffUI: {fileID: 0}
+  StatsUI: {fileID: 0}
 --- !u!114 &6728580033162269917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,7 +124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Buffs: 1
   Inventory: 1
-  Equipment: 0
+  Equipment: 1
   Stats: 1
   Health: 1
   MaxHealth: 20
@@ -134,14 +135,17 @@ MonoBehaviour:
     InstanceParent: {fileID: 0}
     slotType: Main
   StartingInventory:
-  - {fileID: 0}
-  StartingEquipment: []
+  - {fileID: 11400000, guid: 65486bab36bfb4e2dab7d80ae586f820, type: 2}
+  StartingEquipment:
+  - Item: {fileID: 0}
+    Slot: 
   StartingBuffs:
   - {fileID: 11400000, guid: f8f868495d5d11145b3191830b66b886, type: 2}
-  BaseStats: {fileID: 0}
+  BaseStats: {fileID: 11400000, guid: 90fed523627e87f45903bc0107b13790, type: 2}
   m_BuffController: {fileID: 0}
   m_EquipmentController: {fileID: 0}
   m_InventoryController: {fileID: 0}
+  m_StatsController: {fileID: 0}
 --- !u!1001 &5189068144310493044
 PrefabInstance:
   m_ObjectHideFlags: 0
