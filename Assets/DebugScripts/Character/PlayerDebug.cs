@@ -5,6 +5,7 @@ using Features.Inventory.UI;
 using Features.Stats.Base;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 
 namespace DebugScripts.Character
 {
@@ -51,6 +52,10 @@ namespace DebugScripts.Character
         {
             if (Input.GetMouseButtonUp(0))
             {
+                if (EventSystem.current != null &&
+                    EventSystem.current.IsPointerOverGameObject()) return;
+                
+                
                 var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
                 if (Physics.Raycast(ray, out RaycastHit hit, 100f, GroundLayer))
