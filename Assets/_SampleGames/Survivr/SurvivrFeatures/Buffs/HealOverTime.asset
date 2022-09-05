@@ -17,4 +17,4 @@ MonoBehaviour:
   MaxStacks: 1
   Interval: 1
   ExecuteTickImmediately: 0
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: cc15788561d402c4495178a6b6352431, type: 3}

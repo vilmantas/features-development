@@ -82,6 +82,8 @@ namespace Features.Equipment.UI
         private void UnsubscribeFromSource()
         {
             m_Source.OnItemEquipped -= OnItemEquippedEventHandler;
+            m_Source.OnSlotUpdated -= OnSlotUpdated;
+            m_Source.OnItemCombined -= OnItemCombined;
         }
     }
 }

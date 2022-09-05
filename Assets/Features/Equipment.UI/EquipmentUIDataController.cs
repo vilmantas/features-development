@@ -22,7 +22,14 @@ namespace Features.Equipment.UI
             {
                 if (image.name.EndsWith("placeholder"))
                 {
+                    var sprite = Resources.Load<Sprite>("equipment_placeholder");
+                    
                     Placeholder = image;
+
+                    if (sprite != null)
+                    {
+                        Placeholder.sprite = sprite;
+                    }
                 }
 
                 if (image.name.EndsWith("item_icon"))
@@ -36,6 +43,13 @@ namespace Features.Equipment.UI
         {
             if (item.Main == null)
             {
+                var sprite = Resources.Load<Sprite>($"equipment_{item.Slot}");
+                    
+                if (sprite != null)
+                {
+                    Placeholder.sprite = sprite;
+                }
+                
                 Placeholder.gameObject.SetActive(true);
                 ItemIcon.gameObject.SetActive(false);
                 Count.text = string.Empty;

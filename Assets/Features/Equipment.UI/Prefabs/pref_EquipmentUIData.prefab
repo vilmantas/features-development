@@ -187,7 +187,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f30a9333e30a79a42bbac4b37019dc80, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1f4bcc0b36f0f432d82560b38c0e891b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -435,7 +435,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4471141954716080194}
   - component: {fileID: 7888900440289999601}
-  - component: {fileID: 7215477826357433508}
+  - component: {fileID: 6634496548980880949}
   m_Layer: 5
   m_Name: pref_EquipmentUIData
   m_TagString: Untagged
@@ -462,7 +462,7 @@ RectTransform:
   - {fileID: 6296828197825533936}
   - {fileID: 4710236826688139754}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -477,7 +477,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4471141954716080195}
   m_CullTransparentMesh: 1
---- !u!114 &7215477826357433508
+--- !u!114 &6634496548980880949
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -486,7 +486,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4471141954716080195}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c6294fcfcbc43acb8d01c54136576bc, type: 3}
+  m_Script: {fileID: 11500000, guid: 8dff38395cfe8a74da71e1afdf1edeca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Count: {fileID: 0}
