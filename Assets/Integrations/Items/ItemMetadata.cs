@@ -28,25 +28,7 @@ namespace Features.Items
             Action = action;
         }
 
-        public ItemMetadata(string name, Sprite sprite, int maxStack, GameObject modelPrefab, List<BuffBase> buffs,
-            ActionBase action)
-        {
-            Name = name;
-            Sprite = sprite;
-            MaxStack = maxStack < 1 ? 1 : maxStack;
-            Stats = new StatGroup(Array.Empty<Stat>());
-            MainSlot = string.Empty;
-            SecondarySlot = string.Empty;
-            IsStackable = MaxStack > 1;
-            ModelPrefab = modelPrefab;
-            Buffs = buffs;
-            Action = action;
-        }
-
         public StatGroup Stats { get; }
-
-        public ItemInstance ToInstance => new(this);
-
         public List<BuffBase> Buffs { get; }
         public ActionBase Action { get; }
         public GameObject ModelPrefab { get; }
