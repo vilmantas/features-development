@@ -9,7 +9,7 @@ namespace Features.Items
 
         public static IReadOnlyDictionary<string, ItemMetadata> Registry => m_MetadataDictionary;
 
-        public static void RegisterMetadata(ItemMetadata metadata)
+        public static void Register(ItemMetadata metadata)
         {
             var name = metadata.Name;
 

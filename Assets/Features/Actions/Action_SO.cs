@@ -7,9 +7,11 @@ namespace Features.Actions
     {
         public string Name;
 
+        public string Alias;
+
         public ActionBase Base
         {
-            get => new ActionBase(Name);
+            get => string.IsNullOrEmpty(Alias) ? new ActionBase(Name) : new ActionBase(Name, Alias);
         }
     }
 }

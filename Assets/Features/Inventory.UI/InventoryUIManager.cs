@@ -18,6 +18,8 @@ namespace Features.Inventory.UI
         public void SetSource(InventoryController controller, Func<IInventoryUIData> instantiationFunc,
             Action<IInventoryUIData> destroyAction)
         {
+            UnsubscribeFromSource();
+            
             m_Source = controller;
 
             m_InstantiationFunc = instantiationFunc;
@@ -80,7 +82,7 @@ namespace Features.Inventory.UI
 
         private void SubscribeToSource()
         {
-            m_Source.OnChangeRequestHandled.AddListener(OnItemChangeRequestHandled);
+            m_Source.OnChangeRequestHandled += OnItemChangeRequestHandled;
             m_Source.OnInventoryUpdated += ResetUI;
         }
 
@@ -92,7 +94,10 @@ namespace Features.Inventory.UI
 
         private void UnsubscribeFromSource()
         {
-            m_Source.OnChangeRequestHandled.RemoveListener(OnItemChangeRequestHandled);
+            if (m_Source == null) return;
+            
+            m_Source.OnChangeRequestHandled -= OnItemChangeRequestHandled;
+            m_Source.OnInventoryUpdated -= ResetUI;
         }
     }
 }

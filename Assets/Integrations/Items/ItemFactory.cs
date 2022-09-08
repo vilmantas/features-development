@@ -17,7 +17,9 @@ namespace Features.Items
 
             foreach (var item in allItems)
             {
-                ItemMetadataRegistry.RegisterMetadata(ToMetadata(item));
+                var metadata = ToMetadata(item);
+                
+                ItemMetadataRegistry.Register(metadata);
             }
         }
 

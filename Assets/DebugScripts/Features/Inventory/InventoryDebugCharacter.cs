@@ -16,8 +16,6 @@ namespace DebugScripts
 
         public DebugItem_SO Pickaxe;
 
-        public BaseInventoryUIData baseInventoryUIPrefab;
-
         private InventoryController m_InventoryController;
 
         private void Start()
@@ -26,9 +24,7 @@ namespace DebugScripts
 
             m_InventoryController = GetComponentInChildren<InventoryController>();
 
-            m_InventoryController.OnChangeRequestHandled.AddListener(ChangeRequestHandled);
-
-            // m_InventoryController.WithUI(baseInventoryUIPrefab, UIContainer.transform);
+            m_InventoryController.OnChangeRequestHandled += ChangeRequestHandled;
         }
 
         private StorageData wtf(StorageData arg)

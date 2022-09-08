@@ -13,9 +13,9 @@ namespace Features.Inventory
     {
         [Range(1, 50)] public int Size = 20;
 
-        public readonly ChangeRequestHandledEvent OnChangeRequestHandled = new();
+        public Action<IChangeRequestResult> OnChangeRequestHandled;
 
-        public readonly ContextRequestEvent OnContextRequested = new();
+        public Action<StorageData> OnContextRequested;
 
         private Container m_Container;
 
@@ -77,12 +77,10 @@ namespace Features.Inventory
                     result = new AddRequestResult(addRequest, amountAdded > 0, amountAdded);
                     break;
                 case RemoveExactRequest removeExactRequest:
-
                     m_Container.RemoveExact(removeExactRequest.Item, out int exactAmountRemoved);
 
                     break;
                 case RemoveRequest removeRequest:
-
                     m_Container.Remove(removeRequest.Item, removeRequest.Amount,
                         out int amountRemoved);
 
@@ -104,7 +102,7 @@ namespace Features.Inventory
                     return null;
             }
 
-            OnChangeRequestHandled.Invoke(result);
+            OnChangeRequestHandled?.Invoke(result);
 
             return result;
         }
@@ -116,7 +114,7 @@ namespace Features.Inventory
 
         public void HandleItemContextOpen(ContainerItem container)
         {
-            OnContextRequested.Invoke(container.Item);
+            OnContextRequested?.Invoke(container.Item);
         }
     }
 }

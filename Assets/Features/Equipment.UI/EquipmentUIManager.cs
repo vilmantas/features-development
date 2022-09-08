@@ -15,6 +15,8 @@ namespace Features.Equipment.UI
         public void SetSource(EquipmentController controller, Func<IEquipmentUIData> instantiationFunc,
             Action<IEquipmentUIData> destroyAction)
         {
+            UnsubscribeFromSource();
+            
             m_Source = controller;
 
             m_InstantiationFunc = instantiationFunc;
@@ -81,6 +83,8 @@ namespace Features.Equipment.UI
 
         private void UnsubscribeFromSource()
         {
+            if (m_Source == null) return;
+            
             m_Source.OnItemEquipped -= OnItemEquippedEventHandler;
             m_Source.OnSlotUpdated -= OnSlotUpdated;
             m_Source.OnItemCombined -= OnItemCombined;
