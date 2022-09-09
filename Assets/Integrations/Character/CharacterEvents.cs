@@ -6,6 +6,9 @@ namespace Features.Character
 {
     public class CharacterEvents : MonoBehaviour
     {
+        public Vector3 Velocity;
+
+        public float Speed;
         private NavMeshAgent m_NavMeshAgent;
 
         private Vector3 m_PreviousVelocity;
@@ -23,15 +26,25 @@ namespace Features.Character
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space)) OnStrike?.Invoke();
+            if (Input.GetKeyDown(KeyCode.LeftShift)) m_NavMeshAgent.speed = 7;
 
-            var currentVelocity = m_NavMeshAgent.velocity;
+            if (Input.GetKeyUp(KeyCode.LeftShift)) m_NavMeshAgent.speed = 3;
 
-            if (currentVelocity == m_PreviousVelocity) return;
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                OnStrike?.Invoke();
+                m_NavMeshAgent.SetDestination(transform.position);
+            }
 
-            m_PreviousVelocity = currentVelocity;
+            Velocity = m_NavMeshAgent.velocity;
 
-            if (currentVelocity == Vector3.zero)
+            Speed = m_NavMeshAgent.speed;
+
+            if (Velocity == m_PreviousVelocity) return;
+
+            m_PreviousVelocity = Velocity;
+
+            if (Velocity == Vector3.zero)
             {
                 OnStopped?.Invoke();
             }
