@@ -14,6 +14,8 @@ namespace Features.Character
 
         public Action OnStopped;
 
+        public Action OnStrike;
+
         private void Awake()
         {
             m_NavMeshAgent = GetComponent<NavMeshAgent>();
@@ -21,6 +23,8 @@ namespace Features.Character
 
         private void Update()
         {
+            if (Input.GetKeyDown(KeyCode.Space)) OnStrike?.Invoke();
+
             var currentVelocity = m_NavMeshAgent.velocity;
 
             if (currentVelocity == m_PreviousVelocity) return;
