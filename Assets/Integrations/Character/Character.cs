@@ -19,6 +19,7 @@ namespace Features.Character
             public string Slot;
         }
 
+        [RequireComponent(typeof(CharacterEvents))]
         public class Character : MonoBehaviour
         {
             public bool Buffs;
@@ -121,7 +122,7 @@ namespace Features.Character
                 managersParent.parent = root;
 
                 AddComponent(managersParent, "actions", ref m_ActionsManager);
-                
+
                 if (Inventory)
                 {
                     AddComponent(managersParent, "inventory", ref m_InventoryManager);
