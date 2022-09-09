@@ -4,11 +4,32 @@ ModelImporter:
   serializedVersion: 22103
   internalIDToNameTable:
   - first:
+      74: -1068736904027999620
+    second: armature_player_v1|ArmatureAction
+  - first:
+      74: -1509649169558156541
+    second: armature_player_v1|model_player_v3Action
+  - first:
+      74: 5946230157264949496
+    second: armature_player_v1|Player.Idle
+  - first:
+      74: -5301395142138338070
+    second: armature_player_v1|Player.Strike_1
+  - first:
+      74: 6771247668427471735
+    second: armature_player_v1|Player.Strike_2
+  - first:
       74: 3612787270936155106
     second: armature_player_v1|Player.TPose
   - first:
+      74: 4974723210058355183
+    second: armature_player_v1|Player.TPose.002
+  - first:
       74: -8719530388841991062
     second: armature_player_v1|Player.Walk
+  - first:
+      74: -5612845372843227741
+    second: armature_player_v1|SwordAction
   externalObjects: {}
   materials:
     materialImportMode: 2
