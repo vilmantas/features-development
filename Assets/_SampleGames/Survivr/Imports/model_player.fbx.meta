@@ -40,7 +40,15 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: 
+    animationImportWarnings: "\nClip 'model_player_v4_armature|Player.Walk' has import
+      animation warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'Leg.Upper.L' has translation
+      animation that will be discarded.\n\t'Leg.Upper.R' has translation animation
+      that will be discarded.\n\nClip 'model_player_v4_armature|Player.WalkLegsOnly'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Leg.Upper.L'
+      has translation animation that will be discarded.\n\t'Leg.Upper.R' has translation
+      animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -67,12 +75,12 @@ ModelImporter:
       hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
       keepOriginalOrientation: 0
       keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
+      keepOriginalPositionXZ: 1
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
@@ -325,12 +333,12 @@ ModelImporter:
       parentName: Root
       position: {x: 3.907985e-14, y: 2.8799185e-13, z: 1.3138069}
       rotation: {x: -0.033502936, y: 0.0000000050587943, z: 2.842171e-14, w: 0.99943864}
-      scale: {x: 1.0000002, y: 1.0000001, z: 1.0000001}
+      scale: {x: 1.0000002, y: 1, z: 1}
     - name: Neck
       parentName: Spine
       position: {x: 7.6383344e-14, y: -0.000000014900873, z: 2.767125}
       rotation: {x: 0.010785725, y: 1.110223e-14, z: -0.00000015098702, w: 0.9999419}
-      scale: {x: 1.0000007, y: 1.0000004, z: 1.0000004}
+      scale: {x: 1.0000007, y: 1.0000005, z: 1.0000005}
     - name: Head
       parentName: Neck
       position: {x: -5.227127e-14, y: 5.5663363e-10, z: 0.46216345}
@@ -344,23 +352,23 @@ ModelImporter:
     - name: Shoulder.L
       parentName: Spine
       position: {x: 7.6383344e-14, y: -0.000000014900873, z: 2.767125}
-      rotation: {x: -0.01774789, y: -0.81310666, z: 0.008684207, w: -0.58177936}
-      scale: {x: 1, y: 1.0000002, z: 1}
+      rotation: {x: -0.0177478, y: -0.81310666, z: 0.008684177, w: -0.58177936}
+      scale: {x: 1.0000001, y: 1.0000002, z: 1.0000002}
     - name: Arm.Upper.L
       parentName: Shoulder.L
       position: {x: 0.00000011706774, y: 0.000000037252903, z: 1.5841331}
-      rotation: {x: -0.010513213, y: -0.18186061, z: 0.006484663, w: 0.9832468}
-      scale: {x: 1.0000002, y: 1.0000002, z: 1.0000002}
+      rotation: {x: -0.010513215, y: -0.18186058, z: 0.0064847064, w: 0.9832467}
+      scale: {x: 1.0000004, y: 1.0000004, z: 1.0000001}
     - name: Arm.Lower.L
       parentName: Arm.Upper.L
       position: {x: -0.0000005643629, y: 0.0000000028836666, z: 1.8492362}
-      rotation: {x: -0.04853269, y: 0.000000014901159, z: -0.00000008370261, w: 0.9988216}
+      rotation: {x: -0.048532695, y: -0.000000014901163, z: -0.0000000812579, w: 0.9988216}
       scale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
     - name: Arm.Fist.L
       parentName: Arm.Lower.L
       position: {x: -0.00000038884255, y: 0.00000001895205, z: 1.657694}
-      rotation: {x: 0.036069226, y: -0.0000001605144, z: -0.000000011511694, w: 0.9993493}
-      scale: {x: 1.0000002, y: 1.0000002, z: 1.0000001}
+      rotation: {x: 0.03606923, y: -0.00000010086024, z: -0.000000013300859, w: 0.9993493}
+      scale: {x: 1.0000002, y: 1.0000001, z: 1.0000002}
     - name: Arm.Fist.L_end
       parentName: Arm.Fist.L
       position: {x: 0, y: 0, z: 0.46867466}
@@ -369,23 +377,23 @@ ModelImporter:
     - name: Shoulder.R
       parentName: Spine
       position: {x: 7.6383344e-14, y: -0.000000014900873, z: 2.767125}
-      rotation: {x: 0.017747823, y: -0.8131067, z: 0.00868413, w: 0.58177924}
-      scale: {x: 1.0000002, y: 1.0000002, z: 1.0000002}
+      rotation: {x: 0.017747797, y: -0.81310666, z: 0.008684192, w: 0.58177936}
+      scale: {x: 1.0000004, y: 1.0000002, z: 1.0000002}
     - name: Arm.Upper.R
       parentName: Shoulder.R
       position: {x: -0.00000012965712, y: -0.000000022351742, z: 1.5841331}
-      rotation: {x: -0.010513331, y: 0.18186066, z: -0.0064847013, w: 0.9832468}
-      scale: {x: 1.0000005, y: 1.0000005, z: 1.0000004}
+      rotation: {x: -0.010513331, y: 0.18186064, z: -0.0064847013, w: 0.9832467}
+      scale: {x: 1.0000004, y: 1.0000006, z: 1.0000004}
     - name: Arm.Lower.R
       parentName: Arm.Upper.R
       position: {x: -0.00000011818516, y: 0.0000000010545591, z: 1.8492353}
-      rotation: {x: -0.04853272, y: -0.000000044703484, z: 0.000000017113052, w: 0.9988217}
-      scale: {x: 1.0000002, y: 1.0000002, z: 1.0000002}
+      rotation: {x: -0.048532717, y: -0.000000044703487, z: 0.000000018044377, w: 0.9988216}
+      scale: {x: 1.0000004, y: 1.0000002, z: 1.0000002}
     - name: Arm.Fist.R
       parentName: Arm.Lower.R
       position: {x: -0.00000008799462, y: 0.00000002968261, z: 1.6576952}
-      rotation: {x: 0.03606919, y: 0.000000103334834, z: 0.000000009245497, w: 0.9993493}
-      scale: {x: 1.0000001, y: 1.0000001, z: 1.0000002}
+      rotation: {x: 0.036069192, y: 0.00000010325607, z: 0.000000010174698, w: 0.99934936}
+      scale: {x: 1, y: 1.0000001, z: 1.0000004}
     - name: Arm.Fist.R_end
       parentName: Arm.Fist.R
       position: {x: 0, y: 0, z: 0.4686737}
@@ -420,12 +428,12 @@ ModelImporter:
       parentName: Leg.Upper.R
       position: {x: -0.000000026204972, y: 0.0000000029107134, z: 1.9736849}
       rotation: {x: 0.059811693, y: -0.000000005240418, z: 0.000000098133214, w: 0.9982097}
-      scale: {x: 1, y: 1.0000002, z: 0.99999994}
+      scale: {x: 1, y: 1.0000002, z: 0.9999999}
     - name: Foot.R
       parentName: Leg.Lower.R
       position: {x: -0.000000002841385, y: -0.0000000072931954, z: 1.5960912}
       rotation: {x: -0.7106338, y: 0.0000012958826, z: 0.0000011445953, w: 0.7035621}
-      scale: {x: 1, y: 1.0000004, z: 1.0000002}
+      scale: {x: 1, y: 1.0000005, z: 1.0000002}
     - name: Foot.R_end
       parentName: Foot.R
       position: {x: 0, y: 0, z: 0.7735614}
@@ -484,7 +492,7 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     globalScale: 1
-    rootMotionBoneName: 
+    rootMotionBoneName: Root
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1
