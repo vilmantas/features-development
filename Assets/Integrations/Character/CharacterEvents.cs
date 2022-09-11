@@ -6,9 +6,9 @@ namespace Features.Character
 {
     public class CharacterEvents : MonoBehaviour
     {
+        [HideInInspector]
         public Vector3 Velocity;
 
-        public float Speed;
         private NavMeshAgent m_NavMeshAgent;
 
         private Vector3 m_PreviousVelocity;
@@ -45,8 +45,6 @@ namespace Features.Character
             }
 
             Velocity = m_NavMeshAgent.velocity;
-
-            Speed = m_NavMeshAgent.speed;
 
             if (Velocity == m_PreviousVelocity) return;
 
