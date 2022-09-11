@@ -1,9 +1,17 @@
 fileFormatVersion: 2
-guid: 438c5f09cf0d844d69bb5d7ef02ae7ab
+guid: 6791da0ec5e1748d0b5011483f3a7466
 ModelImporter:
   serializedVersion: 22103
-  internalIDToNameTable: []
-  externalObjects: {}
+  internalIDToNameTable:
+  - first:
+      74: -1970572805348915659
+    second: RoundShield|CircleAction
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: imphenzia
+    second: {fileID: 2100000, guid: b2e373b99f56543069f782c6e2b330db, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -90,15 +98,15 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     globalScale: 1
-    rootMotionBoneName: Root
+    rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 493a53773468545c29fcfae02283d772, type: 3}
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 2
+  avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0

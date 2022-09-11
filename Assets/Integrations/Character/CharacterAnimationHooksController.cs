@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace Features.Character
 {
+    [RequireComponent(typeof(Animator))]
     public class CharacterAnimationHooksController : MonoBehaviour
     {
         private static readonly int s_Strike1 = Animator.StringToHash("Strike_1");
