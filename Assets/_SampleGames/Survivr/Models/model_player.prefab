@@ -76,6 +76,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: model_player
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 0196b8094217a496f9f5e93370255236, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 1c9d138a63688b148a933d49b2067773, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 0196b8094217a496f9f5e93370255236, type: 3}
+      propertyPath: m_CullingMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 0196b8094217a496f9f5e93370255236, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 0196b8094217a496f9f5e93370255236, type: 3}
