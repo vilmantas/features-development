@@ -5,6 +5,8 @@ namespace Features.Character
     [RequireComponent(typeof(Animator))]
     public class CharacterAnimationHooksController : MonoBehaviour
     {
+        private readonly int m_RightArmLayerIndex = 1;
+        
         private static readonly int s_Strike1 = Animator.StringToHash("Strike_1");
         private static readonly int s_Velocity = Animator.StringToHash("Velocity");
         private Animator m_Animator;
@@ -23,13 +25,13 @@ namespace Features.Character
 
             m_Events.OnActivateBlock += () =>
             {
-                m_Animator.SetLayerWeight(1, 1);
+                m_Animator.SetLayerWeight(m_RightArmLayerIndex, 1);
                 Debug.Log("Blocking!");
             };
 
             m_Events.OnDeactivateBlock += () =>
             {
-                m_Animator.SetLayerWeight(1, 0);
+                m_Animator.SetLayerWeight(m_RightArmLayerIndex, 0);
                 Debug.Log("Stop Block");
             };
         }
