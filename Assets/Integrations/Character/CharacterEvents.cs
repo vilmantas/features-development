@@ -19,6 +19,10 @@ namespace Features.Character
 
         public Action OnStrike;
 
+        public Action OnActivateBlock;
+
+        public Action OnDeactivateBlock;
+
         private void Awake()
         {
             m_NavMeshAgent = GetComponent<NavMeshAgent>();
@@ -26,6 +30,10 @@ namespace Features.Character
 
         private void Update()
         {
+            if (Input.GetMouseButtonDown(2)) OnActivateBlock?.Invoke();
+            
+            if (Input.GetMouseButtonUp(2)) OnDeactivateBlock?.Invoke();
+            
             if (Input.GetKeyDown(KeyCode.LeftShift)) m_NavMeshAgent.speed = 7;
 
             if (Input.GetKeyUp(KeyCode.LeftShift)) m_NavMeshAgent.speed = 3;

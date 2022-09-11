@@ -20,6 +20,18 @@ namespace Features.Character
             if (!m_Events) return;
 
             m_Events.OnStrike += () => m_Animator.SetTrigger(s_Strike1);
+
+            m_Events.OnActivateBlock += () =>
+            {
+                m_Animator.SetLayerWeight(1, 1);
+                Debug.Log("Blocking!");
+            };
+
+            m_Events.OnDeactivateBlock += () =>
+            {
+                m_Animator.SetLayerWeight(1, 0);
+                Debug.Log("Stop Block");
+            };
         }
 
         private void Update()
