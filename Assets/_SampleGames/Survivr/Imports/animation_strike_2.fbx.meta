@@ -1,11 +1,32 @@
 fileFormatVersion: 2
-guid: 15e00467f600e56419e37987244ea0f8
+guid: 9119f64a8817449dcabb28d2145621f4
 ModelImporter:
   serializedVersion: 22103
   internalIDToNameTable:
   - first:
-      74: -203655887218126122
-    second: mixamo.com
+      74: -8263642369333244663
+    second: Player.Strike_2
+  - first:
+      74: -9105948985427525864
+    second: armature_humanoid_v4|Player.0TPose
+  - first:
+      74: 6493582702929291383
+    second: armature_humanoid_v4|Player.Defending
+  - first:
+      74: -1606009645195562380
+    second: armature_humanoid_v4|Player.Idle
+  - first:
+      74: 2550554690904622101
+    second: armature_humanoid_v4|Player.Strike_1
+  - first:
+      74: -8473985625739349531
+    second: armature_humanoid_v4|Player.Strike_2
+  - first:
+      74: -4440059576750977427
+    second: armature_humanoid_v4|Player.Walk
+  - first:
+      74: 8414712378459763000
+    second: armature_humanoid_v4|Player.WalkLegsOnly
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -79,10 +100,7 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
-  referencedClips:
-  - a42b4e431c6417c4b850dcd517782f6c
-  - 193fb5cbe4fde3a41a20fc29bb3a5ac3
-  - 8d702f92f8bc8f5469189ed5f75025e1
+  referencedClips: []
   importAnimation: 1
   humanDescription:
     serializedVersion: 3

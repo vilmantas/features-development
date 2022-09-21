@@ -1,56 +1,32 @@
 fileFormatVersion: 2
-guid: 493a53773468545c29fcfae02283d772
+guid: 3c86734ef72f5409f9068afa2c0946bf
 ModelImporter:
   serializedVersion: 22103
   internalIDToNameTable:
   - first:
-      74: -476643912051395640
-    second: model_player_v4_armature|Player.0TPose
+      74: -3660152421248934368
+    second: Player.Idle
   - first:
-      74: 4304290789769612116
-    second: model_player_v4_armature|Player.Defending
+      74: -9105948985427525864
+    second: armature_humanoid_v4|Player.0TPose
   - first:
-      74: 8327526884410806423
-    second: model_player_v4_armature|Player.Idle
+      74: 6493582702929291383
+    second: armature_humanoid_v4|Player.Defending
   - first:
-      74: -3353836277011087181
-    second: model_player_v4_armature|Player.Strike_1
+      74: -1606009645195562380
+    second: armature_humanoid_v4|Player.Idle
   - first:
-      74: 8621241688997244631
-    second: model_player_v4_armature|Player.Strike_2
+      74: 2550554690904622101
+    second: armature_humanoid_v4|Player.Strike_1
   - first:
-      74: 3785749442978616193
-    second: model_player_v4_armature|Player.Walk
+      74: -8473985625739349531
+    second: armature_humanoid_v4|Player.Strike_2
   - first:
-      74: 3331184990941643670
-    second: model_player_v4_armature|Player.WalkLegsOnly
+      74: -4440059576750977427
+    second: armature_humanoid_v4|Player.Walk
   - first:
-      74: 3998584644121011993
-    second: model_player_v4_clothed_armature|CircleAction
-  - first:
-      74: -8445074543437823125
-    second: model_player_v4_clothed_armature|Player.0TPose
-  - first:
-      74: -3714869653674000538
-    second: model_player_v4_clothed_armature|Player.Defending
-  - first:
-      74: 1118073227778855507
-    second: model_player_v4_clothed_armature|Player.Idle
-  - first:
-      74: -6956332143395503951
-    second: model_player_v4_clothed_armature|Player.Strike_1
-  - first:
-      74: 8105487257823695510
-    second: model_player_v4_clothed_armature|Player.Strike_2
-  - first:
-      74: 7001558824947904911
-    second: model_player_v4_clothed_armature|Player.Walk
-  - first:
-      74: 5861722041134774
-    second: model_player_v4_clothed_armature|Player.WalkLegsOnly
-  - first:
-      74: 3352738817697605671
-    second: model_player_v4_clothed_armature|Player.Idle (1)
+      74: 8414712378459763000
+    second: armature_humanoid_v4|Player.WalkLegsOnly
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -81,66 +57,8 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: model_player_v4_clothed_armature|Player.0TPose
-      takeName: model_player_v4_clothed_armature|Player.0TPose
-      internalID: 0
-      firstFrame: 0
-      lastFrame: 1
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: model_player_v4_clothed_armature|Player.Defending
-      takeName: model_player_v4_clothed_armature|Player.Defending
-      internalID: 0
-      firstFrame: 0
-      lastFrame: 1
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: model_player_v4_clothed_armature|Player.Idle (1)
-      takeName: model_player_v4_clothed_armature|Player.Idle
+      name: Player.Idle
+      takeName: Player.Idle
       internalID: 0
       firstFrame: 0
       lastFrame: 32
@@ -168,11 +86,69 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: model_player_v4_clothed_armature|Player.Strike_1
-      takeName: model_player_v4_clothed_armature|Player.Strike_1
+      name: armature_humanoid_v4|Player.0TPose
+      takeName: armature_humanoid_v4|Player.0TPose
       internalID: 0
       firstFrame: 0
-      lastFrame: 16
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: armature_humanoid_v4|Player.Defending
+      takeName: armature_humanoid_v4|Player.Defending
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: armature_humanoid_v4|Player.Idle
+      takeName: armature_humanoid_v4|Player.Idle
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 32
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -197,8 +173,37 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: model_player_v4_clothed_armature|Player.Strike_2
-      takeName: model_player_v4_clothed_armature|Player.Strike_2
+      name: armature_humanoid_v4|Player.Strike_1
+      takeName: armature_humanoid_v4|Player.Strike_1
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 16
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: armature_humanoid_v4|Player.Strike_2
+      takeName: armature_humanoid_v4|Player.Strike_2
       internalID: 0
       firstFrame: 0
       lastFrame: 21
@@ -226,8 +231,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: model_player_v4_clothed_armature|Player.Walk
-      takeName: model_player_v4_clothed_armature|Player.Walk
+      name: armature_humanoid_v4|Player.Walk
+      takeName: armature_humanoid_v4|Player.Walk
       internalID: 0
       firstFrame: 0
       lastFrame: 32
@@ -237,7 +242,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -255,8 +260,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: model_player_v4_clothed_armature|Player.WalkLegsOnly
-      takeName: model_player_v4_clothed_armature|Player.WalkLegsOnly
+      name: armature_humanoid_v4|Player.WalkLegsOnly
+      takeName: armature_humanoid_v4|Player.WalkLegsOnly
       internalID: 0
       firstFrame: 0
       lastFrame: 32
@@ -266,7 +271,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -349,7 +354,7 @@ ModelImporter:
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 1
+  avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0

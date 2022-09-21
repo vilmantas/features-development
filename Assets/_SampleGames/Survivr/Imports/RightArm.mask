@@ -11,23 +11,17 @@ AvatarMask:
   m_Elements:
   - m_Path: 
     m_Weight: 1
-  - m_Path: IKLeg.Pole.L
-    m_Weight: 0
-  - m_Path: IKLeg.Pole.L/IKLeg.Pole.L_end
-    m_Weight: 0
-  - m_Path: IKLeg.Pole.R
-    m_Weight: 0
-  - m_Path: IKLeg.Pole.R/IKLeg.Pole.R_end
-    m_Weight: 0
-  - m_Path: IKTarget.L
-    m_Weight: 0
-  - m_Path: IKTarget.L/IKTarget.L_end
-    m_Weight: 0
-  - m_Path: IKTarget.R
-    m_Weight: 0
-  - m_Path: IKTarget.R/IKTarget.R_end
-    m_Weight: 0
   - m_Path: Root
+    m_Weight: 0
+  - m_Path: Root/Attachment_Hips
+    m_Weight: 0
+  - m_Path: Root/IKLeg.Pole.L
+    m_Weight: 0
+  - m_Path: Root/IKLeg.Pole.R
+    m_Weight: 0
+  - m_Path: Root/IKTarget.L
+    m_Weight: 0
+  - m_Path: Root/IKTarget.R
     m_Weight: 0
   - m_Path: Root/Leg.Upper.L
     m_Weight: 0
@@ -35,7 +29,7 @@ AvatarMask:
     m_Weight: 0
   - m_Path: Root/Leg.Upper.L/Leg.Lower.L/Foot.L
     m_Weight: 0
-  - m_Path: Root/Leg.Upper.L/Leg.Lower.L/Foot.L/Foot.L_end
+  - m_Path: Root/Leg.Upper.L/Leg.Lower.L/Foot.L/Attachment_Foot_L
     m_Weight: 0
   - m_Path: Root/Leg.Upper.R
     m_Weight: 0
@@ -43,15 +37,17 @@ AvatarMask:
     m_Weight: 0
   - m_Path: Root/Leg.Upper.R/Leg.Lower.R/Foot.R
     m_Weight: 0
-  - m_Path: Root/Leg.Upper.R/Leg.Lower.R/Foot.R/Foot.R_end
+  - m_Path: Root/Leg.Upper.R/Leg.Lower.R/Foot.R/Attachment_Foot_R
     m_Weight: 0
   - m_Path: Root/Spine
+    m_Weight: 0
+  - m_Path: Root/Spine/Attachment_Neck
     m_Weight: 0
   - m_Path: Root/Spine/Neck
     m_Weight: 0
   - m_Path: Root/Spine/Neck/Head
     m_Weight: 0
-  - m_Path: Root/Spine/Neck/Head/Head_end
+  - m_Path: Root/Spine/Neck/Head/Attachment_Head
     m_Weight: 0
   - m_Path: Root/Spine/Shoulder.L
     m_Weight: 0
@@ -61,7 +57,7 @@ AvatarMask:
     m_Weight: 0
   - m_Path: Root/Spine/Shoulder.L/Arm.Upper.L/Arm.Lower.L/Arm.Fist.L
     m_Weight: 0
-  - m_Path: Root/Spine/Shoulder.L/Arm.Upper.L/Arm.Lower.L/Arm.Fist.L/Arm.Fist.L_end
+  - m_Path: Root/Spine/Shoulder.L/Arm.Upper.L/Arm.Lower.L/Arm.Fist.L/Attachment_Fist_L
     m_Weight: 0
   - m_Path: Root/Spine/Shoulder.R
     m_Weight: 1
@@ -71,5 +67,5 @@ AvatarMask:
     m_Weight: 1
   - m_Path: Root/Spine/Shoulder.R/Arm.Upper.R/Arm.Lower.R/Arm.Fist.R
     m_Weight: 1
-  - m_Path: Root/Spine/Shoulder.R/Arm.Upper.R/Arm.Lower.R/Arm.Fist.R/Arm.Fist.R_end
+  - m_Path: Root/Spine/Shoulder.R/Arm.Upper.R/Arm.Lower.R/Arm.Fist.R/Attachment_Fist_R
     m_Weight: 1
