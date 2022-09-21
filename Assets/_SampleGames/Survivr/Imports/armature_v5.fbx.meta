@@ -1,32 +1,8 @@
 fileFormatVersion: 2
-guid: 9119f64a8817449dcabb28d2145621f4
+guid: 835470328e4ab4b5db6fdce1c532be62
 ModelImporter:
   serializedVersion: 22103
-  internalIDToNameTable:
-  - first:
-      74: -8263642369333244663
-    second: Player.Strike_2
-  - first:
-      74: -9105948985427525864
-    second: armature_humanoid_v4|Player.0TPose
-  - first:
-      74: 6493582702929291383
-    second: armature_humanoid_v4|Player.Defending
-  - first:
-      74: -1606009645195562380
-    second: armature_humanoid_v4|Player.Idle
-  - first:
-      74: 2550554690904622101
-    second: armature_humanoid_v4|Player.Strike_1
-  - first:
-      74: -8473985625739349531
-    second: armature_humanoid_v4|Player.Strike_2
-  - first:
-      74: -4440059576750977427
-    second: armature_humanoid_v4|Player.Walk
-  - first:
-      74: 8414712378459763000
-    second: armature_humanoid_v4|Player.WalkLegsOnly
+  internalIDToNameTable: []
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -114,7 +90,7 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     globalScale: 1
-    rootMotionBoneName: 
+    rootMotionBoneName: Hips
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
@@ -122,7 +98,7 @@ ModelImporter:
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0
