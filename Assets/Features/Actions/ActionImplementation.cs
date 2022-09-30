@@ -5,6 +5,7 @@ namespace Features.Actions
     public sealed class ActionImplementation
     {
         public readonly Action<ActionActivationPayload> ActivationAction;
+        public Func<ActionActivationPayload, ActionActivationResult> ActivationWithResultAction;
         public readonly string Name;
         public readonly Func<ActionActivationPayload, ActionActivationPayload> PayloadFactory;
 

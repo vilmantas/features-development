@@ -8,7 +8,7 @@ namespace Features.Actions
         public Action<ActionActivation> OnActionActivated;
         public Action<ActionActivation> OnBeforeActionActivation;
 
-        public void DoAction(ActionBase action, object source)
+        public ActionActivationResult DoAction(ActionBase action, object source)
         {
             var payload = new ActionActivationPayload(action, source, transform.root.gameObject);
 
@@ -16,20 +16,24 @@ namespace Features.Actions
 
             OnBeforeActionActivation?.Invoke(activation);
 
-            activation.Activate();
+            var result = activation.Activate();
 
             OnActionActivated?.Invoke(activation);
+
+            return result;
         }
 
-        public void DoAction(ActionActivationPayload payload)
+        public ActionActivationResult DoAction(ActionActivationPayload payload)
         {
             var activation = ActionActivationHelper.GetActivation(payload);
 
             OnBeforeActionActivation?.Invoke(activation);
 
-            activation.Activate();
+            var result = activation.Activate();
 
             OnActionActivated?.Invoke(activation);
+
+            return result;
         }
     }
 }

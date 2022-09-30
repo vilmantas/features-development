@@ -12,11 +12,18 @@ namespace Features.Actions
             Payload = payload;
         }
 
-        public void Activate()
+        public ActionActivationResult Activate()
         {
             var actionPayload = Action.PayloadFactory?.Invoke(Payload) ?? Payload;
+
+            if (Action.ActivationWithResultAction != null)
+            {
+                return Action.ActivationWithResultAction.Invoke(actionPayload);
+            }
             
             Action.ActivationAction.Invoke(actionPayload);
+
+            return ActionActivationResult.NoResultActivation;
         }
     }
 }

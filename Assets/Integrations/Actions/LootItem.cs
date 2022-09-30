@@ -11,21 +11,29 @@ namespace Integrations.Actions
         [RuntimeInitializeOnLoadMethod]
         private static void Register()
         {
-            ActionImplementation implementation = new(nameof(LootItem), OnActivation);
+            ActionImplementation implementation = new(nameof(LootItem), OnActivation)
+                {
+                    ActivationWithResultAction = OnActivationWithResult
+                };
             ActionImplementationRegistry.Implementations.TryAdd(implementation.Name, implementation);
         }
 
-        private static void OnActivation(ActionActivationPayload payload)
+        private static void OnActivation(ActionActivationPayload payload) 
+            => OnActivationWithResult(payload);
+        
+        private static ActionActivationResult OnActivationWithResult(ActionActivationPayload payload)
         {
-            if (payload is not LootItemActionPayload lootItemActionPayload) return;
+            if (payload is not LootItemActionPayload lootItemActionPayload) return ActionActivationResult.NoResultActivation;
 
             var targetInventory = payload.Target.transform.root.GetComponentInChildren<InventoryController>();
 
-            if (!targetInventory) return;
+            if (!targetInventory) return ActionActivationResult.NoResultActivation;
 
             var request = ChangeRequestFactory.Add(lootItemActionPayload.Item.StorageData);
 
-            targetInventory.HandleRequest(request);
+            var result = targetInventory.HandleRequest(request);
+
+            return new ActionActivationResult(result.IsSuccess);
         }
     }
 

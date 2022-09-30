@@ -54,23 +54,32 @@ namespace Integrations.LootContainer
 
         public void Loot(Player looter)
         {
-            if (Looted) return;
-
-            Looted = true;
-
+            var root = looter.transform.root;
+            
             var actionPayload = new ActionActivationPayload(new ActionBase(nameof(LootItem)), this,
-                looter.transform.root.gameObject);
+                root.gameObject);
 
             var pickupPayload = new LootItemActionPayload(actionPayload, m_ItemInstance);
 
-            looter.transform.root.GetComponentInChildren<ActionsController>().DoAction(pickupPayload);
+            var actionsController = root.GetComponentInChildren<ActionsController>();
 
-            if (m_ItemGameObject != null)
+            if (actionsController == null) return;
+
+            if (Looted) return;
+            
+            var actionResult = actionsController.DoAction(pickupPayload);
+
+            if (actionResult.IsSuccessful.HasValue && actionResult.IsSuccessful.Value)
             {
-                Destroy(m_ItemGameObject);
-            }
+                Looted = true;
+                
+                if (m_ItemGameObject != null)
+                {
+                    Destroy(m_ItemGameObject);
+                }
 
-            OnContainerLooted?.Invoke(looter, m_ItemInstance);
+                OnContainerLooted?.Invoke(looter, m_ItemInstance);
+            }
         }
     }
 }
