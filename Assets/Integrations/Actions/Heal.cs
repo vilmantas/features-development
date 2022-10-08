@@ -8,6 +8,13 @@ namespace Integrations.Actions
 {
     public static class Heal
     {
+        public static HealActionPayload MakePayload(object source, GameObject target, int amount)
+        {
+            var basePayload = new ActionActivationPayload(new ActionBase(nameof(Heal)), source, target);
+
+            return new HealActionPayload(basePayload, amount);
+        }
+        
         [RuntimeInitializeOnLoadMethod]
         private static void Register()
         {

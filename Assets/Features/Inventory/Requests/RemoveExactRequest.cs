@@ -3,7 +3,7 @@ using Utilities.ItemsContainer;
 
 namespace Features.Inventory.Requests
 {
-    public class RemoveExactRequest : IChangeRequest
+    public class RemoveExactRequest : ChangeRequest
     {
         public StorageData Item;
     }

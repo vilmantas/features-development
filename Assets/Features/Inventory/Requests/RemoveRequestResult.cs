@@ -14,7 +14,7 @@ namespace Features.Inventory
         }
 
         public RemoveRequest RemoveRequest { get; }
-        public IChangeRequest Request => RemoveRequest;
+        public ChangeRequest Request => RemoveRequest;
 
         public bool IsSuccess { get; }
     }

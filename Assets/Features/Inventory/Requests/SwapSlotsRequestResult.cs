@@ -10,7 +10,7 @@ namespace Features.Inventory
             IsSuccess = result;
         }
 
-        public IChangeRequest Request { get; }
+        public ChangeRequest Request { get; }
 
         public bool IsSuccess { get; }
     }

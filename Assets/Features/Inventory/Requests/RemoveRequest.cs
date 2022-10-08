@@ -3,7 +3,7 @@ using Utilities.ItemsContainer;
 
 namespace Features.Inventory
 {
-    public class RemoveRequest : IChangeRequest
+    public class RemoveRequest : ChangeRequest
     {
         public int Amount;
 

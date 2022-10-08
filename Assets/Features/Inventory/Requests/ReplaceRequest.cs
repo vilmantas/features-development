@@ -4,7 +4,7 @@ using Utilities.ItemsContainer;
 
 namespace Features.Inventory
 {
-    public class ReplaceRequest : IChangeRequest
+    public class ReplaceRequest : ChangeRequest
     {
         public StorageData NewItem;
         public Guid OldId;

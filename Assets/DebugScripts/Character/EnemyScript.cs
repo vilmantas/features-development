@@ -1,7 +1,9 @@
+using Features.Actions;
 using Features.Buffs;
 using Features.Health;
 using Features.Inventory;
 using Features.Items;
+using Integrations.Actions;
 using UnityEngine;
 
 namespace DebugScripts.Character
@@ -22,18 +24,24 @@ namespace DebugScripts.Character
 
         public void GiveItem()
         {
-            var controller = Target.GetComponentInChildren<InventoryController>();
+            var controller = Target.GetComponentInChildren<ActionsController>();
 
-            controller.HandleRequest(
-                ChangeRequestFactory.Add(Item.MakeEmptyInstance().StorageData, 1));
+            var itemInstance = Item.MakeInstanceWithCount();
+            
+            var payload = LootItem.MakePayload(this, Target, itemInstance);
+
+            controller.DoAction(payload);
         }
 
         public void GiveStackable()
         {
-            var controller = Target.GetComponentInChildren<InventoryController>();
+            var controller = Target.GetComponentInChildren<ActionsController>();
 
-            controller.HandleRequest(
-                ChangeRequestFactory.Add(Ammo.MakeEmptyInstance().StorageData));
+            var itemInstance = Ammo.MakeInstanceWithCount();
+            
+            var payload = LootItem.MakePayload(this, Target, itemInstance);
+
+            controller.DoAction(payload);
         }
 
         public void CastLifter()
@@ -65,9 +73,9 @@ namespace DebugScripts.Character
 
         public void AttemptHeal()
         {
-            var controller = Target.GetComponentInChildren<HealthController>();
+            var controller = Target.GetComponentInChildren<ActionsController>();
 
-            controller.Heal(10);
+            controller.DoAction(Heal.MakePayload(this, Target, 10));
         }
 
         public void OnReceive(BuffActivationPayload payload)

@@ -1,5 +1,6 @@
 using Features.Equipment;
 using Features.Inventory;
+using Features.Inventory.Abstract.Internal;
 using Features.Items;
 using UnityEngine;
 
@@ -32,6 +33,16 @@ namespace Features.Character
 
                 m_EquipmentController.OnBeforeUnequip += OnBeforeUnequip;
             }
+
+            if (m_InventoryController)
+            {
+                m_InventoryController.OnBeforeChangeRequest += OnBeforeAddRequest;
+            }
+        }
+
+        private void OnBeforeAddRequest(ChangeRequest request)
+        {
+            if (request is not AddRequest addRequest) return;
         }
 
         private void OnBeforeUnequip(UnequipRequest obj)

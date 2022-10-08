@@ -8,6 +8,13 @@ namespace Integrations.Actions
 {
     public static class LootItem
     {
+        public static LootItemActionPayload MakePayload(object source, GameObject target, ItemInstance item)
+        {
+            var pp = new ActionActivationPayload(new ActionBase(nameof(LootItem)), source, target);
+
+            return new LootItemActionPayload(pp, item);
+        }
+        
         [RuntimeInitializeOnLoadMethod]
         private static void Register()
         {
@@ -33,7 +40,7 @@ namespace Integrations.Actions
 
             var result = targetInventory.HandleRequest(request);
 
-            return new ActionActivationResult(result.IsSuccess);
+            return new LootItemActionResult(result.IsSuccess, result as AddRequestResult);
         }
     }
 
@@ -45,6 +52,16 @@ namespace Integrations.Actions
             original.Source, original.Target)
         {
             Item = item;
+        }
+    }
+
+    public class LootItemActionResult : ActionActivationResult
+    {
+        public AddRequestResult LootResult;
+        
+        public LootItemActionResult(bool? isSuccessful, AddRequestResult lootResult) : base(isSuccessful)
+        {
+            LootResult = lootResult;
         }
     }
 }

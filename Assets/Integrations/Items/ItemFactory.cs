@@ -44,7 +44,7 @@ namespace Features.Items
                 prefab.Action == null ? null : prefab.Action.Base);
         }
 
-        public static ItemInstance ToInstance(ItemMetadata metadata, int count)
+        public static ItemInstance CreateInstanceFrom(ItemMetadata metadata, int count = 0)
         {
             var instance = new ItemInstance(metadata);
             instance.StorageData.StackableData.Receive(count);

@@ -13,6 +13,8 @@ namespace Features.Inventory
     {
         [Range(1, 50)] public int Size = 20;
 
+        public Action<ChangeRequest> OnBeforeChangeRequest;
+
         public Action<IChangeRequestResult> OnChangeRequestHandled;
 
         public Action<StorageData> OnContextRequested;
@@ -65,10 +67,22 @@ namespace Features.Inventory
             return maxAmount != 0;
         }
 
-        public IChangeRequestResult HandleRequest(IChangeRequest request)
+        public IChangeRequestResult HandleRequest(ChangeRequest request)
         {
             IChangeRequestResult result = null;
+            
+            if (OnBeforeChangeRequest != null)
+            {
+                foreach (var @delegate in OnBeforeChangeRequest.GetInvocationList())
+                {
+                    if (@delegate is not Action<ChangeRequest> castedDel) continue;
 
+                    castedDel.Invoke(request);
+                }
+            }
+
+            if (request.PreventDefault) return null;
+            
             switch (request)
             {
                 case AddRequest addRequest:

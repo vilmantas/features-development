@@ -3,7 +3,7 @@ using Features.Inventory.Abstract.Internal;
 
 namespace Features.Inventory
 {
-    public class SwapSlotsRequest : IChangeRequest
+    public class SwapSlotsRequest : ChangeRequest
     {
         public Guid SourceId;
 

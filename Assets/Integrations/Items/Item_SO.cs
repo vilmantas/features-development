@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Features.Actions;
 using Features.Buffs;
@@ -24,7 +25,7 @@ namespace Features.Items
         {
             var metadata = ItemMetadataRegistry.Registry[Name];
 
-            var instance = ItemFactory.ToInstance(metadata, Count);
+            var instance = ItemFactory.CreateInstanceFrom(metadata);
 
             return instance;
         }
@@ -33,9 +34,7 @@ namespace Features.Items
         {
             var metadata = ItemMetadataRegistry.Registry[Name];
 
-            var instance = ItemFactory.ToInstance(metadata, Count);
-
-            instance.StorageData.StackableData.Receive(Count);
+            var instance = ItemFactory.CreateInstanceFrom(metadata, Count);
 
             return instance;
         }
