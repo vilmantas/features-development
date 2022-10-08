@@ -10,9 +10,9 @@ namespace Integrations.Actions
     {
         public static LootItemActionPayload MakePayload(object source, GameObject target, ItemInstance item)
         {
-            var pp = new ActionActivationPayload(new ActionBase(nameof(LootItem)), source, target);
+            var basePaylaod = new ActionActivationPayload(new ActionBase(nameof(LootItem)), source, target);
 
-            return new LootItemActionPayload(pp, item);
+            return new LootItemActionPayload(basePaylaod, item);
         }
         
         [RuntimeInitializeOnLoadMethod]

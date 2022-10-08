@@ -19,6 +19,8 @@ namespace Features.Equipment
 
         public Action<EquipResult> OnItemEquipped;
 
+        public Action<EquipResult> OnItemUnequipped;
+
         public Action<EquipmentContainerItem> OnSlotUpdated;
 
         public string[] AvailableSlots => EquipmentSlots.Select(x => x.slotType).ToArray();
@@ -51,7 +53,7 @@ namespace Features.Equipment
 
             if (request.PreventDefault) return;
 
-            HandleEquipRequest(new() {SlotId = request.ContainerItem.Id});
+            UnequipItem(new EquipRequest() {SlotId = request.ContainerItem.Id});
         }
 
         public void HandleEquipRequest(EquipRequest request)
@@ -68,6 +70,11 @@ namespace Features.Equipment
 
             if (request.PreventDefault) return;
 
+            EquipItem(request);
+        }
+
+        private void EquipItem(EquipRequest request)
+        {
             var result = m_Container.Equip(request);
 
             if (!result.Succeeded) return;
@@ -79,8 +86,18 @@ namespace Features.Equipment
             else
             {
                 OnItemEquipped?.Invoke(result);
-                HandleItemEquipped(result);
+                HandleEquipmentChange(result);
             }
+        }
+
+        private void UnequipItem(EquipRequest request)
+        {
+            var result = m_Container.Equip(request);
+
+            if (!result.Succeeded) return;
+
+            OnItemUnequipped?.Invoke(result);
+            HandleEquipmentChange(result);
         }
 
         public void NotifyItemChanged(EquipmentContainerItem containerSlot)
@@ -91,7 +108,7 @@ namespace Features.Equipment
             }
         }
 
-        private void HandleItemEquipped(EquipResult result)
+        private void HandleEquipmentChange(EquipResult result)
         {
             if (ContainerFor(result.EquipmentContainerItem.Slot).InstanceParent == null) return;
 
