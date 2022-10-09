@@ -41,7 +41,9 @@ namespace Features.Items
                 prefab.SecondarySlot,
                 prefab.ModelPrefab,
                 prefab.Buffs?.Select(x => x.Base.WithInterval(x.Interval, x.ExecuteTickImmediately)).ToList(),
-                prefab.Action == null ? null : prefab.Action.Base);
+                prefab.Action == null ? null : prefab.Action.Base,
+                prefab.InventoryActions.Select(x => x.Base).ToList(),
+                prefab.EquipmentActions.Select(x => x.Base).ToList());
         }
 
         public static ItemInstance CreateInstanceFrom(ItemMetadata metadata, int count = 0)

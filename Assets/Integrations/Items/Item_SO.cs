@@ -20,6 +20,8 @@ namespace Features.Items
         public List<Stat> Stats;
         public Buff_SO[] Buffs;
         public Action_SO Action;
+        public List<Action_SO> InventoryActions;
+        public List<Action_SO> EquipmentActions;
 
         public ItemInstance MakeEmptyInstance()
         {

@@ -1,7 +1,9 @@
+using System.Linq;
 using Features.Buffs.UI;
 using Features.Character;
 using Features.Equipment.UI;
 using Features.Inventory.UI;
+using Features.Items;
 using Features.Stats.Base;
 using UnityEngine;
 using UnityEngine.AI;
@@ -51,7 +53,12 @@ namespace DebugScripts.Character
 
             PlayerInstance.m_InventoryController.OnContextRequested += data =>
             {
-                ContextMenuUI.Show(Input.mousePosition, new() { "a", "b"}, s => print(s));
+                var item = data.Parent as ItemInstance;
+                ContextMenuUI.Show(
+                    Input.mousePosition, 
+                    item.Metadata.InventoryContextMenuActions.Select(x => string.IsNullOrEmpty(x.Alias) ? x.Name : x.Alias).ToList(),
+                    s => print(s)
+                    );
             };
         }
 
