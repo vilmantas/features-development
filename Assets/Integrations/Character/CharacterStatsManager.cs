@@ -21,17 +21,18 @@ namespace Features.Character
             if (m_EquipmentController)
             {
                 m_EquipmentController.OnItemEquipped += OnItemEquipped;
+                m_EquipmentController.OnItemUnequipped += OnItemEquipped;
             }
         }
 
         private void OnItemEquipped(EquipResult result)
         {
-            if (result.UnequippedItemInstanceBase is ItemInstance unequippedItemInstanceBase)
+            if (result.UnequippedItem is ItemInstance unequippedItemInstanceBase)
             {
                 m_StatsController.RemoveStatModifier(unequippedItemInstanceBase.Metadata.Stats);
             }
 
-            if (result.EquipmentContainerItem.Main is ItemInstance equipmentItemInstance)
+            if (result.EquippedItem is ItemInstance equipmentItemInstance)
             {
                 m_StatsController.ApplyStatModifiers(equipmentItemInstance.Metadata.Stats);
             }

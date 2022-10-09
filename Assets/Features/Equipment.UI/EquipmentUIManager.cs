@@ -54,7 +54,7 @@ namespace Features.Equipment.UI
             m_Source.UnequipItem(new() {ContainerItem = arg0});
         }
 
-        private void OnItemEquippedEventHandler(EquipResult arg0)
+        private void HandleEquipmentUpdated(EquipResult arg0)
         {
             if (!arg0.Succeeded) return;
 
@@ -63,7 +63,8 @@ namespace Features.Equipment.UI
 
         private void SubscribeToSource()
         {
-            m_Source.OnItemEquipped += OnItemEquippedEventHandler;
+            m_Source.OnItemEquipped += HandleEquipmentUpdated;
+            m_Source.OnItemUnequipped += HandleEquipmentUpdated;
             m_Source.OnSlotUpdated += OnSlotUpdated;
             m_Source.OnItemCombined += OnItemCombined;
         }
@@ -85,7 +86,8 @@ namespace Features.Equipment.UI
         {
             if (m_Source == null) return;
             
-            m_Source.OnItemEquipped -= OnItemEquippedEventHandler;
+            m_Source.OnItemEquipped -= HandleEquipmentUpdated;
+            m_Source.OnItemUnequipped -= HandleEquipmentUpdated;
             m_Source.OnSlotUpdated -= OnSlotUpdated;
             m_Source.OnItemCombined -= OnItemCombined;
         }

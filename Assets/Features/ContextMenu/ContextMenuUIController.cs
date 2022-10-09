@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ContextMenuUI : MonoBehaviour, IPointerExitHandler
+public class ContextMenuUIController : MonoBehaviour, IPointerExitHandler
 {
     public ContextMenuOptionUI ContextMenuItemPrefab;
 
@@ -60,7 +60,7 @@ public class ContextMenuUI : MonoBehaviour, IPointerExitHandler
 
     public void Show(Vector2 position, List<string> options, Action<string> selectionCallback)
     {
-        // if (Math.Abs(Group.alpha - 1) < 0.1) return;
+        if (Math.Abs(Group.alpha - 1) < 0.1) return;
 
         Callback = selectionCallback;
 

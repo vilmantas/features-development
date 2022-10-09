@@ -27,7 +27,9 @@ namespace Features.Character
         {
             if (m_EquipmentController)
             {
-                m_EquipmentController.OnItemEquipped += OnItemEquipped;
+                m_EquipmentController.OnItemEquipped += HandleEquipmentChanged;
+
+                m_EquipmentController.OnItemUnequipped += HandleEquipmentChanged;
 
                 m_EquipmentController.OnItemCombined += OnItemCombined;
 
@@ -80,14 +82,14 @@ namespace Features.Character
             }
         }
 
-        private void OnItemEquipped(EquipResult result)
+        private void HandleEquipmentChanged(EquipResult result)
         {
             if (result.EquipmentContainerItem.Main is ItemInstance equippedItem)
             {
                 m_InventoryController.HandleRequest(ChangeRequestFactory.RemoveExact(equippedItem.StorageData));
             }
 
-            if (result.UnequippedItemInstanceBase is ItemInstance unequippedItem)
+            if (result.UnequippedItem is ItemInstance unequippedItem)
             {
                 m_InventoryController.HandleRequest(ChangeRequestFactory.Add(unequippedItem.StorageData));
             }

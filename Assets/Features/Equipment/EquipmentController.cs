@@ -114,7 +114,7 @@ namespace Features.Equipment
         {
             if (ContainerFor(result.EquipmentContainerItem.Slot).InstanceParent == null) return;
 
-            if (result.UnequippedItemInstanceBase != null)
+            if (result.UnequippedItem != null)
             {
                 HandleRemoveEquip(result.EquipmentContainerItem.Slot);
             }

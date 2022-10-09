@@ -25,6 +25,8 @@ namespace DebugScripts.Character
 
         public StatsUIController StatsUI;
 
+        public ContextMenuUIController ContextMenuUI;
+
         private void Start()
         {
             if (InventoryUI && PlayerInstance.Inventory)
@@ -46,6 +48,11 @@ namespace DebugScripts.Character
             {
                 StatsUI.Initialize(PlayerInstance.m_StatsController);
             }
+
+            PlayerInstance.m_InventoryController.OnContextRequested += data =>
+            {
+                ContextMenuUI.Show(Input.mousePosition, new() { "a", "b"}, s => print(s));
+            };
         }
 
         private void Update()

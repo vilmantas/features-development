@@ -39,13 +39,31 @@ namespace Features.Character
 
             if (m_EquipmentController)
             {
-                m_EquipmentController.OnItemEquipped += HandleItemEquipped;
+                m_EquipmentController.OnItemEquipped += HandleEquipmentChanged;
+                m_EquipmentController.OnItemUnequipped += HandleEquipmentChanged;
             }
         }
 
-        private void HandleItemEquipped(EquipResult result)
+        private void Unsubscribe()
         {
-            if (result.UnequippedItemInstanceBase is ItemInstance unequippedItemInstanceBase)
+            m_BuffController.OnBeforeBuffAdd -= HandleBuffAddRequest;
+
+            m_BuffController.OnBuffAdded -= HandleBuffAdded;
+            m_BuffController.OnBuffRemoved -= HandleBuffRemoved;
+
+            m_BuffController.OnBuffTickOccurred -= HandleBuffTick;
+            m_BuffController.OnBuffDurationReset -= HandleBuffDurationReset;
+
+            if (m_EquipmentController)
+            {
+                m_EquipmentController.OnItemEquipped -= HandleEquipmentChanged;
+                m_EquipmentController.OnItemUnequipped -= HandleEquipmentChanged;
+            }
+        }
+
+        private void HandleEquipmentChanged(EquipResult result)
+        {
+            if (result.UnequippedItem is ItemInstance unequippedItemInstanceBase)
             {
                 foreach (var buff in unequippedItemInstanceBase.Metadata.Buffs)
                 {
