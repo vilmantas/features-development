@@ -53,7 +53,7 @@ namespace Features.Equipment
 
             if (request.PreventDefault) return;
 
-            UnequipItem(new EquipRequest() {SlotId = request.ContainerItem.Id});
+            UnequipItem(request.ContainerItem.Id);
         }
 
         public void HandleEquipRequest(EquipRequest request)
@@ -90,8 +90,10 @@ namespace Features.Equipment
             }
         }
 
-        private void UnequipItem(EquipRequest request)
+        private void UnequipItem(Guid slotId)
         {
+            var request = new EquipRequest() {SlotId = slotId};
+            
             var result = m_Container.Equip(request);
 
             if (!result.Succeeded) return;
