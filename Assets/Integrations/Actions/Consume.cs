@@ -36,13 +36,14 @@ namespace Integrations.Actions
 
             var healing = consumeActionPayload.Item.Metadata.Stats["Healing"].Value;
 
-            if (healing <= 0) return;
-            
-            var health = consumeActionPayload.Target.GetComponentInChildren<HealthController>();
-
-            if (health)
+            if (healing != 0)
             {
-                health.Heal(healing);
+                var health = consumeActionPayload.Target.GetComponentInChildren<HealthController>();
+
+                if (health)
+                {
+                    health.Heal(healing);
+                }
             }
 
             consumeActionPayload.Target.GetComponentInChildren<InventoryController>()

@@ -1,4 +1,7 @@
+using System;
+using System.Collections.Generic;
 using System.Linq;
+using Features.Actions;
 using Features.Buffs.UI;
 using Features.Character;
 using Features.Equipment.UI;
@@ -8,6 +11,7 @@ using Features.Stats.Base;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.EventSystems;
+using Utilities.ItemsContainer;
 
 namespace DebugScripts.Character
 {
@@ -51,15 +55,38 @@ namespace DebugScripts.Character
                 StatsUI.Initialize(PlayerInstance.m_StatsController);
             }
 
-            PlayerInstance.m_InventoryController.OnContextRequested += data =>
+            if (PlayerInstance.Inventory)
             {
-                var item = data.Parent as ItemInstance;
-                ContextMenuUI.Show(
-                    Input.mousePosition, 
-                    item.Metadata.InventoryContextMenuActions.Select(x => string.IsNullOrEmpty(x.Alias) ? x.Name : x.Alias).ToList(),
-                    s => print(s)
-                    );
-            };
+                PlayerInstance.m_InventoryController.OnContextRequested += ShowContextMenu;
+            }
+        }
+
+        private void ShowContextMenu(StorageData data)
+        {
+            var item = data.Parent as ItemInstance;
+
+            var inventoryOptions = GetInventoryOptionsFor(item);
+            
+            ContextMenuUI.Show(Input.mousePosition, inventoryOptions, s => DoAction(s, item, PlayerInstance.m_ActionsController));
+        }
+
+        private static List<string> GetInventoryOptionsFor(ItemInstance item)
+        {
+            var options = item.Metadata.InventoryContextMenuActions
+                .Select(x => x.DisplayName)
+                .Prepend(item.Metadata.Action.DisplayName)
+                .Append("Drop");
+
+            return options.ToList();
+        }
+
+        private static void DoAction(string action, ItemInstance item, ActionsController controller)
+        {
+            var actionBase = new ActionBase(action);
+            
+            var actionPayload = new ActionActivationPayload(actionBase, item, controller.transform.root.gameObject);
+
+            controller.DoAction(actionPayload);
         }
 
         private void Update()

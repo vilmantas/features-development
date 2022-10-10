@@ -5,6 +5,8 @@ namespace Features.Actions
         public readonly string Name;
 
         public readonly string Alias;
+
+        public string DisplayName => Alias ?? Name;
         
         public ActionBase(string name)
         {

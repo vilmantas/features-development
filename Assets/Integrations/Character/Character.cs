@@ -56,7 +56,7 @@ namespace Features.Character
 
             [HideInInspector] public StatsController m_StatsController;
 
-            private ActionsController m_ActionsController;
+            [HideInInspector] public ActionsController m_ActionsController;
 
             private CharacterActionsManager m_ActionsManager;
 
