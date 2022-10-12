@@ -33,7 +33,7 @@ namespace Features.Health
 
         public void Initialize(int current, int max)
         {
-            m_Model = new ResourceContainer(current, max);
+            m_Model = new ResourceContainer(max, current);
         }
         
         private void Awake()

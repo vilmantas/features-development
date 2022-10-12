@@ -64,7 +64,7 @@ namespace Features.Character
 
             private CharacterEquipmentManager m_EquipmentManager;
 
-            private HealthController m_HealthController;
+            [HideInInspector] public HealthController m_HealthController;
 
             private CharacterInventoryManager m_InventoryManager;
 

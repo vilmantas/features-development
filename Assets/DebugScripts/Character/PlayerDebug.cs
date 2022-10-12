@@ -5,6 +5,7 @@ using Features.Actions;
 using Features.Buffs.UI;
 using Features.Character;
 using Features.Equipment.UI;
+using Features.Health;
 using Features.Inventory.UI;
 using Features.Items;
 using Features.Stats.Base;
@@ -33,6 +34,8 @@ namespace DebugScripts.Character
 
         public ContextMenuUIController ContextMenuUI;
 
+        public HealthUIController HealthUI;
+
         private void Start()
         {
             if (InventoryUI && PlayerInstance.Inventory)
@@ -55,6 +58,11 @@ namespace DebugScripts.Character
                 StatsUI.Initialize(PlayerInstance.m_StatsController);
             }
 
+            if (HealthUI && PlayerInstance.Health)
+            {
+                HealthUI.Initialize(PlayerInstance.m_HealthController);
+            }
+            
             if (PlayerInstance.Inventory)
             {
                 PlayerInstance.m_InventoryController.OnContextRequested += ShowContextMenu;

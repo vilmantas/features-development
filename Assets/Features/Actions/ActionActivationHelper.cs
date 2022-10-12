@@ -15,7 +15,7 @@ namespace Features.Actions
         {
             var result = NoAction();
 
-            if (ImplementationRegistered(payload.Action, out var implementation))
+            if (IsImplementationRegistered(payload.Action, out var implementation))
             {
                 result = new ActionActivation(implementation, payload); 
             }
@@ -23,12 +23,12 @@ namespace Features.Actions
             return result;
         }
 
-        private static bool ImplementationRegistered(ActionBase action, out ActionImplementation implementation)
+        private static bool IsImplementationRegistered(ActionBase action, out ActionImplementation implementation)
         {
             if (!ActionImplementationRegistry.Implementations.TryGetValue(action.Name,
                     out implementation))
             {
-                Debug.Log($"Implementation missing for action: {action.Name}");
+                Debug.LogWarning($"Implementation missing for action: {action.Name}");
             }
 
             return ActionImplementationRegistry.Implementations.TryGetValue(action.Name,
