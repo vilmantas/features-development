@@ -23,6 +23,8 @@ namespace Features.Character
 
         public Action OnDeactivateBlock;
 
+        public bool InputHooksEnabled = true;
+
         private void Awake()
         {
             m_NavMeshAgent = GetComponent<NavMeshAgent>();
@@ -30,18 +32,21 @@ namespace Features.Character
 
         private void Update()
         {
-            if (Input.GetMouseButtonDown(2)) OnActivateBlock?.Invoke();
-            
-            if (Input.GetMouseButtonUp(2)) OnDeactivateBlock?.Invoke();
-            
-            if (Input.GetKeyDown(KeyCode.LeftShift)) m_NavMeshAgent.speed = 7;
-
-            if (Input.GetKeyUp(KeyCode.LeftShift)) m_NavMeshAgent.speed = 3;
-
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (InputHooksEnabled)
             {
-                OnStrike?.Invoke();
-                m_NavMeshAgent.SetDestination(transform.position);
+                if (Input.GetMouseButtonDown(2)) OnActivateBlock?.Invoke();
+            
+                if (Input.GetMouseButtonUp(2)) OnDeactivateBlock?.Invoke();
+            
+                if (Input.GetKeyDown(KeyCode.LeftShift)) m_NavMeshAgent.speed = 7;
+
+                if (Input.GetKeyUp(KeyCode.LeftShift)) m_NavMeshAgent.speed = 3;
+
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    OnStrike?.Invoke();
+                    m_NavMeshAgent.SetDestination(transform.position);
+                }
             }
 
             Velocity = m_NavMeshAgent.velocity;

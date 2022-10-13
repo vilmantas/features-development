@@ -7,6 +7,7 @@ using Features.Inventory;
 using Features.Items;
 using Features.Stats.Base;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Features.Character
 {
@@ -20,8 +21,14 @@ namespace Features.Character
         }
 
         [RequireComponent(typeof(CharacterEvents))]
+        [RequireComponent(typeof(NavMeshAgent))]
+        [RequireComponent(typeof(Rigidbody))]
         public class Character : MonoBehaviour
         {
+            public CharacterEvents Events;
+
+            public NavMeshAgent NavAgent;
+            
             public bool Buffs;
 
             public bool Inventory;
@@ -73,6 +80,10 @@ namespace Features.Character
             private void Awake()
             {
                 var root = transform;
+
+                Events = GetComponent<CharacterEvents>();
+
+                NavAgent = GetComponent<NavMeshAgent>();
 
                 AddSystems(root);
 

@@ -1,5 +1,8 @@
+using System;
+using System.Collections;
 using Features.Actions;
 using Features.Buffs;
+using Features.Character;
 using Features.Health;
 using Features.Inventory;
 using Features.Items;
@@ -10,6 +13,8 @@ namespace DebugScripts.Character
 {
     public class EnemyScript : MonoBehaviour
     {
+        public CharacterC.Character Character;
+        
         public GameObject Target;
 
         public Buff_SO ShifterBuff;
@@ -21,6 +26,21 @@ namespace DebugScripts.Character
         public Item_SO Item;
 
         public Item_SO Ammo;
+
+        private void Start()
+        {
+            StartCoroutine(HitterCoroutine());
+        }
+
+        public IEnumerator HitterCoroutine()
+        {
+            while (true)
+            {
+                yield return new WaitForSeconds(2);
+                
+                Character.Events.OnStrike.Invoke();
+            }
+        }
 
         public void GiveItem()
         {
@@ -86,6 +106,11 @@ namespace DebugScripts.Character
         public void OnRemove(BuffActivationPayload payload)
         {
             payload.Target.transform.Translate(Vector3.down * 5);
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            print(collision.collider.transform.root.name);
         }
     }
 }
