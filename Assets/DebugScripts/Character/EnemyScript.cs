@@ -110,9 +110,11 @@ namespace DebugScripts.Character
         
         private void OnTriggerEnter(Collider other)
         {
+            if (other.transform.root == transform.root) return;
             
-            print(other.name);
+            print("--- ENEMY ---");
             print(other.transform.root.name);
+            print(other.name);
         }
     }
 }
