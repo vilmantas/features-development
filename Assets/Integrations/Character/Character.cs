@@ -25,9 +25,11 @@ namespace Features.Character
         [RequireComponent(typeof(Rigidbody))]
         public class Character : MonoBehaviour
         {
-            public CharacterEvents Events;
+            [HideInInspector] public CharacterEvents Events;
 
-            public NavMeshAgent NavAgent;
+            [HideInInspector] public NavMeshAgent NavAgent;
+
+            [HideInInspector] public Rigidbody Rigidbody;
             
             public bool Buffs;
 
@@ -84,6 +86,10 @@ namespace Features.Character
                 Events = GetComponent<CharacterEvents>();
 
                 NavAgent = GetComponent<NavMeshAgent>();
+
+                Rigidbody = GetComponent<Rigidbody>();
+
+                Rigidbody.isKinematic = true;
 
                 AddSystems(root);
 

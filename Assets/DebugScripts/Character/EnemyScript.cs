@@ -107,10 +107,12 @@ namespace DebugScripts.Character
         {
             payload.Target.transform.Translate(Vector3.down * 5);
         }
-
-        private void OnCollisionEnter(Collision collision)
+        
+        private void OnTriggerEnter(Collider other)
         {
-            print(collision.collider.transform.root.name);
+            
+            print(other.name);
+            print(other.transform.root.name);
         }
     }
 }
