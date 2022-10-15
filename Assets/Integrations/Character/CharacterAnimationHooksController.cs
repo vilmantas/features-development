@@ -40,5 +40,15 @@ namespace Features.Character
         {
             m_Animator.SetFloat(s_Velocity, m_Events.Velocity.magnitude);
         }
+
+        public void StrikeStart()
+        {
+            m_Events.OnStrikeStart?.Invoke();
+        }
+
+        public void StrikeEnd()
+        {
+            m_Events.OnStrikeEnd?.Invoke();
+        }
     }
 }

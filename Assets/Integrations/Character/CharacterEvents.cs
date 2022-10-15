@@ -23,6 +23,10 @@ namespace Features.Character
 
         public Action OnDeactivateBlock;
 
+        public Action OnStrikeStart;
+
+        public Action OnStrikeEnd;
+
         public bool InputHooksEnabled = true;
 
         private void Awake()

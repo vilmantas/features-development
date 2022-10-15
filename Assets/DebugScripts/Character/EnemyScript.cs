@@ -27,16 +27,31 @@ namespace DebugScripts.Character
 
         public Item_SO Ammo;
 
+        private bool DamageEnabled;
+
         private void Start()
         {
             StartCoroutine(HitterCoroutine());
+            
+            Character.m_EquipmentController.OnHitboxCollided += OnHitboxCollided;
+
+            Character.Events.OnStrikeStart += () => DamageEnabled = true;
+
+            Character.Events.OnStrikeEnd += () => DamageEnabled = false;
+        }
+
+        private void OnHitboxCollided(string arg1, Collider arg2)
+        {
+            if (!DamageEnabled) return;
+            
+            print("Collider for slot " + arg1);
         }
 
         public IEnumerator HitterCoroutine()
         {
             while (true)
             {
-                yield return new WaitForSeconds(2);
+                yield return new WaitForSeconds(2.5f);
                 
                 Character.Events.OnStrike.Invoke();
             }
@@ -106,15 +121,6 @@ namespace DebugScripts.Character
         public void OnRemove(BuffActivationPayload payload)
         {
             payload.Target.transform.Translate(Vector3.down * 5);
-        }
-        
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.transform.root == transform.root) return;
-            
-            print("--- ENEMY ---");
-            print(other.transform.root.name);
-            print(other.name);
         }
     }
 }

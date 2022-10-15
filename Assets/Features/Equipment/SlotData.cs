@@ -10,5 +10,6 @@ namespace Features.Equipment
 
         public Transform InstanceParent;
         public string slotType;
+        public bool AddHitboxTrigger;
     }
 }

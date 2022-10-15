@@ -113,11 +113,5 @@ namespace DebugScripts.Character
                 }
             }
         }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            print("--- PLAYER ---");
-            print(other.name);
-        }
     }
 }

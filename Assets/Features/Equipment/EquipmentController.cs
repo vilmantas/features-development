@@ -23,20 +23,35 @@ namespace Features.Equipment
 
         public Action<EquipmentContainerItem> OnSlotUpdated;
 
-        public string[] AvailableSlots => EquipmentSlots.Select(x => x.slotType).ToArray();
+        public Action<string, Collider> OnHitboxCollided;
+        
+        public string[] AvailableSlotNames => EquipmentSlots.Select(x => x.slotType).ToArray();
 
         public IReadOnlyList<EquipmentContainerItem> ContainerSlots => m_Container.ContainerSlots;
 
         public void Awake()
         {
-            m_Container = new Container(EquipmentSlots == null ? new string[] { } : AvailableSlots);
+            m_Container = new Container(EquipmentSlots == null ? new string[] { } : AvailableSlotNames);
         }
 
         public void Initialize(SlotData[] slots)
         {
             EquipmentSlots = slots;
 
-            m_Container = new Container(EquipmentSlots == null ? new string[] { } : AvailableSlots);
+            var slotNames = EquipmentSlots == null ? new string[] { } : AvailableSlotNames;
+
+            m_Container = new Container(slotNames);
+
+            if (EquipmentSlots == null) return;
+            
+            foreach (var equipmentSlot in EquipmentSlots)
+            {
+                if (!equipmentSlot.AddHitboxTrigger || equipmentSlot.InstanceParent == null) continue;
+
+                var trigger = equipmentSlot.InstanceParent.gameObject.AddComponent<HitboxTrigger>();
+
+                trigger.OnHitboxTriggered += x => OnHitboxCollided?.Invoke(equipmentSlot.slotType, x);
+            }
         }
 
         public void UnequipItem(UnequipRequest request)
