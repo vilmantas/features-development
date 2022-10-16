@@ -43,8 +43,14 @@ namespace DebugScripts.Character
         private void OnHitboxCollided(string arg1, Collider arg2)
         {
             if (!DamageEnabled) return;
-            
-            print("Collider for slot " + arg1);
+
+            var c = arg2.transform.root.GetComponent<CharacterC.Character>();
+
+            if (!c) return;
+
+            var damagePayload = Damage.MakePayload(this, c.gameObject, 3);
+
+            c.m_ActionsController.DoAction(damagePayload);
         }
 
         public IEnumerator HitterCoroutine()
