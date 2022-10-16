@@ -18,7 +18,7 @@ MonoBehaviour:
   Count: 1
   MaxStack: 1
   Sprite: {fileID: 0}
-  ModelPrefab: {fileID: 8755483066872215042, guid: 89df7ba4155ab47008bfefc82aa767c9, type: 3}
+  ModelPrefab: {fileID: 8151689441138500505, guid: 89df7ba4155ab47008bfefc82aa767c9, type: 3}
   Stats:
   - Name: Strength
     Value: 3

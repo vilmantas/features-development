@@ -2,15 +2,12 @@ fileFormatVersion: 2
 guid: 6791da0ec5e1748d0b5011483f3a7466
 ModelImporter:
   serializedVersion: 22103
-  internalIDToNameTable:
-  - first:
-      74: -1970572805348915659
-    second: RoundShield|CircleAction
+  internalIDToNameTable: []
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: imphenzia
+      name: imphenzia.001
     second: {fileID: 2100000, guid: b2e373b99f56543069f782c6e2b330db, type: 2}
   materials:
     materialImportMode: 2
@@ -85,7 +82,7 @@ ModelImporter:
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
   referencedClips: []
-  importAnimation: 0
+  importAnimation: 1
   humanDescription:
     serializedVersion: 3
     human: []
