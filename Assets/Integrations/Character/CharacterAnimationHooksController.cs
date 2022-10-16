@@ -12,6 +12,7 @@ namespace Features.Character
         private Animator m_Animator;
 
         private CharacterEvents m_Events;
+        private static readonly int s_Strike2 = Animator.StringToHash("Strike_2");
 
         private void Awake()
         {
@@ -21,7 +22,10 @@ namespace Features.Character
 
             if (!m_Events) return;
 
-            m_Events.OnStrike += () => m_Animator.SetTrigger(s_Strike1);
+            m_Events.OnStrike += () =>
+            {
+                m_Animator.SetTrigger(Random.value > 0.5f ? s_Strike1 : s_Strike2);
+            };
 
             m_Events.OnActivateBlock += () =>
             {
