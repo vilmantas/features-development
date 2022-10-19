@@ -76,5 +76,12 @@ namespace DebugScripts
                 }
             }
         }
+
+        public override void OnReset()
+        {
+            Title.text = string.Empty;
+            Value.enabled = false;
+            ItemIcon.enabled = false;
+        }
     }
 }

@@ -11,5 +11,9 @@ namespace Features.Inventory.UI
 
         GameObject gameObject { get; }
         void SetData(ContainerItem slot);
+
+        void Reset();
+
+        void Unsubscribe();
     }
 }

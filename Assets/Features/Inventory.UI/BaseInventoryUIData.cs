@@ -86,6 +86,24 @@ namespace Features.Inventory.UI
             OnSetData(data);
         }
 
+        public void Reset()
+        {
+            m_InventoryItemContainer = null;
+
+            Blocker.enabled = true;
+
+            name = "EMPTY_SLOT";
+
+            OnReset();
+        }
+
+        public void Unsubscribe()
+        {
+            OnPressed.RemoveAllListeners();
+
+            OnDragged.RemoveAllListeners();
+        }
+
         public InventoryButtonPressEvent OnPressed => m_OnPressed;
         public InventorySlotDraggedEvent OnDragged => m_OnDragged;
 
@@ -121,6 +139,10 @@ namespace Features.Inventory.UI
         }
 
         public virtual void OnSetData(ContainerItem data)
+        {
+        }
+
+        public virtual void OnReset()
         {
         }
     }

@@ -8,7 +8,7 @@ namespace Features.Inventory.UI
 {
     public class InventoryUIManager
     {
-        private List<IInventoryUIData> Datas = new();
+        private Dictionary<Guid, IInventoryUIData> Datas = new();
 
         private Action<IInventoryUIData> m_DestroyAction;
 
@@ -19,21 +19,17 @@ namespace Features.Inventory.UI
             Action<IInventoryUIData> destroyAction)
         {
             UnsubscribeFromSource();
-            
+
             m_Source = controller;
 
             m_InstantiationFunc = instantiationFunc;
 
             m_DestroyAction = destroyAction;
 
+            CreateSlots();
+
             SubscribeToSource();
 
-            DisplayNewUI();
-        }
-
-        private void OnItemChangeRequestHandled(IChangeRequestResult request)
-        {
-            ClearUI();
             DisplayNewUI();
         }
 
@@ -41,13 +37,38 @@ namespace Features.Inventory.UI
         {
             foreach (var data in Datas)
             {
-                m_DestroyAction(data);
+                data.Value.Reset();
             }
-
-            Datas.Clear();
         }
 
         private void DisplayNewUI()
+        {
+            foreach (var item in m_Source.Slots)
+            {
+                var data = Datas[item.Id];
+
+                data.SetData(item);
+            }
+        }
+
+        private void SubscribeToSource()
+        {
+            m_Source.OnChangeRequestHandled += OnItemChangeRequestHandled;
+            m_Source.OnInventoryUpdated += ResetUI;
+        }
+
+        private void OnItemChangeRequestHandled(IChangeRequestResult request)
+        {
+            ResetUI();
+        }
+
+        private void ResetUI()
+        {
+            ClearUI();
+            DisplayNewUI();
+        }
+
+        private void CreateSlots()
         {
             foreach (var item in m_Source.Slots)
             {
@@ -57,10 +78,20 @@ namespace Features.Inventory.UI
 
                 data.OnDragged.AddListener(MoveItem);
 
-                data.SetData(item);
-
-                Datas.Add(data);
+                Datas.Add(item.Id, data);
             }
+        }
+
+        private void DestroySlots()
+        {
+            foreach (var data in Datas)
+            {
+                data.Value.Unsubscribe();
+
+                m_DestroyAction.Invoke(data.Value);
+            }
+
+            Datas.Clear();
         }
 
         private void ActivateItem(PointerEventData.InputButton button, ContainerItem container)
@@ -80,24 +111,16 @@ namespace Features.Inventory.UI
             m_Source.HandleRequest(ChangeRequestFactory.Swap(transferredItem.Id, target.Id));
         }
 
-        private void SubscribeToSource()
-        {
-            m_Source.OnChangeRequestHandled += OnItemChangeRequestHandled;
-            m_Source.OnInventoryUpdated += ResetUI;
-        }
-
-        private void ResetUI()
-        {
-            ClearUI();
-            DisplayNewUI();
-        }
-
         private void UnsubscribeFromSource()
         {
             if (m_Source == null) return;
-            
+
             m_Source.OnChangeRequestHandled -= OnItemChangeRequestHandled;
             m_Source.OnInventoryUpdated -= ResetUI;
+
+            DestroySlots();
+
+            m_Source = null;
         }
     }
 }
