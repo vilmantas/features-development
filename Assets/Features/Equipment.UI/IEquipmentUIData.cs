@@ -10,5 +10,9 @@ namespace Features.Equipment.UI
         GameObject gameObject { get; }
 
         void SetData(EquipmentContainerItem slot);
+
+        void Reset();
+        
+        void Unsubscribe();
     }
 }

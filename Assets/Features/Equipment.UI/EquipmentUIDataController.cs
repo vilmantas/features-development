@@ -12,6 +12,8 @@ namespace Features.Equipment.UI
 
         private Image Placeholder;
 
+        private Sprite PlaceholderSprite;
+
         public override void OnAwake()
         {
             Count = GetComponentInChildren<TextMeshProUGUI>();
@@ -22,13 +24,13 @@ namespace Features.Equipment.UI
             {
                 if (image.name.EndsWith("placeholder"))
                 {
-                    var sprite = Resources.Load<Sprite>("equipment_placeholder");
+                    PlaceholderSprite = Resources.Load<Sprite>("equipment_placeholder");
                     
                     Placeholder = image;
 
-                    if (sprite != null)
+                    if (PlaceholderSprite != null)
                     {
-                        Placeholder.sprite = sprite;
+                        Placeholder.sprite = PlaceholderSprite;
                     }
                 }
 
@@ -70,6 +72,14 @@ namespace Features.Equipment.UI
                     Placeholder.gameObject.SetActive(true);
                 }
             }
+        }
+
+        public override void OnReset()
+        {
+            Placeholder.gameObject.SetActive(true);
+            ItemIcon.gameObject.SetActive(false);
+            Count.text = string.Empty;
+            Placeholder.sprite = PlaceholderSprite;
         }
     }
 }

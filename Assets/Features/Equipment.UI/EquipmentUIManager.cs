@@ -23,22 +23,44 @@ namespace Features.Equipment.UI
 
             m_DestroyAction = destroyAction;
 
+            CreateSlots();
+            
             SubscribeToSource();
 
             DisplayNewUI();
+        }
+
+        private void CreateSlots()
+        {
+            foreach (var slot in m_Source.ContainerSlots)
+            {
+                var data = m_InstantiationFunc();
+
+                data.OnPressed += ActivateItem;
+
+                Datas.Add(slot.Id, data);
+            }
+        }
+        
+        private void DestroySlots()
+        {
+            foreach (var data in Datas)
+            {
+                data.Value.Unsubscribe();
+
+                m_DestroyAction.Invoke(data.Value);
+            }
+
+            Datas.Clear();
         }
 
         private void DisplayNewUI()
         {
             foreach (var item in m_Source.ContainerSlots)
             {
-                var data = m_InstantiationFunc();
-
-                data.OnPressed += ActivateItem;
-
+                var data = Datas[item.Id];
+                
                 data.SetData(item);
-
-                Datas.Add(item.Id, data);
             }
         }
 
@@ -90,6 +112,10 @@ namespace Features.Equipment.UI
             m_Source.OnItemUnequipped -= HandleEquipmentUpdated;
             m_Source.OnSlotUpdated -= OnSlotUpdated;
             m_Source.OnItemCombined -= OnItemCombined;
+            
+            DestroySlots();
+
+            m_Source = null;
         }
     }
 }

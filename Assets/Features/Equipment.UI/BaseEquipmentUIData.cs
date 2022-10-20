@@ -54,5 +54,26 @@ namespace Features.Equipment.UI
         public virtual void OnSetData(EquipmentContainerItem item)
         {
         }
+
+        public void Reset()
+        {
+            m_EquipmentContainer = null;
+
+            name = string.Empty;
+
+            Blocker.enabled = true;
+            
+            OnReset();
+        }
+        
+        public virtual void OnReset()
+        {
+            
+        }
+
+        public void Unsubscribe()
+        {
+            OnPressed = null;
+        }
     }
 }
