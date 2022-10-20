@@ -59,7 +59,7 @@ namespace DebugScripts.Character
             {
                 yield return new WaitForSeconds(2.5f);
                 
-                Character.Events.OnStrike.Invoke();
+                Character.Events.OnAttemptStrike.Invoke();
             }
         }
 

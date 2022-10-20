@@ -53,7 +53,7 @@ namespace Features.Character
 
             if (!m_InventoryController.CanReceive(item.StorageData, out int maxAmountToAdd)) return;
 
-            if (maxAmountToAdd <= item.CurrentAmount)
+            if (maxAmountToAdd < item.CurrentAmount)
             {
                 obj.PreventDefault = true;
 

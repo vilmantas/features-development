@@ -14,7 +14,7 @@ namespace Features.Items
         public readonly Guid Id = Guid.NewGuid();
 
         public ItemMetadata(string name, Sprite sprite, int maxStack, StatGroup stats, string mainSlot,
-            string secondarySlot, GameObject modelPrefab, List<BuffBase> buffs, ActionBase action, List<ActionBase> inventoryContextMenuActions, List<ActionBase> equipmentContextMenuActions)
+            string secondarySlot, GameObject modelPrefab, List<BuffBase> buffs, ActionBase action, List<ActionBase> inventoryContextMenuActions, List<ActionBase> equipmentContextMenuActions, string attackAnimation)
         {
             Name = name;
             Sprite = sprite;
@@ -28,6 +28,7 @@ namespace Features.Items
             Action = action;
             InventoryContextMenuActions = inventoryContextMenuActions;
             EquipmentContextMenuActions = equipmentContextMenuActions;
+            AttackAnimation = attackAnimation;
         }
 
         public StatGroup Stats { get; }
@@ -42,5 +43,6 @@ namespace Features.Items
         public string Name { get; }
         public Sprite Sprite { get; }
         public int MaxStack { get; }
+        public string AttackAnimation { get; }
     }
 }

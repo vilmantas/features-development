@@ -17,7 +17,9 @@ namespace Features.Character
 
         public Action OnStopped;
 
-        public Action OnStrike;
+        public Action<string> OnStrike;
+        
+        public Action OnAttemptStrike;
 
         public Action OnActivateBlock;
 
@@ -48,7 +50,7 @@ namespace Features.Character
 
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    OnStrike?.Invoke();
+                    OnAttemptStrike?.Invoke();
                     m_NavMeshAgent.SetDestination(transform.position);
                 }
             }

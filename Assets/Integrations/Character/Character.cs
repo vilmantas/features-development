@@ -41,6 +41,8 @@ namespace Features.Character
 
             public bool Health;
 
+            public bool Combat;
+
             [Range(1, 100)] public int MaxHealth = 20;
 
             [Range(1, 100)] public int CurrentHealth = 10;
@@ -79,6 +81,8 @@ namespace Features.Character
 
             private CharacterStatsManager m_StatsManager;
 
+            private CharacterCombatManager m_CombatManager;
+            
             private void Awake()
             {
                 var root = transform;
@@ -158,6 +162,11 @@ namespace Features.Character
                 if (Stats)
                 {
                     AddComponent(managersParent, "stats", ref m_StatsManager);
+                }
+
+                if (Combat)
+                {
+                    AddComponent(managersParent, "combat", ref m_CombatManager);
                 }
             }
 

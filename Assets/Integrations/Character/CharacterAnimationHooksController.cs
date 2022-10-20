@@ -22,9 +22,9 @@ namespace Features.Character
 
             if (!m_Events) return;
 
-            m_Events.OnStrike += () =>
+            m_Events.OnStrike += anim =>
             {
-                m_Animator.SetTrigger(Random.value > 0.5f ? s_Strike1 : s_Strike2);
+                m_Animator.SetTrigger(anim);
             };
 
             m_Events.OnActivateBlock += () =>

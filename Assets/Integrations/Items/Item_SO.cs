@@ -22,15 +22,7 @@ namespace Features.Items
         public Action_SO Action;
         public List<Action_SO> InventoryActions;
         public List<Action_SO> EquipmentActions;
-
-        public ItemInstance MakeEmptyInstance()
-        {
-            var metadata = ItemMetadataRegistry.Registry[Name];
-
-            var instance = ItemFactory.CreateInstanceFrom(metadata);
-
-            return instance;
-        }
+        public string AttackAnimation = string.Empty;
 
         public ItemInstance MakeInstanceWithCount()
         {

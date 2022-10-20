@@ -80,7 +80,7 @@ namespace DebugScripts
         public override void OnReset()
         {
             Title.text = string.Empty;
-            Value.enabled = false;
+            Value.text = string.Empty;
             ItemIcon.enabled = false;
         }
     }
