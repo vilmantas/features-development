@@ -438,7 +438,7 @@ GameObject:
   - component: {fileID: 359488401}
   - component: {fileID: 359488402}
   m_Layer: 0
-  m_Name: Model (1)
+  m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -456,6 +456,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
+  - {fileID: 1796686266}
   - {fileID: 871219466}
   m_Father: {fileID: 1507408933}
   m_RootOrder: -1
@@ -1815,10 +1816,10 @@ MonoBehaviour:
   Inventory: 0
   Equipment: 1
   Stats: 0
-  Health: 0
+  Health: 1
   Combat: 1
-  MaxHealth: 20
-  CurrentHealth: 10
+  MaxHealth: 32
+  CurrentHealth: 28
   InventorySize: 5
   EquipmentSlots:
   - Instance: {fileID: 0}
@@ -1983,6 +1984,52 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &1796686265
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1796686266}
+  - component: {fileID: 1796686267}
+  m_Layer: 0
+  m_Name: hitbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1796686266
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1796686265}
+  m_LocalRotation: {x: -0, y: -0.7699695, z: -0, w: 0.6380807}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 359488401}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &1796686267
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1796686265}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!224 &1848954485 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4777244207682862195, guid: 3e0a555a5310a6a488ae08fca7678e64, type: 3}
@@ -2342,6 +2389,10 @@ PrefabInstance:
     - target: {fileID: 6728580033162269917, guid: ec5a0edd3f716c44b8ab2c6a04e3de33, type: 3}
       propertyPath: EquipmentSlots.Array.data[2].InstanceParent
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6728580033162269917, guid: ec5a0edd3f716c44b8ab2c6a04e3de33, type: 3}
+      propertyPath: EquipmentSlots.Array.data[0].AddHitboxTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7447832403329991452, guid: ec5a0edd3f716c44b8ab2c6a04e3de33, type: 3}
       propertyPath: m_LocalScale.x

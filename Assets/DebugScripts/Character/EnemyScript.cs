@@ -4,6 +4,7 @@ using Features.Actions;
 using Features.Buffs;
 using Features.Character;
 using Features.Health;
+using Features.Health.Events;
 using Features.Inventory;
 using Features.Items;
 using Integrations.Actions;
@@ -32,6 +33,13 @@ namespace DebugScripts.Character
         private void Start()
         {
             StartCoroutine(HitterCoroutine());
+            
+            Character.m_HealthController.OnDamage += OnDamage;
+        }
+
+        private void OnDamage(HealthChangeEventArgs obj)
+        {
+            print("Received damage: " + obj.ActualChange);
         }
 
         public IEnumerator HitterCoroutine()
