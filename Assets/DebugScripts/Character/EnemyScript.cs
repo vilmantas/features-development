@@ -32,25 +32,6 @@ namespace DebugScripts.Character
         private void Start()
         {
             StartCoroutine(HitterCoroutine());
-            
-            Character.m_EquipmentController.OnHitboxCollided += OnHitboxCollided;
-
-            Character.Events.OnStrikeStart += () => DamageEnabled = true;
-
-            Character.Events.OnStrikeEnd += () => DamageEnabled = false;
-        }
-
-        private void OnHitboxCollided(string arg1, Collider arg2)
-        {
-            if (!DamageEnabled) return;
-
-            var c = arg2.transform.root.GetComponent<CharacterC.Character>();
-
-            if (!c) return;
-
-            var damagePayload = Damage.MakePayload(this, c.gameObject, 3);
-
-            c.m_ActionsController.DoAction(damagePayload);
         }
 
         public IEnumerator HitterCoroutine()
@@ -117,16 +98,6 @@ namespace DebugScripts.Character
             var controller = Target.GetComponentInChildren<ActionsController>();
 
             controller.DoAction(Heal.MakePayload(this, Target, 10));
-        }
-
-        public void OnReceive(BuffActivationPayload payload)
-        {
-            payload.Target.transform.Translate(Vector3.up * 5);
-        }
-
-        public void OnRemove(BuffActivationPayload payload)
-        {
-            payload.Target.transform.Translate(Vector3.down * 5);
         }
     }
 }

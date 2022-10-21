@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using Features.Equipment;
 using Features.Items;
+using Integrations.Actions;
 using UnityEngine;
 
 namespace Features.Character
@@ -15,6 +16,8 @@ namespace Features.Character
         private EquipmentController m_EquipmentController;
 
         private CharacterEvents m_Events;
+
+        private bool DamageEnabled;
         
         private void Awake()
         {
@@ -22,10 +25,29 @@ namespace Features.Character
 
             m_EquipmentController = root.GetComponentInChildren<EquipmentController>();
 
+            m_EquipmentController.OnHitboxCollided += OnHitboxCollided;
+
             m_Events = root.GetComponentInChildren<CharacterEvents>();
 
             m_Events.OnAttemptStrike += () => m_Events.OnStrike?.Invoke(GetAttackAnimation());
+
+            m_Events.OnStrikeStart += () => DamageEnabled = true;
+
+            m_Events.OnStrikeEnd += () => DamageEnabled = false;
         }
+
+    private void OnHitboxCollided(string arg1, Collider arg2)
+    {
+        if (!DamageEnabled) return;
+
+        var c = arg2.transform.root.GetComponent<CharacterC.Character>();
+
+        if (!c) return;
+
+        var damagePayload = Damage.MakePayload(this, c.gameObject, 3);
+
+        c.m_ActionsController.DoAction(damagePayload);
+    }
 
         public string GetAttackAnimation()
         {
