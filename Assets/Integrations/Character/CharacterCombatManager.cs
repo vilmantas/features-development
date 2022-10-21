@@ -36,18 +36,31 @@ namespace Features.Character
             m_Events.OnStrikeEnd += () => DamageEnabled = false;
         }
 
-    private void OnHitboxCollided(string arg1, Collider arg2)
-    {
-        if (!DamageEnabled) return;
+        private void OnHitboxCollided(string arg1, Collider arg2)
+        {
+            if (!DamageEnabled) return;
 
-        var c = arg2.transform.root.GetComponent<CharacterC.Character>();
+            var c = arg2.transform.root.GetComponent<CharacterC.Character>();
 
-        if (!c) return;
+            if (!c) return;
 
-        var damagePayload = Damage.MakePayload(this, c.gameObject, 3);
+            var mainSlot =
+                m_EquipmentController.ContainerSlots.FirstOrDefault(x =>
+                    x.Slot.ToLower() == "main");
 
-        c.m_ActionsController.DoAction(damagePayload);
-    }
+            var damage = 1;
+
+            if (mainSlot != null &&
+                mainSlot.IsEmpty &&
+                mainSlot.Main is ItemInstance item)
+            {
+                damage = item.Metadata.UsageStats["Damage"]?.Value ?? damage;
+            }
+            
+            var damagePayload = Damage.MakePayload(this, c.gameObject, damage);
+
+            c.m_ActionsController.DoAction(damagePayload);
+        }
 
         public string GetAttackAnimation()
         {

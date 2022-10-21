@@ -4,6 +4,7 @@ using Features.Actions;
 using Features.Buffs;
 using Features.Stats.Base;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Features.Items
 {
@@ -17,7 +18,8 @@ namespace Features.Items
         public int MaxStack;
         public Sprite Sprite;
         public GameObject ModelPrefab;
-        public List<Stat> Stats;
+        [FormerlySerializedAs("Stats")] public List<Stat> EquipStats;
+        public List<Stat> UsageStats;
         public Buff_SO[] Buffs;
         public Action_SO Action;
         public List<Action_SO> InventoryActions;

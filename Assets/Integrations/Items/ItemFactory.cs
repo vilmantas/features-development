@@ -36,7 +36,7 @@ namespace Features.Items
                 prefab.Name,
                 prefab.Sprite,
                 prefab.MaxStack,
-                new StatGroup(prefab.Stats.ToArray()),
+                new StatGroup(prefab.EquipStats.ToArray()),
                 prefab.MainSlot,
                 prefab.SecondarySlot,
                 prefab.ModelPrefab,
@@ -44,7 +44,8 @@ namespace Features.Items
                 prefab.Action == null ? null : prefab.Action.Base,
                 prefab.InventoryActions.Select(x => x.Base).ToList(),
                 prefab.EquipmentActions.Select(x => x.Base).ToList(),
-                prefab.AttackAnimation);
+                prefab.AttackAnimation,
+                new StatGroup(prefab.UsageStats.ToArray()));
         }
 
         public static ItemInstance CreateInstanceFrom(ItemMetadata metadata, int count = 0)

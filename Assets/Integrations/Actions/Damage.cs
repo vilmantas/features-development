@@ -19,7 +19,7 @@ namespace Integrations.Actions
         [RuntimeInitializeOnLoadMethod]
         private static void Register()
         {
-            ActionImplementation implementation = new(nameof(Damage), OnActivation);
+            ActionImplementation implementation = new(nameof(Damage), OnActivation, PayloadMake);
             ActionImplementationRegistry.Implementations.TryAdd(implementation.Name, implementation);
         }
 
@@ -32,6 +32,24 @@ namespace Integrations.Actions
             if (!health) return;
 
             health.Damage(damageActionPayload.DamageAmount);
+        }
+        
+        private static DamageActionPayload PayloadMake(ActionActivationPayload originalPayload)
+        {
+            if (originalPayload is DamageActionPayload damagePayload) return damagePayload;
+
+            if (originalPayload.Source is ItemInstance item)
+                return PayloadForItem(originalPayload, item);
+            
+            throw new InvalidOperationException(
+                $"Invalid payload passed to damage action {originalPayload.GetType().Name}");
+        }
+        
+        private static DamageActionPayload PayloadForItem(ActionActivationPayload originalPayload, ItemInstance item)
+        {
+            var damageAmount = item.Metadata.UsageStats["Damage"].Value;
+            
+            return new DamageActionPayload(originalPayload, damageAmount);
         }
     }
 

@@ -46,7 +46,7 @@ namespace Integrations.Actions
 
         private static HealActionPayload PayloadForItem(ActionActivationPayload originalPayload, ItemInstance item)
         {
-            var healAmount = item.Metadata.Stats["Healing"].Value;
+            var healAmount = item.Metadata.UsageStats["Healing"].Value;
             
             return new HealActionPayload(originalPayload, healAmount);
         }

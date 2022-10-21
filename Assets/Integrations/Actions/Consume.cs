@@ -34,7 +34,7 @@ namespace Integrations.Actions
                 }
             }
 
-            var healing = consumeActionPayload.Item.Metadata.Stats["Healing"].Value;
+            var healing = consumeActionPayload.Item.Metadata.UsageStats["Healing"].Value;
 
             if (healing != 0)
             {

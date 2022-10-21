@@ -29,12 +29,12 @@ namespace Features.Character
         {
             if (result.UnequippedItem is ItemInstance unequippedItemInstanceBase)
             {
-                m_StatsController.RemoveStatModifier(unequippedItemInstanceBase.Metadata.Stats);
+                m_StatsController.RemoveStatModifier(unequippedItemInstanceBase.Metadata.EquipStats);
             }
 
             if (result.EquippedItem is ItemInstance equipmentItemInstance)
             {
-                m_StatsController.ApplyStatModifiers(equipmentItemInstance.Metadata.Stats);
+                m_StatsController.ApplyStatModifiers(equipmentItemInstance.Metadata.EquipStats);
             }
         }
     }
