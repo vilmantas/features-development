@@ -14,7 +14,7 @@ namespace DebugScripts.Character
 {
     public class EnemyScript : MonoBehaviour
     {
-        public CharacterC.Character Character;
+        public Modules.Character Character;
         
         public GameObject Target;
 

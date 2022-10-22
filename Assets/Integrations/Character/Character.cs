@@ -11,7 +11,7 @@ using UnityEngine.AI;
 
 namespace Features.Character
 {
-    public class CharacterC
+    public class Modules
     {
         [Serializable]
         public class StartingEquipmentItem

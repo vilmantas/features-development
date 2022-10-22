@@ -13,6 +13,8 @@ namespace Features.Character
 
         private Transform root;
 
+        private Modules.Character m_Character;
+
         private EquipmentController m_EquipmentController;
 
         private CharacterEvents m_Events;
@@ -22,6 +24,8 @@ namespace Features.Character
         private void Awake()
         {
             root = transform.root;
+
+            m_Character = root.GetComponent<Modules.Character>();
 
             m_EquipmentController = root.GetComponentInChildren<EquipmentController>();
 
@@ -36,11 +40,11 @@ namespace Features.Character
             m_Events.OnStrikeEnd += () => DamageEnabled = false;
         }
 
-        private void OnHitboxCollided(string arg1, Collider arg2)
+        private void OnHitboxCollided(string slot, Collider target)
         {
             if (!DamageEnabled) return;
 
-            var c = arg2.transform.root.GetComponent<CharacterC.Character>();
+            var c = target.transform.root.GetComponent<Modules.Character>();
 
             if (!c) return;
 
@@ -48,14 +52,19 @@ namespace Features.Character
                 m_EquipmentController.ContainerSlots.FirstOrDefault(x =>
                     x.Slot.ToLower() == "main");
 
-            var damage = 1;
+            var totalDamage = 0;
 
             if (mainSlot is {IsEmpty: false, Main: ItemInstance item})
             {
-                damage = item.Metadata.UsageStats["Damage"]?.Value ?? damage;
+                totalDamage += item.Metadata.UsageStats["Damage"].Value;
+            }
+
+            if (m_Character.Stats)
+            {
+                totalDamage += m_Character.m_StatsController.CurrentStats["Strength"].Value;
             }
             
-            var damagePayload = Damage.MakePayload(this, c.gameObject, damage);
+            var damagePayload = Damage.MakePayload(this, c.gameObject, totalDamage);
 
             c.m_ActionsController.DoAction(damagePayload);
         }
