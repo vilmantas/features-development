@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d568eb4627e704b2b8571d09f992c2ca, type: 3}
+  m_Name: Staff
+  m_EditorClassIdentifier: 
+  Name: Staff
+  MainSlot: Main
+  SecondarySlot: 
+  Count: 1
+  MaxStack: 1
+  Sprite: {fileID: 0}
+  ModelPrefab: {fileID: 2560174426364038440, guid: e57bc8c6386134a6a819bd0fa4e8c6db, type: 3}
+  EquipStats: []
+  UsageStats: []
+  Buffs: []
+  Action: {fileID: 11400000, guid: 1b0b911a9a2e34805bdb021ac53244f2, type: 2}
+  InventoryActions: []
+  EquipmentActions: []
+  AttackAnimation: Strike_1

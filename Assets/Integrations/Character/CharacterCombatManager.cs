@@ -11,6 +11,8 @@ namespace Features.Character
     {
         private const string DEFAULT_ATTACK_ANIMATION = "Strike_1";
 
+        public Action<DamageActionPayload> OnBeforeDoDamage;
+        
         private Transform root;
 
         private Modules.Character m_Character;
@@ -20,7 +22,7 @@ namespace Features.Character
         private CharacterEvents m_Events;
 
         private bool DamageEnabled;
-        
+
         private void Awake()
         {
             root = transform.root;
@@ -44,10 +46,6 @@ namespace Features.Character
         {
             if (!DamageEnabled) return;
 
-            var c = target.transform.root.GetComponent<Modules.Character>();
-
-            if (!c) return;
-
             var mainSlot =
                 m_EquipmentController.ContainerSlots.FirstOrDefault(x =>
                     x.Slot.ToLower() == "main");
@@ -64,9 +62,11 @@ namespace Features.Character
                 totalDamage += m_Character.m_StatsController.CurrentStats["Strength"].Value;
             }
             
-            var damagePayload = Damage.MakePayload(this, c.gameObject, totalDamage);
+            var damagePayload = Damage.MakePayload(this, target.gameObject, totalDamage);
 
-            c.m_ActionsController.DoAction(damagePayload);
+            OnBeforeDoDamage?.Invoke(damagePayload);
+
+            m_Character.m_ActionsController.DoAction(damagePayload);
         }
 
         public string GetAttackAnimation()

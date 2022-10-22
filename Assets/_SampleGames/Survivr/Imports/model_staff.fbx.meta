@@ -1,14 +1,9 @@
 fileFormatVersion: 2
-guid: a2d21cb2a439c9f42a5f1a3b6ebe5904
+guid: 094695b4b19664372b6a393837bacb0c
 ModelImporter:
   serializedVersion: 22103
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mat_imphenzia
-    second: {fileID: 2100000, guid: b2e373b99f56543069f782c6e2b330db, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0

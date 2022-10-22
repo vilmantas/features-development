@@ -25,14 +25,15 @@ namespace Features.Actions
 
         private static bool IsImplementationRegistered(ActionBase action, out ActionImplementation implementation)
         {
-            if (!ActionImplementationRegistry.Implementations.TryGetValue(action.Name,
-                    out implementation))
+            var result = ActionImplementationRegistry.Implementations.TryGetValue(action.Name,
+                out implementation);
+            
+            if (!result)
             {
                 Debug.LogWarning($"Implementation missing for action: {action.Name}");
             }
 
-            return ActionImplementationRegistry.Implementations.TryGetValue(action.Name,
-                out implementation);
+            return result;
         }
     }
 }
