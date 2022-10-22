@@ -50,9 +50,7 @@ namespace Features.Character
 
             var damage = 1;
 
-            if (mainSlot != null &&
-                mainSlot.IsEmpty &&
-                mainSlot.Main is ItemInstance item)
+            if (mainSlot is {IsEmpty: false, Main: ItemInstance item})
             {
                 damage = item.Metadata.UsageStats["Damage"]?.Value ?? damage;
             }
