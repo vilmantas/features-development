@@ -29,6 +29,8 @@ namespace Features.Character
 
         public Action OnStrikeEnd;
 
+        public Action OnProjectileTrigger;
+
         public bool InputHooksEnabled = true;
 
         private void Awake()

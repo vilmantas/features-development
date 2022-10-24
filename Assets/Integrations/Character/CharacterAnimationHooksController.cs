@@ -54,5 +54,10 @@ namespace Features.Character
         {
             m_Events.OnStrikeEnd?.Invoke();
         }
+
+        public void ProjectileTrigger()
+        {
+            m_Events.OnProjectileTrigger?.Invoke();
+        }
     }
 }

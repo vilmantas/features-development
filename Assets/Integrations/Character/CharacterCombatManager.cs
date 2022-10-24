@@ -35,11 +35,16 @@ namespace Features.Character
 
             m_Events = root.GetComponentInChildren<CharacterEvents>();
 
-            m_Events.OnAttemptStrike += () => m_Events.OnStrike?.Invoke(GetAttackAnimation());
+            m_Events.OnAttemptStrike += OnAttemptStrike;
 
             m_Events.OnStrikeStart += () => DamageEnabled = true;
 
             m_Events.OnStrikeEnd += () => DamageEnabled = false;
+        }
+
+        private void OnAttemptStrike()
+        {
+            m_Events.OnStrike?.Invoke(GetAttackAnimation());
         }
 
         private void OnHitboxCollided(string slot, Collider target)
