@@ -7,12 +7,10 @@ namespace Features.Character
     {
         private readonly int m_RightArmLayerIndex = 1;
         
-        private static readonly int s_Strike1 = Animator.StringToHash("Strike_1");
         private static readonly int s_Velocity = Animator.StringToHash("Velocity");
         private Animator m_Animator;
 
         private CharacterEvents m_Events;
-        private static readonly int s_Strike2 = Animator.StringToHash("Strike_2");
 
         private void Awake()
         {
