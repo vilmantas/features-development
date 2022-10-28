@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1231179444443682872}
   - component: {fileID: 1231179444443682875}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -198,6 +198,7 @@ MonoBehaviour:
   m_InventoryController: {fileID: 0}
   m_StatsController: {fileID: 0}
   m_ActionsController: {fileID: 0}
+  m_CombatController: {fileID: 0}
   m_HealthController: {fileID: 0}
 --- !u!195 &1231179446112602931
 NavMeshAgent:

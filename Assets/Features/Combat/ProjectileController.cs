@@ -22,7 +22,7 @@ namespace Features.Combat
 
             m_Direction = direction;
             
-            m_Rigidbody.AddForce(m_Direction * 300);
+            m_Rigidbody.AddForce(m_Direction * 600);
         }
 
         private void OnTriggerEnter(Collider other)
