@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Features.Combat;
 using Features.Equipment;
 using Features.Items;
 using Integrations.Actions;
@@ -20,6 +21,8 @@ namespace Features.Character
 
         private EquipmentController m_EquipmentController;
 
+        private CombatController m_CombatController;
+
         private CharacterEvents m_Events;
 
         private bool DamageEnabled;
@@ -31,6 +34,8 @@ namespace Features.Character
             m_Character = root.GetComponent<Modules.Character>();
 
             m_EquipmentController = root.GetComponentInChildren<EquipmentController>();
+            
+            m_CombatController = root.GetComponentInChildren<CombatController>();
 
             m_EquipmentController.OnHitboxCollided += OnHitboxCollided;
 
@@ -41,8 +46,19 @@ namespace Features.Character
             m_Events.OnStrikeStart += () => DamageEnabled = true;
 
             m_Events.OnStrikeEnd += () => DamageEnabled = false;
-
             
+            m_EquipmentController.OnItemEquipped += OnItemEquipped;
+        }
+
+        private void OnItemEquipped(EquipResult obj)
+        {
+            if (obj.EquippedItem is not ItemInstance item) return;
+
+            if (!item.Metadata.ProvidedAmmo) return;
+            
+            var ammo = item.Metadata.ProvidedAmmo.GetComponent<ProjectileController>();
+            
+            m_CombatController.SetAmmo(item.Metadata.RequiredAmmo, ammo); 
         }
 
         private void OnAttemptStrike()

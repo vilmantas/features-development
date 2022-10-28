@@ -45,7 +45,9 @@ namespace Features.Items
                 prefab.InventoryActions.Select(x => x.Base).ToList(),
                 prefab.EquipmentActions.Select(x => x.Base).ToList(),
                 prefab.AttackAnimation,
-                new StatGroup(prefab.UsageStats.ToArray()));
+                new StatGroup(prefab.UsageStats.ToArray()),
+                prefab.RequiredAmmoType,
+                prefab.ProvidedAmmo);
         }
 
         public static ItemInstance CreateInstanceFrom(ItemMetadata metadata, int count = 0)

@@ -3,20 +3,35 @@ using UnityEngine;
 
 namespace Features.Combat
 {
+    [RequireComponent(typeof(Rigidbody))]
     public class ProjectileController : MonoBehaviour
     {
         public Action<ProjectileCollisionData> OnProjectileCollided;
         
         private GameObject m_Parent;
 
-        public void Initialize(GameObject parent, Transform direction)
+        private Rigidbody m_Rigidbody;
+
+        private Vector3 m_Direction;
+
+        public void Initialize(GameObject parent, Vector3 direction)
         {
+            m_Rigidbody = GetComponent<Rigidbody>();
+            
             m_Parent = parent;
+
+            m_Direction = direction;
+            
+            m_Rigidbody.AddForce(m_Direction * 300);
         }
-        
+
         private void OnTriggerEnter(Collider other)
         {
+            if (other.transform.root.name == m_Parent.name) return;
+            
             if (other.name != "hitbox") return;
+            
+            print("Projectile hit " + other.transform.root.name);
 
             var data = new ProjectileCollisionData(m_Parent, other.gameObject);
             

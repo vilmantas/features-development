@@ -25,9 +25,8 @@ namespace Features.Items
         public List<Action_SO> InventoryActions;
         public List<Action_SO> EquipmentActions;
         public string AttackAnimation = string.Empty;
-
         public string RequiredAmmoType = string.Empty;
-        public GameObject ProvidesAmmo;
+        public GameObject ProvidedAmmo;
 
         public ItemInstance MakeInstanceWithCount()
         {

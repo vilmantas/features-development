@@ -1,6 +1,7 @@
 using System;
 using Features.Actions;
 using Features.Buffs;
+using Features.Combat;
 using Features.Equipment;
 using Features.Health;
 using Features.Inventory;
@@ -68,6 +69,8 @@ namespace Features.Character
             [HideInInspector] public StatsController m_StatsController;
 
             [HideInInspector] public ActionsController m_ActionsController;
+
+            [HideInInspector] public CombatController m_CombatController;
 
             private CharacterActionsManager m_ActionsManager;
 
@@ -212,6 +215,11 @@ namespace Features.Character
                     AddComponent(systemsParent, "health", ref m_HealthController);
 
                     m_HealthController.Initialize(CurrentHealth, MaxHealth);
+                }
+
+                if (Combat)
+                {
+                    AddComponent(systemsParent, "combat", ref m_CombatController);
                 }
             }
 

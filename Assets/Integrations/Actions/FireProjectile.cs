@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel;
 using Features.Actions;
+using Features.Combat;
 using Features.Health;
 using Features.Items;
 using UnityEngine;
@@ -9,6 +10,15 @@ namespace Integrations.Actions
 {
     public static class FireProjectile
     {
+        public static FireProjectileActionPayload MakePayload(object source, GameObject target,
+            string ammoType, Vector3 location, Vector3 direction)
+        {
+            var basePayload =
+                new ActionActivationPayload(new ActionBase(nameof(FireProjectile)), source, target);
+
+            return new FireProjectileActionPayload(basePayload, ammoType, location, direction);
+        }
+        
         [RuntimeInitializeOnLoadMethod]
         private static void Register()
         {
@@ -20,46 +30,53 @@ namespace Integrations.Actions
         {
             if (payload is not FireProjectileActionPayload
                 {
-                    Source: CharacterController character
+                    Source: GameObject obj
                 } firePayload) return;
+
+            var combatController = obj.GetComponentInChildren<CombatController>();
+
+            if (!combatController) return;
 
             Debug.Log("Firing projectile: " + firePayload.AmmoType);
 
-            var projectile = firePayload.Projectile;
-
+            var projectile = LoadProjectile(firePayload.AmmoType, combatController);
+            
             if (!projectile)
             {
-                projectile = LoadProjectile(firePayload.AmmoType, character.gameObject);
-                
-                if (!projectile)
-                {
-                    Debug.Log("Ammo not provided!");
-                }
+                Debug.Log("Ammo not provided!");
+
+                return;
             }
 
-            var obj = new GameObject("Lol");
-            
-            // obj.
+            combatController.FireProjectile(projectile, firePayload.Location,
+                firePayload.Direction);
         }
 
-        private static GameObject LoadProjectile(string ammoType, GameObject source)
+        private static ProjectileController LoadProjectile(string ammoType, CombatController source)
         {
-            return new GameObject();
+            var combatController = source.GetComponentInChildren<CombatController>();
+
+            return combatController.AmmoData[ammoType];
         }
     }
 
     public class FireProjectileActionPayload : ActionActivationPayload
     {
-        public readonly Transform Location;
-
-        public readonly GameObject Projectile;
+        public readonly Vector3 Direction;
+        
+        public readonly Vector3 Location;
 
         public readonly string AmmoType;
 
-        public FireProjectileActionPayload(ActionActivationPayload original, int FireProjectileAmount) : base(original.Action,
+        public FireProjectileActionPayload(ActionActivationPayload original, string ammoType,
+            Vector3 location,
+            Vector3 direction) : base(original.Action,
             original.Source, original.Target)
+
         {
-            FireProjectileAmount = FireProjectileAmount;
+            Location = location;
+            AmmoType = ammoType;
+            Direction = direction;
         }
     }
 }

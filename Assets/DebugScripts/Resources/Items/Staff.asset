@@ -27,3 +27,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9a106421fb2834214b7b7f8b03c6accc, type: 2}
   EquipmentActions: []
   AttackAnimation: Strike_Projectile
+  RequiredAmmoType: staff
+  ProvidedAmmo: {fileID: 494381917243745319, guid: 388d511a2382d4df189bdb12ab046c38, type: 3}

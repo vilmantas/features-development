@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
 namespace Features.Combat
 {
@@ -14,6 +15,13 @@ namespace Features.Combat
         private void Awake()
         {
             m_AmmoData = new Dictionary<string, ProjectileController>();
+        }
+
+        public void FireProjectile(ProjectileController projectilePrefab, Vector3 location, Vector3 direction)
+        {
+            var projectile = Instantiate(projectilePrefab, location, Random.rotation);
+            
+            projectile.Initialize(transform.root.gameObject, direction);
         }
 
         public void SetAmmo(string ammoName, ProjectileController prefab)

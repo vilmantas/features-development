@@ -71,6 +71,21 @@ namespace DebugScripts.Character
             {
                 PlayerInstance.m_InventoryController.OnContextRequested += ShowContextMenu;
             }
+
+            if (PlayerInstance.Combat)
+            {
+                PlayerInstance.Events.OnProjectileTrigger += OnProjectileTrigger;
+            }
+        }
+
+        private void OnProjectileTrigger()
+        {
+            var position = PlayerInstance.m_EquipmentController.SpawnPositionForSlot("main");
+            
+            var payload = FireProjectile.MakePayload(gameObject, gameObject, "staff",
+                position, transform.forward);
+
+            PlayerInstance.m_ActionsController.DoAction(payload);
         }
 
         private void ShowContextMenu(StorageData data)

@@ -161,5 +161,12 @@ namespace Features.Equipment
         }
 
         private SlotData ContainerFor(string slot) => EquipmentSlots.FirstOrDefault(x => x.slotType == slot);
+
+        public Vector3 SpawnPositionForSlot(string slot)
+        {
+            var slotData = EquipmentSlots.FirstOrDefault(x => x.slotType.ToLower() == slot);
+            
+            return slotData == null ? Vector3.zero : slotData.Instance.transform.position;
+        }
     }
 }
