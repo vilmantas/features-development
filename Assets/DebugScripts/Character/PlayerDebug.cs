@@ -20,8 +20,6 @@ namespace DebugScripts.Character
 {
     public class PlayerDebug : MonoBehaviour
     {
-        public ProjectileController AmmoPrefab;
-        
         public NavMeshAgent NavAgent;
 
         public LayerMask GroundLayer;
@@ -71,25 +69,6 @@ namespace DebugScripts.Character
             {
                 PlayerInstance.m_InventoryController.OnContextRequested += ShowContextMenu;
             }
-
-            if (PlayerInstance.Combat)
-            {
-                PlayerInstance.Events.OnProjectileTrigger += OnProjectileTrigger;
-            }
-        }
-
-        private void OnProjectileTrigger()
-        {
-            var position = PlayerInstance.m_EquipmentController.SpawnPositionForSlot("main");
-
-            var itemInSlot = PlayerInstance.m_EquipmentController.ItemInSlot("main");
-
-            if (itemInSlot is not ItemInstance itemInstance) return;
-
-            var payload = FireProjectile.MakePayload(itemInSlot, gameObject, gameObject, itemInstance.Metadata.RequiredAmmo,
-                position, transform.forward);
-
-            PlayerInstance.m_ActionsController.DoAction(payload);
         }
 
         private void ShowContextMenu(StorageData data)

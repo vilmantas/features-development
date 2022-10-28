@@ -15,7 +15,7 @@ namespace Features.Character
         private const string DEFAULT_ATTACK_ANIMATION = "Strike_1";
 
         public Action<DamageActionPayload> OnBeforeDoDamage;
-        
+
         private Transform root;
 
         private Modules.Character m_Character;
@@ -35,7 +35,7 @@ namespace Features.Character
             m_Character = root.GetComponent<Modules.Character>();
 
             m_EquipmentController = root.GetComponentInChildren<EquipmentController>();
-            
+
             m_CombatController = root.GetComponentInChildren<CombatController>();
 
             m_EquipmentController.OnHitboxCollided += OnHitboxCollided;
@@ -47,11 +47,29 @@ namespace Features.Character
             m_Events.OnStrikeStart += () => DamageEnabled = true;
 
             m_Events.OnStrikeEnd += () => DamageEnabled = false;
-            
+
             m_EquipmentController.OnItemEquipped += OnItemEquipped;
-            
+
             m_CombatController.OnProjectileCollided += OnProjectileCollided;
+
+            m_Character.Events.OnProjectileTrigger += OnProjectileTrigger;
         }
+
+        private void OnProjectileTrigger()
+        {
+            var position = m_Character.m_EquipmentController.SpawnPositionForSlot("main");
+
+            var itemInSlot = m_Character.m_EquipmentController.ItemInSlot("main");
+
+            if (itemInSlot is not ItemInstance itemInstance) return;
+
+            var payload = FireProjectile.MakePayload(itemInSlot, root.gameObject, gameObject,
+                itemInstance.Metadata.RequiredAmmo,
+                position, root.forward);
+
+            m_Character.m_ActionsController.DoAction(payload);
+        }
+
 
         private void OnProjectileCollided(ProjectileCollisionData obj)
         {
@@ -60,7 +78,7 @@ namespace Features.Character
             var damagePayload = Damage.MakePayloadForItem(obj.Source, obj.Collider, item);
 
             obj.Collider.GetComponentInChildren<ActionsController>().DoAction(damagePayload);
-            
+
             obj.SetProjectileConsumed();
         }
 
@@ -69,10 +87,10 @@ namespace Features.Character
             if (obj.EquippedItem is not ItemInstance item) return;
 
             if (!item.Metadata.ProvidedAmmo) return;
-            
+
             var ammo = item.Metadata.ProvidedAmmo.GetComponent<ProjectileController>();
-            
-            m_CombatController.SetAmmo(item.Metadata.RequiredAmmo, ammo); 
+
+            m_CombatController.SetAmmo(item.Metadata.RequiredAmmo, ammo);
         }
 
         private void OnAttemptStrike()
@@ -99,7 +117,7 @@ namespace Features.Character
             {
                 totalDamage += m_Character.m_StatsController.CurrentStats["Strength"].Value;
             }
-            
+
             var damagePayload = Damage.MakePayload(this, target.gameObject, totalDamage);
 
             OnBeforeDoDamage?.Invoke(damagePayload);
@@ -110,12 +128,13 @@ namespace Features.Character
         public string GetAttackAnimation()
         {
             if (!m_EquipmentController) return DEFAULT_ATTACK_ANIMATION;
-            
-            var mainSlot =
-                m_EquipmentController.ContainerSlots.FirstOrDefault(x => x.Slot.ToLower() == "main");
 
-            if (mainSlot == null || 
-                mainSlot.IsEmpty || 
+            var mainSlot =
+                m_EquipmentController.ContainerSlots.FirstOrDefault(x =>
+                    x.Slot.ToLower() == "main");
+
+            if (mainSlot == null ||
+                mainSlot.IsEmpty ||
                 mainSlot.Main is not ItemInstance item) return DEFAULT_ATTACK_ANIMATION;
 
             return item.Metadata.AttackAnimation;
