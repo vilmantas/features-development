@@ -4,11 +4,13 @@ using System.Linq;
 using Features.Actions;
 using Features.Buffs.UI;
 using Features.Character;
+using Features.Combat;
 using Features.Equipment.UI;
 using Features.Health;
 using Features.Inventory.UI;
 using Features.Items;
 using Features.Stats.Base;
+using Integrations.Actions;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.EventSystems;
@@ -18,6 +20,8 @@ namespace DebugScripts.Character
 {
     public class PlayerDebug : MonoBehaviour
     {
+        public ProjectileController AmmoPrefab;
+        
         public NavMeshAgent NavAgent;
 
         public LayerMask GroundLayer;
@@ -90,7 +94,11 @@ namespace DebugScripts.Character
 
         private static void DoAction(string action, ItemInstance item, ActionsController controller)
         {
-            var actionBase = new ActionBase(action);
+            var selectedAction =
+                item.Metadata.InventoryContextMenuActions.FirstOrDefault(x =>
+                    x.DisplayName == action);
+            
+            var actionBase = selectedAction ?? new ActionBase(action);
             
             var actionPayload = new ActionActivationPayload(actionBase, item, controller.transform.root.gameObject);
 

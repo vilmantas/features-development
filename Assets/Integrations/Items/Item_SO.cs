@@ -26,6 +26,9 @@ namespace Features.Items
         public List<Action_SO> EquipmentActions;
         public string AttackAnimation = string.Empty;
 
+        public string RequiredAmmoType = string.Empty;
+        public GameObject ProvidesAmmo;
+
         public ItemInstance MakeInstanceWithCount()
         {
             var metadata = ItemMetadataRegistry.Registry[Name];

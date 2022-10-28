@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Features.Equipment;
 using Features.Items;
@@ -40,6 +41,8 @@ namespace Features.Character
             m_Events.OnStrikeStart += () => DamageEnabled = true;
 
             m_Events.OnStrikeEnd += () => DamageEnabled = false;
+
+            
         }
 
         private void OnAttemptStrike()

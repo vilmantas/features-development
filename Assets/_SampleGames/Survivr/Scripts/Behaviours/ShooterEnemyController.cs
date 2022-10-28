@@ -1,5 +1,4 @@
 using System.Collections;
-using _SampleGames.Survivr.SurvivrFeatures.Actions;
 using _SampleGames.Survivr.SurvivrFeatures.Combat;
 using Features.Actions;
 using Features.Health;
@@ -141,11 +140,11 @@ namespace _SampleGames.Survivr
             }
         }
         
-        protected override void AttackResultCallback(AttackResult result)
-        {
-            if (result.HitMetadataBase.DamageDealt < 1) return;
-            
-            BeginDestroy();
-        }
+        // protected override void AttackResultCallback(AttackResult result)
+        // {
+        //     if (result.HitMetadataBase.DamageDealt < 1) return;
+        //     
+        //     BeginDestroy();
+        // }
     }
 }

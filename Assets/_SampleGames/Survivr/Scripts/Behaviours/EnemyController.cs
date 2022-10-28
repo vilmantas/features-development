@@ -1,5 +1,4 @@
 using System.Collections;
-using _SampleGames.Survivr.SurvivrFeatures.Actions;
 using _SampleGames.Survivr.SurvivrFeatures.Combat;
 using Features.Actions;
 using Features.Combat;
@@ -61,28 +60,11 @@ namespace _SampleGames.Survivr
         {
             var actionsController = target.GetComponentInChildren<ActionsController>();
 
-            var defendPayload = DefendActionPayload(target);
+            // var defendPayload = DefendActionPayload(target);
 
-            actionsController.DoAction(defendPayload);
+            // actionsController.DoAction(defendPayload);
         }
-
-        private DefendActionPayload DefendActionPayload(CharacterController target)
-        {
-            var payload =
-                new ActionActivationPayload(new(nameof(Defend)), this, target.transform.root.gameObject);
-
-            var defendPayload = new DefendActionPayload(payload,
-                new AttackData(transform.root.gameObject, null, CalculateDamage()),
-                AttackResultCallback
-            );
-            return defendPayload;
-        }
-
-        protected virtual void AttackResultCallback(AttackResult result)
-        {
-            
-        }
-
+        
         protected virtual int CalculateDamage()
         {
             return StatsController.CurrentStats["Strength"].Value;
