@@ -16,6 +16,13 @@ namespace Integrations.Actions
             return new DamageActionPayload(basePayload, amount);
         }
         
+        public static DamageActionPayload MakePayloadForItem(object source, GameObject target, ItemInstance item)
+        {
+            var basePayload = new ActionActivationPayload(new ActionBase(nameof(Damage)), source, target);
+
+            return PayloadForItem(basePayload, item);
+        }
+        
         [RuntimeInitializeOnLoadMethod]
         private static void Register()
         {

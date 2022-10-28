@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Features.Actions;
 using Features.Combat;
 using Features.Equipment;
 using Features.Items;
@@ -48,6 +49,19 @@ namespace Features.Character
             m_Events.OnStrikeEnd += () => DamageEnabled = false;
             
             m_EquipmentController.OnItemEquipped += OnItemEquipped;
+            
+            m_CombatController.OnProjectileCollided += OnProjectileCollided;
+        }
+
+        private void OnProjectileCollided(ProjectileCollisionData obj)
+        {
+            if (obj.Source is not ItemInstance item) return;
+
+            var damagePayload = Damage.MakePayloadForItem(obj.Source, obj.Collider, item);
+
+            obj.Collider.GetComponentInChildren<ActionsController>().DoAction(damagePayload);
+            
+            obj.SetProjectileConsumed();
         }
 
         private void OnItemEquipped(EquipResult obj)

@@ -10,13 +10,13 @@ namespace Integrations.Actions
 {
     public static class FireProjectile
     {
-        public static FireProjectileActionPayload MakePayload(object source, GameObject target,
+        public static FireProjectileActionPayload MakePayload(object damageSource, GameObject parent, GameObject target,
             string ammoType, Vector3 location, Vector3 direction)
         {
             var basePayload =
-                new ActionActivationPayload(new ActionBase(nameof(FireProjectile)), source, target);
+                new ActionActivationPayload(new ActionBase(nameof(FireProjectile)), parent, target);
 
-            return new FireProjectileActionPayload(basePayload, ammoType, location, direction);
+            return new FireProjectileActionPayload(basePayload, ammoType, location, direction, damageSource);
         }
         
         [RuntimeInitializeOnLoadMethod]
@@ -28,10 +28,9 @@ namespace Integrations.Actions
 
         private static void OnActivation(ActionActivationPayload payload)
         {
-            if (payload is not FireProjectileActionPayload
-                {
-                    Source: GameObject obj
-                } firePayload) return;
+            if (payload is not FireProjectileActionPayload firePayload) return;
+
+            if (firePayload.Source is not GameObject obj) return;
 
             var combatController = obj.GetComponentInChildren<CombatController>();
 
@@ -49,7 +48,7 @@ namespace Integrations.Actions
             }
 
             combatController.FireProjectile(projectile, firePayload.Location,
-                firePayload.Direction);
+                firePayload.Direction, firePayload.DamageSource);
         }
 
         private static ProjectileController LoadProjectile(string ammoType, CombatController source)
@@ -68,15 +67,19 @@ namespace Integrations.Actions
 
         public readonly string AmmoType;
 
+        public readonly object DamageSource;
+
         public FireProjectileActionPayload(ActionActivationPayload original, string ammoType,
             Vector3 location,
-            Vector3 direction) : base(original.Action,
+            Vector3 direction,
+            object damageSource) : base(original.Action,
             original.Source, original.Target)
 
         {
             Location = location;
             AmmoType = ammoType;
             Direction = direction;
+            DamageSource = damageSource;
         }
     }
 }

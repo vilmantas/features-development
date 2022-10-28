@@ -10,6 +10,8 @@ namespace Features.Combat
     {
         private Dictionary<string, ProjectileController> m_AmmoData;
 
+        public Action<ProjectileCollisionData> OnProjectileCollided;
+        
         public IReadOnlyDictionary<string, ProjectileController> AmmoData => m_AmmoData;
 
         private void Awake()
@@ -17,11 +19,14 @@ namespace Features.Combat
             m_AmmoData = new Dictionary<string, ProjectileController>();
         }
 
-        public void FireProjectile(ProjectileController projectilePrefab, Vector3 location, Vector3 direction)
+        public void FireProjectile(ProjectileController projectilePrefab, Vector3 location,
+            Vector3 direction, object source)
         {
             var projectile = Instantiate(projectilePrefab, location, Random.rotation);
+
+            projectile.OnProjectileCollided += data => OnProjectileCollided?.Invoke(data);
             
-            projectile.Initialize(transform.root.gameObject, direction);
+            projectile.Initialize(transform.root.gameObject, source, direction);
         }
 
         public void SetAmmo(string ammoName, ProjectileController prefab)

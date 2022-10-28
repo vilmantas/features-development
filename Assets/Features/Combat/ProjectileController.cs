@@ -7,6 +7,8 @@ namespace Features.Combat
     public class ProjectileController : MonoBehaviour
     {
         public Action<ProjectileCollisionData> OnProjectileCollided;
+
+        private object m_Source;
         
         private GameObject m_Parent;
 
@@ -14,8 +16,10 @@ namespace Features.Combat
 
         private Vector3 m_Direction;
 
-        public void Initialize(GameObject parent, Vector3 direction)
+        public void Initialize(GameObject parent, object source , Vector3 direction)
         {
+            m_Source = source;
+            
             m_Rigidbody = GetComponent<Rigidbody>();
             
             m_Parent = parent;
@@ -31,13 +35,13 @@ namespace Features.Combat
             
             if (other.name != "hitbox") return;
             
-            print("Projectile hit " + other.transform.root.name);
-
-            var data = new ProjectileCollisionData(m_Parent, other.gameObject);
+            var data = new ProjectileCollisionData(m_Parent, other.transform.root.gameObject, m_Source);
             
             OnProjectileCollided?.Invoke(data);
 
             if (!data.IsConsumed) return;
+
+            OnProjectileCollided = null;
             
             Destroy(gameObject);
         }
@@ -49,13 +53,16 @@ namespace Features.Combat
 
         public readonly GameObject Collider;
 
+        public readonly object Source;
+
         private bool m_isConsumed;
         
         public bool IsConsumed => m_isConsumed;
 
-        public ProjectileCollisionData(GameObject parent, GameObject collider)
+        public ProjectileCollisionData(GameObject parent, GameObject collider, object source)
         {
             Collider = collider;
+            Source = source;
             ProjectileParent = parent;
         }
 

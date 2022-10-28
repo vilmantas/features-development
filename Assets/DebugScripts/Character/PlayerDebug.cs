@@ -81,8 +81,12 @@ namespace DebugScripts.Character
         private void OnProjectileTrigger()
         {
             var position = PlayerInstance.m_EquipmentController.SpawnPositionForSlot("main");
-            
-            var payload = FireProjectile.MakePayload(gameObject, gameObject, "staff",
+
+            var itemInSlot = PlayerInstance.m_EquipmentController.ItemInSlot("main");
+
+            if (itemInSlot is not ItemInstance itemInstance) return;
+
+            var payload = FireProjectile.MakePayload(itemInSlot, gameObject, gameObject, itemInstance.Metadata.RequiredAmmo,
                 position, transform.forward);
 
             PlayerInstance.m_ActionsController.DoAction(payload);

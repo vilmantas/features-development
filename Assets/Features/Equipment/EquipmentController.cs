@@ -168,5 +168,10 @@ namespace Features.Equipment
             
             return slotData == null ? Vector3.zero : slotData.Instance.transform.position;
         }
+
+        public IEquipmentItemInstance ItemInSlot(string slot)
+        {
+            return ContainerSlots.FirstOrDefault(x => x.Slot.ToLower() == slot)?.Main;
+        }
     }
 }
