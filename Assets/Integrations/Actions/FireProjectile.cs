@@ -36,8 +36,6 @@ namespace Integrations.Actions
 
             if (!combatController) return;
 
-            Debug.Log("Firing projectile: " + firePayload.AmmoType);
-
             var projectile = LoadProjectile(firePayload.AmmoType, combatController);
             
             if (!projectile)
