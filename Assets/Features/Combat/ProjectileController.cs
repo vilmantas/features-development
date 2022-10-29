@@ -27,6 +27,8 @@ namespace Features.Combat
             m_Direction = direction;
             
             m_Rigidbody.AddForce(m_Direction * 600);
+            
+            Destroy(gameObject, 5f);
         }
 
         private void OnTriggerEnter(Collider other)

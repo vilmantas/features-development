@@ -118,7 +118,7 @@ namespace Features.Character
                 totalDamage += m_Character.m_StatsController.CurrentStats["Strength"].Value;
             }
 
-            var damagePayload = Damage.MakePayload(this, target.gameObject, totalDamage);
+            var damagePayload = Damage.MakePayload(this, target.transform.root.gameObject, totalDamage);
 
             OnBeforeDoDamage?.Invoke(damagePayload);
 
