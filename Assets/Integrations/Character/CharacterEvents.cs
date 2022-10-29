@@ -21,17 +21,11 @@ namespace Features.Character
         
         public Action OnAttemptStrike;
 
-        public Action OnActivateBlock;
-
-        public Action OnDeactivateBlock;
-
         public Action OnStrikeStart;
 
         public Action OnStrikeEnd;
 
         public Action OnProjectileTrigger;
-
-        public bool InputHooksEnabled = true;
 
         private void Awake()
         {
@@ -40,23 +34,6 @@ namespace Features.Character
 
         private void Update()
         {
-            if (InputHooksEnabled)
-            {
-                if (Input.GetMouseButtonDown(2)) OnActivateBlock?.Invoke();
-            
-                if (Input.GetMouseButtonUp(2)) OnDeactivateBlock?.Invoke();
-            
-                if (Input.GetKeyDown(KeyCode.LeftShift)) m_NavMeshAgent.speed = 7;
-
-                if (Input.GetKeyUp(KeyCode.LeftShift)) m_NavMeshAgent.speed = 3;
-
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    OnAttemptStrike?.Invoke();
-                    m_NavMeshAgent.SetDestination(transform.position);
-                }
-            }
-
             Velocity = m_NavMeshAgent.velocity;
 
             if (Velocity == m_PreviousVelocity) return;

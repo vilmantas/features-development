@@ -11,7 +11,11 @@ namespace Features.Combat
         private Dictionary<string, ProjectileController> m_AmmoData;
 
         public Action<ProjectileCollisionData> OnProjectileCollided;
+
+        public Action OnStrikeAttempted;
         
+        public Action<bool> OnBlockingStatusChanged;
+
         public IReadOnlyDictionary<string, ProjectileController> AmmoData => m_AmmoData;
 
         private void Awake()
@@ -27,6 +31,16 @@ namespace Features.Combat
             projectile.OnProjectileCollided += data => OnProjectileCollided?.Invoke(data);
             
             projectile.Initialize(transform.root.gameObject, source, direction);
+        }
+
+        public void AttemptStrike()
+        {
+            OnStrikeAttempted?.Invoke();
+        }
+
+        public void SetBlocking(bool status)
+        {
+            OnBlockingStatusChanged?.Invoke(status);
         }
 
         public void SetAmmo(string ammoName, ProjectileController prefab)

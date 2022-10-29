@@ -105,6 +105,20 @@ namespace DebugScripts.Character
 
         private void Update()
         {
+            if (Input.GetKeyDown(KeyCode.LeftShift)) NavAgent.speed = 7;
+
+            if (Input.GetKeyUp(KeyCode.LeftShift)) NavAgent.speed = 3;
+            
+            if (Input.GetMouseButtonDown(2)) PlayerInstance.m_CombatController.SetBlocking(true);
+
+            if (Input.GetMouseButtonUp(2)) PlayerInstance.m_CombatController.SetBlocking(false);
+            
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                PlayerInstance.m_CombatController.AttemptStrike();
+                NavAgent.SetDestination(transform.position);
+            }
+            
             if (Input.GetMouseButtonUp(0))
             {
                 if (EventSystem.current != null &&

@@ -36,7 +36,7 @@ namespace DebugScripts.Character
             {
                 yield return new WaitForSeconds(2.5f);
                 
-                Character.Events.OnAttemptStrike.Invoke();
+                Character.m_CombatController.AttemptStrike();
             }
         }
     }

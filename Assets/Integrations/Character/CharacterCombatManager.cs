@@ -41,9 +41,7 @@ namespace Features.Character
             m_EquipmentController.OnHitboxCollided += OnHitboxCollided;
 
             m_Events = root.GetComponentInChildren<CharacterEvents>();
-
-            m_Events.OnAttemptStrike += OnAttemptStrike;
-
+            
             m_Events.OnStrikeStart += () => DamageEnabled = true;
 
             m_Events.OnStrikeEnd += () => DamageEnabled = false;
@@ -53,6 +51,8 @@ namespace Features.Character
             m_CombatController.OnProjectileCollided += OnProjectileCollided;
 
             m_Character.Events.OnProjectileTrigger += OnProjectileTrigger;
+            
+            m_CombatController.OnStrikeAttempted += OnAttemptStrike;
         }
 
         private void OnProjectileTrigger()

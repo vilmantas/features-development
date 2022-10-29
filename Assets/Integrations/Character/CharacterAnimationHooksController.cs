@@ -1,3 +1,5 @@
+using System;
+using Features.Combat;
 using UnityEngine;
 
 namespace Features.Character
@@ -12,8 +14,12 @@ namespace Features.Character
 
         private CharacterEvents m_Events;
 
+        private Modules.Character m_Character;
+
         private void Awake()
         {
+            m_Character = transform.root.GetComponent<Modules.Character>();
+
             m_Events = transform.root.GetComponent<CharacterEvents>();
 
             m_Animator = GetComponent<Animator>();
@@ -24,16 +30,13 @@ namespace Features.Character
             {
                 m_Animator.SetTrigger(anim);
             };
+        }
 
-            m_Events.OnActivateBlock += () =>
+        private void Start()
+        {
+            m_Character.m_CombatController.OnBlockingStatusChanged += state =>
             {
-                m_Animator.SetLayerWeight(m_RightArmLayerIndex, 1);
-                Debug.Log("Blocking!");
-            };
-
-            m_Events.OnDeactivateBlock += () =>
-            {
-                m_Animator.SetLayerWeight(m_RightArmLayerIndex, 0);
+                m_Animator.SetLayerWeight(m_RightArmLayerIndex, state ? 1 : 0);
                 Debug.Log("Stop Block");
             };
         }
