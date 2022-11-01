@@ -259,10 +259,14 @@ PrefabInstance:
     - target: {fileID: 4777244206811858385, guid: 3e0a555a5310a6a488ae08fca7678e64, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1507408934}
+      objectReference: {fileID: 1848954489}
     - target: {fileID: 4777244206811858385, guid: 3e0a555a5310a6a488ae08fca7678e64, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: GiveItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 4777244206811858385, guid: 3e0a555a5310a6a488ae08fca7678e64, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: HelpersScript, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4777244206852030563, guid: 3e0a555a5310a6a488ae08fca7678e64, type: 3}
       propertyPath: m_IsActive
@@ -287,18 +291,26 @@ PrefabInstance:
     - target: {fileID: 4777244207412868625, guid: 3e0a555a5310a6a488ae08fca7678e64, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1507408934}
+      objectReference: {fileID: 1848954489}
     - target: {fileID: 4777244207412868625, guid: 3e0a555a5310a6a488ae08fca7678e64, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: CastShifter
       objectReference: {fileID: 0}
+    - target: {fileID: 4777244207412868625, guid: 3e0a555a5310a6a488ae08fca7678e64, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: HelpersScript, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 4777244207613431150, guid: 3e0a555a5310a6a488ae08fca7678e64, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1507408934}
+      objectReference: {fileID: 1848954489}
     - target: {fileID: 4777244207613431150, guid: 3e0a555a5310a6a488ae08fca7678e64, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: CastLifter
+      objectReference: {fileID: 0}
+    - target: {fileID: 4777244207613431150, guid: 3e0a555a5310a6a488ae08fca7678e64, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: HelpersScript, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4777244207682862195, guid: 3e0a555a5310a6a488ae08fca7678e64, type: 3}
       propertyPath: m_Pivot.x
@@ -395,18 +407,26 @@ PrefabInstance:
     - target: {fileID: 4777244207986936455, guid: 3e0a555a5310a6a488ae08fca7678e64, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1507408934}
+      objectReference: {fileID: 1848954489}
     - target: {fileID: 4777244207986936455, guid: 3e0a555a5310a6a488ae08fca7678e64, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: CastHealingReducer
       objectReference: {fileID: 0}
+    - target: {fileID: 4777244207986936455, guid: 3e0a555a5310a6a488ae08fca7678e64, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: HelpersScript, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 4777244208187744816, guid: 3e0a555a5310a6a488ae08fca7678e64, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1507408934}
+      objectReference: {fileID: 1848954489}
     - target: {fileID: 4777244208187744816, guid: 3e0a555a5310a6a488ae08fca7678e64, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: AttemptHeal
+      objectReference: {fileID: 0}
+    - target: {fileID: 4777244208187744816, guid: 3e0a555a5310a6a488ae08fca7678e64, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: HelpersScript, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4777244208284144619, guid: 3e0a555a5310a6a488ae08fca7678e64, type: 3}
       propertyPath: m_SizeDelta.x
@@ -419,10 +439,14 @@ PrefabInstance:
     - target: {fileID: 4777244208465349327, guid: 3e0a555a5310a6a488ae08fca7678e64, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1507408934}
+      objectReference: {fileID: 1848954489}
     - target: {fileID: 4777244208465349327, guid: 3e0a555a5310a6a488ae08fca7678e64, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: GiveStackable
+      objectReference: {fileID: 0}
+    - target: {fileID: 4777244208465349327, guid: 3e0a555a5310a6a488ae08fca7678e64, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: HelpersScript, Assembly-CSharp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -456,7 +480,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 562487051}
-  m_LocalRotation: {x: 0.41992223, y: -0.45139825, z: 0.25439498, w: 0.74510956}
+  m_LocalRotation: {x: 0.4199222, y: -0.45139825, z: 0.254395, w: 0.7451095}
   m_LocalPosition: {x: 5.286043, y: 15.099804, z: 11.193321}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -759,7 +783,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 588453229}
-  m_LocalRotation: {x: 0.41992223, y: -0.45139825, z: 0.25439498, w: 0.74510956}
+  m_LocalRotation: {x: 0.4199222, y: -0.45139825, z: 0.254395, w: 0.7451095}
   m_LocalPosition: {x: 5.286043, y: 15.099804, z: 11.193321}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1560,17 +1584,6 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
---- !u!114 &1507408934 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3297395409041271169, guid: 891ce23f1b5d94fa88c51e4d59cce50b, type: 3}
-  m_PrefabInstance: {fileID: 3297395407804536231}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c7ef3f9743d4213ac26cedf58203a2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1575292927
 GameObject:
   m_ObjectHideFlags: 0
