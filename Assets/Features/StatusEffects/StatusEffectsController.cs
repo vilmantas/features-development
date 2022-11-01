@@ -21,6 +21,8 @@ namespace Features.Conditions
             
             StatusEffects.Add(new ActiveStatusEffect(effectMetadata, impl));
             
+            impl.OnStatusEffectApplied.Invoke();
+            
             OnStatusEffectAdded?.Invoke(effectMetadata);
         }
     }

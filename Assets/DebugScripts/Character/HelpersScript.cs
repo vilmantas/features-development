@@ -83,7 +83,7 @@ public class HelpersScript : MonoBehaviour
     {
         var controller = Target.GetComponentInChildren<StatusEffectsController>();
 
-        var condition = new StatusEffectMetadata("Condition " + Random.ColorHSV());
+        var condition = new StatusEffectMetadata(nameof(RandomStatusEffect));
         
         controller.AddCondition(condition);
     }

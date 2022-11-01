@@ -1482,7 +1482,7 @@ GameObject:
   - component: {fileID: 1084385199}
   - component: {fileID: 1084385200}
   m_Layer: 5
-  m_Name: ui_conditions
+  m_Name: ui_status_effects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2796,6 +2796,10 @@ PrefabInstance:
       propertyPath: ContextMenuUI
       value: 
       objectReference: {fileID: 2121940392}
+    - target: {fileID: 7899908668019531753, guid: ec5a0edd3f716c44b8ab2c6a04e3de33, type: 3}
+      propertyPath: StatusEffectsUI
+      value: 
+      objectReference: {fileID: 1084385200}
     - target: {fileID: 7899908668019531756, guid: ec5a0edd3f716c44b8ab2c6a04e3de33, type: 3}
       propertyPath: m_RootOrder
       value: 2
