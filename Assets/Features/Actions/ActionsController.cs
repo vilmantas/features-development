@@ -5,8 +5,8 @@ namespace Features.Actions
 {
     public class ActionsController : MonoBehaviour
     {
-        public Action<ActionActivation> OnActionActivated;
-        public Action<ActionActivation> OnBeforeActionActivation;
+        public Action<ActionActivation> OnBeforeAction;
+        public Action<ActionActivation, ActionActivationResult> OnAfterAction;
 
         public ActionActivationResult DoAction(ActionBase action, object source)
         {
@@ -14,11 +14,13 @@ namespace Features.Actions
 
             var activation = ActionActivationHelper.GetActivation(payload);
 
-            OnBeforeActionActivation?.Invoke(activation);
+            OnBeforeAction?.Invoke(activation);
 
+            if (activation.PreventDefault) return ActionActivationResult.PreventedActivation;
+            
             var result = activation.Activate();
-
-            OnActionActivated?.Invoke(activation);
+            
+            OnAfterAction?.Invoke(activation, result);
 
             return result;
         }
@@ -27,11 +29,13 @@ namespace Features.Actions
         {
             var activation = ActionActivationHelper.GetActivation(payload);
 
-            OnBeforeActionActivation?.Invoke(activation);
+            OnBeforeAction?.Invoke(activation);
+
+            if (activation.PreventDefault) return ActionActivationResult.PreventedActivation;
 
             var result = activation.Activate();
 
-            OnActionActivated?.Invoke(activation);
+            OnAfterAction?.Invoke(activation, result);
 
             return result;
         }

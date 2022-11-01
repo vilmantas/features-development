@@ -6,6 +6,8 @@ namespace Features.Actions
 
         public readonly ActionActivationPayload Payload;
 
+        public bool PreventDefault = false;
+
         public ActionActivation(ActionImplementation action, ActionActivationPayload payload)
         {
             Action = action;
