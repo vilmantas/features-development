@@ -75,7 +75,7 @@ namespace Features.Character
 
             [HideInInspector] public CombatController m_CombatController;
 
-            [HideInInspector] public ConditionsController m_ConditionsController;
+            [HideInInspector] public StatusEffectsController StatusEffectsController;
 
             private CharacterActionsManager m_ActionsManager;
 
@@ -229,7 +229,7 @@ namespace Features.Character
 
                 if (Conditions)
                 {
-                    AddComponent(systemsParent, "conditions", ref m_ConditionsController);
+                    AddComponent(systemsParent, "conditions", ref StatusEffectsController);
                 }
             }
 

@@ -1,12 +1,12 @@
 namespace Features.Conditions
 {
-    public class StatusCondition
+    public class StatusEffectMetadata
     {
         public string DisplayName;
 
         public string InternalName;
 
-        public StatusCondition(string internalName, string displayName = "")
+        public StatusEffectMetadata(string internalName, string displayName = "")
         {
             InternalName = internalName;
 

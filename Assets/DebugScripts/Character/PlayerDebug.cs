@@ -39,7 +39,7 @@ namespace DebugScripts.Character
 
         public HealthUIController HealthUI;
 
-        public ConditionsUIController ConditionsUI;
+        public StatusEffectsUIController StatusEffectsUI;
 
         private void Start()
         {
@@ -73,9 +73,9 @@ namespace DebugScripts.Character
                 PlayerInstance.m_InventoryController.OnContextRequested += ShowContextMenu;
             }
 
-            if (ConditionsUI && PlayerInstance.Conditions)
+            if (StatusEffectsUI && PlayerInstance.Conditions)
             {
-                ConditionsUI.Initialize(PlayerInstance.m_ConditionsController);
+                StatusEffectsUI.Initialize(PlayerInstance.StatusEffectsController);
             }
         }
 

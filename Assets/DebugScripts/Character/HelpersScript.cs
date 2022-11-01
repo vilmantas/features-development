@@ -81,9 +81,9 @@ public class HelpersScript : MonoBehaviour
 
     public void AddCondition()
     {
-        var controller = Target.GetComponentInChildren<ConditionsController>();
+        var controller = Target.GetComponentInChildren<StatusEffectsController>();
 
-        var condition = new StatusCondition("Condition " + Random.ColorHSV());
+        var condition = new StatusEffectMetadata("Condition " + Random.ColorHSV());
         
         controller.AddCondition(condition);
     }
