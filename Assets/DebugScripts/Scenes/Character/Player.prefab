@@ -152,7 +152,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7899908668019531756}
-  - component: {fileID: 7899908668019531758}
   - component: {fileID: 7899908668019531753}
   - component: {fileID: 6728580033162269917}
   - component: {fileID: 1219492263853177834}
@@ -180,28 +179,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!195 &7899908668019531758
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7899908668019531744}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3
-  m_Acceleration: 5000
-  avoidancePriority: 50
-  m_AngularSpeed: 10000
-  m_StoppingDistance: 0.1
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 0
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!114 &7899908668019531753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,8 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97a87bca480a4b5dad5d1e49db98f02c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AmmoPrefab: {fileID: 0}
-  NavAgent: {fileID: 7899908668019531758}
+  NavAgent: {fileID: 0}
   GroundLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -226,6 +202,7 @@ MonoBehaviour:
   StatsUI: {fileID: 0}
   ContextMenuUI: {fileID: 0}
   HealthUI: {fileID: 0}
+  StatusEffectsUI: {fileID: 0}
 --- !u!114 &6728580033162269917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,7 +216,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Events: {fileID: 0}
-  NavAgent: {fileID: 0}
   Rigidbody: {fileID: 0}
   Buffs: 1
   Inventory: 1
@@ -247,6 +223,7 @@ MonoBehaviour:
   Stats: 1
   Health: 1
   Combat: 0
+  Conditions: 0
   MaxHealth: 20
   CurrentHealth: 10
   InventorySize: 5
@@ -279,6 +256,8 @@ MonoBehaviour:
   m_StatsController: {fileID: 0}
   m_ActionsController: {fileID: 0}
   m_CombatController: {fileID: 0}
+  m_StatusEffectsController: {fileID: 0}
+  m_MovementController: {fileID: 0}
   m_HealthController: {fileID: 0}
 --- !u!114 &1219492263853177834
 MonoBehaviour:
@@ -293,7 +272,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Velocity: {x: 0, y: 0, z: 0}
-  InputHooksEnabled: 1
 --- !u!54 &8513899387562254893
 Rigidbody:
   m_ObjectHideFlags: 0

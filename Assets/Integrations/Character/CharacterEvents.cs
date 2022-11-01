@@ -29,7 +29,12 @@ namespace Features.Character
 
         private void Awake()
         {
-            m_NavMeshAgent = GetComponent<NavMeshAgent>();
+            
+        }
+
+        private void Start()
+        {
+            m_NavMeshAgent = GetComponentInChildren<NavMeshAgent>();
         }
 
         private void Update()

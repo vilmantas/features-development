@@ -7,6 +7,7 @@ using Features.Equipment;
 using Features.Health;
 using Features.Inventory;
 using Features.Items;
+using Features.Movement;
 using Features.Stats.Base;
 using UnityEngine;
 using UnityEngine.AI;
@@ -23,13 +24,10 @@ namespace Features.Character
         }
 
         [RequireComponent(typeof(CharacterEvents))]
-        [RequireComponent(typeof(NavMeshAgent))]
         [RequireComponent(typeof(Rigidbody))]
         public class Character : MonoBehaviour
         {
             [HideInInspector] public CharacterEvents Events;
-
-            [HideInInspector] public NavMeshAgent NavAgent;
 
             [HideInInspector] public Rigidbody Rigidbody;
             
@@ -75,7 +73,9 @@ namespace Features.Character
 
             [HideInInspector] public CombatController m_CombatController;
 
-            [HideInInspector] public StatusEffectsController StatusEffectsController;
+            [HideInInspector] public StatusEffectsController m_StatusEffectsController;
+
+            [HideInInspector] public MovementController m_MovementController;
 
             private CharacterActionsManager m_ActionsManager;
 
@@ -96,8 +96,6 @@ namespace Features.Character
                 var root = transform;
 
                 Events = GetComponent<CharacterEvents>();
-
-                NavAgent = GetComponent<NavMeshAgent>();
 
                 Rigidbody = GetComponent<Rigidbody>();
 
@@ -185,6 +183,8 @@ namespace Features.Character
                 systemsParent.parent = root;
 
                 AddComponent(systemsParent, "actions", ref m_ActionsController);
+                
+                AddComponent(systemsParent, "movement", ref m_MovementController);
 
                 if (Inventory)
                 {
@@ -229,7 +229,7 @@ namespace Features.Character
 
                 if (Conditions)
                 {
-                    AddComponent(systemsParent, "conditions", ref StatusEffectsController);
+                    AddComponent(systemsParent, "conditions", ref m_StatusEffectsController);
                 }
             }
 

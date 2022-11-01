@@ -21,8 +21,6 @@ namespace DebugScripts.Character
 {
     public class PlayerDebug : MonoBehaviour
     {
-        public NavMeshAgent NavAgent;
-
         public LayerMask GroundLayer;
 
         public Player PlayerInstance;
@@ -75,7 +73,7 @@ namespace DebugScripts.Character
 
             if (StatusEffectsUI && PlayerInstance.Conditions)
             {
-                StatusEffectsUI.Initialize(PlayerInstance.StatusEffectsController);
+                StatusEffectsUI.Initialize(PlayerInstance.m_StatusEffectsController);
             }
         }
 
@@ -113,9 +111,9 @@ namespace DebugScripts.Character
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.LeftShift)) NavAgent.speed = 7;
+            if (Input.GetKeyDown(KeyCode.LeftShift)) PlayerInstance.m_MovementController.SetRunning(true);
 
-            if (Input.GetKeyUp(KeyCode.LeftShift)) NavAgent.speed = 3;
+            if (Input.GetKeyUp(KeyCode.LeftShift)) PlayerInstance.m_MovementController.SetRunning(false);
             
             if (Input.GetMouseButtonDown(2)) PlayerInstance.m_CombatController.SetBlocking(true);
 
@@ -124,7 +122,7 @@ namespace DebugScripts.Character
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 PlayerInstance.m_CombatController.AttemptStrike();
-                NavAgent.SetDestination(transform.position);
+                PlayerInstance.m_MovementController.MoveToLocation(transform.position);
             }
             
             if (Input.GetMouseButtonUp(0))
@@ -137,7 +135,7 @@ namespace DebugScripts.Character
 
                 if (Physics.Raycast(ray, out RaycastHit hit, 100f, GroundLayer))
                 {
-                    NavAgent.destination = hit.point;
+                    PlayerInstance.m_MovementController.MoveToLocation(hit.point);
                 }
             }
         }
