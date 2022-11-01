@@ -2,6 +2,7 @@ using System;
 using Features.Actions;
 using Features.Buffs;
 using Features.Combat;
+using Features.Conditions;
 using Features.Equipment;
 using Features.Health;
 using Features.Inventory;
@@ -44,6 +45,8 @@ namespace Features.Character
 
             public bool Combat;
 
+            public bool Conditions;
+            
             [Range(1, 100)] public int MaxHealth = 20;
 
             [Range(1, 100)] public int CurrentHealth = 10;
@@ -71,6 +74,8 @@ namespace Features.Character
             [HideInInspector] public ActionsController m_ActionsController;
 
             [HideInInspector] public CombatController m_CombatController;
+
+            [HideInInspector] public ConditionsController m_ConditionsController;
 
             private CharacterActionsManager m_ActionsManager;
 
@@ -220,6 +225,11 @@ namespace Features.Character
                 if (Combat)
                 {
                     AddComponent(systemsParent, "combat", ref m_CombatController);
+                }
+
+                if (Conditions)
+                {
+                    AddComponent(systemsParent, "conditions", ref m_ConditionsController);
                 }
             }
 

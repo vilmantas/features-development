@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Features.Actions;
 using Features.Buffs;
 using Features.Character;
+using Features.Conditions;
 using Features.Items;
 using Integrations.Actions;
 using UnityEditor;
@@ -76,5 +77,14 @@ public class HelpersScript : MonoBehaviour
         var controller = Target.GetComponentInChildren<ActionsController>();
 
         controller.DoAction(Heal.MakePayload(this, Target, 10));
+    }
+
+    public void AddCondition()
+    {
+        var controller = Target.GetComponentInChildren<ConditionsController>();
+
+        var condition = new StatusCondition("Condition " + Random.ColorHSV());
+        
+        controller.AddCondition(condition);
     }
 }
