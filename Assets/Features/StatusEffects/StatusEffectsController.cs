@@ -8,22 +8,47 @@ namespace Features.Conditions
 {
     public class StatusEffectsController : MonoBehaviour
     {
-        public Action<StatusEffectMetadata> OnStatusEffectAdded;
+        public Action<StatusEffectAddPayload> OnBeforeAdd;
 
-        public Action<StatusEffectMetadata> OnStatusEffectRemoved;
+        public Action<StatusEffectRemovePayload> OnBeforeRemove;
+
+        public Action<StatusEffectMetadata> OnAdded;
+
+        public Action<StatusEffectMetadata> OnRemoved;
 
         public List<ActiveStatusEffect> StatusEffects = new();
 
-        public void AddCondition(StatusEffectMetadata effectMetadata)
+        public void AddStatusEffect(StatusEffectAddPayload payload)
         {
-            if (!StatusEffectImplementationRegistry.Implementations.TryGetValue(effectMetadata.InternalName,
+            if (!StatusEffectImplementationRegistry.Implementations.TryGetValue(payload.Metadata.InternalName,
                     out StatusEffectImplementation impl)) return;
             
-            StatusEffects.Add(new ActiveStatusEffect(effectMetadata, impl));
+            OnBeforeAdd?.Invoke(payload);
+
+            if (payload.PreventDefault) return;
             
-            impl.OnStatusEffectApplied.Invoke();
+            StatusEffects.Add(new ActiveStatusEffect(payload.Metadata, impl));
             
-            OnStatusEffectAdded?.Invoke(effectMetadata);
+            impl.Apply(new StatusEffectPayload(transform.root.gameObject));
+            
+            OnAdded?.Invoke(payload.Metadata);
+        }
+
+        public void RemoveStatusEffect(StatusEffectRemovePayload payload)
+        {
+            var activeEffect = StatusEffects.FirstOrDefault(x => x.Metadata.Equals(payload.Metadata));
+
+            if (activeEffect == null) return;
+            
+            OnBeforeRemove?.Invoke(payload);
+
+            if (payload.PreventDefault) return;
+         
+            activeEffect.Implementation.Remove(new StatusEffectPayload(transform.root.gameObject));
+
+            StatusEffects.Remove(activeEffect);
+            
+            OnRemoved?.Invoke(payload.Metadata);
         }
     }
 
@@ -37,6 +62,30 @@ namespace Features.Conditions
         {
             Metadata = metadata;
             Implementation = implementation;
+        }
+    }
+
+    public class StatusEffectAddPayload
+    {
+        public readonly StatusEffectMetadata Metadata;
+
+        public bool PreventDefault;
+
+        public StatusEffectAddPayload(StatusEffectMetadata metadata)
+        {
+            Metadata = metadata;
+        }
+    }
+    
+    public class StatusEffectRemovePayload
+    {
+        public readonly StatusEffectMetadata Metadata;
+
+        public bool PreventDefault;
+
+        public StatusEffectRemovePayload(StatusEffectMetadata metadata)
+        {
+            Metadata = metadata;
         }
     }
 }

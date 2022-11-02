@@ -9,6 +9,7 @@ using Features.Inventory;
 using Features.Items;
 using Integrations.Actions;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace DebugScripts.Character
 {
@@ -34,7 +35,7 @@ namespace DebugScripts.Character
         {
             while (true)
             {
-                yield return new WaitForSeconds(2.5f);
+                yield return new WaitForSeconds(Random.Range(2, 5));
                 
                 Character.m_CombatController.AttemptStrike();
             }

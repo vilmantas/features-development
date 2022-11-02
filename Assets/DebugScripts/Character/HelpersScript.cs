@@ -6,6 +6,7 @@ using Features.Character;
 using Features.Conditions;
 using Features.Items;
 using Integrations.Actions;
+using Integrations.StatusEffects;
 using UnityEditor;
 using UnityEngine;
 
@@ -83,8 +84,25 @@ public class HelpersScript : MonoBehaviour
     {
         var controller = Target.GetComponentInChildren<StatusEffectsController>();
 
-        var condition = new StatusEffectMetadata(nameof(RandomStatusEffect));
+        var status = new StatusEffectMetadata(nameof(RandomStatusEffect));
+
+        var payload = new StatusEffectAddPayload(status);
         
-        controller.AddCondition(condition);
+        controller.AddStatusEffect(payload);
+
+        StartCoroutine(RemoveCondition());
+    }
+
+    private IEnumerator RemoveCondition()
+    {
+        yield return new WaitForSeconds(2f);
+        
+        var controller = Target.GetComponentInChildren<StatusEffectsController>();
+
+        var status = new StatusEffectMetadata(nameof(RandomStatusEffect));
+
+        var payload = new StatusEffectRemovePayload(status);
+        
+        controller.RemoveStatusEffect(payload);
     }
 }

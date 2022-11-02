@@ -6,19 +6,25 @@ namespace Features.Movement
 {
     public class MovementController : MonoBehaviour
     {
-        private GameObject m_root;
+        private GameObject m_RootGameObject;
+
+        private Transform m_RootTransform;
         
         private NavMeshAgent m_Agent;
-        
+
+        public Action<MoveActionData> OnBeforeMove;
+
         private void Awake()
         {
-            m_root = transform.root.gameObject;
+            m_RootTransform = transform.root;
+            
+            m_RootGameObject = m_RootTransform.gameObject;
 
-            m_Agent = m_root.GetComponent<NavMeshAgent>();
+            m_Agent = m_RootGameObject.GetComponent<NavMeshAgent>();
 
             if (!m_Agent)
             {
-                m_Agent = m_root.AddComponent<NavMeshAgent>();
+                m_Agent = m_RootGameObject.AddComponent<NavMeshAgent>();
                 
                 m_Agent.speed = 3;
                 m_Agent.angularSpeed = 100000;
@@ -28,14 +34,35 @@ namespace Features.Movement
             } 
         }
 
-        public void MoveToLocation(Vector3 dest)
+        public void Stop()
         {
-            m_Agent.destination = dest;
+            m_Agent.destination = m_RootTransform.position;
+        }
+
+        public void MoveToLocation(MoveActionData data)
+        {
+            OnBeforeMove?.Invoke(data);
+
+            if (data.PreventDefault) return;
+            
+            m_Agent.destination = data.Destination;
         }
 
         public void SetRunning(bool running)
         {
             m_Agent.speed = running ? 7 : 3;
+        }
+    }
+
+    public class MoveActionData
+    {
+        public readonly Vector3 Destination;
+
+        public bool PreventDefault;
+
+        public MoveActionData(Vector3 destination)
+        {
+            Destination = destination;
         }
     }
 }

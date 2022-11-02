@@ -6,12 +6,25 @@ namespace Features.Conditions
     {
         public string Name;
         
-        public Action OnStatusEffectApplied;
+        public Action<StatusEffectPayload> OnStatusEffectApplied;
 
-        public StatusEffectImplementation(string name, Action onStatusEffectApplied)
+        public Action<StatusEffectPayload> OnStatusEffectRemoved;
+
+        public StatusEffectImplementation(string name, Action<StatusEffectPayload> onStatusEffectApplied, Action<StatusEffectPayload> onStatusEffectRemoved)
         {
             Name = name;
             OnStatusEffectApplied = onStatusEffectApplied;
+            OnStatusEffectRemoved = onStatusEffectRemoved;
+        }
+
+        public void Apply(StatusEffectPayload payload)
+        {
+            OnStatusEffectApplied.Invoke(payload);
+        }
+
+        public void Remove(StatusEffectPayload payload)
+        {
+            OnStatusEffectRemoved.Invoke(payload);
         }
     }
 }

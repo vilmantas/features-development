@@ -10,6 +10,7 @@ using Features.Equipment.UI;
 using Features.Health;
 using Features.Inventory.UI;
 using Features.Items;
+using Features.Movement;
 using Features.Stats.Base;
 using Integrations.Actions;
 using UnityEngine;
@@ -122,7 +123,8 @@ namespace DebugScripts.Character
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 PlayerInstance.m_CombatController.AttemptStrike();
-                PlayerInstance.m_MovementController.MoveToLocation(transform.position);
+                PlayerInstance.m_MovementController.MoveToLocation(
+                    new MoveActionData(transform.position));
             }
             
             if (Input.GetMouseButtonUp(0))
@@ -135,7 +137,8 @@ namespace DebugScripts.Character
 
                 if (Physics.Raycast(ray, out RaycastHit hit, 100f, GroundLayer))
                 {
-                    PlayerInstance.m_MovementController.MoveToLocation(hit.point);
+                    PlayerInstance.m_MovementController.MoveToLocation(
+                        new MoveActionData(hit.point));
                 }
             }
         }

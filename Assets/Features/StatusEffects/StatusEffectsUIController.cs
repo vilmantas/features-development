@@ -15,10 +15,12 @@ namespace Features.Conditions
         {
             m_source = source;
             
-            m_source.OnStatusEffectAdded += OnStatusEffectAdded;
+            m_source.OnAdded += UpdateUI;
+
+            m_source.OnRemoved += UpdateUI;
         }
 
-        private void OnStatusEffectAdded(StatusEffectMetadata obj)
+        private void UpdateUI(StatusEffectMetadata obj)
         {
             var conditions = m_source.StatusEffects.Select(x => x.Metadata.DisplayName);
             

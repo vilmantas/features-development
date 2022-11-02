@@ -2,9 +2,9 @@ namespace Features.Conditions
 {
     public class StatusEffectMetadata
     {
-        public string DisplayName;
+        public readonly string DisplayName;
 
-        public string InternalName;
+        public readonly string InternalName;
 
         public StatusEffectMetadata(string internalName, string displayName = "")
         {
@@ -14,6 +14,18 @@ namespace Features.Conditions
             {
                 DisplayName = internalName;   
             }
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is not StatusEffectMetadata metadata) return false;
+
+            return metadata.InternalName.Equals(InternalName);
+        }
+
+        public override int GetHashCode()
+        {
+            return InternalName.GetHashCode();
         }
     }
 }
