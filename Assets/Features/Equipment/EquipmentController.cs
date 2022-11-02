@@ -56,15 +56,7 @@ namespace Features.Equipment
 
         public void UnequipItem(UnequipRequest request)
         {
-            if (OnBeforeUnequip != null)
-            {
-                foreach (var boxed in OnBeforeUnequip.GetInvocationList())
-                {
-                    if (boxed is not Action<UnequipRequest> castDel) continue;
-
-                    castDel.Invoke(request);
-                }
-            }
+            OnBeforeUnequip?.Invoke(request);
 
             if (request.PreventDefault) return;
 
@@ -73,16 +65,8 @@ namespace Features.Equipment
 
         public void HandleEquipRequest(EquipRequest request)
         {
-            if (OnBeforeEquip != null)
-            {
-                foreach (var @delegate in OnBeforeEquip.GetInvocationList())
-                {
-                    if (@delegate is not Action<EquipRequest> castedDel) continue;
-
-                    castedDel.Invoke(request);
-                }
-            }
-
+            OnBeforeEquip?.Invoke(request);
+            
             if (request.PreventDefault) return;
 
             EquipItem(request);

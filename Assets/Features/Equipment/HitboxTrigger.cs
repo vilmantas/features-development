@@ -22,7 +22,7 @@ namespace Features.Equipment
             
             if (other.transform.root == root) return;
             
-            print("Collided with: " + other.name + " of " + other.transform.root.name );
+            print(transform.root.name + " Collided with: " + other.name + " of " + other.transform.root.name );
             
             OnHitboxTriggered?.Invoke(other);
         }

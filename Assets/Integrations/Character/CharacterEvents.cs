@@ -18,19 +18,12 @@ namespace Features.Character
         public Action OnStopped;
 
         public Action<string> OnStrike;
-        
-        public Action OnAttemptStrike;
 
         public Action OnStrikeStart;
 
         public Action OnStrikeEnd;
 
         public Action OnProjectileTrigger;
-
-        private void Awake()
-        {
-            
-        }
 
         private void Start()
         {

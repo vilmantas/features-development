@@ -1,5 +1,6 @@
 using Features.Character;
 using Features.Conditions;
+using Features.Equipment;
 using Features.Movement;
 using UnityEngine;
 
@@ -23,8 +24,15 @@ namespace Integrations.StatusEffects
             character.m_MovementController.Stop();
             
             character.m_MovementController.OnBeforeMove += OnBeforeMove;
+            
+            character.m_EquipmentController.OnBeforeEquip += OnBeforeEquip;
         }
-        
+
+        private static void OnBeforeEquip(EquipRequest obj)
+        {
+            obj.PreventDefault = true;
+        }
+
         private static void OnStatusEffectRemoved(StatusEffectPayload payload)
         {
             Debug.Log("RandomCondition removed");
@@ -32,6 +40,8 @@ namespace Integrations.StatusEffects
             var character = payload.Target.GetComponent<Modules.Character>();
             
             character.m_MovementController.OnBeforeMove -= OnBeforeMove;
+            
+            character.m_EquipmentController.OnBeforeEquip -= OnBeforeEquip;
         }
 
         private static void OnBeforeMove(MoveActionData obj)
