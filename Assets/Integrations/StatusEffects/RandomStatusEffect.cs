@@ -17,8 +17,6 @@ namespace Integrations.StatusEffects
 
         private static void OnStatusEffectApplied(StatusEffectPayload payload)
         {
-            Debug.Log("RandomCondition applied");
-
             var character = payload.Target.GetComponent<Modules.Character>();
             
             character.m_MovementController.Stop();
@@ -35,8 +33,6 @@ namespace Integrations.StatusEffects
 
         private static void OnStatusEffectRemoved(StatusEffectPayload payload)
         {
-            Debug.Log("RandomCondition removed");
-
             var character = payload.Target.GetComponent<Modules.Character>();
             
             character.m_MovementController.OnBeforeMove -= OnBeforeMove;
