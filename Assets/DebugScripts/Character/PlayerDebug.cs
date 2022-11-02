@@ -122,7 +122,7 @@ namespace DebugScripts.Character
             
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                PlayerInstance.m_CombatController.AttemptStrike();
+                PlayerInstance.m_CombatController.Strike();
                 PlayerInstance.m_MovementController.MoveToLocation(
                     new MoveActionData(transform.position));
             }

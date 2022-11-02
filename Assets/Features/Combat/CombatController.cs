@@ -12,7 +12,11 @@ namespace Features.Combat
 
         public Action<ProjectileCollisionData> OnProjectileCollided;
 
-        public Action OnStrikeAttempted;
+        public Action<CombatActionPayload> OnBeforeStrike;
+
+        public Action<CombatActionPayload> OnBeforeBlock;
+        
+        public Action OnStrike;
         
         public Action<bool> OnBlockingStatusChanged;
 
@@ -33,13 +37,28 @@ namespace Features.Combat
             projectile.Initialize(transform.root.gameObject, source, direction);
         }
 
-        public void AttemptStrike()
+        public void Strike()
         {
-            OnStrikeAttempted?.Invoke();
+            var payload = new CombatActionPayload();
+            
+            OnBeforeStrike?.Invoke(payload);
+
+            if (payload.PreventDefault) return;
+            
+            OnStrike?.Invoke();
         }
 
         public void SetBlocking(bool status)
         {
+            if (status)
+            {
+                var payload = new CombatActionPayload();
+            
+                OnBeforeBlock?.Invoke(payload);
+
+                if (payload.PreventDefault) return;
+            }
+            
             OnBlockingStatusChanged?.Invoke(status);
         }
 
@@ -54,5 +73,10 @@ namespace Features.Combat
         {
             m_AmmoData.Remove(ammoName);
         }
+    }
+
+    public class CombatActionPayload
+    {
+        public bool PreventDefault;
     }
 }

@@ -37,7 +37,7 @@ namespace DebugScripts.Character
             {
                 yield return new WaitForSeconds(Random.Range(2, 5));
                 
-                Character.m_CombatController.AttemptStrike();
+                Character.m_CombatController.Strike();
             }
         }
     }

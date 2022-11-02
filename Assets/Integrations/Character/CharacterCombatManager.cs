@@ -52,7 +52,7 @@ namespace Features.Character
 
             m_Character.Events.OnProjectileTrigger += OnProjectileTrigger;
             
-            m_CombatController.OnStrikeAttempted += OnAttemptStrike;
+            m_CombatController.OnStrike += OnAttemptStrike;
         }
 
         private void OnProjectileTrigger()

@@ -21,14 +21,9 @@ namespace Integrations.StatusEffects
             
             character.m_MovementController.Stop();
             
-            character.m_MovementController.OnBeforeMove += OnBeforeMove;
+            StatusEffectPresets.PreventCharacterActivity(character);
             
-            character.m_EquipmentController.OnBeforeEquip += OnBeforeEquip;
-        }
-
-        private static void OnBeforeEquip(EquipRequest obj)
-        {
-            obj.PreventDefault = true;
+            character.m_MovementController.OnBeforeMove += OnBeforeMove;
         }
 
         private static void OnStatusEffectRemoved(StatusEffectPayload payload)
@@ -36,8 +31,6 @@ namespace Integrations.StatusEffects
             var character = payload.Target.GetComponent<Modules.Character>();
             
             character.m_MovementController.OnBeforeMove -= OnBeforeMove;
-            
-            character.m_EquipmentController.OnBeforeEquip -= OnBeforeEquip;
         }
 
         private static void OnBeforeMove(MoveActionData obj)
