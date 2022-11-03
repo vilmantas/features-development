@@ -26,6 +26,8 @@ namespace Features.Character
 
         private CharacterEvents m_Events;
 
+        private CharacterStatCalculator m_CharacterStatCalculator;
+
         private bool DamageEnabled;
 
         private void Awake()
@@ -37,6 +39,8 @@ namespace Features.Character
             m_EquipmentController = root.GetComponentInChildren<EquipmentController>();
 
             m_CombatController = root.GetComponentInChildren<CombatController>();
+            
+            m_CharacterStatCalculator = root.GetComponentInChildren<CharacterStatCalculator>();
 
             m_EquipmentController.OnHitboxCollided += OnHitboxCollided;
 
@@ -63,7 +67,7 @@ namespace Features.Character
 
             if (itemInSlot is not ItemInstance itemInstance) return;
 
-            var payload = FireProjectile.MakePayload(itemInSlot, root.gameObject, gameObject,
+            var payload = FireProjectile.MakePayload(itemInSlot, root.gameObject, null,
                 itemInstance.Metadata.RequiredAmmo,
                 position, root.forward);
 
@@ -102,23 +106,10 @@ namespace Features.Character
         {
             if (!DamageEnabled) return;
 
-            var mainSlot =
-                m_EquipmentController.ContainerSlots.FirstOrDefault(x =>
-                    x.Slot.ToLower() == "main");
 
-            var totalDamage = 0;
 
-            if (mainSlot is {IsEmpty: false, Main: ItemInstance item})
-            {
-                totalDamage += item.Metadata.UsageStats["Damage"].Value;
-            }
-
-            if (m_Character.Stats)
-            {
-                totalDamage += m_Character.m_StatsController.CurrentStats["Strength"].Value;
-            }
-
-            var damagePayload = Damage.MakePayload(this, target.transform.root.gameObject, totalDamage);
+            var damagePayload = Damage.MakePayload(this, target.transform.root.gameObject,
+                m_Character.m_CharacterStatCalculator.GetMainDamage());
 
             OnBeforeDoDamage?.Invoke(damagePayload);
 

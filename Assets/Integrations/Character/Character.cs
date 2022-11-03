@@ -77,6 +77,8 @@ namespace Features.Character
 
             [HideInInspector] public MovementController m_MovementController;
 
+            [HideInInspector] public CharacterStatCalculator m_CharacterStatCalculator;
+
             private CharacterActionsManager m_ActionsManager;
 
             private CharacterBuffsManager m_BuffsManager;
@@ -90,7 +92,42 @@ namespace Features.Character
             private CharacterStatsManager m_StatsManager;
 
             private CharacterCombatManager m_CombatManager;
-            
+
+            private void AddManagers(Transform root)
+            {
+                var managersParent = new GameObject("managers").transform;
+
+                managersParent.parent = root;
+                
+                AddComponent(managersParent, "actions", ref m_ActionsManager);
+                AddComponent(managersParent, "stat_calculator", ref m_CharacterStatCalculator);
+
+                if (Inventory)
+                {
+                    AddComponent(managersParent, "inventory", ref m_InventoryManager);
+                }
+
+                if (Equipment)
+                {
+                    AddComponent(managersParent, "equipment", ref m_EquipmentManager);
+                }
+
+                if (Buffs)
+                {
+                    AddComponent(managersParent, "buffs", ref m_BuffsManager);
+                }
+
+                if (Stats)
+                {
+                    AddComponent(managersParent, "stats", ref m_StatsManager);
+                }
+
+                if (Combat)
+                {
+                    AddComponent(managersParent, "combat", ref m_CombatManager);
+                }
+            }
+
             private void Awake()
             {
                 var root = transform;
@@ -139,40 +176,6 @@ namespace Features.Character
 
                         m_EquipmentController.HandleEquipRequest(request);
                     }
-                }
-            }
-
-            private void AddManagers(Transform root)
-            {
-                var managersParent = new GameObject("managers").transform;
-
-                managersParent.parent = root;
-
-                AddComponent(managersParent, "actions", ref m_ActionsManager);
-
-                if (Inventory)
-                {
-                    AddComponent(managersParent, "inventory", ref m_InventoryManager);
-                }
-
-                if (Equipment)
-                {
-                    AddComponent(managersParent, "equipment", ref m_EquipmentManager);
-                }
-
-                if (Buffs)
-                {
-                    AddComponent(managersParent, "buffs", ref m_BuffsManager);
-                }
-
-                if (Stats)
-                {
-                    AddComponent(managersParent, "stats", ref m_StatsManager);
-                }
-
-                if (Combat)
-                {
-                    AddComponent(managersParent, "combat", ref m_CombatManager);
                 }
             }
 

@@ -77,7 +77,7 @@ public class HelpersScript : MonoBehaviour
     {
         var controller = Target.GetComponentInChildren<ActionsController>();
 
-        controller.DoAction(Heal.MakePayload(this, Target, 10));
+        controller.DoAction(Heal.MakePayload(gameObject, Target, 10));
     }
 
     public void AddCondition()
