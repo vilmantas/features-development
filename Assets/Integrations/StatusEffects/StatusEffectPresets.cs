@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Features.Actions;
 using Features.Character;
 using Features.Combat;
@@ -7,15 +9,32 @@ namespace Integrations.StatusEffects
 {
     public static class StatusEffectPresets
     {
-        public static void PreventCharacterActivity(Modules.Character character)
+        private static Dictionary<string, Delegate> Handlers = new Dictionary<string, Delegate>();
+
+        public static void DisableActivity(Modules.Character character, string condition)
         {
-            character.m_CombatController.OnBeforeStrike += BlockCombat;
-            character.m_CombatController.OnBeforeBlock += BlockCombat;
+            Action<ActionActivation> handler = payload => BlockAction(payload, character); 
+            
+            Handlers.Add(character.name + condition, handler);
+
+            character.m_ActionsController.OnBeforeAction += handler;
+        }
+        
+        public static void EnableActivity(Modules.Character character, string condition)
+        {
+            var handler = (Action<ActionActivation>)Handlers[character.name + condition];
+
+            Handlers.Remove(character.name + condition);
+            
+            character.m_ActionsController.OnBeforeAction -= handler;
         }
 
-        private static void BlockCombat(CombatActionPayload obj)
+        private static void BlockAction(ActionActivation obj, Modules.Character character)
         {
-            obj.PreventDefault = true;
+            if (obj.Payload.Source == character.gameObject)
+            {
+                obj.PreventDefault = true;
+            }
         }
     }
 }

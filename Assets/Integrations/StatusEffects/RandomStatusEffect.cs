@@ -21,7 +21,7 @@ namespace Integrations.StatusEffects
             
             character.m_MovementController.Stop();
             
-            StatusEffectPresets.PreventCharacterActivity(character);
+            StatusEffectPresets.DisableActivity(character, nameof(RandomStatusEffect));
             
             character.m_MovementController.OnBeforeMove += OnBeforeMove;
         }
@@ -29,6 +29,8 @@ namespace Integrations.StatusEffects
         private static void OnStatusEffectRemoved(StatusEffectPayload payload)
         {
             var character = payload.Target.GetComponent<Modules.Character>();
+            
+            StatusEffectPresets.EnableActivity(character, nameof(RandomStatusEffect));
             
             character.m_MovementController.OnBeforeMove -= OnBeforeMove;
         }
