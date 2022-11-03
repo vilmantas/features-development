@@ -30,13 +30,11 @@ namespace Integrations.Actions
         {
             if (payload is not FireProjectileActionPayload firePayload) return;
 
-            if (firePayload.Source is not GameObject obj) return;
-
-            var combatController = obj.GetComponentInChildren<CombatController>();
+            var combatController = firePayload.Source.GetComponentInChildren<CombatController>();
 
             if (!combatController) return;
 
-            var projectile = LoadProjectile(firePayload.AmmoType, combatController);
+            var projectile = combatController.AmmoData[firePayload.AmmoType];
             
             if (!projectile)
             {
@@ -47,13 +45,6 @@ namespace Integrations.Actions
 
             combatController.FireProjectile(projectile, firePayload.Location,
                 firePayload.Direction, firePayload.DamageSource);
-        }
-
-        private static ProjectileController LoadProjectile(string ammoType, CombatController source)
-        {
-            var combatController = source.GetComponentInChildren<CombatController>();
-
-            return combatController.AmmoData[ammoType];
         }
     }
 
