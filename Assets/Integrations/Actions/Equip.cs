@@ -1,3 +1,4 @@
+using System;
 using Features.Actions;
 using Features.Equipment;
 using Features.Items;
@@ -7,6 +8,19 @@ namespace Integrations.Actions
 {
     public static class Equip
     {
+        public static EquipActionPayload MakePayload(GameObject source, GameObject target,
+            EquipRequest request)
+        {
+            var basePayload = new ActionActivationPayload(new ActionBase(nameof(Heal)), source, target);
+
+            return new EquipActionPayload(basePayload, request);
+        }
+        
+        public static EquipActionPayload MakePayload(ActionActivationPayload original, ItemInstance item)
+        {
+            return new EquipActionPayload(original, new EquipRequest() {Item = item});
+        }
+        
         [RuntimeInitializeOnLoadMethod]
         private static void Register()
         {
@@ -27,25 +41,27 @@ namespace Integrations.Actions
 
         private static EquipActionPayload OnPayloadMake(ActionActivationPayload original)
         {
-            var item = original.Source as ItemInstance;
+            if (original is EquipActionPayload equipActionPayload) return equipActionPayload;
 
-            var request = new EquipRequest() {Item = item};
-
-            return new EquipActionPayload(original, request, item);
+            var rawItem = original.Data?["item"];
+            
+            if (rawItem is ItemInstance item)
+                return MakePayload(original, item);
+            
+            throw new InvalidOperationException(
+                $"Invalid payload passed to {nameof(Equip)} action.");
         }
     }
 
     public class EquipActionPayload : ActionActivationPayload
     {
-        public EquipActionPayload(ActionActivationPayload original, EquipRequest request, ItemInstance itemInstance) :
+        public EquipActionPayload(ActionActivationPayload original, EquipRequest request) :
             base(original.Action,
                 original.Source, original.Target)
         {
             EquipRequest = request;
-            ItemInstance = itemInstance;
         }
 
         public EquipRequest EquipRequest { get; }
-        public ItemInstance ItemInstance { get; }
     }
 }

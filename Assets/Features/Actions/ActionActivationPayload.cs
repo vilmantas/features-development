@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Features.Actions
@@ -6,15 +7,18 @@ namespace Features.Actions
     {
         public readonly ActionBase Action;
 
-        public readonly object Source;
+        public readonly GameObject Source;
 
         public readonly GameObject Target;
 
-        public ActionActivationPayload(ActionBase action, object source, GameObject target)
+        public readonly Dictionary<string, object> Data;
+
+        public ActionActivationPayload(ActionBase action, GameObject source, GameObject target, Dictionary<string, object> data = null)
         {
             Action = action;
             Source = source;
             Target = target;
+            Data = data;
         }
     }
 }

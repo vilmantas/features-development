@@ -79,7 +79,7 @@ namespace Features.Character
         {
             if (obj.Source is not ItemInstance item) return;
 
-            var damagePayload = Damage.MakePayloadForItem(obj.Source, obj.Collider, item);
+            var damagePayload = Damage.MakePayloadForItem(root.gameObject, obj.Collider, item);
 
             obj.Collider.GetComponentInChildren<ActionsController>().DoAction(damagePayload);
 
@@ -106,9 +106,7 @@ namespace Features.Character
         {
             if (!DamageEnabled) return;
 
-
-
-            var damagePayload = Damage.MakePayload(this, target.transform.root.gameObject,
+            var damagePayload = Damage.MakePayload(root.gameObject, target.transform.root.gameObject,
                 m_Character.m_CharacterStatCalculator.GetMainDamage());
 
             OnBeforeDoDamage?.Invoke(damagePayload);

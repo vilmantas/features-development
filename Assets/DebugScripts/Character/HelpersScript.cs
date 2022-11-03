@@ -30,7 +30,7 @@ public class HelpersScript : MonoBehaviour
 
         var itemInstance = Item.MakeInstanceWithCount();
             
-        var payload = LootItem.MakePayload(this, Target, itemInstance);
+        var payload = LootItem.MakePayload(gameObject, Target, itemInstance);
 
         controller.DoAction(payload);
     }
@@ -41,7 +41,7 @@ public class HelpersScript : MonoBehaviour
 
         var itemInstance = Ammo.MakeInstanceWithCount();
             
-        var payload = LootItem.MakePayload(this, Target, itemInstance);
+        var payload = LootItem.MakePayload(gameObject, Target, itemInstance);
 
         controller.DoAction(payload);
     }

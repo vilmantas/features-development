@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Features.Actions;
 using Features.Buffs;
@@ -53,9 +54,15 @@ namespace Integrations.Actions
 
         private static ConsumeActionPayload OnPayloadMake(ActionActivationPayload original)
         {
-            var item = original.Source as ItemInstance;
+            if (original is ConsumeActionPayload consumeActionPayload) return consumeActionPayload;
 
-            return new(original, item);
+            var rawItem = original.Data?["item"];
+            
+            if (rawItem is ItemInstance item)
+                return new(original, item);
+            
+            throw new InvalidOperationException(
+                $"Invalid payload passed to {nameof(Consume)} action.");
         }
     }
 

@@ -121,9 +121,9 @@ namespace Features.Inventory
             return result;
         }
 
-        public void HandleItemAction(ContainerItem container, string action)
+        public void HandleItemAction(StorageData item, string action)
         {
-            OnActionSelected?.Invoke(container.Item, action);
+            OnActionSelected?.Invoke(item, action);
         }
 
         public void HandleItemContextOpen(ContainerItem container)

@@ -9,14 +9,14 @@ namespace Integrations.Actions
 {
     public static class Damage
     {
-        public static DamageActionPayload MakePayload(object source, GameObject target, int amount)
+        public static DamageActionPayload MakePayload(GameObject source, GameObject target, int amount)
         {
             var basePayload = new ActionActivationPayload(new ActionBase(nameof(Damage)), source, target);
 
             return new DamageActionPayload(basePayload, amount);
         }
         
-        public static DamageActionPayload MakePayloadForItem(object source, GameObject target, ItemInstance item)
+        public static DamageActionPayload MakePayloadForItem(GameObject source, GameObject target, ItemInstance item)
         {
             var basePayload = new ActionActivationPayload(new ActionBase(nameof(Damage)), source, target);
 
@@ -45,11 +45,13 @@ namespace Integrations.Actions
         {
             if (originalPayload is DamageActionPayload damagePayload) return damagePayload;
 
-            if (originalPayload.Source is ItemInstance item)
+            var rawItem = originalPayload.Data?["item"];
+            
+            if (rawItem is ItemInstance item)
                 return PayloadForItem(originalPayload, item);
             
             throw new InvalidOperationException(
-                $"Invalid payload passed to damage action {originalPayload.GetType().Name}");
+                $"Invalid payload passed to {nameof(Damage)} action.");
         }
         
         private static DamageActionPayload PayloadForItem(ActionActivationPayload originalPayload, ItemInstance item)

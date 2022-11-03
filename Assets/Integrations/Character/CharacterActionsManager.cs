@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Features.Actions;
 using Features.Equipment;
 using Features.Inventory;
@@ -12,10 +13,13 @@ namespace Features.Character
         private ActionsController m_ActionsController;
         private InventoryController m_InventoryController;
         private Transform Root;
+        private GameObject RootGameObject;
 
         private void Awake()
         {
             Root = transform.root;
+            
+            RootGameObject = Root.gameObject;
 
             m_ActionsController = Root.GetComponentInChildren<ActionsController>();
 
@@ -40,7 +44,10 @@ namespace Features.Character
                 ? item.Metadata.Action
                 : new ActionBase(actionName);
 
-            m_ActionsController.DoAction(action, item);
+            var payload = new ActionActivationPayload(action, RootGameObject, RootGameObject,
+                new Dictionary<string, object>() {{"item", item}});
+            
+            m_ActionsController.DoAction(payload);
         }
     }
 }

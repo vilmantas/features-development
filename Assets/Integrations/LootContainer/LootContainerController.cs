@@ -54,14 +54,14 @@ namespace Integrations.LootContainer
 
         public void Loot(Player looter)
         {
-            var root = looter.transform.root;
+            var target = looter.transform.root;
             
-            var actionPayload = new ActionActivationPayload(new ActionBase(nameof(LootItem)), this,
-                root.gameObject);
+            var actionPayload = new ActionActivationPayload(new ActionBase(nameof(LootItem)), gameObject,
+                target.gameObject);
 
             var pickupPayload = new LootItemActionPayload(actionPayload, m_ItemInstance);
 
-            var actionsController = root.GetComponentInChildren<ActionsController>();
+            var actionsController = target.GetComponentInChildren<ActionsController>();
 
             if (actionsController == null) return;
 

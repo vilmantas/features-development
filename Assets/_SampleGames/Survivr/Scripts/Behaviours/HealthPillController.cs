@@ -14,17 +14,15 @@ namespace _SampleGames.Survivr
         {
             if (m_IsExpended) return;
 
-            var character = other.transform.root.GetComponent<CharacterController>();
+            var otherRoot = other.transform.root;
 
-            if (character == null) return;
-
-            var actionPayload = new ActionActivationPayload(new ActionBase(nameof(LootItem)), this, other.gameObject);
+            var actionPayload = new ActionActivationPayload(new ActionBase(nameof(LootItem)), gameObject, otherRoot.gameObject);
 
             var item = ItemMetadata.MakeInstanceWithCount();
 
             var pickupPayload = new LootItemActionPayload(actionPayload, item);
 
-            character.GetComponentInChildren<ActionsController>().DoAction(pickupPayload);
+            otherRoot.GetComponentInChildren<ActionsController>().DoAction(pickupPayload);
 
             Destroy(gameObject);
         }

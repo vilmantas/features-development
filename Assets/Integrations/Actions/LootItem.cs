@@ -8,7 +8,7 @@ namespace Integrations.Actions
 {
     public static class LootItem
     {
-        public static LootItemActionPayload MakePayload(object source, GameObject target, ItemInstance item)
+        public static LootItemActionPayload MakePayload(GameObject source, GameObject target, ItemInstance item)
         {
             var basePaylaod = new ActionActivationPayload(new ActionBase(nameof(LootItem)), source, target);
 

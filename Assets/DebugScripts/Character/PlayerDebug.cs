@@ -8,6 +8,7 @@ using Features.Combat;
 using Features.Conditions;
 using Features.Equipment.UI;
 using Features.Health;
+using Features.Inventory;
 using Features.Inventory.UI;
 using Features.Items;
 using Features.Movement;
@@ -84,7 +85,10 @@ namespace DebugScripts.Character
 
             var inventoryOptions = GetInventoryOptionsFor(item);
             
-            ContextMenuUI.Show(Input.mousePosition, inventoryOptions, s => DoAction(s, item, PlayerInstance.m_ActionsController));
+            ContextMenuUI.Show(Input.mousePosition, inventoryOptions, action =>
+            {
+                PlayerInstance.m_InventoryController.HandleItemAction(data, action);
+            });
         }
 
         private static List<string> GetInventoryOptionsFor(ItemInstance item)
@@ -95,19 +99,6 @@ namespace DebugScripts.Character
                 .Append("Drop");
 
             return options.ToList();
-        }
-
-        private static void DoAction(string action, ItemInstance item, ActionsController controller)
-        {
-            var selectedAction =
-                item.Metadata.InventoryContextMenuActions.FirstOrDefault(x =>
-                    x.DisplayName == action);
-            
-            var actionBase = selectedAction ?? new ActionBase(action);
-            
-            var actionPayload = new ActionActivationPayload(actionBase, item, controller.transform.root.gameObject);
-
-            controller.DoAction(actionPayload);
         }
 
         private void Update()
