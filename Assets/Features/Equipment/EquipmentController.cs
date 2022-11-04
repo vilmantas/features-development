@@ -11,6 +11,8 @@ namespace Features.Equipment
 
         private Container m_Container;
 
+        public Action<UnequipRequest> OnUnequipRequested;
+        
         public Action<EquipRequest> OnBeforeEquip;
 
         public Action<UnequipRequest> OnBeforeUnequip;
@@ -52,6 +54,11 @@ namespace Features.Equipment
 
                 trigger.OnHitboxTriggered += x => OnHitboxCollided?.Invoke(equipmentSlot.slotType, x);
             }
+        }
+
+        public void RequestUnequip(UnequipRequest request)
+        {
+            OnUnequipRequested?.Invoke(request);
         }
 
         public void UnequipItem(UnequipRequest request)

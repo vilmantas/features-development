@@ -1,11 +1,21 @@
+using System;
 using Features.Actions;
 using Features.Equipment;
+using Features.Items;
 using UnityEngine;
 
 namespace Integrations.Actions
 {
     public static class Unequip
     {
+        public static UnequipActionPayload MakePayload(GameObject source, GameObject target,
+            EquipmentContainerItem request)
+        {
+            var basePayload = new ActionActivationPayload(new ActionBase(nameof(Unequip)), source, target);
+
+            return new UnequipActionPayload(basePayload, request);
+        }
+        
         [RuntimeInitializeOnLoadMethod]
         private static void Register()
         {
@@ -15,11 +25,14 @@ namespace Integrations.Actions
 
         private static void OnActivation(ActionActivationPayload payload)
         {
-            var equipActionPayload = payload as UnequipActionPayload;
+            if (payload is not UnequipActionPayload unequipActionPayload)
+            {
+                throw new ArgumentException("Invalid type of payload passed to unequip action");
+            }
 
             var equipmentController = payload.Target.GetComponentInChildren<EquipmentController>();
 
-            equipmentController.UnequipItem(new() {ContainerItem = equipActionPayload.ContainerSlot});
+            equipmentController.UnequipItem(new() {ContainerItem = unequipActionPayload.ContainerSlot});
         }
     }
 

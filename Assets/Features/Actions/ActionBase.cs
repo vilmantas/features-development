@@ -8,13 +8,7 @@ namespace Features.Actions
 
         public string DisplayName => Alias ?? Name;
         
-        public ActionBase(string name)
-        {
-            Name = name;
-            Alias = name;
-        }
-        
-        public ActionBase(string name, string alias)
+        public ActionBase(string name, string alias = null)
         {
             Name = name;
             Alias = alias;

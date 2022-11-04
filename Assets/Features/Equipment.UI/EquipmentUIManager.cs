@@ -73,7 +73,7 @@ namespace Features.Equipment.UI
 
         private void ActivateItem(EquipmentContainerItem arg0)
         {
-            m_Source.UnequipItem(new() {ContainerItem = arg0});
+            m_Source.RequestUnequip(new() {ContainerItem = arg0});
         }
 
         private void HandleEquipmentUpdated(EquipResult arg0)
