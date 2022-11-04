@@ -41,8 +41,12 @@ namespace DebugScripts.Character
 
         public StatusEffectsUIController StatusEffectsUI;
 
+        public GameObject RootGameObject;
+        
         private void Start()
         {
+            RootGameObject = transform.root.gameObject;
+            
             if (InventoryUI && PlayerInstance.Inventory)
             {
                 InventoryUI.Initialize(PlayerInstance.m_InventoryController);
@@ -113,9 +117,14 @@ namespace DebugScripts.Character
             
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                PlayerInstance.m_CombatController.Strike();
-                PlayerInstance.m_MovementController.MoveToLocation(
+                var movePayload = Move.MakePayload(RootGameObject, RootGameObject,
                     new MoveActionData(transform.position));
+
+                var strikePayload = new ActionActivationPayload(new ActionBase(nameof(Strike)),
+                    RootGameObject, RootGameObject);
+                
+                PlayerInstance.m_ActionsController.DoAction(strikePayload);
+                PlayerInstance.m_ActionsController.DoAction(movePayload);
             }
             
             if (Input.GetMouseButtonUp(0))
@@ -128,8 +137,10 @@ namespace DebugScripts.Character
 
                 if (Physics.Raycast(ray, out RaycastHit hit, 100f, GroundLayer))
                 {
-                    PlayerInstance.m_MovementController.MoveToLocation(
+                    var movePayload = Move.MakePayload(RootGameObject, RootGameObject,
                         new MoveActionData(hit.point));
+
+                    PlayerInstance.m_ActionsController.DoAction(movePayload);
                 }
             }
         }
