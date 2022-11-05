@@ -6,9 +6,9 @@ using Features.Conditions;
 using Features.Equipment;
 using Features.Health;
 using Features.Inventory;
-using Features.Items;
 using Features.Movement;
 using Features.Stats.Base;
+using Integrations.Items;
 using UnityEngine;
 using UnityEngine.AI;
 

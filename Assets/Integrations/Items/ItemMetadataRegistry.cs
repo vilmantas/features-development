@@ -1,7 +1,7 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 
-namespace Features.Items
+namespace Integrations.Items
 {
     public static class ItemMetadataRegistry
     {

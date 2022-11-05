@@ -1,7 +1,7 @@
 using Features.Equipment;
 using Features.Inventory;
 using Features.Inventory.Abstract.Internal;
-using Features.Items;
+using Integrations.Items;
 using UnityEngine;
 
 namespace Features.Character

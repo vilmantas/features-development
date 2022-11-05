@@ -1,0 +1,4 @@
+{
+  "name": "Integrations.ItemScripts",
+  "references":[ "GUID:1e57ca6c6dea4468b6b184f7e937cac4", "GUID:e932ca31916e4d25937093ebee4e44aa", "GUID:0e24cd8cfeed400fabd81344ac8fa793"]
+}

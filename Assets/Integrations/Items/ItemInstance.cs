@@ -3,7 +3,7 @@ using Features.Equipment;
 using Features.Inventory.UI.Utilities;
 using Utilities.ItemsContainer;
 
-namespace Features.Items
+namespace Integrations.Items
 {
     public class ItemInstance : IInventoryItemInstance, IEquipmentItemInstance, IEquatable<object>
     {

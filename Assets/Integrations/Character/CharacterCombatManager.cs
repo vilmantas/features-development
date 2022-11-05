@@ -4,8 +4,8 @@ using System.Linq;
 using Features.Actions;
 using Features.Combat;
 using Features.Equipment;
-using Features.Items;
 using Integrations.Actions;
+using Integrations.Items;
 using UnityEngine;
 
 namespace Features.Character

@@ -3,7 +3,6 @@ using Features.Health;
 using Features.Health.Events;
 using Features.Inventory;
 using Features.Inventory.Abstract.Internal;
-using Features.Items;
 using UnityEngine;
 using UnityEngine.AI;
 

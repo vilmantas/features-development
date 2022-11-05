@@ -3,7 +3,6 @@ using System.ComponentModel;
 using Features.Actions;
 using Features.Combat;
 using Features.Health;
-using Features.Items;
 using UnityEngine;
 
 namespace Integrations.Actions

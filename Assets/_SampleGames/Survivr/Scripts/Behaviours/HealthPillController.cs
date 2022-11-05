@@ -1,6 +1,6 @@
 using Features.Actions;
-using Features.Items;
 using Integrations.Actions;
+using Integrations.Items;
 using UnityEngine;
 
 namespace _SampleGames.Survivr

@@ -2,8 +2,8 @@ using System.Collections.Generic;
 using Features.Actions;
 using Features.Equipment;
 using Features.Inventory;
-using Features.Items;
 using Integrations.Actions;
+using Integrations.Items;
 using UnityEngine;
 using Utilities.ItemsContainer;
 

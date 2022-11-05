@@ -2,7 +2,7 @@ using System;
 using Features.Actions;
 using Features.Buffs;
 using Features.Equipment;
-using Features.Items;
+using Integrations.Items;
 using UnityEngine;
 
 namespace Features.Character

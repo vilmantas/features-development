@@ -6,7 +6,7 @@ using Features.Stats.Base;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace Features.Items
+namespace Integrations.Items
 {
     [CreateAssetMenu(menuName = "Items/New Item", fileName = "New Item")]
     public class Item_SO : ScriptableObject
@@ -27,6 +27,7 @@ namespace Features.Items
         public string AttackAnimation = string.Empty;
         public string RequiredAmmoType = string.Empty;
         public GameObject ProvidedAmmo;
+        public ItemScript_SO[] Scripts = Array.Empty<ItemScript_SO>();
 
         public ItemInstance MakeInstanceWithCount()
         {

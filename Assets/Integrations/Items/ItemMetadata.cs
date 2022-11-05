@@ -7,7 +7,7 @@ using Features.Inventory.UI.Utilities;
 using Features.Stats.Base;
 using UnityEngine;
 
-namespace Features.Items
+namespace Integrations.Items
 {
     public class ItemMetadata : IInventoryItemMetadata, IEquipmentItemMetadata
     {

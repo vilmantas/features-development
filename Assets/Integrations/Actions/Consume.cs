@@ -4,7 +4,7 @@ using Features.Actions;
 using Features.Buffs;
 using Features.Health;
 using Features.Inventory;
-using Features.Items;
+using Integrations.Items;
 using UnityEngine;
 
 namespace Integrations.Actions

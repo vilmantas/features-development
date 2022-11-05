@@ -31,3 +31,5 @@ MonoBehaviour:
   AttackAnimation: Strike_Projectile
   RequiredAmmoType: staff
   ProvidedAmmo: {fileID: 494381917243745319, guid: 388d511a2382d4df189bdb12ab046c38, type: 3}
+  Scripts:
+  - {fileID: 11400000, guid: a9e6904e370a7f94d8ecc8bac91d188c, type: 2}

@@ -6,7 +6,6 @@ using Features.Character;
 using Features.Health;
 using Features.Health.Events;
 using Features.Inventory;
-using Features.Items;
 using Integrations.Actions;
 using UnityEngine;
 using Random = UnityEngine.Random;

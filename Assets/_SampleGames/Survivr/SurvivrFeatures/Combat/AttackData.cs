@@ -1,4 +1,4 @@
-using Features.Items;
+using Integrations.Items;
 using UnityEngine;
 
 namespace _SampleGames.Survivr.SurvivrFeatures.Combat

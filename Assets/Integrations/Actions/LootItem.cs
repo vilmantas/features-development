@@ -1,7 +1,7 @@
 using System;
 using Features.Actions;
 using Features.Inventory;
-using Features.Items;
+using Integrations.Items;
 using UnityEngine;
 
 namespace Integrations.Actions

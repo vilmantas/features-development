@@ -1,8 +1,8 @@
 using System;
 using Features.Actions;
 using Features.Character;
-using Features.Items;
 using Integrations.Actions;
+using Integrations.Items;
 using UnityEngine;
 
 namespace Integrations.LootContainer

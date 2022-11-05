@@ -4,7 +4,7 @@ using Features.Stats.Base;
 using UnityEngine;
 using Utilities.ItemsContainer;
 
-namespace Features.Items
+namespace Integrations.Items
 {
     public static class ItemFactory
     {
