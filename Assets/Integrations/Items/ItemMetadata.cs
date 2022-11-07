@@ -20,7 +20,8 @@ namespace Integrations.Items
             List<ActionBase> equipmentContextMenuActions, string attackAnimation,
             StatGroup usageStats,
             string requiredAmmo,
-            GameObject providedAmmo)
+            GameObject providedAmmo,
+            ItemScriptDTO[] scripts)
         {
             Name = name;
             Sprite = sprite;
@@ -38,6 +39,7 @@ namespace Integrations.Items
             UsageStats = usageStats;
             RequiredAmmo = requiredAmmo;
             ProvidedAmmo = providedAmmo;
+            Scripts = scripts;
         }
 
         public string RequiredAmmo { get; }
@@ -56,5 +58,6 @@ namespace Integrations.Items
         public Sprite Sprite { get; }
         public int MaxStack { get; }
         public string AttackAnimation { get; }
+        public ItemScriptDTO[] Scripts { get; }
     }
 }

@@ -79,6 +79,8 @@ namespace Features.Character
 
             [HideInInspector] public CharacterStatCalculator m_CharacterStatCalculator;
 
+            [HideInInspector] public CharacterItemManager m_CharacterItemManager;
+
             private CharacterActionsManager m_ActionsManager;
 
             private CharacterBuffsManager m_BuffsManager;
@@ -101,6 +103,7 @@ namespace Features.Character
                 
                 AddComponent(managersParent, "actions", ref m_ActionsManager);
                 AddComponent(managersParent, "stat_calculator", ref m_CharacterStatCalculator);
+                AddComponent(managersParent, "item_manager", ref m_CharacterItemManager);
 
                 if (Inventory)
                 {

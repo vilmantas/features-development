@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 610418d8100c49a1825b60443a9f7584, type: 3}
-  m_Name: UwU
+  m_Name: TestItemScript
   m_EditorClassIdentifier: 
-  Name: UwU
+  Name: TestItemScript

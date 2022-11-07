@@ -2,11 +2,9 @@ using Features.Inventory.Abstract.Internal;
 
 namespace Features.Inventory.Requests
 {
-    public class RemoveExactRequestResult : ChangeRequest
+    public class RemoveExactRequestResult : IChangeRequestResult
     {
         public readonly int AmountRemoved;
-
-        public readonly bool IsSuccess;
 
         public readonly RemoveExactRequest RemoveRequest;
 
@@ -18,5 +16,6 @@ namespace Features.Inventory.Requests
         }
 
         public ChangeRequest Request => RemoveRequest;
+        public bool IsSuccess { get; }
     }
 }

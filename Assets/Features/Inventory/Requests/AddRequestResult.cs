@@ -14,7 +14,6 @@ namespace Features.Inventory
         }
 
         public AddRequest AddRequest { get; }
-        public ChangeRequest Request => AddRequest;
 
         public bool IsSuccess { get; }
     }

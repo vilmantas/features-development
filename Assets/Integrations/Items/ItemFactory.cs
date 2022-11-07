@@ -47,7 +47,8 @@ namespace Integrations.Items
                 prefab.AttackAnimation,
                 new StatGroup(prefab.UsageStats.ToArray()),
                 prefab.RequiredAmmoType,
-                prefab.ProvidedAmmo);
+                prefab.ProvidedAmmo,
+                prefab.Scripts.Select(x => x.Instance).ToArray());
         }
 
         public static ItemInstance CreateInstanceFrom(ItemMetadata metadata, int count = 0)

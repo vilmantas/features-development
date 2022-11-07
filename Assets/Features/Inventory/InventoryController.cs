@@ -70,16 +70,8 @@ namespace Features.Inventory
         public IChangeRequestResult HandleRequest(ChangeRequest request)
         {
             IChangeRequestResult result = null;
-            
-            if (OnBeforeChangeRequest != null)
-            {
-                foreach (var @delegate in OnBeforeChangeRequest.GetInvocationList())
-                {
-                    if (@delegate is not Action<ChangeRequest> castedDel) continue;
 
-                    castedDel.Invoke(request);
-                }
-            }
+            OnBeforeChangeRequest?.Invoke(request);
 
             if (request.PreventDefault) return null;
             
@@ -93,6 +85,7 @@ namespace Features.Inventory
                 case RemoveExactRequest removeExactRequest:
                     m_Container.RemoveExact(removeExactRequest.Item, out int exactAmountRemoved);
 
+                    result = new RemoveExactRequestResult(removeExactRequest, true, exactAmountRemoved);
                     break;
                 case RemoveRequest removeRequest:
                     m_Container.Remove(removeRequest.Item, removeRequest.Amount,

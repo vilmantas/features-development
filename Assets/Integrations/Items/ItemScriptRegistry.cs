@@ -5,11 +5,11 @@ namespace Integrations.Items
 {
     public static class ItemScriptRegistry
     {
-        private static readonly ConcurrentDictionary<string, ItemScript> m_ScriptRegistry = new();
+        private static readonly ConcurrentDictionary<string, ItemScriptImplementation> m_ScriptRegistry = new();
 
-        public static IReadOnlyDictionary<string, ItemScript> Registry => m_ScriptRegistry;
+        public static IReadOnlyDictionary<string, ItemScriptImplementation> Registry => m_ScriptRegistry;
 
-        public static void Register(ItemScript metadata)
+        public static void Register(ItemScriptImplementation metadata)
         {
             var name = metadata.Name;
 

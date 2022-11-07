@@ -6,5 +6,7 @@ namespace Integrations.Items
     public class ItemScript_SO : ScriptableObject
     {
         public string Name;
+
+        public ItemScriptDTO Instance => ItemScriptDTO.CreateDTO(Name);
     }
 }
