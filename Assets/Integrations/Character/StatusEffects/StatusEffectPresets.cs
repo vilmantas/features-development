@@ -11,32 +11,35 @@ namespace Integrations.Character.StatusEffects
     {
         private static Dictionary<string, Delegate> Handlers = new Dictionary<string, Delegate>();
 
-        public static void DisableActivity(Modules.Character character, string condition)
+        public static void DisableActivity(ActionsController actionsController, string condition)
         {
-            Action<ActionActivation> handler = payload => BlockAction(payload, character); 
+            Action<ActionActivation> handler = payload => BlockAction(payload, actionsController); 
             
-            Handlers.Add(character.name + condition, handler);
+            Handlers.Add(GetName(actionsController) + condition, handler);
 
-            character.m_ActionsController.OnBeforeAction += handler;
+            actionsController.OnBeforeAction += handler;
         }
         
-        public static void EnableActivity(Modules.Character character, string condition)
+        public static void EnableActivity(ActionsController actionsController, string condition)
         {
-            var handler = (Action<ActionActivation>)Handlers[character.name + condition];
+            var handler = (Action<ActionActivation>)Handlers[actionsController.transform.root.name + condition];
 
-            Handlers.Remove(character.name + condition);
+            Handlers.Remove(GetName(actionsController) + condition);
             
-            character.m_ActionsController.OnBeforeAction -= handler;
+            actionsController.OnBeforeAction -= handler;
         }
 
-        private static void BlockAction(ActionActivation obj, Modules.Character character)
+        private static void BlockAction(ActionActivation obj, ActionsController actionsController)
         {
             if (obj.Payload.Data?["passive"] is true) return;
             
-            if (obj.Payload.Source == character.gameObject)
+            if (obj.Payload.Source == actionsController.transform.root.gameObject)
             {
                 obj.PreventDefault = true;
             }
         }
+
+        private static string GetName(ActionsController controller) =>
+            controller.transform.root.name;
     }
 }

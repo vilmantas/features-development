@@ -1,5 +1,7 @@
+using Features.Actions;
 using Features.Character;
 using Features.Conditions;
+using Features.Movement;
 using UnityEngine;
 
 namespace Integrations.Character.StatusEffects
@@ -15,18 +17,22 @@ namespace Integrations.Character.StatusEffects
 
         private static void OnStatusEffectApplied(StatusEffectPayload payload)
         {
-            var character = payload.Target.GetComponent<Modules.Character>();
+            var actionsController = payload.Target.GetComponentInChildren<ActionsController>();
+
+            var movementController = payload.Target.GetComponentInChildren<MovementController>();
             
-            character.m_MovementController.Stop();
-            
-            StatusEffectPresets.DisableActivity(character, nameof(DoingActionStatusEffect));
+            movementController.Stop();
+
+            StatusEffectPresets.DisableActivity(actionsController,
+                nameof(DoingActionStatusEffect));
         }
 
         private static void OnStatusEffectRemoved(StatusEffectPayload payload)
         {
-            var character = payload.Target.GetComponent<Modules.Character>();
-            
-            StatusEffectPresets.EnableActivity(character, nameof(DoingActionStatusEffect));
+            var actionsController = payload.Target.GetComponentInChildren<ActionsController>();
+
+            StatusEffectPresets.EnableActivity(actionsController,
+                nameof(DoingActionStatusEffect));
         }
     }
 }
