@@ -9,13 +9,13 @@ namespace Integrations.Items
 
         public static IReadOnlyDictionary<string, ItemScriptImplementation> Registry => m_ScriptRegistry;
 
-        public static void Register(ItemScriptImplementation metadata)
+        public static void Register(ItemScriptImplementation implementation)
         {
-            var name = metadata.Name;
+            var name = implementation.Name;
 
             if (m_ScriptRegistry.TryGetValue(name, out var _)) return;
 
-            m_ScriptRegistry.TryAdd(name, metadata);
+            m_ScriptRegistry.TryAdd(name, implementation);
         }
     }
 }

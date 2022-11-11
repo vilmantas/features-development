@@ -1,6 +1,7 @@
+using Integrations.Items;
 using UnityEngine;
 
-namespace Integrations.Items
+namespace Integrations.ItemScripts
 {
     public static class TestItemScript
     {
