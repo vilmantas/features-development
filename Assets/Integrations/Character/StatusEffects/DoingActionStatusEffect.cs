@@ -1,17 +1,15 @@
 using Features.Character;
 using Features.Conditions;
-using Features.Equipment;
-using Features.Movement;
 using UnityEngine;
 
-namespace Integrations.StatusEffects
+namespace Integrations.Character.StatusEffects
 {
-    public static class RandomStatusEffect
+    public static class DoingActionStatusEffect
     {
         [RuntimeInitializeOnLoadMethod]
         private static void Register()
         {
-            StatusEffectImplementation implementation = new(nameof(RandomStatusEffect), OnStatusEffectApplied, OnStatusEffectRemoved);
+            StatusEffectImplementation implementation = new(nameof(DoingActionStatusEffect), OnStatusEffectApplied, OnStatusEffectRemoved);
             StatusEffectImplementationRegistry.Implementations.TryAdd(implementation.Name, implementation);
         }
 
@@ -21,23 +19,14 @@ namespace Integrations.StatusEffects
             
             character.m_MovementController.Stop();
             
-            StatusEffectPresets.DisableActivity(character, nameof(RandomStatusEffect));
-            
-            character.m_MovementController.OnBeforeMove += OnBeforeMove;
+            StatusEffectPresets.DisableActivity(character, nameof(DoingActionStatusEffect));
         }
 
         private static void OnStatusEffectRemoved(StatusEffectPayload payload)
         {
             var character = payload.Target.GetComponent<Modules.Character>();
             
-            StatusEffectPresets.EnableActivity(character, nameof(RandomStatusEffect));
-            
-            character.m_MovementController.OnBeforeMove -= OnBeforeMove;
-        }
-
-        private static void OnBeforeMove(MoveActionData obj)
-        {
-            obj.PreventDefault = true;
+            StatusEffectPresets.EnableActivity(character, nameof(DoingActionStatusEffect));
         }
     }
 }

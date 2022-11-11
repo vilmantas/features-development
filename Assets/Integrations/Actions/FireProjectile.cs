@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using Features.Actions;
 using Features.Combat;
@@ -13,7 +14,7 @@ namespace Integrations.Actions
             string ammoType, Vector3 location, Vector3 direction)
         {
             var basePayload =
-                new ActionActivationPayload(new ActionBase(nameof(FireProjectile)), parent, target);
+                new ActionActivationPayload(new ActionBase(nameof(FireProjectile)), parent, target, new Dictionary<string, object>() { {"passive", true} });
 
             return new FireProjectileActionPayload(basePayload, ammoType, location, direction, damageSource);
         }
@@ -61,7 +62,7 @@ namespace Integrations.Actions
             Vector3 location,
             Vector3 direction,
             object damageSource) : base(original.Action,
-            original.Source, original.Target)
+            original.Source, original.Target, original.Data)
 
         {
             Location = location;

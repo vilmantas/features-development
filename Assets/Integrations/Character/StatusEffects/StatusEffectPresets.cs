@@ -5,7 +5,7 @@ using Features.Character;
 using Features.Combat;
 using UnityEngine;
 
-namespace Integrations.StatusEffects
+namespace Integrations.Character.StatusEffects
 {
     public static class StatusEffectPresets
     {
@@ -31,6 +31,8 @@ namespace Integrations.StatusEffects
 
         private static void BlockAction(ActionActivation obj, Modules.Character character)
         {
+            if (obj.Payload.Data?["passive"] is true) return;
+            
             if (obj.Payload.Source == character.gameObject)
             {
                 obj.PreventDefault = true;

@@ -95,6 +95,8 @@ namespace Features.Character
 
             private CharacterCombatManager m_CombatManager;
 
+            private CharacterStatusEffectsManager m_CharacterStatusEffectsManager;
+
             private void AddManagers(Transform root)
             {
                 var managersParent = new GameObject("managers").transform;
@@ -104,6 +106,7 @@ namespace Features.Character
                 AddComponent(managersParent, "actions", ref m_ActionsManager);
                 AddComponent(managersParent, "stat_calculator", ref m_CharacterStatCalculator);
                 AddComponent(managersParent, "item_manager", ref m_CharacterItemManager);
+                
 
                 if (Inventory)
                 {
@@ -128,6 +131,11 @@ namespace Features.Character
                 if (Combat)
                 {
                     AddComponent(managersParent, "combat", ref m_CombatManager);
+                }
+
+                if (Conditions)
+                {
+                    AddComponent(managersParent, "status_effects", ref m_CharacterStatusEffectsManager);
                 }
             }
 

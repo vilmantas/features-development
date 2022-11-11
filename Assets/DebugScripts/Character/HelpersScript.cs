@@ -1,13 +1,10 @@
 using System.Collections;
-using System.Collections.Generic;
 using Features.Actions;
 using Features.Buffs;
-using Features.Character;
 using Features.Conditions;
 using Integrations.Actions;
+using Integrations.Character.StatusEffects;
 using Integrations.Items;
-using Integrations.StatusEffects;
-using UnityEditor;
 using UnityEngine;
 
 public class HelpersScript : MonoBehaviour
@@ -84,7 +81,7 @@ public class HelpersScript : MonoBehaviour
     {
         var controller = Target.GetComponentInChildren<StatusEffectsController>();
 
-        var status = new StatusEffectMetadata(nameof(RandomStatusEffect));
+        var status = new StatusEffectMetadata(nameof(DoingActionStatusEffect));
 
         var payload = new StatusEffectAddPayload(status);
         
@@ -99,7 +96,7 @@ public class HelpersScript : MonoBehaviour
         
         var controller = Target.GetComponentInChildren<StatusEffectsController>();
 
-        var status = new StatusEffectMetadata(nameof(RandomStatusEffect));
+        var status = new StatusEffectMetadata(nameof(DoingActionStatusEffect));
 
         var payload = new StatusEffectRemovePayload(status);
         
