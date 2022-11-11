@@ -44,23 +44,6 @@ namespace Features.Character
             }
         }
 
-        private void Unsubscribe()
-        {
-            m_BuffController.OnBeforeBuffAdd -= HandleBuffAddRequest;
-
-            m_BuffController.OnBuffAdded -= HandleBuffAdded;
-            m_BuffController.OnBuffRemoved -= HandleBuffRemoved;
-
-            m_BuffController.OnBuffTickOccurred -= HandleBuffTick;
-            m_BuffController.OnBuffDurationReset -= HandleBuffDurationReset;
-
-            if (m_EquipmentController)
-            {
-                m_EquipmentController.OnItemEquipped -= HandleEquipmentChanged;
-                m_EquipmentController.OnItemUnequipped -= HandleEquipmentChanged;
-            }
-        }
-
         private void HandleEquipmentChanged(EquipResult result)
         {
             if (result.UnequippedItem is ItemInstance unequippedItemInstanceBase)

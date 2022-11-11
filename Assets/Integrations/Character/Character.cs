@@ -105,7 +105,6 @@ namespace Features.Character
                 
                 AddComponent(managersParent, "actions", ref m_ActionsManager);
                 AddComponent(managersParent, "stat_calculator", ref m_CharacterStatCalculator);
-                AddComponent(managersParent, "item_manager", ref m_CharacterItemManager);
                 
 
                 if (Inventory)
@@ -116,6 +115,11 @@ namespace Features.Character
                 if (Equipment)
                 {
                     AddComponent(managersParent, "equipment", ref m_EquipmentManager);
+                }
+
+                if (Inventory || Equipment)
+                {
+                    AddComponent(managersParent, "item_manager", ref m_CharacterItemManager);
                 }
 
                 if (Buffs)
