@@ -28,6 +28,8 @@ namespace Integrations.ItemScripts
         {
             var actions = receiver.GetComponentInChildren<ActionsController>();
             
+            item.Extras.Add(nameof(OnHitStunItemScript), new OnHitStunStateData());
+            
             actions.OnAfterAction += OnAfterAction;
         }
 
@@ -35,11 +37,17 @@ namespace Integrations.ItemScripts
         {
             if (arg1.Payload.Action.Name != nameof(Damage)) return;
             
-            if (arg1.Payload.Data["item"] is not ItemInstance item) return; 
+            if (arg1.Payload.Data["item"] is not ItemInstance item) return;
+
+            if (!item.Extras.ContainsKey(nameof(OnHitStunItemScript))) return;
             
             Debug.Log(arg1.Payload.Action.Name);
             
             Debug.Log("STUN TIME");
+        }
+
+        private class OnHitStunStateData
+        {
         }
     }
 }

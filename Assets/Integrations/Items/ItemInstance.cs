@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Features.Equipment;
 using Features.Inventory.UI.Utilities;
 using Utilities.ItemsContainer;
@@ -17,6 +18,8 @@ namespace Integrations.Items
 
         public ItemMetadata Metadata { get; }
         public StorageData<ItemInstance> StorageData { get; }
+
+        public Dictionary<string, object> Extras { get; } = new ();
 
         public string GetAmmoText => StorageData.Max > 1 ? StorageData.Current.ToString() : string.Empty;
         public int CurrentAmount => StorageData.StackableData.Current;
