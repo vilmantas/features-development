@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using Features.Actions;
 using Features.Health;
@@ -18,7 +19,8 @@ namespace Integrations.Actions
         
         public static DamageActionPayload MakePayloadForItem(GameObject source, GameObject target, ItemInstance item)
         {
-            var basePayload = new ActionActivationPayload(new ActionBase(nameof(Damage)), source, target);
+            var basePayload = new ActionActivationPayload(new ActionBase(nameof(Damage)), source, target,
+                new Dictionary<string, object>() {{"item", item}});
 
             return PayloadForItem(basePayload, item);
         }
@@ -67,7 +69,7 @@ namespace Integrations.Actions
         public readonly int DamageAmount;
 
         public DamageActionPayload(ActionActivationPayload original, int damageAmount) : base(original.Action,
-            original.Source, original.Target)
+            original.Source, original.Target, original.Data)
         {
             DamageAmount = damageAmount;
         }
