@@ -17,8 +17,8 @@ namespace Features.Buffs
         public BuffImplementation(string name,
             Action<BuffActivationPayload> onReceive,
             Action<BuffActivationPayload> onRemove,
-            Action<BuffActivationPayload> onTick,
-            Action<BuffActivationPayload> onDurationReset)
+            Action<BuffActivationPayload> onTick = null,
+            Action<BuffActivationPayload> onDurationReset = null)
         {
             Name = name;
             OnReceive = onReceive;

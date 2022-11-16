@@ -10,7 +10,7 @@ namespace _SampleGames.Survivr.SurvivrFeatures.Buffs
         private static void Register()
         {
             BuffImplementation implementation = new(nameof(HealOverTime), OnReceive, OnRemove, OnTick, OnDurationReset);
-            BuffImplementationRegistry.Implementations.TryAdd(implementation.Name, implementation);
+            BuffImplementationRegistry.Register(implementation);
         }
 
         private static void OnReceive(BuffActivationPayload payload)

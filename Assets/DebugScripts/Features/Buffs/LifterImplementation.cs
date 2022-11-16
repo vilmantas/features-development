@@ -9,7 +9,7 @@ namespace Features.Character.Buffs
         private static void Register()
         {
             BuffImplementation implementation = new("Lifter", OnReceive, OnRemove, null, null);
-            BuffImplementationRegistry.Implementations.TryAdd(implementation.Name, implementation);
+            BuffImplementationRegistry.Register(implementation);
         }
 
         private static void OnReceive(BuffActivationPayload payload)
