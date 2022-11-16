@@ -37,17 +37,38 @@ namespace Integrations.ItemScripts
         {
             if (arg1.Payload.Action.Name != nameof(Damage)) return;
             
+            if (arg2.IsSuccessful.HasValue && arg2.IsFailed) return;
+            
             if (arg1.Payload.Data["item"] is not ItemInstance item) return;
 
-            if (!item.Extras.ContainsKey(nameof(OnHitStunItemScript))) return;
+            if (!item.Extras.TryGetValue(nameof(OnHitStunItemScript), out var dataRaw)) return;
+
+            if (dataRaw is not OnHitStunStateData data) return;
             
-            Debug.Log(arg1.Payload.Action.Name);
+            data.Increment();
+            
+            Debug.Log(data.Count);
+
+            if (data.Count == 3)
+            {
+                
+                data.Reset();
+            }
             
             Debug.Log("STUN TIME");
         }
 
         private class OnHitStunStateData
         {
+            public int Count { get; private set; }
+            public OnHitStunStateData()
+            {
+                Count = 0;
+            }
+
+            public void Increment() => Count++;
+
+            public void Reset() => Count = 0;
         }
     }
 }

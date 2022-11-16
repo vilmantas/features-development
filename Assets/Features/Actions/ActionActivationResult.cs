@@ -8,6 +8,8 @@ namespace Features.Actions
         
         public readonly bool? IsSuccessful;
 
+        public bool IsFailed => IsSuccessful.HasValue && !IsSuccessful.Value;
+
         public ActionActivationResult(bool? isSuccessful)
         {
             IsSuccessful = isSuccessful;
