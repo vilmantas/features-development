@@ -3,8 +3,8 @@ using Features.Actions;
 using Features.Buffs;
 using Features.Conditions;
 using Integrations.Actions;
-using Integrations.Character.StatusEffects;
 using Integrations.Items;
+using Integrations.StatusEffects;
 using UnityEngine;
 
 public class HelpersScript : MonoBehaviour
