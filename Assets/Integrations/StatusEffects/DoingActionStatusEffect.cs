@@ -1,10 +1,9 @@
 using Features.Actions;
-using Features.Character;
 using Features.Conditions;
 using Features.Movement;
 using UnityEngine;
 
-namespace Integrations.Character.StatusEffects
+namespace Integrations.StatusEffects
 {
     public static class DoingActionStatusEffect
     {

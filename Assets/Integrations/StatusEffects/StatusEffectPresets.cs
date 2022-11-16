@@ -1,11 +1,8 @@
 using System;
 using System.Collections.Generic;
 using Features.Actions;
-using Features.Character;
-using Features.Combat;
-using UnityEngine;
 
-namespace Integrations.Character.StatusEffects
+namespace Integrations.StatusEffects
 {
     public static class StatusEffectPresets
     {

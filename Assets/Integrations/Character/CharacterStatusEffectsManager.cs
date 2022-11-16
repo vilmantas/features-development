@@ -1,7 +1,7 @@
 using System;
 using Features.Combat;
 using Features.Conditions;
-using Integrations.Character.StatusEffects;
+using Integrations.StatusEffects;
 using UnityEngine;
 
 namespace Features.Character

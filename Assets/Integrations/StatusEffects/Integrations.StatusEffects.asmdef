@@ -1,0 +1,4 @@
+{
+  "name": "Integrations.StatusEffects",
+  "references":[ "GUID:f310937e868044269b6cefc65132409e", "GUID:e932ca31916e4d25937093ebee4e44aa", "GUID:45de591bbc0644818ef53e78946ecd2f" ]
+}
