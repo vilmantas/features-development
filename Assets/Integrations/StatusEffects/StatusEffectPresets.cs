@@ -28,7 +28,10 @@ namespace Integrations.StatusEffects
 
         private static void BlockAction(ActionActivation obj, ActionsController actionsController)
         {
-            if (obj.Payload.Data?["passive"] is true) return;
+            if (obj.Payload.Data != null && obj.Payload.Data.ContainsKey("passive"))
+            {
+                if (obj.Payload.Data["passive"] is true) return;
+            }
             
             if (obj.Payload.Source == actionsController.transform.root.gameObject)
             {

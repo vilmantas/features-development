@@ -45,13 +45,13 @@ namespace Features.Buffs
             Receive(buff, null, stacks);
         }
 
-        public void Receive(BuffBase buff, GameObject source, int stacks = 1, float duration = -1f)
+        public void Receive(BuffBase buff, GameObject source, int stacks = 1, float overrideDuration = -1f)
         {
             var existingBuff = BuffByName(buff.Name);
 
             if (existingBuff == null)
             {
-                existingBuff = new ActiveBuff(buff, source, duration);
+                existingBuff = new ActiveBuff(buff, source, overrideDuration);
 
                 existingBuff.AddStacks(stacks);
 
@@ -64,9 +64,9 @@ namespace Features.Buffs
             }
             else
             {
-                if (Math.Abs(existingBuff.Duration - duration) > 0.0001f)
+                if (Math.Abs(existingBuff.Duration - overrideDuration) > 0.0001f)
                 {
-                    existingBuff.OverrideDuration = duration;
+                    existingBuff.OverrideDuration = overrideDuration;
                 }
 
                 existingBuff.AddStacks(stacks);

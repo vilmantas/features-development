@@ -4,10 +4,6 @@ namespace Features.Buffs
 {
     public class BuffAddOptions
     {
-        public BuffAddOptions()
-        {
-        }
-
         public BuffAddOptions(BuffBase buff, GameObject source, int stacks)
         {
             Buff = buff;
@@ -18,7 +14,8 @@ namespace Features.Buffs
         public BuffBase Buff { get; set; }
         public GameObject Source { get; set; }
         public int Stacks { get; set; }
-        public float Duration { get; set; }
+        public float OverrideDuration { get; set; }
         public bool RequestHandled { get; set; }
+        public float Duration => OverrideDuration > 0 ? OverrideDuration : Buff.DefaultDuration;
     }
 }

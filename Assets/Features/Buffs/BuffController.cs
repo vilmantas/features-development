@@ -56,7 +56,7 @@ namespace Features.Buffs
         {
             if (opt.RequestHandled) return;
 
-            Container.Receive(opt.Buff, opt.Source, opt.Stacks, opt.Duration);
+            Container.Receive(opt.Buff, opt.Source, opt.Stacks, opt.OverrideDuration);
         }
 
         public void AttemptAdd(BuffAddOptions opt)

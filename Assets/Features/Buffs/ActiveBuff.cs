@@ -21,10 +21,10 @@ namespace Features.Buffs
         {
         }
 
-        internal ActiveBuff(BuffBase metadata, GameObject source, float duration)
+        internal ActiveBuff(BuffBase metadata, GameObject source, float overrideDuration)
         {
             Source = source;
-            OverrideDuration = duration;
+            OverrideDuration = overrideDuration;
             Metadata = metadata;
 
             Counter = new ResourceContainer(metadata.MaxStack);

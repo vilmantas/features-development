@@ -1,5 +1,7 @@
 using Features.Actions;
+using Features.Buffs;
 using Integrations.Actions;
+using Integrations.Buffs;
 using Integrations.Items;
 using UnityEngine;
 
@@ -54,9 +56,12 @@ namespace Integrations.ItemScripts
                 Debug.Log("STUN TIME");
 
                 var actionController =
-                    arg1.Payload.Target.GetComponentInChildren<ActionsController>();
-                
-                // actionController.DoAction()
+                    arg1.Payload.Source.GetComponentInChildren<ActionsController>();
+
+                var stunPayload = AddBuff.MakePayload(arg1.Payload.Source, arg1.Payload.Source,
+                    new BuffBase(nameof(Stun), 10f, 1), 10f);
+
+                actionController.DoAction(stunPayload);
 
                 data.Reset();
             }

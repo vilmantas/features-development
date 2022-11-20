@@ -11,12 +11,12 @@ namespace Integrations.Actions
     {
 
         public static AddBuffActionPayload MakePayload(GameObject source, GameObject target,
-            BuffBase buff, float duration)
+            BuffBase buff, float overrideDuration)
         {
             var basePayload =
                 new ActionActivationPayload(new ActionBase(nameof(AddBuff)), source, target);
 
-            var addOptions = new BuffAddOptions(buff, source, 1) {Duration = duration};
+            var addOptions = new BuffAddOptions(buff, source, 1) {OverrideDuration = overrideDuration};
             
             return new AddBuffActionPayload(basePayload, addOptions);
         }
