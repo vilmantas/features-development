@@ -37,7 +37,7 @@ namespace Features.Buffs
         public float OverrideDuration { get; set; }
 
         public float Duration =>
-            OverrideDuration > 0 ? OverrideDuration : Metadata.Duration;
+            OverrideDuration > 0 ? OverrideDuration : Metadata.DefaultDuration;
 
         public GameObject Source { get; }
 

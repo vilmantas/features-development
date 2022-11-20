@@ -34,8 +34,8 @@ public class BuffControllerTests
 
         SUT.OnBeforeBuffAdd += opts => callbacks++;
 
-        SUT.AttemptAdd(new () { Buff = new BuffBase("", 1f), Source = SUT.gameObject });
-
+        SUT.AttemptAdd(new BuffAddOptions(new BuffBase("", 1f), new GameObject(), 1));
+        
         Assert.AreEqual(callbacks, 1);
 
         yield return null;

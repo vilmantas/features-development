@@ -16,7 +16,7 @@ namespace Integrations.Actions
             var basePayload =
                 new ActionActivationPayload(new ActionBase(nameof(AddBuff)), source, target);
 
-            var addOptions = new BuffAddOptions(buff, source, 1);
+            var addOptions = new BuffAddOptions(buff, source, 1) {Duration = duration};
             
             return new AddBuffActionPayload(basePayload, addOptions);
         }

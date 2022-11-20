@@ -51,11 +51,15 @@ namespace Integrations.ItemScripts
 
             if (data.Count == 3)
             {
+                Debug.Log("STUN TIME");
+
+                var actionController =
+                    arg1.Payload.Target.GetComponentInChildren<ActionsController>();
                 
+                actionController.DoAction()
+
                 data.Reset();
             }
-            
-            Debug.Log("STUN TIME");
         }
 
         private class OnHitStunStateData

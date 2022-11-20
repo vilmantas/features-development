@@ -14,7 +14,7 @@ namespace Features.Buffs.UI.Utilities
 
         public override void BuffTickCallback(ActiveBuff buff)
         {
-            m_TimerController.SetFillAmount(buff.Metadata.Duration, buff.DurationLeft);
+            m_TimerController.SetFillAmount(buff.Metadata.DefaultDuration, buff.DurationLeft);
 
             m_StacksText.text = buff.Stacks.ToString();
         }

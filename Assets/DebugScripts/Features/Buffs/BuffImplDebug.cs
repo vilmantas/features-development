@@ -4,7 +4,7 @@ namespace DebugScripts.Buffs
 {
     public class BuffImplDebug : BuffBase
     {
-        public BuffImplDebug(string name, float duration, int maxStack = 1) : base(name, duration, maxStack)
+        public BuffImplDebug(string name, float defaultDuration, int maxStack = 1) : base(name, defaultDuration, maxStack)
         {
         }
     }

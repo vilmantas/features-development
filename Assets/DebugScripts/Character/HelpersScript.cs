@@ -58,7 +58,7 @@ public class HelpersScript : MonoBehaviour
 
         if (controller == null) return;
 
-        controller.AttemptAdd(new BuffAddOptions() {Buff = ShifterBuff.Base, Source = gameObject, Stacks = 1});
+        controller.AttemptAdd(new BuffAddOptions(ShifterBuff.Base, gameObject, 1));
     }
 
     public void CastHealingReducer()

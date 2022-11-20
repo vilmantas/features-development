@@ -120,7 +120,7 @@ namespace BuffContainerTests
         {
             _sut.Receive(Simple);
 
-            Assert.AreEqual(Simple.Duration, _sut.Buffs.First().DurationLeft);
+            Assert.AreEqual(Simple.DefaultDuration, _sut.Buffs.First().DurationLeft);
         }
 
         [Test]
@@ -187,7 +187,7 @@ namespace BuffContainerTests
                 _sut.Tick(0.007326f);
             }
 
-            Assert.AreEqual(WithMinimumInterval.Duration * 10, tickCalls);
+            Assert.AreEqual(WithMinimumInterval.DefaultDuration * 10, tickCalls);
         }
 
         [Test]
@@ -253,7 +253,7 @@ namespace BuffContainerTests
 
             _sut.Receive(Simple, null, 1, newDuration);
 
-            _sut.Tick(Simple.Duration + 1f);
+            _sut.Tick(Simple.DefaultDuration + 1f);
 
             Assert.AreEqual(_sut.Buffs.Count, 1);
             Assert.AreEqual(_sut.Buffs.First().Duration, newDuration);

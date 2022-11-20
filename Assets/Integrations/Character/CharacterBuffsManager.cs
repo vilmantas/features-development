@@ -58,8 +58,8 @@ namespace Features.Character
             {
                 foreach (var buff in equipmentItemInstance.Metadata.Buffs)
                 {
-                    m_BuffController.AttemptAdd(new()
-                        {Buff = buff, Source = gameObject, Duration = Single.MaxValue, Stacks = 1});
+                    m_BuffController.AttemptAdd(new(buff, gameObject, 1)
+                        {Duration = Single.MaxValue});
                 }
             }
         }
