@@ -8,7 +8,8 @@ namespace Features.Buffs
         public static IReadOnlyDictionary<string, BuffImplementation> Implementations =>
             m_Implementations;
 
-        private static ConcurrentDictionary<string, BuffImplementation> m_Implementations;
+        private static readonly ConcurrentDictionary<string, BuffImplementation> m_Implementations =
+            new();
 
         public static void Register(BuffImplementation buffImplementation)
         {

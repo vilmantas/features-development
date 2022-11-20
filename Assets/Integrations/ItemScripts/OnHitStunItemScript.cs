@@ -56,7 +56,7 @@ namespace Integrations.ItemScripts
                 var actionController =
                     arg1.Payload.Target.GetComponentInChildren<ActionsController>();
                 
-                actionController.DoAction()
+                // actionController.DoAction()
 
                 data.Reset();
             }

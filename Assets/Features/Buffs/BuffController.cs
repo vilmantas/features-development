@@ -32,12 +32,12 @@ namespace Features.Buffs
         {
             Container = new BuffContainer();
 
-            Container.OnBuffAdded += OnBuffAdded;
-            Container.OnBuffDurationReset += OnBuffDurationReset;
-            Container.OnBuffRemoved += OnBuffRemoved;
-            Container.OnBuffStackAdded += OnBuffStackAdded;
-            Container.OnBuffStackRemoved += OnBuffStackRemoved;
-            Container.OnBuffTickOccurred += OnBuffTickOccurred;
+            Container.OnBuffAdded += data => OnBuffAdded?.Invoke(data);
+            Container.OnBuffDurationReset += data => OnBuffDurationReset?.Invoke(data);
+            Container.OnBuffRemoved += data => OnBuffRemoved?.Invoke(data);
+            Container.OnBuffStackAdded += data => OnBuffStackAdded?.Invoke(data);
+            Container.OnBuffStackRemoved += data => OnBuffStackRemoved?.Invoke(data);
+            Container.OnBuffTickOccurred += data => OnBuffTickOccurred?.Invoke(data);
         }
 
         private void Update()
