@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Features.Actions;
 using Features.Buffs;
 using Features.Combat;
@@ -11,10 +12,15 @@ namespace Integrations.Actions
     {
 
         public static AddBuffActionPayload MakePayload(GameObject source, GameObject target,
-            BuffBase buff, float overrideDuration)
+            BuffBase buff, float overrideDuration, bool isPassive = false)
         {
+            var dataBag = new Dictionary<string, object>()
+            {
+                {"passive", isPassive}
+            };
+            
             var basePayload =
-                new ActionActivationPayload(new ActionBase(nameof(AddBuff)), source, target);
+                new ActionActivationPayload(new ActionBase(nameof(AddBuff)), source, target, dataBag);
 
             var addOptions = new BuffAddOptions(buff, source, 1) {OverrideDuration = overrideDuration};
             

@@ -78,10 +78,10 @@ namespace Features.Character
         private void OnProjectileCollided(ProjectileCollisionData obj)
         {
             if (obj.Source is not ItemInstance item) return;
+            
+            var damagePayload = Damage.MakePayloadForItem(obj.ProjectileParent, obj.Collider, item);
 
-            var damagePayload = Damage.MakePayloadForItem(root.gameObject, obj.Collider, item);
-
-            obj.Collider.GetComponentInChildren<ActionsController>().DoAction(damagePayload);
+            obj.ProjectileParent.GetComponentInChildren<ActionsController>().DoAction(damagePayload);
 
             obj.SetProjectileConsumed();
         }

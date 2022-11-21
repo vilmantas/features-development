@@ -27,7 +27,6 @@ namespace DebugScripts.Character
 
         private void OnDamage(HealthChangeEventArgs obj)
         {
-            print("Received damage: " + obj.ActualChange);
         }
 
         public IEnumerator HitterCoroutine()

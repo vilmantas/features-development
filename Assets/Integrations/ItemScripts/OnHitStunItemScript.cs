@@ -53,8 +53,6 @@ namespace Integrations.ItemScripts
 
             if (data.Count == 3)
             {
-                Debug.Log("STUN TIME");
-
                 var actionController =
                     arg1.Payload.Source.GetComponentInChildren<ActionsController>();
 

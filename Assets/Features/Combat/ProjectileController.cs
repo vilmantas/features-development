@@ -63,9 +63,9 @@ namespace Features.Combat
 
         public ProjectileCollisionData(GameObject parent, GameObject collider, object source)
         {
+            ProjectileParent = parent;
             Collider = collider;
             Source = source;
-            ProjectileParent = parent;
         }
 
         public void SetProjectileConsumed()

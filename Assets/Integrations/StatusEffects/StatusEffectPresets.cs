@@ -6,11 +6,15 @@ namespace Integrations.StatusEffects
 {
     public static class StatusEffectPresets
     {
-        private static Dictionary<string, Delegate> Handlers = new Dictionary<string, Delegate>();
+        private static Dictionary<string, Delegate> Handlers = new();
 
         public static void DisableActivity(ActionsController actionsController, string condition)
         {
-            Action<ActionActivation> handler = payload => BlockAction(payload, actionsController); 
+            Action<ActionActivation> handler = payload => BlockAction(payload, actionsController);
+
+            var dictionaryKey = GetName(actionsController) + condition;
+
+            if (Handlers.ContainsKey(dictionaryKey)) return;
             
             Handlers.Add(GetName(actionsController) + condition, handler);
 
@@ -19,7 +23,11 @@ namespace Integrations.StatusEffects
         
         public static void EnableActivity(ActionsController actionsController, string condition)
         {
-            var handler = (Action<ActionActivation>)Handlers[actionsController.transform.root.name + condition];
+            var dictionaryKey = actionsController.transform.root.name + condition;
+
+            if (!Handlers.ContainsKey(dictionaryKey)) return;
+            
+            var handler = (Action<ActionActivation>)Handlers[dictionaryKey];
 
             Handlers.Remove(GetName(actionsController) + condition);
             

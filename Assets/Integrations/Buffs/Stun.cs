@@ -25,7 +25,7 @@ namespace Integrations.Buffs
 
             se.AddStatusEffect(
                 new StatusEffectAddPayload(
-                    new StatusEffectMetadata(nameof(DoingActionStatusEffect))));
+                    new StatusEffectMetadata(nameof(StunStatusEffect))));
 
         }
 
@@ -39,7 +39,7 @@ namespace Integrations.Buffs
 
             se.RemoveStatusEffect(
                 new StatusEffectRemovePayload(
-                    new StatusEffectMetadata(nameof(DoingActionStatusEffect))));
+                    new StatusEffectMetadata(nameof(StunStatusEffect))));
         }
     }
 }

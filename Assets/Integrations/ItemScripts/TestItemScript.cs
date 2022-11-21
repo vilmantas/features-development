@@ -21,22 +21,18 @@ namespace Integrations.ItemScripts
 
         private static void OnEquip(GameObject receiver, ItemInstance item)
         {
-            Debug.Log("Equip");
         }
         
         private static void OnUnequip(GameObject receiver, ItemInstance item)
         {
-            Debug.Log("Unequip");
         }
         
         private static void OnReceive(GameObject receiver, ItemInstance item)
         {
-            Debug.Log("Receive");
         }
 
         private static void OnLoss(GameObject receiver, ItemInstance item)
         {
-            Debug.Log("Loss");
         }
 
     }
