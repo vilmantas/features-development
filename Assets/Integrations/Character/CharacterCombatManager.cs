@@ -81,6 +81,8 @@ namespace Features.Character
             
             var damagePayload = Damage.MakePayloadForItem(obj.ProjectileParent, obj.Collider, item);
 
+            damagePayload.Data.Add("passive", true);
+            
             obj.ProjectileParent.GetComponentInChildren<ActionsController>().DoAction(damagePayload);
 
             obj.SetProjectileConsumed();
