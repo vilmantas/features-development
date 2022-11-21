@@ -49,15 +49,13 @@ namespace Integrations.ItemScripts
             
             data.Increment();
             
-            Debug.Log(data.Count);
-
             if (data.Count == 3)
             {
                 var actionController =
                     arg1.Payload.Source.GetComponentInChildren<ActionsController>();
 
                 var stunPayload = AddBuff.MakePayload(arg1.Payload.Source, arg1.Payload.Source,
-                    new BuffBase(nameof(Stun), 10f, 1), 10f);
+                    new BuffBase(nameof(Stun), 10f, 1), 10f, true);
 
                 actionController.DoAction(stunPayload);
 

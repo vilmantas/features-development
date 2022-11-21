@@ -40,7 +40,7 @@ namespace Integrations.StatusEffects
             {
                 if (obj.Payload.Data["passive"] is true) return;
             }
-            
+
             if (obj.Payload.Source == actionsController.transform.root.gameObject)
             {
                 obj.PreventDefault = true;

@@ -55,7 +55,7 @@ namespace Integrations.Actions
 
             public AddBuffActionPayload(ActionActivationPayload original, BuffAddOptions buff) :
                 base(original.Action,
-                    original.Source, original.Target)
+                    original.Source, original.Target, original.Data)
             {
                 Data = buff;
             }
