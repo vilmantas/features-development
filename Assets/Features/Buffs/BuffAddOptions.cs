@@ -16,6 +16,5 @@ namespace Features.Buffs
         public int Stacks { get; set; }
         public float OverrideDuration { get; set; }
         public bool RequestHandled { get; set; }
-        public float Duration => OverrideDuration > 0 ? OverrideDuration : Buff.DefaultDuration;
     }
 }

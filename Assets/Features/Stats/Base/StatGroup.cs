@@ -12,6 +12,9 @@ namespace Features.Stats.Base
 
         public Stat this[string stat] => Stats.ContainsKey(stat) ? Stats[stat] : new Stat(stat, 0);
 
+        public int GetStat(string stat, int defaultValue = 0)
+            => Stats.ContainsKey(stat) ? Stats[stat].Value : defaultValue;
+
         private readonly Dictionary<string, Stat> m_Stats;
 
         public StatGroup(Dictionary<string, Stat> stats)

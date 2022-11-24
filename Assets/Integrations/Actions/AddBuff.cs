@@ -27,6 +27,18 @@ namespace Integrations.Actions
             return new AddBuffActionPayload(basePayload, addOptions);
         }
         
+        public static AddBuffActionPayload MakePayloadPassive(GameObject source, GameObject target,
+            BuffBase buff, float overrideDuration)
+        {
+            return MakePayload(source, target, buff, overrideDuration, true);
+        }
+        
+        public static AddBuffActionPayload MakePayloadPassive(GameObject source, GameObject target,
+            BuffBase buff)
+        {
+            return MakePayload(source, target, buff, -1f, true);
+        }
+        
         [RuntimeInitializeOnLoadMethod]
         private static void Register()
         {

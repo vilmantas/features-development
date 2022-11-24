@@ -48,19 +48,23 @@ namespace Integrations.ItemScripts
             if (dataRaw is not OnHitStunStateData data) return;
             
             data.Increment();
+
+            var duration = item.Metadata.UsageStats.GetStat("OnHitStunDuration", 5);
             
-            if (data.Count == 3)
-            {
-                var actionController =
-                    arg1.Payload.Source.GetComponentInChildren<ActionsController>();
+            var triggerCount = item.Metadata.UsageStats.GetStat("OnHitStunTriggerCount", 5);
 
-                var stunPayload = AddBuff.MakePayload(arg1.Payload.Source, arg1.Payload.Source,
-                    new BuffBase(nameof(Stun), 10f, 1), 10f, true);
+            if (data.Count != triggerCount) return;
+            
+            var actionController =
+                arg1.Payload.Source.GetComponentInChildren<ActionsController>();
 
-                actionController.DoAction(stunPayload);
+            var stunPayload = AddBuff.MakePayloadPassive(arg1.Payload.Source,
+                arg1.Payload.Source,
+                new BuffBase(nameof(Stun), duration));
 
-                data.Reset();
-            }
+            actionController.DoAction(stunPayload);
+
+            data.Reset();
         }
 
         private class OnHitStunStateData
