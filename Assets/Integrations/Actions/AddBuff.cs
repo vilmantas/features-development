@@ -12,7 +12,7 @@ namespace Integrations.Actions
     {
 
         public static AddBuffActionPayload MakePayload(GameObject source, GameObject target,
-            BuffBase buff, float overrideDuration, bool isPassive = false)
+            BuffMetadata buff, float overrideDuration, bool isPassive = false)
         {
             var dataBag = new Dictionary<string, object>()
             {
@@ -28,13 +28,13 @@ namespace Integrations.Actions
         }
         
         public static AddBuffActionPayload MakePayloadPassive(GameObject source, GameObject target,
-            BuffBase buff, float overrideDuration)
+            BuffMetadata buff, float overrideDuration)
         {
             return MakePayload(source, target, buff, overrideDuration, true);
         }
         
         public static AddBuffActionPayload MakePayloadPassive(GameObject source, GameObject target,
-            BuffBase buff)
+            BuffMetadata buff)
         {
             return MakePayload(source, target, buff, -1f, true);
         }

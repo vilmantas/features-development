@@ -11,14 +11,15 @@ namespace Integrations.Buffs
         [RuntimeInitializeOnLoadMethod]
         private static void Register()
         {
+            BuffMetadata metadata = new BuffMetadata(nameof(Stun), 5f);
+            BuffMetadataRegistry.Register(metadata);
+
             BuffImplementation implementation = new(nameof(Stun), OnReceive, OnRemove);
             BuffImplementationRegistry.Register(implementation);
         }
 
         private static void OnReceive(BuffActivationPayload buffActivationPayload)
         {
-            Debug.Log("Received STUN");
-
             var se = buffActivationPayload.Target.GetComponentInChildren<StatusEffectsController>();
 
             if (!se) return;
@@ -31,8 +32,6 @@ namespace Integrations.Buffs
 
         private static void OnRemove(BuffActivationPayload buffActivationPayload)
         {
-            Debug.Log("STUN Over");
-            
             var se = buffActivationPayload.Target.GetComponentInChildren<StatusEffectsController>();
 
             if (!se) return;

@@ -15,7 +15,7 @@ namespace Integrations.Items
 
         public ItemMetadata(string name, Sprite sprite, int maxStack, StatGroup equipStats,
             string mainSlot,
-            string secondarySlot, GameObject modelPrefab, List<BuffBase> buffs, ActionBase action,
+            string secondarySlot, GameObject modelPrefab, List<BuffMetadata> buffs, ActionBase action,
             List<ActionBase> inventoryContextMenuActions,
             List<ActionBase> equipmentContextMenuActions, string attackAnimation,
             StatGroup usageStats,
@@ -46,7 +46,7 @@ namespace Integrations.Items
         public GameObject ProvidedAmmo { get; }
         public StatGroup EquipStats { get; }
         public StatGroup UsageStats { get; }
-        public List<BuffBase> Buffs { get; }
+        public List<BuffMetadata> Buffs { get; }
         public ActionBase Action { get; }
         public List<ActionBase> InventoryContextMenuActions;
         public List<ActionBase> EquipmentContextMenuActions;

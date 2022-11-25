@@ -8,7 +8,7 @@ namespace Features.Buffs
     {
         public const float BUFF_INTERVAL_MIN = 0.1f;
         internal readonly ResourceContainer Counter;
-        public readonly BuffBase Metadata;
+        public readonly BuffMetadata Metadata;
 
         private Action<ActiveBuff> m_OnDurationReset;
         private Action<ActiveBuff> m_OnStackAdded;
@@ -17,11 +17,11 @@ namespace Features.Buffs
 
         public IBuffState State;
 
-        internal ActiveBuff(BuffBase metadata, GameObject source) : this(metadata, source, -1f)
+        internal ActiveBuff(BuffMetadata metadata, GameObject source) : this(metadata, source, -1f)
         {
         }
 
-        internal ActiveBuff(BuffBase metadata, GameObject source, float overrideDuration)
+        internal ActiveBuff(BuffMetadata metadata, GameObject source, float overrideDuration)
         {
             Source = source;
             OverrideDuration = overrideDuration;

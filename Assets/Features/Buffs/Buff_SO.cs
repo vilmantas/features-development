@@ -17,14 +17,14 @@ namespace Features.Buffs
 
         public Sprite Sprite;
 
-        public BuffBase Base
+        public BuffMetadata Metadata
         {
-            get => new BuffBase(Name, Duration, Sprite, MaxStacks);
+            get => new BuffMetadata(Name, Duration, Sprite, MaxStacks);
         }
 
-        public BuffBase WithTicking
+        public BuffMetadata WithTicking
         {
-            get => Base.WithInterval(Interval, ExecuteTickImmediately);
+            get => Metadata.WithInterval(Interval, ExecuteTickImmediately);
         }
 
         public BuffImplementation Implementation

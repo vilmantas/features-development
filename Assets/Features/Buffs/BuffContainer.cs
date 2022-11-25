@@ -40,12 +40,12 @@ namespace Features.Buffs
             }
         }
 
-        public void Receive(BuffBase buff, int stacks = 1)
+        public void Receive(BuffMetadata buff, int stacks = 1)
         {
             Receive(buff, null, stacks);
         }
 
-        public void Receive(BuffBase buff, GameObject source, int stacks = 1, float overrideDuration = -1f)
+        public void Receive(BuffMetadata buff, GameObject source, int stacks = 1, float overrideDuration = -1f)
         {
             var existingBuff = BuffByName(buff.Name);
 
@@ -73,7 +73,7 @@ namespace Features.Buffs
             }
         }
 
-        public void Remove(BuffBase buff, int stacks = 1)
+        public void Remove(BuffMetadata buff, int stacks = 1)
         {
             var existingBuff = BuffByName(buff.Name);
 

@@ -49,7 +49,7 @@ public class HelpersScript : MonoBehaviour
 
         if (controller == null) return;
 
-        controller.AttemptAdd(new(LifterBuff.Base, gameObject, 1) {Stacks = 1});
+        controller.AttemptAdd(new(LifterBuff.Metadata, gameObject, 1) {Stacks = 1});
     }
 
     public void CastShifter()
@@ -58,7 +58,7 @@ public class HelpersScript : MonoBehaviour
 
         if (controller == null) return;
 
-        controller.AttemptAdd(new BuffAddOptions(ShifterBuff.Base, gameObject, 1));
+        controller.AttemptAdd(new BuffAddOptions(ShifterBuff.Metadata, gameObject, 1));
     }
 
     public void CastHealingReducer()
@@ -67,7 +67,7 @@ public class HelpersScript : MonoBehaviour
 
         if (controller == null) return;
 
-        controller.AttemptAdd(new(Reducer.Base, gameObject, 1) {Stacks = 1});
+        controller.AttemptAdd(new(Reducer.Metadata, gameObject, 1) {Stacks = 1});
     }
 
     public void AttemptHeal()

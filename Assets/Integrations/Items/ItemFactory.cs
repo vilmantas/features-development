@@ -40,7 +40,7 @@ namespace Integrations.Items
                 prefab.MainSlot,
                 prefab.SecondarySlot,
                 prefab.ModelPrefab,
-                prefab.Buffs?.Select(x => x.Base.WithInterval(x.Interval, x.ExecuteTickImmediately)).ToList(),
+                prefab.Buffs?.Select(x => x.Metadata.WithInterval(x.Interval, x.ExecuteTickImmediately)).ToList(),
                 prefab.Action == null ? null : prefab.Action.Base,
                 prefab.InventoryActions.Select(x => x.Base).ToList(),
                 prefab.EquipmentActions.Select(x => x.Base).ToList(),

@@ -2,14 +2,16 @@ using UnityEngine;
 
 namespace Features.Buffs
 {
-    public class BuffBase
+    public class BuffMetadata
     {
+        public static BuffMetadata Get(string name) => BuffMetadataRegistry.Implementations[name];
+        
         public readonly float DefaultDuration;
         public readonly int MaxStack;
         public readonly string Name;
         public readonly Sprite Sprite;
 
-        public BuffBase(string name, float defaultDuration, Sprite sprite, int maxStack = 1)
+        public BuffMetadata(string name, float defaultDuration, Sprite sprite, int maxStack = 1)
         {
             Name = name;
             DefaultDuration = defaultDuration;
@@ -17,7 +19,7 @@ namespace Features.Buffs
             MaxStack = maxStack;
         }
 
-        public BuffBase(string name, float defaultDuration, int maxStack = 1)
+        public BuffMetadata(string name, float defaultDuration, int maxStack = 1)
         {
             Name = name;
             DefaultDuration = defaultDuration;
@@ -31,7 +33,7 @@ namespace Features.Buffs
 
         public bool TickImmediateExecution { get; private set; }
 
-        public BuffBase WithInterval(float tickInterval, bool executeImmediately = false)
+        public BuffMetadata WithInterval(float tickInterval, bool executeImmediately = false)
         {
             TickImmediateExecution = executeImmediately;
             TickInterval = tickInterval;

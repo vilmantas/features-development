@@ -7,20 +7,20 @@ namespace BuffContainerTests
     public class TestData
     {
         protected const int MaxStackLimit = 3;
-        protected readonly BuffBase Simple = new("Simple", 5f);
+        protected readonly BuffMetadata Simple = new("Simple", 5f);
 
-        protected readonly BuffBase Stackable = new("Stackable", 5f, MaxStackLimit);
+        protected readonly BuffMetadata Stackable = new("Stackable", 5f, MaxStackLimit);
         protected BuffContainer _sut;
 
         protected ActiveBuff LastRemoved, LastStackRemoved, LastStackAdded, LastAdded, LastReset;
 
         protected int tickCalls, addCalls, removeCalls, stackAddCalls, stackRemoveCalls, resetCallbacks;
 
-        protected BuffBase WithImmediateIntervalExecution;
+        protected BuffMetadata WithImmediateIntervalExecution;
 
-        protected BuffBase WithInterval;
+        protected BuffMetadata WithInterval;
 
-        protected BuffBase WithMinimumInterval;
+        protected BuffMetadata WithMinimumInterval;
 
 
         public void TickCallback(ActiveBuff buff)
@@ -73,11 +73,11 @@ namespace BuffContainerTests
             _sut.OnBuffTickOccurred += TickCallback;
             _sut.OnBuffDurationReset += OnDurationReset;
 
-            WithInterval = new BuffBase("Interval", 5f).WithInterval(1f);
+            WithInterval = new BuffMetadata("Interval", 5f).WithInterval(1f);
 
-            WithMinimumInterval = new BuffBase("IntervalMin", 5f).WithInterval(0.1f);
+            WithMinimumInterval = new BuffMetadata("IntervalMin", 5f).WithInterval(0.1f);
 
-            WithImmediateIntervalExecution = new BuffBase("IntervalMin", 5f).WithInterval(100f, true);
+            WithImmediateIntervalExecution = new BuffMetadata("IntervalMin", 5f).WithInterval(100f, true);
 
             stackAddCalls = stackRemoveCalls = removeCalls = addCalls = tickCalls = 0;
         }

@@ -6,12 +6,12 @@ namespace Features.Buffs
         {
         }
 
-        public BuffRemoveOptions(BuffBase buff)
+        public BuffRemoveOptions(BuffMetadata buff)
         {
             Buff = buff;
         }
 
-        public BuffBase Buff { get; set; }
+        public BuffMetadata Buff { get; set; }
         public bool RequestHandled { get; set; }
     }
 }

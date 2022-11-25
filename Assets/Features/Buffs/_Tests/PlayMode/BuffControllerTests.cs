@@ -34,7 +34,7 @@ public class BuffControllerTests
 
         SUT.OnBeforeBuffAdd += opts => callbacks++;
 
-        SUT.AttemptAdd(new BuffAddOptions(new BuffBase("", 1f), new GameObject(), 1));
+        SUT.AttemptAdd(new BuffAddOptions(new BuffMetadata("", 1f), new GameObject(), 1));
         
         Assert.AreEqual(callbacks, 1);
 
@@ -48,7 +48,7 @@ public class BuffControllerTests
 
         SUT.OnBeforeBuffRemoved += opt => callbacks++;
 
-        SUT.AttemptRemove(new BuffRemoveOptions(new BuffBase("", 1f)));
+        SUT.AttemptRemove(new BuffRemoveOptions(new BuffMetadata("", 1f)));
 
         Assert.AreEqual(callbacks, 1);
 

@@ -175,7 +175,7 @@ namespace Features.Character
                     {
                         if (!startingBuff) continue;
 
-                        m_BuffController.AttemptAdd(new(startingBuff.Base, gameObject, 1));
+                        m_BuffController.AttemptAdd(new(startingBuff.Metadata, gameObject, 1));
                     }
                 }
 
