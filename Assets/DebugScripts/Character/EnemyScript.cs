@@ -34,8 +34,12 @@ namespace DebugScripts.Character
             while (true)
             {
                 yield return new WaitForSeconds(Random.Range(2, 5));
-                
-                Character.m_CombatController.Strike();
+
+                var o = gameObject;
+                var strikePayload = new ActionActivationPayload(new ActionBase(nameof(Strike)),
+                    o, o);
+
+                Character.m_ActionsController.DoAction(strikePayload);
             }
         }
     }

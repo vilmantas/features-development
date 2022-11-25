@@ -56,10 +56,10 @@ namespace Integrations.ItemScripts
             if (data.Count != triggerCount) return;
             
             var actionController =
-                arg1.Payload.Source.GetComponentInChildren<ActionsController>();
+                arg1.Payload.Target.GetComponentInChildren<ActionsController>();
 
             var stunPayload = AddBuff.MakePayloadPassive(arg1.Payload.Source,
-                arg1.Payload.Source, BuffMetadata.Get(nameof(Stun)), duration);
+                arg1.Payload.Target, new BuffMetadata(nameof(Stun), duration), duration);
 
             actionController.DoAction(stunPayload);
 
