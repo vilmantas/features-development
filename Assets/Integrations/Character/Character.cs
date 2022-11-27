@@ -104,38 +104,7 @@ namespace Features.Character
             private CharacterCombatManager m_CombatManager;
 
             private CharacterStatusEffectsManager m_StatusEffectsManager;
-
-            private void AddManagers(Transform root)
-            {
-                var managersParent = new GameObject("managers").transform;
-
-                managersParent.parent = root;
-
-                void AddManagerComponent<T>(string componentName, ref T holder)
-                    where T : MonoBehaviour => AddComponent(managersParent, componentName, ref holder);
-
-                AddManagerComponent("actions", ref m_ActionsManager);
-                AddManagerComponent("stat_calculator", ref m_StatCalculator);
-
-                if (Inventory) AddManagerComponent("inventory", ref m_InventoryManager);
-
-                if (Equipment) AddManagerComponent("equipment", ref m_EquipmentManager);
-
-                if (Inventory || Equipment)
-                    AddManagerComponent("item_manager", ref m_ItemManager);
-
-                if (Buffs) AddManagerComponent("buffs", ref m_BuffsManager);
-
-                if (Stats) AddManagerComponent("stats", ref m_StatsManager);
-
-                if (Combat) AddManagerComponent("combat", ref m_CombatManager);
-
-                if (Conditions)
-                    AddManagerComponent("status_effects", ref m_StatusEffectsManager);
-
-                if (Overheads) AddManagerComponent("overheads", ref m_OverheadsManager);
-            }
-
+            
             private void Awake()
             {
                 var root = transform;
@@ -150,6 +119,11 @@ namespace Features.Character
 
                 AddManagers(root);
 
+                PrepareCharacter();
+            }
+
+            private void PrepareCharacter()
+            {
                 if (Inventory && StartingInventory != null && StartingInventory.Length > 0)
                 {
                     foreach (var itemSo in StartingInventory)
@@ -253,6 +227,38 @@ namespace Features.Character
                     AddSystemsComponent("overheads", ref m_OverheadsController);
                 }
             }
+            
+            private void AddManagers(Transform root)
+            {
+                var managersParent = new GameObject("managers").transform;
+
+                managersParent.parent = root;
+
+                void AddManagerComponent<T>(string componentName, ref T holder)
+                    where T : MonoBehaviour => AddComponent(managersParent, componentName, ref holder);
+
+                AddManagerComponent("actions", ref m_ActionsManager);
+                AddManagerComponent("stat_calculator", ref m_StatCalculator);
+
+                if (Inventory) AddManagerComponent("inventory", ref m_InventoryManager);
+
+                if (Equipment) AddManagerComponent("equipment", ref m_EquipmentManager);
+
+                if (Inventory || Equipment)
+                    AddManagerComponent("item_manager", ref m_ItemManager);
+
+                if (Buffs) AddManagerComponent("buffs", ref m_BuffsManager);
+
+                if (Stats) AddManagerComponent("stats", ref m_StatsManager);
+
+                if (Combat) AddManagerComponent("combat", ref m_CombatManager);
+
+                if (Conditions)
+                    AddManagerComponent("status_effects", ref m_StatusEffectsManager);
+
+                if (Overheads) AddManagerComponent("overheads", ref m_OverheadsManager);
+            }
+
 
             private void AddComponent<T>(Transform parent, string componentName, ref T holder)
                 where T : MonoBehaviour
