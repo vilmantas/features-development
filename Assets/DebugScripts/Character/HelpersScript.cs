@@ -86,17 +86,35 @@ public class HelpersScript : MonoBehaviour
         var payload = new StatusEffectAddPayload(status);
         
         controller.AddStatusEffect(payload);
-
-        StartCoroutine(RemoveCondition());
     }
 
-    private IEnumerator RemoveCondition()
+    public void RemoveCondition()
     {
-        yield return new WaitForSeconds(2f);
-        
         var controller = Target.GetComponentInChildren<StatusEffectsController>();
 
         var status = new StatusEffectMetadata(nameof(DoingActionStatusEffect));
+
+        var payload = new StatusEffectRemovePayload(status);
+        
+        controller.RemoveStatusEffect(payload);
+    }
+    
+    public void AddStun()
+    {
+        var controller = Target.GetComponentInChildren<StatusEffectsController>();
+
+        var status = new StatusEffectMetadata(nameof(StunStatusEffect));
+
+        var payload = new StatusEffectAddPayload(status);
+        
+        controller.AddStatusEffect(payload);
+    }
+
+    public void RemoveStun()
+    {
+        var controller = Target.GetComponentInChildren<StatusEffectsController>();
+
+        var status = new StatusEffectMetadata(nameof(StunStatusEffect));
 
         var payload = new StatusEffectRemovePayload(status);
         

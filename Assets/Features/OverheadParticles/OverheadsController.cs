@@ -1,6 +1,4 @@
-using System;
-using Features.Conditions;
-using Integrations.StatusEffects;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Features.OverheadParticles
@@ -11,12 +9,15 @@ namespace Features.OverheadParticles
 
         private Transform m_HeadAttachmentSpot;
 
-        public GameObject Prefab;
+        private Dictionary<string, ParticleSystem> m_PlayingParticles = new();
         
         private void Awake()
         {
             root = transform.root.gameObject;
+        }
 
+        private void Start()
+        {
             foreach (Transform VARIABLE in root.GetComponentsInChildren<Transform>())
             {
                 if (VARIABLE.name != "Attachment_Head") continue;
@@ -27,31 +28,31 @@ namespace Features.OverheadParticles
             }
         }
 
-        private void Start()
-        {
-            var effects = root.GetComponentInChildren<StatusEffectsController>();
-            
-            effects.OnAdded += OnAdded;
-            
-            effects.OnRemoved += OnRemoved;
-        }
-
-        private GameObject particle;
         
-        private void OnRemoved(StatusEffectMetadata obj)
+        public void RemoveOverhead(string effectName)
         {
-            if (!particle) return;
+            if (!m_PlayingParticles.TryGetValue(effectName, out var particles)) return;
+
+            m_PlayingParticles.Remove(effectName);
             
-            Destroy(particle);
+            Destroy(particles);
         }
 
-        private void OnAdded(StatusEffectMetadata obj)
+        public void AddOverhead(string effectName)
         {
-            if (obj.InternalName != nameof(StunStatusEffect)) return;
+            if (!OverheadsRegistry.Implementations.TryGetValue(effectName,
+                    out var stuff))
+            {
+                return;
+            }
             
-            particle = Instantiate(Prefab, m_HeadAttachmentSpot);
+            if (m_PlayingParticles.ContainsKey(effectName)) return;
+            
+            var particles = Instantiate(stuff, m_HeadAttachmentSpot);
                 
-            particle.transform.position += Vector3.up;
+            particles.transform.position += new Vector3(0, 0.5f, 0);
+            
+            m_PlayingParticles.Add(effectName, particles);
         }
     }
 }

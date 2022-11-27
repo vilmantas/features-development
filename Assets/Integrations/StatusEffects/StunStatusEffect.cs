@@ -1,6 +1,7 @@
 using Features.Actions;
 using Features.Conditions;
 using Features.Movement;
+using Features.OverheadParticles;
 using UnityEngine;
 
 namespace Integrations.StatusEffects
@@ -12,6 +13,12 @@ namespace Integrations.StatusEffects
         {
             StatusEffectImplementation implementation = new(nameof(StunStatusEffect), OnStatusEffectApplied, OnStatusEffectRemoved);
             StatusEffectImplementationRegistry.Implementations.TryAdd(implementation.Name, implementation);
+
+            var particles = Resources.Load<ParticleSystem>("Particles/StunParticles");
+
+            if (!particles) return;
+            
+            OverheadsRegistry.Register(nameof(StunStatusEffect), particles);
         }
 
         private static void OnStatusEffectApplied(StatusEffectPayload payload)

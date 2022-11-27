@@ -7,6 +7,7 @@ using Features.Equipment;
 using Features.Health;
 using Features.Inventory;
 using Features.Movement;
+using Features.OverheadParticles;
 using Features.Stats.Base;
 using Integrations.Items;
 using UnityEngine;
@@ -44,6 +45,8 @@ namespace Features.Character
             public bool Combat;
 
             public bool Conditions;
+
+            public bool Overheads;
             
             [Range(1, 100)] public int MaxHealth = 20;
 
@@ -80,6 +83,10 @@ namespace Features.Character
             [HideInInspector] public CharacterStatCalculator m_CharacterStatCalculator;
 
             [HideInInspector] public CharacterItemManager m_CharacterItemManager;
+
+            [HideInInspector] public CharacterOverheadsManager m_CharacterOverheadsManager;
+
+            [HideInInspector] public OverheadsController m_OverheadsController;
 
             private CharacterActionsManager m_ActionsManager;
 
@@ -140,6 +147,11 @@ namespace Features.Character
                 if (Conditions)
                 {
                     AddComponent(managersParent, "status_effects", ref m_CharacterStatusEffectsManager);
+                }
+
+                if (Overheads)
+                {
+                    AddComponent(managersParent, "overheads", ref m_CharacterOverheadsManager);
                 }
             }
 
@@ -248,6 +260,11 @@ namespace Features.Character
                 if (Conditions)
                 {
                     AddComponent(systemsParent, "conditions", ref m_StatusEffectsController);
+                }
+
+                if (Overheads)
+                {
+                    AddComponent(systemsParent, "overheads", ref m_OverheadsController);
                 }
             }
 
