@@ -18,6 +18,9 @@ namespace Features.Conditions
 
         public List<ActiveStatusEffect> StatusEffects = new();
 
+        public bool IsAffectedBy(string effect) =>
+            StatusEffects.Any(x => x.Metadata.InternalName.Equals(effect));
+
         public void AddStatusEffect(StatusEffectAddPayload payload)
         {
             if (!StatusEffectImplementationRegistry.Implementations.TryGetValue(payload.Metadata.InternalName,

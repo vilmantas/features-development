@@ -1,24 +1,19 @@
 using Features.Actions;
 using Features.Conditions;
 using Features.Movement;
-using Features.OverheadParticles;
 using UnityEngine;
 
 namespace Integrations.StatusEffects
 {
-    public static class StunStatusEffect
+    public static class DeathStatusEffect
     {
         [RuntimeInitializeOnLoadMethod]
         private static void Register()
         {
-            StatusEffectImplementation implementation = new(nameof(StunStatusEffect), OnStatusEffectApplied, OnStatusEffectRemoved);
-            StatusEffectImplementationRegistry.Implementations.TryAdd(implementation.Name, implementation);
-
-            var particles = Resources.Load<ParticleSystem>("Particles/StunParticles");
-
-            if (!particles) return;
-            
-            OverheadsRegistry.Register(nameof(StunStatusEffect), particles);
+            StatusEffectImplementation implementation = new(nameof(DeathStatusEffect),
+                OnStatusEffectApplied, OnStatusEffectRemoved);
+            StatusEffectImplementationRegistry.Implementations.TryAdd(implementation.Name,
+                implementation);
         }
 
         private static void OnStatusEffectApplied(StatusEffectPayload payload)
@@ -29,8 +24,8 @@ namespace Integrations.StatusEffects
             
             movementController.Stop();
 
-            StatusEffectPresets.DisableActivity(actionsController,
-                nameof(StunStatusEffect));
+            StatusEffectPresets.PreventAllActions(actionsController,
+                nameof(DeathStatusEffect));
         }
 
         private static void OnStatusEffectRemoved(StatusEffectPayload payload)
@@ -38,7 +33,7 @@ namespace Integrations.StatusEffects
             var actionsController = payload.Target.GetComponentInChildren<ActionsController>();
 
             StatusEffectPresets.RemoveConditionHandler(actionsController,
-                nameof(StunStatusEffect));
+                nameof(DeathStatusEffect));
         }
     }
 }

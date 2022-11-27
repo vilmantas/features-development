@@ -41,7 +41,7 @@ namespace _SampleGames.Survivr
 
         protected override void OnInitialize(int health, CharacterController target)
         {
-            HealthController.OnDeath += HandleDeath;
+            HealthController.OnDepleted += HandleDeath;
 
             HealthController.OnDamage += OnDamage;
             

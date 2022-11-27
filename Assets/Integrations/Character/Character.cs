@@ -11,6 +11,7 @@ using Features.Movement;
 using Features.OverheadParticles;
 using Features.Stats.Base;
 using Integrations.Items;
+using UnityEditor.U2D;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -104,7 +105,9 @@ namespace Features.Character
             private CharacterCombatManager m_CombatManager;
 
             private CharacterStatusEffectsManager m_StatusEffectsManager;
-            
+
+            private CharacterExpirationManager m_ExpirationManager;
+
             private void Awake()
             {
                 var root = transform;
@@ -122,46 +125,6 @@ namespace Features.Character
                 PrepareCharacter();
             }
 
-            private void PrepareCharacter()
-            {
-                if (Inventory && StartingInventory != null && StartingInventory.Length > 0)
-                {
-                    foreach (var itemSo in StartingInventory)
-                    {
-                        if (!itemSo) continue;
-
-                        var itemInstance = itemSo.MakeInstanceWithCount();
-
-                        m_InventoryController.HandleRequest(
-                            ChangeRequestFactory.Add(itemInstance.StorageData));
-                    }
-                }
-
-                if (Buffs && StartingBuffs != null && StartingBuffs.Length > 0)
-                {
-                    foreach (var startingBuff in StartingBuffs)
-                    {
-                        if (!startingBuff) continue;
-
-                        m_BuffController.AttemptAdd(new(startingBuff.Metadata, gameObject, 1));
-                    }
-                }
-
-                if (Equipment && StartingEquipment != null && StartingEquipment.Length > 0)
-                {
-                    foreach (var equipmentItem in StartingEquipment)
-                    {
-                        if (equipmentItem == null || equipmentItem.Item == null) continue;
-
-                        var instance = equipmentItem.Item.MakeInstanceWithCount();
-
-                        var request = new EquipRequest()
-                            {Item = instance, Slot = equipmentItem.Slot};
-
-                        m_EquipmentController.HandleEquipRequest(request);
-                    }
-                }
-            }
 
             private void AddSystems(Transform root)
             {
@@ -239,6 +202,7 @@ namespace Features.Character
 
                 AddManagerComponent("actions", ref m_ActionsManager);
                 AddManagerComponent("stat_calculator", ref m_StatCalculator);
+                AddManagerComponent("expiration", ref m_ExpirationManager);
 
                 if (Inventory) AddManagerComponent("inventory", ref m_InventoryManager);
 
@@ -259,6 +223,46 @@ namespace Features.Character
                 if (Overheads) AddManagerComponent("overheads", ref m_OverheadsManager);
             }
 
+            private void PrepareCharacter()
+            {
+                if (Inventory && StartingInventory != null && StartingInventory.Length > 0)
+                {
+                    foreach (var itemSo in StartingInventory)
+                    {
+                        if (!itemSo) continue;
+
+                        var itemInstance = itemSo.MakeInstanceWithCount();
+
+                        m_InventoryController.HandleRequest(
+                            ChangeRequestFactory.Add(itemInstance.StorageData));
+                    }
+                }
+
+                if (Buffs && StartingBuffs != null && StartingBuffs.Length > 0)
+                {
+                    foreach (var startingBuff in StartingBuffs)
+                    {
+                        if (!startingBuff) continue;
+
+                        m_BuffController.AttemptAdd(new(startingBuff.Metadata, gameObject, 1));
+                    }
+                }
+
+                if (Equipment && StartingEquipment != null && StartingEquipment.Length > 0)
+                {
+                    foreach (var equipmentItem in StartingEquipment)
+                    {
+                        if (equipmentItem == null || equipmentItem.Item == null) continue;
+
+                        var instance = equipmentItem.Item.MakeInstanceWithCount();
+
+                        var request = new EquipRequest()
+                            {Item = instance, Slot = equipmentItem.Slot};
+
+                        m_EquipmentController.HandleEquipRequest(request);
+                    }
+                }
+            }
 
             private void AddComponent<T>(Transform parent, string componentName, ref T holder)
                 where T : MonoBehaviour

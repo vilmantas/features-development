@@ -25,6 +25,8 @@ namespace Features.Character
 
         public Action OnProjectileTrigger;
 
+        public Action OnDeath;
+        
         private void Start()
         {
             m_NavMeshAgent = GetComponentInChildren<NavMeshAgent>();

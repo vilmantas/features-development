@@ -8,6 +8,20 @@ namespace Integrations.StatusEffects
     {
         private static Dictionary<string, Delegate> Handlers = new();
 
+        public static void PreventAllActions(ActionsController actionsController, string condition)
+        {
+            Action<ActionActivation> handler = payload =>
+                BlockAllActions(payload, actionsController);
+
+            var dictionaryKey = GetName(actionsController) + condition;
+
+            if (Handlers.ContainsKey(dictionaryKey)) return;
+            
+            Handlers.Add(GetName(actionsController) + condition, handler);
+
+            actionsController.OnBeforeAction += handler;
+        }
+
         public static void DisableActivity(ActionsController actionsController, string condition)
         {
             Action<ActionActivation> handler = payload => BlockAction(payload, actionsController);
@@ -21,7 +35,7 @@ namespace Integrations.StatusEffects
             actionsController.OnBeforeAction += handler;
         }
         
-        public static void EnableActivity(ActionsController actionsController, string condition)
+        public static void RemoveConditionHandler(ActionsController actionsController, string condition)
         {
             var dictionaryKey = actionsController.transform.root.name + condition;
 
@@ -47,6 +61,11 @@ namespace Integrations.StatusEffects
             }
         }
 
+        private static void BlockAllActions(ActionActivation obj, ActionsController actionsController)
+        {
+            obj.PreventDefault = true;
+        }
+        
         private static string GetName(ActionsController controller) =>
             controller.transform.root.name;
     }

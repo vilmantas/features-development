@@ -30,7 +30,7 @@ namespace Integrations.StatusEffects
         {
             var actionsController = payload.Target.GetComponentInChildren<ActionsController>();
 
-            StatusEffectPresets.EnableActivity(actionsController,
+            StatusEffectPresets.RemoveConditionHandler(actionsController,
                 nameof(DoingActionStatusEffect));
         }
     }
