@@ -1,4 +1,5 @@
 using System;
+using Codice.Client.BaseCommands;
 using Features.Actions;
 using Features.Buffs;
 using Features.Combat;
@@ -31,7 +32,7 @@ namespace Features.Character
             [HideInInspector] public CharacterEvents Events;
 
             [HideInInspector] public Rigidbody Rigidbody;
-            
+
             public bool Buffs;
 
             public bool Inventory;
@@ -47,7 +48,7 @@ namespace Features.Character
             public bool Conditions;
 
             public bool Overheads;
-            
+
             [Range(1, 100)] public int MaxHealth = 20;
 
             [Range(1, 100)] public int CurrentHealth = 10;
@@ -80,11 +81,11 @@ namespace Features.Character
 
             [HideInInspector] public MovementController m_MovementController;
 
-            [HideInInspector] public CharacterStatCalculator m_CharacterStatCalculator;
+            [HideInInspector] public CharacterStatCalculator m_StatCalculator;
 
-            [HideInInspector] public CharacterItemManager m_CharacterItemManager;
+            [HideInInspector] public CharacterItemManager m_ItemManager;
 
-            [HideInInspector] public CharacterOverheadsManager m_CharacterOverheadsManager;
+            [HideInInspector] public CharacterOverheadsManager m_OverheadsManager;
 
             [HideInInspector] public OverheadsController m_OverheadsController;
 
@@ -102,57 +103,37 @@ namespace Features.Character
 
             private CharacterCombatManager m_CombatManager;
 
-            private CharacterStatusEffectsManager m_CharacterStatusEffectsManager;
+            private CharacterStatusEffectsManager m_StatusEffectsManager;
 
             private void AddManagers(Transform root)
             {
                 var managersParent = new GameObject("managers").transform;
 
                 managersParent.parent = root;
-                
-                AddComponent(managersParent, "actions", ref m_ActionsManager);
-                AddComponent(managersParent, "stat_calculator", ref m_CharacterStatCalculator);
-                
 
-                if (Inventory)
-                {
-                    AddComponent(managersParent, "inventory", ref m_InventoryManager);
-                }
+                void AddManagerComponent<T>(string componentName, ref T holder)
+                    where T : MonoBehaviour => AddComponent(managersParent, componentName, ref holder);
 
-                if (Equipment)
-                {
-                    AddComponent(managersParent, "equipment", ref m_EquipmentManager);
-                }
+                AddManagerComponent("actions", ref m_ActionsManager);
+                AddManagerComponent("stat_calculator", ref m_StatCalculator);
+
+                if (Inventory) AddManagerComponent("inventory", ref m_InventoryManager);
+
+                if (Equipment) AddManagerComponent("equipment", ref m_EquipmentManager);
 
                 if (Inventory || Equipment)
-                {
-                    AddComponent(managersParent, "item_manager", ref m_CharacterItemManager);
-                }
+                    AddManagerComponent("item_manager", ref m_ItemManager);
 
-                if (Buffs)
-                {
-                    AddComponent(managersParent, "buffs", ref m_BuffsManager);
-                }
+                if (Buffs) AddManagerComponent("buffs", ref m_BuffsManager);
 
-                if (Stats)
-                {
-                    AddComponent(managersParent, "stats", ref m_StatsManager);
-                }
+                if (Stats) AddManagerComponent("stats", ref m_StatsManager);
 
-                if (Combat)
-                {
-                    AddComponent(managersParent, "combat", ref m_CombatManager);
-                }
+                if (Combat) AddManagerComponent("combat", ref m_CombatManager);
 
                 if (Conditions)
-                {
-                    AddComponent(managersParent, "status_effects", ref m_CharacterStatusEffectsManager);
-                }
+                    AddManagerComponent("status_effects", ref m_StatusEffectsManager);
 
-                if (Overheads)
-                {
-                    AddComponent(managersParent, "overheads", ref m_CharacterOverheadsManager);
-                }
+                if (Overheads) AddManagerComponent("overheads", ref m_OverheadsManager);
             }
 
             private void Awake()
@@ -177,7 +158,8 @@ namespace Features.Character
 
                         var itemInstance = itemSo.MakeInstanceWithCount();
 
-                        m_InventoryController.HandleRequest(ChangeRequestFactory.Add(itemInstance.StorageData));
+                        m_InventoryController.HandleRequest(
+                            ChangeRequestFactory.Add(itemInstance.StorageData));
                     }
                 }
 
@@ -199,7 +181,8 @@ namespace Features.Character
 
                         var instance = equipmentItem.Item.MakeInstanceWithCount();
 
-                        var request = new EquipRequest() {Item = instance, Slot = equipmentItem.Slot};
+                        var request = new EquipRequest()
+                            {Item = instance, Slot = equipmentItem.Slot};
 
                         m_EquipmentController.HandleEquipRequest(request);
                     }
@@ -212,32 +195,35 @@ namespace Features.Character
 
                 systemsParent.parent = root;
 
-                AddComponent(systemsParent, "actions", ref m_ActionsController);
-                
-                AddComponent(systemsParent, "movement", ref m_MovementController);
+                void AddSystemsComponent<T>(string componentName, ref T holder)
+                    where T : MonoBehaviour =>
+                    AddComponent(systemsParent, componentName, ref holder);
+
+                AddSystemsComponent("actions", ref m_ActionsController);
+                AddSystemsComponent("movement", ref m_MovementController);
 
                 if (Inventory)
                 {
-                    AddComponent(systemsParent, "inventory", ref m_InventoryController);
+                    AddSystemsComponent("inventory", ref m_InventoryController);
 
                     m_InventoryController.Initialize(InventorySize);
                 }
 
                 if (Equipment)
                 {
-                    AddComponent(systemsParent, "equipment", ref m_EquipmentController);
+                    AddSystemsComponent("equipment", ref m_EquipmentController);
 
                     m_EquipmentController.Initialize(EquipmentSlots);
                 }
 
                 if (Buffs)
                 {
-                    AddComponent(systemsParent, "buffs", ref m_BuffController);
+                    AddSystemsComponent("buffs", ref m_BuffController);
                 }
 
                 if (Stats)
                 {
-                    AddComponent(systemsParent, "stats", ref m_StatsController);
+                    AddSystemsComponent("stats", ref m_StatsController);
 
                     if (BaseStats)
                     {
@@ -247,28 +233,29 @@ namespace Features.Character
 
                 if (Health)
                 {
-                    AddComponent(systemsParent, "health", ref m_HealthController);
+                    AddSystemsComponent("health", ref m_HealthController);
 
                     m_HealthController.Initialize(CurrentHealth, MaxHealth);
                 }
 
                 if (Combat)
                 {
-                    AddComponent(systemsParent, "combat", ref m_CombatController);
+                    AddSystemsComponent("combat", ref m_CombatController);
                 }
 
                 if (Conditions)
                 {
-                    AddComponent(systemsParent, "conditions", ref m_StatusEffectsController);
+                    AddSystemsComponent("conditions", ref m_StatusEffectsController);
                 }
 
                 if (Overheads)
                 {
-                    AddComponent(systemsParent, "overheads", ref m_OverheadsController);
+                    AddSystemsComponent("overheads", ref m_OverheadsController);
                 }
             }
 
-            private void AddComponent<T>(Transform parent, string componentName, ref T holder) where T : MonoBehaviour
+            private void AddComponent<T>(Transform parent, string componentName, ref T holder)
+                where T : MonoBehaviour
             {
                 var i = new GameObject(componentName);
 

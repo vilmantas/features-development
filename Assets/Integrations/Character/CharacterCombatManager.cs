@@ -109,7 +109,7 @@ namespace Features.Character
             if (!DamageEnabled) return;
 
             var damagePayload = Damage.MakePayload(root.gameObject, target.transform.root.gameObject,
-                m_Character.m_CharacterStatCalculator.GetMainDamage());
+                m_Character.m_StatCalculator.GetMainDamage());
 
             OnBeforeDoDamage?.Invoke(damagePayload);
 
