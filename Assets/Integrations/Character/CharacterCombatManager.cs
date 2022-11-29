@@ -37,8 +37,6 @@ namespace Features.Character
             m_EquipmentController = root.GetComponentInChildren<EquipmentController>();
 
             m_CombatController = root.GetComponentInChildren<CombatController>();
-            
-            m_CharacterStatCalculator = root.GetComponentInChildren<CharacterStatCalculator>();
 
             m_EquipmentController.OnHitboxCollided += OnHitboxCollided;
 
