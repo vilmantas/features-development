@@ -26,8 +26,6 @@ namespace Features.Character
 
         private CharacterEvents m_Events;
 
-        private CharacterStatCalculator m_CharacterStatCalculator;
-
         private bool DamageEnabled;
 
         private void Awake()
@@ -51,12 +49,23 @@ namespace Features.Character
             m_Events.OnStrikeEnd += () => DamageEnabled = false;
 
             m_EquipmentController.OnItemEquipped += OnItemEquipped;
+            
+            m_EquipmentController.OnItemUnequipped += OnItemUnequipped;
 
             m_CombatController.OnProjectileCollided += OnProjectileCollided;
 
             m_Character.Events.OnProjectileTrigger += OnProjectileTrigger;
             
             m_CombatController.OnStrike += OnAttemptStrike;
+        }
+
+        private void OnItemUnequipped(EquipResult obj)
+        {
+            if (obj.EquippedItem is not ItemInstance item) return;
+
+            if (!item.Metadata.ProvidedAmmo) return;
+
+            m_CombatController.RemoveAmmo(item.Metadata.RequiredAmmo);
         }
 
         private void OnProjectileTrigger()

@@ -19,6 +19,8 @@ namespace Features.Combat
         public Action OnStrike;
         
         public Action<bool> OnBlockingStatusChanged;
+        
+        public bool IsBlocking { get; private set; }
 
         public IReadOnlyDictionary<string, ProjectileController> AmmoData => m_AmmoData;
 
@@ -50,14 +52,15 @@ namespace Features.Combat
 
         public void SetBlocking(bool status)
         {
-            if (status)
-            {
-                var payload = new CombatActionPayload();
-            
-                OnBeforeBlock?.Invoke(payload);
+            if (IsBlocking == status) return;
 
-                if (payload.PreventDefault) return;
-            }
+            var payload = new CombatActionPayload();
+            
+            OnBeforeBlock?.Invoke(payload);
+
+            if (payload.PreventDefault) return;
+
+            IsBlocking = status;
             
             OnBlockingStatusChanged?.Invoke(status);
         }
