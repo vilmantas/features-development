@@ -1,6 +1,7 @@
 using Features.Actions;
 using Features.Conditions;
 using Features.Movement;
+using Features.OverheadParticles;
 using UnityEngine;
 
 namespace Integrations.StatusEffects
@@ -14,6 +15,13 @@ namespace Integrations.StatusEffects
                 OnStatusEffectApplied, OnStatusEffectRemoved);
             StatusEffectImplementationRegistry.Implementations.TryAdd(implementation.Name,
                 implementation);
+            
+                        
+            var particles = Resources.Load<ParticleSystem>("Particles/Death");
+
+            if (!particles) return;
+            
+            OverheadsRegistry.Register(nameof(DeathStatusEffect), particles);
         }
 
         private static void OnStatusEffectApplied(StatusEffectPayload payload)

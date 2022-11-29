@@ -58,10 +58,10 @@ namespace Integrations.ItemScripts
             var actionController =
                 arg1.Payload.Target.GetComponentInChildren<ActionsController>();
 
-            var stunPayload = AddBuff.MakePayloadPassive(arg1.Payload.Source,
+            var stunPayload = AddBuff.MakePayload(arg1.Payload.Source,
                 arg1.Payload.Target, new BuffMetadata(nameof(Stun), duration), duration);
 
-            actionController.DoAction(stunPayload);
+            actionController.DoPassiveAction(stunPayload);
 
             data.Reset();
         }

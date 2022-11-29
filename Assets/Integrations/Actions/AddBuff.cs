@@ -12,33 +12,16 @@ namespace Integrations.Actions
     {
 
         public static AddBuffActionPayload MakePayload(GameObject source, GameObject target,
-            BuffMetadata buff, float overrideDuration, bool isPassive = false)
+            BuffMetadata buff, float overrideDuration)
         {
-            var dataBag = new Dictionary<string, object>()
-            {
-                {"passive", isPassive}
-            };
-            
             var basePayload =
-                new ActionActivationPayload(new ActionBase(nameof(AddBuff)), source, target, dataBag);
+                new ActionActivationPayload(new ActionBase(nameof(AddBuff)), source, target);
 
             var addOptions = new BuffAddOptions(buff, source, 1) {OverrideDuration = overrideDuration};
             
             return new AddBuffActionPayload(basePayload, addOptions);
         }
-        
-        public static AddBuffActionPayload MakePayloadPassive(GameObject source, GameObject target,
-            BuffMetadata buff, float overrideDuration)
-        {
-            return MakePayload(source, target, buff, overrideDuration, true);
-        }
-        
-        public static AddBuffActionPayload MakePayloadPassive(GameObject source, GameObject target,
-            BuffMetadata buff)
-        {
-            return MakePayload(source, target, buff, -1f, true);
-        }
-        
+
         [RuntimeInitializeOnLoadMethod]
         private static void Register()
         {

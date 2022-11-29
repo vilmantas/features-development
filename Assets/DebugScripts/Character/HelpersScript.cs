@@ -120,4 +120,15 @@ public class HelpersScript : MonoBehaviour
         
         controller.RemoveStatusEffect(payload);
     }
+    
+    public void MakeDead()
+    {
+        var controller = Target.GetComponentInChildren<StatusEffectsController>();
+
+        var status = new StatusEffectMetadata(nameof(DeathStatusEffect));
+
+        var payload = new StatusEffectAddPayload(status);
+        
+        controller.AddStatusEffect(payload);
+    }
 }

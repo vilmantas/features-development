@@ -18,7 +18,7 @@ namespace Features.Actions
             Action = action;
             Source = source;
             Target = target;
-            Data = data;
+            Data = data ?? new Dictionary<string, object>();
         }
     }
 }

@@ -20,8 +20,6 @@ namespace Features.Character
 
         private StatusEffectsController m_StatusEffectsController;
         
-        public bool IsExpired { get; private set; }
-        
         private void Awake()
         {
             Root = transform.root.gameObject;
@@ -44,11 +42,12 @@ namespace Features.Character
         
         private void AnnounceExpiration()
         {
-            if (m_StatusEffectsController.IsAffectedBy(nameof(DeathStatusEffect))) return;
+            if (m_StatusEffectsController &&
+                m_StatusEffectsController.IsAffectedBy(nameof(DeathStatusEffect))) return;
 
             var payload = Die.MakePayload(Root, Root, "Health at zero.");
 
-            m_ActionsController.DoAction(payload);
+            m_ActionsController.DoPassiveAction(payload);
             
             m_CharacterEvents.OnDeath?.Invoke();
         }

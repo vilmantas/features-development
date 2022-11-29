@@ -23,5 +23,19 @@ namespace Features.Actions
 
             return result;
         }
+        
+        public ActionActivationResult DoPassiveAction(ActionActivationPayload payload)
+        {
+            if (payload.Data.ContainsKey("passive"))
+            {
+                payload.Data["passive"] = true;
+            }
+            else
+            {
+                payload.Data.Add("passive", true);
+            }
+
+            return DoAction(payload);
+        }
     }
 }

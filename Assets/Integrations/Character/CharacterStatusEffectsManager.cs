@@ -10,8 +10,6 @@ namespace Features.Character
     {
         private StatusEffectsController m_StatusEffectsController;
 
-        private CombatController m_CombatController;
-
         private CharacterEvents m_Events;
 
         private Transform root;
@@ -19,8 +17,6 @@ namespace Features.Character
         private void Awake()
         {
             root = transform.root;
-
-            m_CombatController = root.GetComponentInChildren<CombatController>();
             
             m_Events = root.GetComponentInChildren<CharacterEvents>();
             

@@ -14,7 +14,7 @@ namespace Integrations.StatusEffects
             StatusEffectImplementation implementation = new(nameof(StunStatusEffect), OnStatusEffectApplied, OnStatusEffectRemoved);
             StatusEffectImplementationRegistry.Implementations.TryAdd(implementation.Name, implementation);
 
-            var particles = Resources.Load<ParticleSystem>("Particles/StunParticles");
+            var particles = Resources.Load<ParticleSystem>("Particles/Stun");
 
             if (!particles) return;
             
