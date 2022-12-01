@@ -6,10 +6,19 @@ namespace Features.Skills
 
         public readonly string DisplayName;
 
-        public SkillMetadata(string internalName, string displayName)
+        public readonly float CastTime;
+
+        public readonly float Cooldown;
+        
+        public SkillMetadata(string internalName, string displayName, float castTime, float cooldown)
         {
             DisplayName = displayName;
+            CastTime = castTime;
+            Cooldown = cooldown;
             InternalName = internalName;
         }
+
+        public SkillInstance MakeInstance => new SkillInstance(this,
+            SkillImplementationRegistry.Implementations[InternalName]);
     }
 }
