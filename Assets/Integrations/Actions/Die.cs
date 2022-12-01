@@ -35,6 +35,8 @@ namespace Integrations.Actions
             Debug.Log("Died because" + " " + deathActionPayload.Data.Cause);
 
             var effects =  payload.Target.GetComponentInChildren<StatusEffectsController>();
+
+            if (!effects) return;
             
             var status = new StatusEffectMetadata(nameof(DeathStatusEffect));
 
