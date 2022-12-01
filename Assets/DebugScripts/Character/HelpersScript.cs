@@ -2,6 +2,7 @@ using System.Collections;
 using Features.Actions;
 using Features.Buffs;
 using Features.Conditions;
+using Features.Skills;
 using Integrations.Actions;
 using Integrations.Items;
 using Integrations.StatusEffects;
@@ -130,5 +131,23 @@ public class HelpersScript : MonoBehaviour
         var payload = new StatusEffectAddPayload(status);
         
         controller.AddStatusEffect(payload);
+    }
+    
+    public void GiveRandomSkill()
+    {
+        var n = Random.value.ToString("#.##");
+
+        var impl = new SkillImplementation()
+        {
+            OnReceive = x => Debug.Log(x.Source.name + " " + n)
+        };
+        
+        SkillImplementationRegistry.Register(n, impl);
+
+        var m = new SkillMetadata(n, n, 1f, 1f);
+            
+        var controller = Target.GetComponentInChildren<SkillsController>();
+        
+        controller.Add(m);
     }
 }

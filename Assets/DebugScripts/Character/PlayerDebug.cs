@@ -11,6 +11,8 @@ using Features.Health;
 using Features.Inventory;
 using Features.Inventory.UI;
 using Features.Movement;
+using Features.Skills;
+using Features.Skills.UI;
 using Features.Stats.Base;
 using Integrations.Actions;
 using Integrations.Items;
@@ -18,6 +20,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.EventSystems;
 using Utilities.ItemsContainer;
+using Random = UnityEngine.Random;
 
 namespace DebugScripts.Character
 {
@@ -40,6 +43,8 @@ namespace DebugScripts.Character
         public HealthUIController HealthUI;
 
         public StatusEffectsUIController StatusEffectsUI;
+
+        public SkillsUIController SkillsUI;
 
         public GameObject RootGameObject;
         
@@ -80,6 +85,11 @@ namespace DebugScripts.Character
             if (StatusEffectsUI && PlayerInstance.Conditions)
             {
                 StatusEffectsUI.Initialize(PlayerInstance.m_StatusEffectsController);
+            }
+
+            if (SkillsUI && PlayerInstance.Skills)
+            {
+                SkillsUI.Initialize(PlayerInstance.m_SkillsController);
             }
         }
 

@@ -9,6 +9,7 @@ using Features.Health;
 using Features.Inventory;
 using Features.Movement;
 using Features.OverheadParticles;
+using Features.Skills;
 using Features.Stats.Base;
 using Integrations.Items;
 using UnityEditor.U2D;
@@ -50,6 +51,8 @@ namespace Features.Character
 
             public bool Overheads;
 
+            public bool Skills;
+
             [Range(1, 100)] public int MaxHealth = 20;
 
             [Range(1, 100)] public int CurrentHealth = 10;
@@ -90,6 +93,8 @@ namespace Features.Character
 
             [HideInInspector] public OverheadsController m_OverheadsController;
 
+            [HideInInspector] public SkillsController m_SkillsController;
+
             private CharacterActionsManager m_ActionsManager;
 
             private CharacterBuffsManager m_BuffsManager;
@@ -107,6 +112,8 @@ namespace Features.Character
             private CharacterStatusEffectsManager m_StatusEffectsManager;
 
             private CharacterExpirationManager m_ExpirationManager;
+
+            private CharacterSkillsManager m_SkillsManager;
 
             private void Awake()
             {
@@ -142,15 +149,11 @@ namespace Features.Character
                 if (Inventory)
                 {
                     AddSystemsComponent("inventory", ref m_InventoryController);
-
-                    m_InventoryController.Initialize(InventorySize);
                 }
 
                 if (Equipment)
                 {
                     AddSystemsComponent("equipment", ref m_EquipmentController);
-
-                    m_EquipmentController.Initialize(EquipmentSlots);
                 }
 
                 if (Buffs)
@@ -161,18 +164,11 @@ namespace Features.Character
                 if (Stats)
                 {
                     AddSystemsComponent("stats", ref m_StatsController);
-
-                    if (BaseStats)
-                    {
-                        m_StatsController.Initialize(BaseStats.Stats);
-                    }
                 }
 
                 if (Health)
                 {
                     AddSystemsComponent("health", ref m_HealthController);
-
-                    m_HealthController.Initialize(CurrentHealth, MaxHealth);
                 }
 
                 if (Combat)
@@ -188,6 +184,11 @@ namespace Features.Character
                 if (Overheads)
                 {
                     AddSystemsComponent("overheads", ref m_OverheadsController);
+                }
+
+                if (Skills)
+                {
+                    AddSystemsComponent("skills", ref m_SkillsController);
                 }
             }
             
@@ -221,20 +222,37 @@ namespace Features.Character
                     AddManagerComponent("status_effects", ref m_StatusEffectsManager);
 
                 if (Overheads) AddManagerComponent("overheads", ref m_OverheadsManager);
+                
+                if (Skills) AddManagerComponent("skills", ref m_SkillsManager);
             }
 
             private void PrepareCharacter()
             {
-                if (Inventory && StartingInventory != null && StartingInventory.Length > 0)
+                if (Health)
                 {
-                    foreach (var itemSo in StartingInventory)
+                    m_HealthController.Initialize(CurrentHealth, MaxHealth);
+                }
+
+                if (Stats && BaseStats)
+                {
+                    m_StatsController.Initialize(BaseStats.Stats);
+                }
+
+                if (Inventory)
+                {
+                    m_InventoryController.Initialize(InventorySize);
+
+                    if (StartingInventory != null && StartingInventory.Length > 0)
                     {
-                        if (!itemSo) continue;
+                        foreach (var itemSo in StartingInventory)
+                        {
+                            if (!itemSo) continue;
 
-                        var itemInstance = itemSo.MakeInstanceWithCount();
+                            var itemInstance = itemSo.MakeInstanceWithCount();
 
-                        m_InventoryController.HandleRequest(
-                            ChangeRequestFactory.Add(itemInstance.StorageData));
+                            m_InventoryController.HandleRequest(
+                                ChangeRequestFactory.Add(itemInstance.StorageData));
+                        } 
                     }
                 }
 
@@ -248,18 +266,23 @@ namespace Features.Character
                     }
                 }
 
-                if (Equipment && StartingEquipment != null && StartingEquipment.Length > 0)
+                if (Equipment)
                 {
-                    foreach (var equipmentItem in StartingEquipment)
+                    m_EquipmentController.Initialize(EquipmentSlots);
+
+                    if (StartingEquipment != null && StartingEquipment.Length > 0)
                     {
-                        if (equipmentItem == null || equipmentItem.Item == null) continue;
+                        foreach (var equipmentItem in StartingEquipment)
+                        {
+                            if (equipmentItem == null || equipmentItem.Item == null) continue;
 
-                        var instance = equipmentItem.Item.MakeInstanceWithCount();
+                            var instance = equipmentItem.Item.MakeInstanceWithCount();
 
-                        var request = new EquipRequest()
-                            {Item = instance, Slot = equipmentItem.Slot};
+                            var request = new EquipRequest()
+                                {Item = instance, Slot = equipmentItem.Slot};
 
-                        m_EquipmentController.HandleEquipRequest(request);
+                            m_EquipmentController.HandleEquipRequest(request);
+                        }
                     }
                 }
             }
