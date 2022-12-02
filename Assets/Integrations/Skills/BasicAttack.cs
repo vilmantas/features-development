@@ -1,4 +1,5 @@
 using Features.Combat;
+using Features.Movement;
 using Features.Skills;
 using UnityEngine;
 
@@ -16,6 +17,10 @@ namespace Integrations.Skills
         private static void OnActivation(SkillActivationContext context)
         {
             Debug.Log("Doing basic attack");
+            
+            var movementController = context.Source.GetComponentInChildren<MovementController>();
+            
+            movementController.Stop();
             
             var combatController = context.Source.GetComponentInChildren<CombatController>();
 

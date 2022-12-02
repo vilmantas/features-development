@@ -1,5 +1,6 @@
 using Features.Actions;
 using Features.Combat;
+using Features.Movement;
 using UnityEngine;
 
 namespace Integrations.Actions
@@ -18,6 +19,10 @@ namespace Integrations.Actions
             var combatController = payload.Target.GetComponentInChildren<CombatController>();
 
             combatController.Strike();
+
+            var movementController = payload.Target.GetComponentInChildren<MovementController>();
+            
+            movementController.Stop();
         }
     }
 }

@@ -30,6 +30,8 @@ namespace Features.Skills
             var skillInstance =
                 m_Skills.FirstOrDefault(x => x.Metadata.InternalName.Equals(internalName));
 
+            Debug.Log("Skill " + internalName + " missing.");
+            
             if (skillInstance == null) return;
             
             skillInstance.Implementation.OnActivation.Invoke(new SkillActivationContext(transform.root.gameObject));

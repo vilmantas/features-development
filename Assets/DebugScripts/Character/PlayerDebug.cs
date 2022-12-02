@@ -16,6 +16,7 @@ using Features.Skills.UI;
 using Features.Stats.Base;
 using Integrations.Actions;
 using Integrations.Items;
+using Integrations.Skills;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.EventSystems;
@@ -127,14 +128,15 @@ namespace DebugScripts.Character
             
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                var movePayload = Move.MakePayload(RootGameObject, RootGameObject,
-                    new MoveActionData(transform.position));
-
-                var strikePayload = new ActionActivationPayload(new ActionBase(nameof(Strike)),
+                var strikePayload = new ActionActivationPayload(new ActionBase(nameof(ActivateSkill)),
                     RootGameObject, RootGameObject);
+
+                var skillPayload = new ActivateSkill.ActivateSkillActionPayload(strikePayload,
+                    new ActivateSkill.ActivateSkillActionData(
+                        new SkillMetadata(nameof(BasicAttackSkill), nameof(BasicAttackSkill), 1f,
+                            1f)));
                 
-                PlayerInstance.m_ActionsController.DoAction(strikePayload);
-                PlayerInstance.m_ActionsController.DoAction(movePayload);
+                PlayerInstance.m_ActionsController.DoAction(skillPayload);
             }
             
             if (Input.GetMouseButtonUp(0))
