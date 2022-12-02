@@ -25,8 +25,20 @@ namespace Features.Skills
             }
         }
 
+        public void ActivateSkill(string internalName)
+        {
+            var skillInstance =
+                m_Skills.FirstOrDefault(x => x.Metadata.InternalName.Equals(internalName));
+
+            if (skillInstance == null) return;
+            
+            skillInstance.Implementation.OnActivation.Invoke(new SkillActivationContext(transform.root.gameObject));
+        }
+
         public void Add(SkillMetadata metadata)
         {
+            if (m_Skills.Any(x => x.Metadata.InternalName == metadata.InternalName)) return;
+            
             var instance = metadata.MakeInstance;
             
             m_Skills.Add(instance);

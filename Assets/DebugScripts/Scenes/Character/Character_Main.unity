@@ -3388,7 +3388,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1848954489}
         m_TargetAssemblyTypeName: HelpersScript, Assembly-CSharp
-        m_MethodName: GiveRandomSkill
+        m_MethodName: GiveBasicAttackRandomSkill
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

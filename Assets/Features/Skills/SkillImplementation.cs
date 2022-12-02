@@ -4,8 +4,15 @@ namespace Features.Skills
 {
     public class SkillImplementation
     {
-        public Action<SkillActivationContext> OnReceive;
-        public Action<SkillActivationContext> OnActivation;
-        public Action<SkillActivationContext> OnRemove;
+        public readonly Action<SkillActivationContext> OnReceive;
+        public readonly Action<SkillActivationContext> OnActivation;
+        public readonly Action<SkillActivationContext> OnRemove;
+
+        public SkillImplementation(Action<SkillActivationContext> onReceive, Action<SkillActivationContext> onActivation, Action<SkillActivationContext> onRemove)
+        {
+            OnReceive = onReceive;
+            OnActivation = onActivation;
+            OnRemove = onRemove;
+        }
     }
 }

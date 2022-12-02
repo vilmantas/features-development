@@ -1,3 +1,4 @@
 {
-  "name": "Integrations.Skills"
+  "name": "Integrations.Skills",
+  "references":[ "GUID:26f2f35b1ebe422b98a5ef5cd9eaa89f", "GUID:8609044b58cf65c46991eb7b27bfd69b" ]
 }
