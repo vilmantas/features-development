@@ -1,6 +1,7 @@
 using System;
 using Features.Actions;
 using Features.Combat;
+using Features.Cooldowns;
 using Features.Movement;
 using Features.Skills;
 using UnityEngine;
@@ -36,8 +37,15 @@ namespace Integrations.Skills.Actions
             var controller = payload.Target.GetComponentInChildren<SkillsController>();
             
             if (!controller) return;
+
+            var cooldowns = payload.Target.GetComponentInChildren<CooldownsController>();
+
+            if (cooldowns.IsOnCooldown(activateSkillActionPayload.Skill)) return;
+
+            var ctx = new SkillActivationContext(activateSkillActionPayload.Skill,
+                activateSkillActionPayload.Target);
             
-            controller.ActivateSkill(activateSkillActionPayload.Skill);
+            controller.ActivateSkill(ctx);
         }
 
         public class ActivateSkillActionPayload : ActionActivationPayload

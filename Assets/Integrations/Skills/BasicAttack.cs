@@ -16,7 +16,7 @@ namespace Integrations.Skills
             SkillImplementationRegistry.Register(nameof(BasicAttackSkill), implementation);
         }
         
-        private static void OnActivation(SkillActivationContext context)
+        private static SkillActivationResult OnActivation(SkillActivationContext context)
         {
             Debug.Log("Doing basic attack");
 
@@ -26,6 +26,8 @@ namespace Integrations.Skills
             var a = context.Source.GetComponentInChildren<ActionsController>();
 
             a.DoAction(payload);
+
+            return new SkillActivationResult(true);
         }
 
         private static void OnReceive(SkillActivationContext obj)

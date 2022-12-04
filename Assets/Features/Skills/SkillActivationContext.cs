@@ -4,10 +4,13 @@ namespace Features.Skills
 {
     public class SkillActivationContext
     {
+        public readonly string Skill;
+        
         public readonly GameObject Source;
 
-        public SkillActivationContext(GameObject source)
+        public SkillActivationContext(string skill, GameObject source)
         {
+            Skill = skill;
             Source = source;
         }
     }

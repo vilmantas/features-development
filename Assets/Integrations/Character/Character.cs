@@ -4,6 +4,7 @@ using Features.Actions;
 using Features.Buffs;
 using Features.Combat;
 using Features.Conditions;
+using Features.Cooldowns;
 using Features.Equipment;
 using Features.Health;
 using Features.Inventory;
@@ -95,6 +96,8 @@ namespace Features.Character
 
             [HideInInspector] public SkillsController m_SkillsController;
 
+            [HideInInspector] public CooldownsController m_CooldownsController;
+
             private CharacterActionsManager m_ActionsManager;
 
             private CharacterBuffsManager m_BuffsManager;
@@ -114,6 +117,8 @@ namespace Features.Character
             private CharacterExpirationManager m_ExpirationManager;
 
             private CharacterSkillsManager m_SkillsManager;
+
+            private CharacterCooldownsManager m_CooldownsManager;
 
             private void Awake()
             {
@@ -145,6 +150,7 @@ namespace Features.Character
 
                 AddSystemsComponent("actions", ref m_ActionsController);
                 AddSystemsComponent("movement", ref m_MovementController);
+                AddSystemsComponent("cooldowns", ref m_CooldownsManager);
 
                 if (Inventory)
                 {
@@ -204,6 +210,7 @@ namespace Features.Character
                 AddManagerComponent("actions", ref m_ActionsManager);
                 AddManagerComponent("stat_calculator", ref m_StatCalculator);
                 AddManagerComponent("expiration", ref m_ExpirationManager);
+                AddManagerComponent("cooldowns", ref m_CooldownsController);
 
                 if (Inventory) AddManagerComponent("inventory", ref m_InventoryManager);
 

@@ -5,10 +5,12 @@ namespace Features.Skills
     public class SkillImplementation
     {
         public readonly Action<SkillActivationContext> OnReceive;
-        public readonly Action<SkillActivationContext> OnActivation;
+        public readonly Func<SkillActivationContext, SkillActivationResult> OnActivation;
         public readonly Action<SkillActivationContext> OnRemove;
 
-        public SkillImplementation(Action<SkillActivationContext> onReceive, Action<SkillActivationContext> onActivation, Action<SkillActivationContext> onRemove)
+        public SkillImplementation(Action<SkillActivationContext> onReceive,
+            Func<SkillActivationContext, SkillActivationResult> onActivation,
+            Action<SkillActivationContext> onRemove)
         {
             OnReceive = onReceive;
             OnActivation = onActivation;

@@ -13,6 +13,8 @@ namespace Features.Skills
 
         public Action<SkillInstance> OnSkillRemoved;
 
+        public Action<SkillActivationContext, SkillActivationResult, float> OnSkillActivated;
+
         public IReadOnlyList<SkillMetadata> Skills => m_Skills.Select(x => x.Metadata).ToList();
 
         public void Initialize(IEnumerable<SkillMetadata> skills)
@@ -25,19 +27,21 @@ namespace Features.Skills
             }
         }
 
-        public void ActivateSkill(string internalName)
+        public void ActivateSkill(SkillActivationContext context)
         {
             var skillInstance =
-                m_Skills.FirstOrDefault(x => x.Metadata.InternalName.Equals(internalName));
+                m_Skills.FirstOrDefault(x => x.Metadata.InternalName.Equals(context.Skill));
             
             if (skillInstance == null)
             {
-                Debug.Log("Skill " + internalName + " missing.");
+                Debug.Log("Skill " + context.Skill + " missing.");
 
                 return;
             }
             
-            skillInstance.Implementation.OnActivation.Invoke(new SkillActivationContext(transform.root.gameObject));
+            var result = skillInstance.Implementation.OnActivation.Invoke(context);
+            
+            OnSkillActivated?.Invoke(context, result, skillInstance.Metadata.Cooldown);
         }
 
         public void Add(SkillMetadata metadata)
@@ -48,8 +52,9 @@ namespace Features.Skills
             
             m_Skills.Add(instance);
 
-            instance.Implementation.OnReceive(
-                new SkillActivationContext(transform.root.gameObject));
+            var ctx = new SkillActivationContext(metadata.InternalName, transform.root.gameObject);
+            
+            instance.Implementation.OnReceive(ctx);
             
             OnSkillAdded?.Invoke(instance);
         }
@@ -61,6 +66,11 @@ namespace Features.Skills
             if (skill == null) return;
 
             m_Skills.Remove(skill);
+
+            var ctx = new SkillActivationContext(skill.Metadata.InternalName,
+                transform.root.gameObject);
+            
+            skill.Implementation.OnRemove(ctx);
             
             OnSkillRemoved?.Invoke(skill);
         }
