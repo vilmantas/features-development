@@ -48,7 +48,8 @@ namespace Integrations.Items
                 new StatGroup(prefab.UsageStats.ToArray()),
                 prefab.RequiredAmmoType,
                 prefab.ProvidedAmmo,
-                prefab.Scripts.Select(x => x.Instance).ToArray());
+                prefab.Scripts.Select(x => x.Instance).ToArray(),
+                prefab.Skills.Select(x => x.Metadata).ToArray());
         }
 
         public static ItemInstance CreateInstanceFrom(ItemMetadata metadata, int count = 0)

@@ -18,7 +18,7 @@ namespace Features.Skills
             InternalName = internalName;
         }
 
-        public SkillInstance MakeInstance => new SkillInstance(this,
+        public SkillInstance MakeInstance => new(this,
             SkillImplementationRegistry.Implementations[InternalName]);
     }
 }

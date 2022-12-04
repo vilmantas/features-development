@@ -655,7 +655,7 @@ RectTransform:
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 45, y: -248}
   m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &364869361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -668,7 +668,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 065909b26ab045e19fa61dc1104e50b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Text: {fileID: 0}
   SkillPrefab: {fileID: 180171364963095651, guid: 0dcc670dc19b74eb0818327ca06197df, type: 3}
   UIDatas: []
 --- !u!222 &364869362
@@ -1034,7 +1033,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 562487051}
-  m_LocalRotation: {x: 0.4199222, y: -0.45139825, z: 0.254395, w: 0.7451095}
+  m_LocalRotation: {x: 0.41992223, y: -0.45139825, z: 0.25439498, w: 0.74510956}
   m_LocalPosition: {x: 5.286043, y: 15.099804, z: 11.193321}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1337,7 +1336,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 588453229}
-  m_LocalRotation: {x: 0.4199222, y: -0.45139825, z: 0.254395, w: 0.7451095}
+  m_LocalRotation: {x: 0.41992223, y: -0.45139825, z: 0.25439498, w: 0.74510956}
   m_LocalPosition: {x: 5.286043, y: 15.099804, z: 11.193321}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

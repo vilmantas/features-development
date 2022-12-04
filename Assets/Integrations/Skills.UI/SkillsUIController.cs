@@ -25,6 +25,8 @@ namespace Integrations.Skills.UI
             m_CooldownsController = cooldowns;
             
             m_Source.OnSkillAdded += _ => UpdateUI();
+
+            m_Source.OnSkillRemoved += _ => UpdateUI();
             
             m_CooldownsController.OnCooldownReceived += CheckCooldowns;
             
@@ -63,7 +65,7 @@ namespace Integrations.Skills.UI
         {
             foreach (var data in UIDatas)
             {
-                if (!m_CooldownsController.IsOnCooldown(data.Parent.InternalName)) return;
+                if (!m_CooldownsController.IsOnCooldown(data.Parent.InternalName)) continue;
 
                 var cd = m_CooldownsController.ActiveCooldowns.First(x =>
                     x.Name == data.Parent.InternalName);

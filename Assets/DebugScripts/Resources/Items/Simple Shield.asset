@@ -19,11 +19,18 @@ MonoBehaviour:
   MaxStack: 1
   Sprite: {fileID: 0}
   ModelPrefab: {fileID: 8151689441138500505, guid: 89df7ba4155ab47008bfefc82aa767c9, type: 3}
-  Stats:
+  EquipStats:
   - Name: Defence
     Value: 3
+  UsageStats: []
   Buffs: []
   Action: {fileID: 11400000, guid: 1b0b911a9a2e34805bdb021ac53244f2, type: 2}
   InventoryActions:
   - {fileID: 11400000, guid: 1915b57104c564792b5376bd13747a28, type: 2}
   EquipmentActions: []
+  AttackAnimation: 
+  RequiredAmmoType: 
+  ProvidedAmmo: {fileID: 0}
+  Scripts: []
+  Skills:
+  - {fileID: 11400000, guid: 70e5457c3a5ad4baab4d67c9ba63e23c, type: 2}

@@ -38,3 +38,6 @@ MonoBehaviour:
   Scripts:
   - {fileID: 11400000, guid: a9e6904e370a7f94d8ecc8bac91d188c, type: 2}
   - {fileID: 11400000, guid: c6a1c3169734d465b8ebc51adec37a59, type: 2}
+  Skills:
+  - {fileID: 11400000, guid: ceeabc3e9cd9a47a88c6085325da90ba, type: 2}
+  - {fileID: 11400000, guid: dfad613f7ef064870a09ffbc4c7afbd2, type: 2}

@@ -4,6 +4,7 @@ using Features.Actions;
 using Features.Buffs;
 using Features.Equipment;
 using Features.Inventory.UI.Utilities;
+using Features.Skills;
 using Features.Stats.Base;
 using UnityEngine;
 
@@ -21,7 +22,8 @@ namespace Integrations.Items
             StatGroup usageStats,
             string requiredAmmo,
             GameObject providedAmmo,
-            ItemScriptDTO[] scripts)
+            ItemScriptDTO[] scripts,
+            SkillMetadata[] skills)
         {
             Name = name;
             Sprite = sprite;
@@ -40,6 +42,7 @@ namespace Integrations.Items
             RequiredAmmo = requiredAmmo;
             ProvidedAmmo = providedAmmo;
             Scripts = scripts;
+            Skills = skills;
         }
 
         public string RequiredAmmo { get; }
@@ -59,5 +62,7 @@ namespace Integrations.Items
         public int MaxStack { get; }
         public string AttackAnimation { get; }
         public ItemScriptDTO[] Scripts { get; }
+        public SkillMetadata[] Skills { get; }
+        
     }
 }

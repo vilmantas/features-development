@@ -7,37 +7,28 @@ using UnityEngine;
 
 namespace Integrations.Skills
 {
-    public static class BasicAttackSkill
+    public static class DefendSkill
     {
-        [RuntimeInitializeOnLoadMethod]
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         private static void Register()
         {
             SkillImplementation implementation = new(OnReceive, OnActivation, OnRemove);
-            SkillImplementationRegistry.Register(nameof(BasicAttackSkill), implementation);
+            SkillImplementationRegistry.Register(nameof(DefendSkill), implementation);
         }
         
         private static SkillActivationResult OnActivation(SkillActivationContext context)
         {
-            Debug.Log("Doing basic attack");
-
-            var payload =
-                new ActionActivationPayload(new ActionBase(nameof(Strike)), context.Source);
-
-            var a = context.Source.GetComponentInChildren<ActionsController>();
-
-            a.DoAction(payload);
+            Debug.Log("Doing defending");
 
             return new SkillActivationResult(true);
         }
 
         private static void OnReceive(SkillActivationContext obj)
         {
-            Debug.Log(obj.Source.name + " Was given BasicAttack");
         }
 
         private static void OnRemove(SkillActivationContext obj)
         {
-            Debug.Log(obj.Source.name + " Lost BasicAttack!");
         }
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Features.Actions;
 using Features.Buffs;
+using Features.Skills;
 using Features.Stats.Base;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -28,6 +29,7 @@ namespace Integrations.Items
         public string RequiredAmmoType = string.Empty;
         public GameObject ProvidedAmmo;
         public ItemScript_SO[] Scripts = Array.Empty<ItemScript_SO>();
+        public Skill_SO[] Skills = Array.Empty<Skill_SO>();
 
         public ItemInstance MakeInstanceWithCount()
         {

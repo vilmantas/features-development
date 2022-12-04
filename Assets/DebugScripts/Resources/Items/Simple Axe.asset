@@ -32,3 +32,6 @@ MonoBehaviour:
   AttackAnimation: Strike_1
   RequiredAmmoType: 
   ProvidedAmmo: {fileID: 0}
+  Scripts: []
+  Skills:
+  - {fileID: 11400000, guid: ceeabc3e9cd9a47a88c6085325da90ba, type: 2}
