@@ -34,15 +34,13 @@ namespace Integrations.Actions
 
             if (!combatController) return;
 
-            var projectile = combatController.AmmoData[firePayload.AmmoType];
-            
-            if (!projectile)
+            if (!combatController.AmmoData.TryGetValue(firePayload.AmmoType, out var projectile))
             {
                 Debug.Log("Ammo not provided!");
 
                 return;
             }
-
+            
             combatController.FireProjectile(projectile, firePayload.Location,
                 firePayload.Direction, firePayload.DamageSource);
         }

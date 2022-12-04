@@ -4,16 +4,18 @@ namespace Features.Actions
 {
     public static class ActionActivationHelper
     {
-        public static ActionActivation NoAction()
+        public static ActionActivation NoAction(ActionActivationPayload payload)
         {
             var NoActionImplementation = new ActionImplementation("NoAction", x => { });
+            
+            NoActionImplementation.ActivationWithResultAction = x => ActionActivationResult.MissingImplementation;
 
-            return new ActionActivation(NoActionImplementation, null);
+            return new ActionActivation(NoActionImplementation, payload);
         }
         
         public static ActionActivation GetActivation(ActionActivationPayload payload)
         {
-            var result = NoAction();
+            var result = NoAction(payload);
 
             if (IsImplementationRegistered(payload.Action, out var implementation))
             {

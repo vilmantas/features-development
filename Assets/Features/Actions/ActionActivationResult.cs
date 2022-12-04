@@ -6,6 +6,8 @@ namespace Features.Actions
 
         public static PreventedActivationResult PreventedActivation = new PreventedActivationResult();
         
+        public static MissingImplementationResult MissingImplementation = new MissingImplementationResult();
+        
         public readonly bool? IsSuccessful;
 
         public bool IsFailed => IsSuccessful.HasValue && !IsSuccessful.Value;
@@ -26,6 +28,13 @@ namespace Features.Actions
     public class PreventedActivationResult : ActionActivationResult
     {
         public PreventedActivationResult() : base(null)
+        {
+        }
+    }
+    
+    public class MissingImplementationResult : ActionActivationResult
+    {
+        public MissingImplementationResult() : base(null)
         {
         }
     }
