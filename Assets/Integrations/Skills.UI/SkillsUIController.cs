@@ -1,14 +1,20 @@
 using System;
+using System.Collections.Generic;
+using Features.Skills;
 using TMPro;
 using UnityEngine;
 
-namespace Features.Skills.UI
+namespace Integrations.Skills.UI
 {
     public class SkillsUIController : MonoBehaviour
     {
         private SkillsController m_Source;
 
         public TextMeshProUGUI Text;
+
+        public SkillUIDataController SkillPrefab;
+
+        public List<SkillUIDataController> UIDatas; 
         
         public void Initialize(SkillsController source)
         {
@@ -21,14 +27,17 @@ namespace Features.Skills.UI
 
         private void UpdateUI()
         {
-            var skills = "";
-            
+            foreach (var skillUIDataController in UIDatas)
+            {
+                Destroy(skillUIDataController);
+            }
+
             foreach (var skillMetadata in m_Source.Skills)
             {
-                skills += skillMetadata.DisplayName + Environment.NewLine;
+                var instance = Instantiate(SkillPrefab, transform);
+                
+                instance.Initialize(skillMetadata);
             }
-            
-            Text.text = skills;
         }
     }
 }
