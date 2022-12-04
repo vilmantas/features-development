@@ -40,8 +40,11 @@ namespace Integrations.Skills.Actions
 
             var cooldowns = payload.Target.GetComponentInChildren<CooldownsController>();
 
-            if (cooldowns.IsOnCooldown(activateSkillActionPayload.Skill)) return;
-
+            if (cooldowns.IsOnCooldown(activateSkillActionPayload.Skill))
+            {
+                Debug.Log(activateSkillActionPayload.Skill +" is on cooldown");
+                return;
+            }
             var ctx = new SkillActivationContext(activateSkillActionPayload.Skill,
                 activateSkillActionPayload.Target);
             

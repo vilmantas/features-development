@@ -85,7 +85,8 @@ namespace DebugScripts.Character
 
             if (SkillsUI && PlayerInstance.Skills)
             {
-                SkillsUI.Initialize(PlayerInstance.m_SkillsController);
+                SkillsUI.Initialize(PlayerInstance.m_SkillsController,
+                    PlayerInstance.m_CooldownsController);
             }
         }
 
