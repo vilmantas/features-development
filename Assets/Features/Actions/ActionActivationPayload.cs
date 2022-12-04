@@ -20,5 +20,13 @@ namespace Features.Actions
             Target = target;
             Data = data ?? new Dictionary<string, object>();
         }
+        
+        public ActionActivationPayload(ActionBase action, GameObject target, Dictionary<string, object> data = null)
+        {
+            Action = action;
+            Source = target;
+            Target = target;
+            Data = data ?? new Dictionary<string, object>();
+        } 
     }
 }

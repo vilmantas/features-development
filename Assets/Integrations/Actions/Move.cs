@@ -8,10 +8,9 @@ namespace Integrations.Actions
 {
     public static class Move
     {
-        public static MoveActionPayload MakePayload(GameObject source, GameObject target,
-            MoveActionData data)
+        public static MoveActionPayload MakePayload(GameObject source, MoveActionData data)
         {
-            var basePaylaod = new ActionActivationPayload(new ActionBase(nameof(Move)), source, target);
+            var basePaylaod = new ActionActivationPayload(new ActionBase(nameof(Move)), source);
 
             return new MoveActionPayload(basePaylaod, data);
         }

@@ -128,15 +128,9 @@ namespace DebugScripts.Character
             
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                var strikePayload = new ActionActivationPayload(new ActionBase(nameof(ActivateSkill)),
-                    RootGameObject, RootGameObject);
+                var payload = ActivateSkill.MakePayload(RootGameObject, nameof(BasicAttackSkill));
 
-                var skillPayload = new ActivateSkill.ActivateSkillActionPayload(strikePayload,
-                    new ActivateSkill.ActivateSkillActionData(
-                        new SkillMetadata(nameof(BasicAttackSkill), nameof(BasicAttackSkill), 1f,
-                            1f)));
-                
-                PlayerInstance.m_ActionsController.DoAction(skillPayload);
+                PlayerInstance.m_ActionsController.DoAction(payload);
             }
             
             if (Input.GetMouseButtonUp(0))
@@ -149,8 +143,8 @@ namespace DebugScripts.Character
 
                 if (Physics.Raycast(ray, out RaycastHit hit, 100f, GroundLayer))
                 {
-                    var movePayload = Move.MakePayload(RootGameObject, RootGameObject,
-                        new MoveActionData(hit.point));
+                    var movePayload =
+                        Move.MakePayload(RootGameObject, new MoveActionData(hit.point));
 
                     PlayerInstance.m_ActionsController.DoAction(movePayload);
                 }

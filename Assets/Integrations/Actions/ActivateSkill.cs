@@ -9,6 +9,14 @@ namespace Integrations.Actions
 {
     public static class ActivateSkill
     {
+        public static ActionActivationPayload MakePayload(GameObject source, string skill)
+        {
+            var strikePayload = new ActionActivationPayload(new ActionBase(nameof(ActivateSkill)),
+                source);
+
+            return new ActivateSkillActionPayload(strikePayload, skill);
+        }
+        
 
         [RuntimeInitializeOnLoadMethod]
         private static void Register()
@@ -29,28 +37,18 @@ namespace Integrations.Actions
             
             if (!controller) return;
             
-            controller.ActivateSkill(activateSkillActionPayload.Data.Skill.InternalName);
+            controller.ActivateSkill(activateSkillActionPayload.Skill);
         }
 
         public class ActivateSkillActionPayload : ActionActivationPayload
         {
-            public readonly ActivateSkillActionData Data;
+            public readonly string Skill;
 
             public ActivateSkillActionPayload(ActionActivationPayload original,
-                ActivateSkillActionData data) : base(original.Action,
+                string skillName) : base(original.Action,
                 original.Source, original.Target, original.Data)
             {
-                Data = data;
-            }
-        }
-
-        public class ActivateSkillActionData
-        {
-            public readonly SkillMetadata Skill;
-
-            public ActivateSkillActionData(SkillMetadata skill)
-            {
-                Skill = skill;
+                Skill = skillName;
             }
         }
     }
