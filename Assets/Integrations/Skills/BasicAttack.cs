@@ -1,6 +1,8 @@
+using Features.Actions;
 using Features.Combat;
 using Features.Movement;
 using Features.Skills;
+using Integrations.Actions;
 using UnityEngine;
 
 namespace Integrations.Skills
@@ -17,14 +19,13 @@ namespace Integrations.Skills
         private static void OnActivation(SkillActivationContext context)
         {
             Debug.Log("Doing basic attack");
-            
-            var movementController = context.Source.GetComponentInChildren<MovementController>();
-            
-            movementController.Stop();
-            
-            var combatController = context.Source.GetComponentInChildren<CombatController>();
 
-            combatController.Strike();
+            var payload =
+                new ActionActivationPayload(new ActionBase(nameof(Strike)), context.Source);
+
+            var a = context.Source.GetComponentInChildren<ActionsController>();
+
+            a.DoAction(payload);
         }
 
         private static void OnReceive(SkillActivationContext obj)

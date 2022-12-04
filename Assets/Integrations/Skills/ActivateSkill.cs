@@ -5,16 +5,16 @@ using Features.Movement;
 using Features.Skills;
 using UnityEngine;
 
-namespace Integrations.Actions
+namespace Integrations.Skills.Actions
 {
     public static class ActivateSkill
     {
         public static ActionActivationPayload MakePayload(GameObject source, string skill)
         {
-            var strikePayload = new ActionActivationPayload(new ActionBase(nameof(ActivateSkill)),
+            var payload = new ActionActivationPayload(new ActionBase(nameof(ActivateSkill)),
                 source);
 
-            return new ActivateSkillActionPayload(strikePayload, skill);
+            return new ActivateSkillActionPayload(payload, skill);
         }
         
 

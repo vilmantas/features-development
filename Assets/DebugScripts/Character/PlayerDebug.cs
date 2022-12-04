@@ -17,6 +17,7 @@ using Features.Stats.Base;
 using Integrations.Actions;
 using Integrations.Items;
 using Integrations.Skills;
+using Integrations.Skills.Actions;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.EventSystems;
