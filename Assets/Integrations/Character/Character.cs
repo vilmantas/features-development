@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Codice.Client.BaseCommands;
 using Features.Actions;
 using Features.Buffs;
@@ -69,6 +70,8 @@ namespace Features.Character
             public Buff_SO[] StartingBuffs;
 
             public Stats_SO BaseStats;
+
+            public Skill_SO[] StartingSkills;
 
             [HideInInspector] public BuffController m_BuffController;
 
@@ -291,6 +294,11 @@ namespace Features.Character
                             m_EquipmentController.HandleEquipRequest(request);
                         }
                     }
+                }
+
+                if (Skills)
+                {
+                    m_SkillsController.Initialize(StartingSkills.Select(x => x.Metadata));
                 }
             }
 

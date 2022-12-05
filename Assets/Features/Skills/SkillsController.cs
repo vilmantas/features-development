@@ -17,11 +17,15 @@ namespace Features.Skills
 
         public IReadOnlyList<SkillMetadata> Skills => m_Skills.Select(x => x.Metadata).ToList();
 
+        private List<SkillMetadata> m_StartingSkills { get; set; }
+        
         public void Initialize(IEnumerable<SkillMetadata> skills)
         {
-            if (m_Skills == null) return;
+            if (skills == null) return;
 
-            foreach (var skillMetadata in skills)
+            m_StartingSkills = skills.ToList();
+            
+            foreach (var skillMetadata in m_StartingSkills)
             {
                 Add(skillMetadata);
             }
@@ -64,6 +68,8 @@ namespace Features.Skills
             var skill = m_Skills.FirstOrDefault(x => x.Metadata.InternalName.Equals(skillToRemove));
 
             if (skill == null) return;
+            
+            if (m_StartingSkills.Any(x => x.InternalName == skill.Metadata.InternalName)) return;
 
             m_Skills.Remove(skill);
 

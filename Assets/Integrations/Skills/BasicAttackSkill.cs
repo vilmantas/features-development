@@ -18,8 +18,6 @@ namespace Integrations.Skills
         
         private static SkillActivationResult OnActivation(SkillActivationContext context)
         {
-            Debug.Log("Doing basic attack");
-
             var payload =
                 new ActionActivationPayload(new ActionBase(nameof(Strike)), context.Source);
 
