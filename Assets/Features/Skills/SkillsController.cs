@@ -34,7 +34,7 @@ namespace Features.Skills
         public void ActivateSkill(SkillActivationContext context)
         {
             var skillInstance =
-                m_Skills.FirstOrDefault(x => x.Metadata.InternalName.Equals(context.Skill));
+                m_Skills.FirstOrDefault(x => x.Metadata.ReferenceName.Equals(context.Skill));
             
             if (skillInstance == null)
             {
@@ -50,13 +50,13 @@ namespace Features.Skills
 
         public void Add(SkillMetadata metadata)
         {
-            if (m_Skills.Any(x => x.Metadata.InternalName == metadata.InternalName)) return;
+            if (m_Skills.Any(x => x.Metadata.ReferenceName == metadata.ReferenceName)) return;
             
             var instance = metadata.MakeInstance;
             
             m_Skills.Add(instance);
 
-            var ctx = new SkillActivationContext(metadata.InternalName, transform.root.gameObject);
+            var ctx = new SkillActivationContext(metadata.ReferenceName, transform.root.gameObject);
             
             instance.Implementation.OnReceive(ctx);
             
@@ -65,15 +65,15 @@ namespace Features.Skills
         
         public void Remove(string skillToRemove)
         {
-            var skill = m_Skills.FirstOrDefault(x => x.Metadata.InternalName.Equals(skillToRemove));
+            var skill = m_Skills.FirstOrDefault(x => x.Metadata.ReferenceName.Equals(skillToRemove));
 
             if (skill == null) return;
             
-            if (m_StartingSkills.Any(x => x.InternalName == skill.Metadata.InternalName)) return;
+            if (m_StartingSkills.Any(x => x.ReferenceName == skill.Metadata.ReferenceName)) return;
 
             m_Skills.Remove(skill);
 
-            var ctx = new SkillActivationContext(skill.Metadata.InternalName,
+            var ctx = new SkillActivationContext(skill.Metadata.ReferenceName,
                 transform.root.gameObject);
             
             skill.Implementation.OnRemove(ctx);

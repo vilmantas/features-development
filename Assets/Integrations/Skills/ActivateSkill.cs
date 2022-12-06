@@ -1,8 +1,6 @@
 using System;
 using Features.Actions;
-using Features.Combat;
 using Features.Cooldowns;
-using Features.Movement;
 using Features.Skills;
 using UnityEngine;
 
@@ -45,6 +43,7 @@ namespace Integrations.Skills.Actions
                 Debug.Log(activateSkillActionPayload.Skill +" is on cooldown");
                 return;
             }
+            
             var ctx = new SkillActivationContext(activateSkillActionPayload.Skill,
                 activateSkillActionPayload.Target);
             

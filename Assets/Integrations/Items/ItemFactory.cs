@@ -49,7 +49,7 @@ namespace Integrations.Items
                 prefab.RequiredAmmoType,
                 prefab.ProvidedAmmo,
                 prefab.Scripts.Select(x => x.Instance).ToArray(),
-                prefab.Skills.Select(x => x.Metadata).ToArray());
+                prefab.Skills.Select(x => x.GetMetadata).ToArray());
         }
 
         public static ItemInstance CreateInstanceFrom(ItemMetadata metadata, int count = 0)

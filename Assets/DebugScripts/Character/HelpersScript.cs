@@ -137,10 +137,18 @@ public class HelpersScript : MonoBehaviour
     public void GiveBasicAttackRandomSkill()
     {
         var metadata =
-            new SkillMetadata(nameof(BasicAttackSkill), nameof(BasicAttackSkill), 1f, 1f);
+            new SkillMetadata(nameof(BasicAttackSkill), nameof(BasicAttackSkill),
+                nameof(BasicAttackSkill), 1f, 1f);
             
         var controller = Target.GetComponentInChildren<SkillsController>();
         
         controller.Add(metadata);
+    }
+
+    public void GiveBasicChannel()
+    {
+        var controller = Target.GetComponentInChildren<ChannelingController>();
+        
+        controller.StartChanneling("Something", 2f);
     }
 }

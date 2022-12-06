@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c1cf3b9515146bb87de499cedb322cd, type: 3}
   m_Name: BasicAttack
   m_EditorClassIdentifier: 
-  InternalName: BasicAttackSkill
+  ImplementationName: BasicAttackSkill
+  ReferenceName: Basic Attack
   DisplayName: Basic Attack
   CastTime: 0
   Cooldown: 2

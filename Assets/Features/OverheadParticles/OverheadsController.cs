@@ -28,7 +28,6 @@ namespace Features.OverheadParticles
             }
         }
 
-        
         public void RemoveOverhead(string effectName)
         {
             if (!m_PlayingParticles.TryGetValue(effectName, out var particles)) return;

@@ -124,7 +124,7 @@ namespace DebugScripts.Character
             
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                var payload = ActivateSkill.MakePayload(RootGameObject, nameof(BasicAttackSkill));
+                var payload = ActivateSkill.MakePayload(RootGameObject, "Basic Attack");
 
                 PlayerInstance.m_ActionsController.DoAction(payload);
             }

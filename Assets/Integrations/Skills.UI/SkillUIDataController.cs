@@ -35,7 +35,7 @@ namespace Integrations.Skills.UI
         {
             Parent = metadata;
             
-            name = metadata.InternalName;
+            name = metadata.ReferenceName;
             
             Title.text = metadata.DisplayName;
         }

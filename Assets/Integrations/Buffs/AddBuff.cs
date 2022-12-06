@@ -2,11 +2,9 @@ using System;
 using System.Collections.Generic;
 using Features.Actions;
 using Features.Buffs;
-using Features.Combat;
-using Features.Movement;
 using UnityEngine;
 
-namespace Integrations.Actions
+namespace Integrations.Buffs
 {
     public static class AddBuff
     {

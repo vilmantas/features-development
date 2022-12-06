@@ -37,7 +37,7 @@ namespace Features.Character
             {
                 foreach (var metadataSkill in unequippedItem.Metadata.Skills)
                 {
-                    m_SkillsController.Remove(metadataSkill.InternalName);
+                    m_SkillsController.Remove(metadataSkill.ReferenceName);
                 }
             }
 

@@ -101,6 +101,8 @@ namespace Features.Character
 
             [HideInInspector] public CooldownsController m_CooldownsController;
 
+            [HideInInspector] public ChannelingController m_ChannelingController;
+
             private CharacterActionsManager m_ActionsManager;
 
             private CharacterBuffsManager m_BuffsManager;
@@ -154,6 +156,7 @@ namespace Features.Character
                 AddSystemsComponent("actions", ref m_ActionsController);
                 AddSystemsComponent("movement", ref m_MovementController);
                 AddSystemsComponent("cooldowns", ref m_CooldownsManager);
+                AddSystemsComponent("channeling", ref m_ChannelingController);
 
                 if (Inventory)
                 {
@@ -298,7 +301,7 @@ namespace Features.Character
 
                 if (Skills)
                 {
-                    m_SkillsController.Initialize(StartingSkills.Select(x => x.Metadata));
+                    m_SkillsController.Initialize(StartingSkills.Select(x => x.GetMetadata));
                 }
             }
 

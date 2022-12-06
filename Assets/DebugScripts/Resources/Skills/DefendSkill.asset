@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c1cf3b9515146bb87de499cedb322cd, type: 3}
   m_Name: DefendSkill
   m_EditorClassIdentifier: 
-  InternalName: DefendSkill
+  ImplementationName: DefendSkill
+  ReferenceName: Defend
   DisplayName: Defend
   CastTime: 0
   Cooldown: 0

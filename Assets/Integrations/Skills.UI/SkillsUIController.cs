@@ -65,10 +65,10 @@ namespace Integrations.Skills.UI
         {
             foreach (var data in UIDatas)
             {
-                if (!m_CooldownsController.IsOnCooldown(data.Parent.InternalName)) continue;
+                if (!m_CooldownsController.IsOnCooldown(data.Parent.ReferenceName)) continue;
 
                 var cd = m_CooldownsController.ActiveCooldowns.First(x =>
-                    x.Name == data.Parent.InternalName);
+                    x.Name == data.Parent.ReferenceName);
                 
                 data.SetCooldown(cd);
             }
