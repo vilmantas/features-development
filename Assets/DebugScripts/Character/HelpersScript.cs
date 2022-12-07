@@ -149,6 +149,6 @@ public class HelpersScript : MonoBehaviour
     {
         var controller = Target.GetComponentInChildren<ChannelingController>();
         
-        controller.StartChanneling("Something", 2f);
+        controller.StartChanneling("Something" + Random.value, 2f);
     }
 }

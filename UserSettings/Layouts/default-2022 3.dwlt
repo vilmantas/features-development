@@ -1,0 +1,2550 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 1
+  m_Script: {fileID: 12004, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PixelRect:
+    serializedVersion: 2
+    x: 0
+    y: 72
+    width: 2056
+    height: 1164
+  m_ShowMode: 4
+  m_Title: Hierarchy
+  m_RootView: {fileID: 2}
+  m_MinSize: {x: 875, y: 300}
+  m_MaxSize: {x: 10000, y: 10000}
+  m_Maximized: 1
+--- !u!114 &2
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 1
+  m_Script: {fileID: 12008, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Children:
+  - {fileID: 3}
+  - {fileID: 5}
+  - {fileID: 4}
+  m_Position:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 2056
+    height: 1164
+  m_MinSize: {x: 875, y: 300}
+  m_MaxSize: {x: 10000, y: 10000}
+  m_UseTopView: 1
+  m_TopViewHeight: 30
+  m_UseBottomView: 1
+  m_BottomViewHeight: 20
+--- !u!114 &3
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 1
+  m_Script: {fileID: 12011, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Children: []
+  m_Position:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 2056
+    height: 30
+  m_MinSize: {x: 0, y: 0}
+  m_MaxSize: {x: 0, y: 0}
+  m_LastLoadedLayoutName: 
+--- !u!114 &4
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 1
+  m_Script: {fileID: 12042, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Children: []
+  m_Position:
+    serializedVersion: 2
+    x: 0
+    y: 1144
+    width: 2056
+    height: 20
+  m_MinSize: {x: 0, y: 0}
+  m_MaxSize: {x: 0, y: 0}
+--- !u!114 &5
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 1
+  m_Script: {fileID: 12010, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Children:
+  - {fileID: 6}
+  - {fileID: 7}
+  - {fileID: 10}
+  - {fileID: 13}
+  m_Position:
+    serializedVersion: 2
+    x: 0
+    y: 30
+    width: 2056
+    height: 1114
+  m_MinSize: {x: 400, y: 200}
+  m_MaxSize: {x: 32384, y: 16192}
+  vertical: 0
+  controlID: 20
+--- !u!114 &6
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 1
+  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: SceneHierarchyWindow
+  m_EditorClassIdentifier: 
+  m_Children: []
+  m_Position:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 311
+    height: 1114
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_ActualView: {fileID: 15}
+  m_Panes:
+  - {fileID: 15}
+  m_Selected: 0
+  m_LastSelected: 0
+--- !u!114 &7
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 12010, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Children:
+  - {fileID: 8}
+  - {fileID: 9}
+  m_Position:
+    serializedVersion: 2
+    x: 311
+    y: 0
+    width: 915
+    height: 1114
+  m_MinSize: {x: 100, y: 200}
+  m_MaxSize: {x: 8096, y: 16192}
+  vertical: 1
+  controlID: 69
+--- !u!114 &8
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: GameView
+  m_EditorClassIdentifier: 
+  m_Children: []
+  m_Position:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 915
+    height: 585.5
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
+  m_ActualView: {fileID: 14}
+  m_Panes:
+  - {fileID: 14}
+  - {fileID: 17}
+  m_Selected: 0
+  m_LastSelected: 1
+--- !u!114 &9
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: SceneView
+  m_EditorClassIdentifier: 
+  m_Children: []
+  m_Position:
+    serializedVersion: 2
+    x: 0
+    y: 585.5
+    width: 915
+    height: 528.5
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_ActualView: {fileID: 16}
+  m_Panes:
+  - {fileID: 16}
+  m_Selected: 0
+  m_LastSelected: 0
+--- !u!114 &10
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 12010, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Children:
+  - {fileID: 11}
+  - {fileID: 12}
+  m_Position:
+    serializedVersion: 2
+    x: 1226
+    y: 0
+    width: 469
+    height: 1114
+  m_MinSize: {x: 100, y: 200}
+  m_MaxSize: {x: 8096, y: 16192}
+  vertical: 1
+  controlID: 78
+--- !u!114 &11
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: ProjectBrowser
+  m_EditorClassIdentifier: 
+  m_Children: []
+  m_Position:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 469
+    height: 666
+  m_MinSize: {x: 232, y: 271}
+  m_MaxSize: {x: 10002, y: 10021}
+  m_ActualView: {fileID: 18}
+  m_Panes:
+  - {fileID: 18}
+  m_Selected: 0
+  m_LastSelected: 0
+--- !u!114 &12
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: ConsoleWindow
+  m_EditorClassIdentifier: 
+  m_Children: []
+  m_Position:
+    serializedVersion: 2
+    x: 0
+    y: 666
+    width: 469
+    height: 448
+  m_MinSize: {x: 102, y: 121}
+  m_MaxSize: {x: 4002, y: 4021}
+  m_ActualView: {fileID: 19}
+  m_Panes:
+  - {fileID: 19}
+  - {fileID: 20}
+  m_Selected: 0
+  m_LastSelected: 1
+--- !u!114 &13
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 1
+  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: InspectorWindow
+  m_EditorClassIdentifier: 
+  m_Children: []
+  m_Position:
+    serializedVersion: 2
+    x: 1695
+    y: 0
+    width: 361
+    height: 1114
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
+  m_ActualView: {fileID: 21}
+  m_Panes:
+  - {fileID: 21}
+  - {fileID: 22}
+  - {fileID: 23}
+  m_Selected: 0
+  m_LastSelected: 2
+--- !u!114 &14
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 1
+  m_Script: {fileID: 12015, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_TitleContent:
+    m_Text: Game
+    m_Image: {fileID: 257045534191678443, guid: 0000000000000000d000000000000000, type: 0}
+    m_Tooltip: 
+  m_Pos:
+    serializedVersion: 2
+    x: 311
+    y: 102
+    width: 913
+    height: 564.5
+  m_ViewDataDictionary: {fileID: 0}
+  m_OverlayCanvas:
+    m_LastAppliedPresetName: Default
+    m_SaveData: []
+  m_SerializedViewNames: []
+  m_SerializedViewValues: []
+  m_PlayModeViewName: GameView
+  m_ShowGizmos: 0
+  m_TargetDisplay: 0
+  m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
+  m_TargetSize: {x: 1920, y: 1080}
+  m_TextureFilterMode: 0
+  m_TextureHideFlags: 61
+  m_RenderIMGUI: 1
+  m_EnterPlayModeBehavior: 0
+  m_fullscreenMonitorIdx: 0
+  m_playModeBehaviorIdx: 0
+  m_UseMipMap: 0
+  m_isFullscreen: 0
+  m_suppressRenderingForFullscreen: 0
+  m_VSyncEnabled: 0
+  m_PlayFocused: 0
+  m_Gizmos: 0
+  m_Stats: 0
+  m_SelectedSizes: 03000000000000000000000000000000000000000000000000000000000000000000000000000000
+  m_ZoomArea:
+    m_HRangeLocked: 0
+    m_VRangeLocked: 0
+    hZoomLockedByDefault: 0
+    vZoomLockedByDefault: 0
+    m_HBaseRangeMin: -480
+    m_HBaseRangeMax: 480
+    m_VBaseRangeMin: -270
+    m_VBaseRangeMax: 270
+    m_HAllowExceedBaseRangeMin: 1
+    m_HAllowExceedBaseRangeMax: 1
+    m_VAllowExceedBaseRangeMin: 1
+    m_VAllowExceedBaseRangeMax: 1
+    m_ScaleWithWindow: 0
+    m_HSlider: 0
+    m_VSlider: 0
+    m_IgnoreScrollWheelUntilClicked: 0
+    m_EnableMouseInput: 1
+    m_EnableSliderZoomHorizontal: 0
+    m_EnableSliderZoomVertical: 0
+    m_UniformScale: 1
+    m_UpDirection: 1
+    m_DrawArea:
+      serializedVersion: 2
+      x: 0
+      y: 21
+      width: 913
+      height: 543.5
+    m_Scale: {x: 0.95104164, y: 0.9510417}
+    m_Translation: {x: 456.5, y: 271.75}
+    m_MarginLeft: 0
+    m_MarginRight: 0
+    m_MarginTop: 0
+    m_MarginBottom: 0
+    m_LastShownAreaInsideMargins:
+      serializedVersion: 2
+      x: -480
+      y: -285.73932
+      width: 960
+      height: 571.47864
+    m_MinimalGUI: 1
+  m_defaultScale: 0.95104164
+  m_LastWindowPixelSize: {x: 1826, y: 1129}
+  m_ClearInEditMode: 1
+  m_NoCameraWarning: 1
+  m_LowResolutionForAspectRatios: 01000000000000000000
+  m_XRRenderMode: 0
+  m_RenderTexture: {fileID: 0}
+  m_showToolbar: 1
+  m_showToolbarOnFullscreen: 0
+--- !u!114 &15
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 1
+  m_Script: {fileID: 12061, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_TitleContent:
+    m_Text: Hierarchy
+    m_Image: {fileID: -9000905672528348964, guid: 0000000000000000d000000000000000, type: 0}
+    m_Tooltip: 
+  m_Pos:
+    serializedVersion: 2
+    x: 0
+    y: 102
+    width: 310
+    height: 1093
+  m_ViewDataDictionary: {fileID: 0}
+  m_OverlayCanvas:
+    m_LastAppliedPresetName: Default
+    m_SaveData: []
+  m_SceneHierarchy:
+    m_TreeViewState:
+      scrollPos: {x: 0, y: 0}
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: f444ffff5c990000
+      m_RenameOverlay:
+        m_UserAcceptedRename: 0
+        m_Name: 
+        m_OriginalName: 
+        m_EditFieldRect:
+          serializedVersion: 2
+          x: 0
+          y: 0
+          width: 0
+          height: 0
+        m_UserData: 0
+        m_IsWaitingForDelay: 0
+        m_IsRenaming: 0
+        m_OriginalEventType: 11
+        m_IsRenamingFilename: 0
+        m_ClientGUIView: {fileID: 0}
+      m_SearchString: 
+    m_ExpandedScenes: []
+    m_CurrenRootInstanceID: 0
+    m_LockTracker:
+      m_IsLocked: 0
+    m_CurrentSortingName: TransformSorting
+  m_WindowGUID: 4c969a2b90040154d917609493e03593
+--- !u!114 &16
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 1
+  m_Script: {fileID: 12013, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_TitleContent:
+    m_Text: Scene
+    m_Image: {fileID: -131512000283675692, guid: 0000000000000000d000000000000000, type: 0}
+    m_Tooltip: 
+  m_Pos:
+    serializedVersion: 2
+    x: 311
+    y: 687.5
+    width: 913
+    height: 507.5
+  m_ViewDataDictionary: {fileID: 0}
+  m_OverlayCanvas:
+    m_LastAppliedPresetName: Default
+    m_SaveData:
+    - dockPosition: 0
+      containerId: overlay-toolbar__top
+      floating: 0
+      collapsed: 0
+      displayed: 1
+      snapOffset: {x: -176, y: -26}
+      snapOffsetDelta: {x: 0, y: 0}
+      snapCorner: 3
+      id: Tool Settings
+      index: 0
+      layout: 1
+    - dockPosition: 0
+      containerId: overlay-toolbar__top
+      floating: 0
+      collapsed: 0
+      displayed: 1
+      snapOffset: {x: -141, y: -123}
+      snapOffsetDelta: {x: 0, y: 0}
+      snapCorner: 3
+      id: unity-grid-and-snap-toolbar
+      index: 1
+      layout: 1
+    - dockPosition: 1
+      containerId: overlay-toolbar__top
+      floating: 0
+      collapsed: 0
+      displayed: 1
+      snapOffset: {x: 0, y: 25}
+      snapOffsetDelta: {x: 0, y: 0}
+      snapCorner: 0
+      id: unity-scene-view-toolbar
+      index: 0
+      layout: 1
+    - dockPosition: 1
+      containerId: overlay-toolbar__top
+      floating: 0
+      collapsed: 0
+      displayed: 0
+      snapOffset: {x: 0, y: 0}
+      snapOffsetDelta: {x: 0, y: 25}
+      snapCorner: 1
+      id: unity-search-toolbar
+      index: 1
+      layout: 1
+    - dockPosition: 0
+      containerId: overlay-container--left
+      floating: 0
+      collapsed: 0
+      displayed: 1
+      snapOffset: {x: 0, y: 25}
+      snapOffsetDelta: {x: 0, y: 0}
+      snapCorner: 0
+      id: unity-transform-toolbar
+      index: 0
+      layout: 2
+    - dockPosition: 0
+      containerId: overlay-container--left
+      floating: 0
+      collapsed: 0
+      displayed: 1
+      snapOffset: {x: 0, y: 197}
+      snapOffsetDelta: {x: 0, y: 0}
+      snapCorner: 0
+      id: unity-component-tools
+      index: 1
+      layout: 2
+    - dockPosition: 0
+      containerId: overlay-container--right
+      floating: 0
+      collapsed: 0
+      displayed: 1
+      snapOffset: {x: 67.5, y: 0}
+      snapOffsetDelta: {x: 0, y: 25}
+      snapCorner: 0
+      id: Orientation
+      index: 0
+      layout: 4
+    - dockPosition: 1
+      containerId: overlay-container--right
+      floating: 0
+      collapsed: 0
+      displayed: 0
+      snapOffset: {x: 0, y: 0}
+      snapOffsetDelta: {x: 0, y: 25}
+      snapCorner: 0
+      id: Scene View/Light Settings
+      index: 0
+      layout: 4
+    - dockPosition: 1
+      containerId: overlay-container--right
+      floating: 0
+      collapsed: 0
+      displayed: 0
+      snapOffset: {x: 0, y: 0}
+      snapOffsetDelta: {x: 0, y: 25}
+      snapCorner: 0
+      id: Scene View/Camera
+      index: 1
+      layout: 4
+    - dockPosition: 1
+      containerId: overlay-container--right
+      floating: 0
+      collapsed: 0
+      displayed: 0
+      snapOffset: {x: 0, y: 0}
+      snapOffsetDelta: {x: 0, y: 25}
+      snapCorner: 0
+      id: Scene View/Cloth Constraints
+      index: 2
+      layout: 4
+    - dockPosition: 1
+      containerId: overlay-container--right
+      floating: 0
+      collapsed: 0
+      displayed: 0
+      snapOffset: {x: 0, y: 0}
+      snapOffsetDelta: {x: 0, y: 25}
+      snapCorner: 0
+      id: Scene View/Cloth Collisions
+      index: 3
+      layout: 4
+    - dockPosition: 1
+      containerId: overlay-container--right
+      floating: 0
+      collapsed: 0
+      displayed: 0
+      snapOffset: {x: 0, y: 25}
+      snapOffsetDelta: {x: 0, y: 0}
+      snapCorner: 0
+      id: Scene View/Navmesh Display
+      index: 4
+      layout: 4
+    - dockPosition: 1
+      containerId: overlay-container--right
+      floating: 0
+      collapsed: 0
+      displayed: 0
+      snapOffset: {x: 0, y: 25}
+      snapOffsetDelta: {x: 0, y: 0}
+      snapCorner: 0
+      id: Scene View/Agent Display
+      index: 5
+      layout: 4
+    - dockPosition: 1
+      containerId: overlay-container--right
+      floating: 0
+      collapsed: 0
+      displayed: 0
+      snapOffset: {x: 0, y: 0}
+      snapOffsetDelta: {x: 0, y: 25}
+      snapCorner: 0
+      id: Scene View/Obstacle Display
+      index: 6
+      layout: 4
+    - dockPosition: 1
+      containerId: overlay-container--right
+      floating: 0
+      collapsed: 0
+      displayed: 0
+      snapOffset: {x: 0, y: 0}
+      snapOffsetDelta: {x: 0, y: 25}
+      snapCorner: 0
+      id: Scene View/Occlusion Culling
+      index: 7
+      layout: 4
+    - dockPosition: 1
+      containerId: overlay-container--right
+      floating: 0
+      collapsed: 0
+      displayed: 0
+      snapOffset: {x: 0, y: 0}
+      snapOffsetDelta: {x: 0, y: 25}
+      snapCorner: 0
+      id: Scene View/Physics Debugger
+      index: 8
+      layout: 4
+    - dockPosition: 1
+      containerId: overlay-container--right
+      floating: 0
+      collapsed: 0
+      displayed: 0
+      snapOffset: {x: 0, y: 0}
+      snapOffsetDelta: {x: 0, y: 25}
+      snapCorner: 0
+      id: Scene View/Scene Visibility
+      index: 9
+      layout: 4
+    - dockPosition: 1
+      containerId: overlay-container--right
+      floating: 0
+      collapsed: 0
+      displayed: 0
+      snapOffset: {x: 0, y: 25}
+      snapOffsetDelta: {x: 0, y: 0}
+      snapCorner: 0
+      id: Scene View/Particles
+      index: 10
+      layout: 4
+    - dockPosition: 1
+      containerId: overlay-container--right
+      floating: 0
+      collapsed: 0
+      displayed: 0
+      snapOffset: {x: 0, y: 0}
+      snapOffsetDelta: {x: 0, y: 0}
+      snapCorner: 0
+      id: Scene View/Tilemap
+      index: 11
+      layout: 4
+    - dockPosition: 1
+      containerId: overlay-container--right
+      floating: 0
+      collapsed: 0
+      displayed: 0
+      snapOffset: {x: 0, y: 0}
+      snapOffsetDelta: {x: 0, y: 0}
+      snapCorner: 0
+      id: Scene View/Tilemap Palette Helper
+      index: 12
+      layout: 4
+    - dockPosition: 0
+      containerId: overlay-toolbar__left
+      floating: 1
+      collapsed: 0
+      displayed: 1
+      snapOffset: {x: 13, y: -48}
+      snapOffsetDelta: {x: 0, y: 0}
+      snapCorner: 2
+      id: RiderFlow.SceneToolbar
+      index: 0
+      layout: 1
+  m_WindowGUID: cc27987af1a868c49b0894db9c0f5429
+  m_Gizmos: 1
+  m_OverrideSceneCullingMask: 0
+  m_SceneIsLit: 0
+  m_SceneLighting: 1
+  m_2DMode: 0
+  m_isRotationLocked: 0
+  m_PlayAudio: 0
+  m_AudioPlay: 0
+  m_Position:
+    m_Target: {x: 0.17636457, y: 0.68837357, z: 0.6780629}
+    speed: 2
+    m_Value: {x: 0.17636457, y: 0.68837357, z: 0.6780629}
+  m_RenderMode: 0
+  m_CameraMode:
+    drawMode: 0
+    name: Shaded
+    section: Shading Mode
+  m_ValidateTrueMetals: 0
+  m_DoValidateTrueMetals: 0
+  m_SceneViewState:
+    m_AlwaysRefresh: 0
+    showFog: 1
+    showSkybox: 0
+    showFlares: 1
+    showImageEffects: 1
+    showParticleSystems: 1
+    showVisualEffectGraphs: 1
+    m_FxEnabled: 1
+  m_Grid:
+    xGrid:
+      m_Fade:
+        m_Target: 0
+        speed: 2
+        m_Value: 0
+      m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.4}
+      m_Pivot: {x: 0, y: 0, z: 0}
+      m_Size: {x: 1, y: 1}
+    yGrid:
+      m_Fade:
+        m_Target: 1
+        speed: 2
+        m_Value: 1
+      m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.4}
+      m_Pivot: {x: 0, y: 0, z: 0}
+      m_Size: {x: 1, y: 1}
+    zGrid:
+      m_Fade:
+        m_Target: 0
+        speed: 2
+        m_Value: 0
+      m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.4}
+      m_Pivot: {x: 0, y: 0, z: 0}
+      m_Size: {x: 1, y: 1}
+    m_ShowGrid: 1
+    m_GridAxis: 1
+    m_gridOpacity: 0.5
+  m_Rotation:
+    m_Target: {x: 0.22887698, y: -0.024820393, z: 0.005837567, w: 0.97312176}
+    speed: 2
+    m_Value: {x: 0.2288769, y: -0.024820384, z: 0.0058375653, w: 0.9731214}
+  m_Size:
+    m_Target: 2.279811
+    speed: 2
+    m_Value: 2.279811
+  m_Ortho:
+    m_Target: 0
+    speed: 2
+    m_Value: 0
+  m_CameraSettings:
+    m_Speed: 0.5897055
+    m_SpeedNormalized: 0.29450002
+    m_SpeedMin: 0.001
+    m_SpeedMax: 2
+    m_EasingEnabled: 1
+    m_EasingDuration: 0.4
+    m_AccelerationEnabled: 1
+    m_FieldOfViewHorizontalOrVertical: 60
+    m_NearClip: 0.03
+    m_FarClip: 10000
+    m_DynamicClip: 1
+    m_OcclusionCulling: 0
+  m_LastSceneViewRotation: {x: 0, y: 0, z: 0, w: 0}
+  m_LastSceneViewOrtho: 0
+  m_ReplacementShader: {fileID: 0}
+  m_ReplacementString: 
+  m_SceneVisActive: 1
+  m_LastLockedObject: {fileID: 0}
+  m_ViewIsLockedToObject: 0
+--- !u!114 &17
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 12914, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_TitleContent:
+    m_Text: Animator
+    m_Image: {fileID: -6973158847631862895, guid: 0000000000000000d000000000000000, type: 0}
+    m_Tooltip: 
+  m_Pos:
+    serializedVersion: 2
+    x: 2955
+    y: 83
+    width: 1135
+    height: 683
+  m_ViewDataDictionary: {fileID: 0}
+  m_OverlayCanvas:
+    m_LastAppliedPresetName: Default
+    m_SaveData: []
+  m_ViewTransforms:
+    m_KeySerializationHelper:
+    - {fileID: -2485850010925242771, guid: 9efa7e6b5b1ab4653913123ee85ce1f3, type: 2}
+    - {fileID: -2586076079651370478, guid: b5f345fee02ca254b92204d2193a94d1, type: 2}
+    - {fileID: 1655765083588504585, guid: b5f345fee02ca254b92204d2193a94d1, type: 2}
+    - {fileID: -3395952446664700644, guid: b5f345fee02ca254b92204d2193a94d1, type: 2}
+    - {fileID: 1050075509080595050, guid: 1c9d138a63688b148a933d49b2067773, type: 2}
+    - {fileID: 4862018274517095651, guid: 1c9d138a63688b148a933d49b2067773, type: 2}
+    - {fileID: 1638862984180623232, guid: 1c9d138a63688b148a933d49b2067773, type: 2}
+    m_ValueSerializationHelper:
+    - e00: 0.7362461
+      e01: 0
+      e02: 0
+      e03: 112.19556
+      e10: 0
+      e11: 0.7362461
+      e12: 0
+      e13: 136.36661
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    - e00: 0.5873684
+      e01: 0
+      e02: 0
+      e03: -14.368439
+      e10: 0
+      e11: 0.5873684
+      e12: 0
+      e13: 99.77368
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    - e00: 0.9901719
+      e01: 0
+      e02: 0
+      e03: -42.31659
+      e10: 0
+      e11: 0.9901719
+      e12: 0
+      e13: 148.10587
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    - e00: 1.0263174
+      e01: 0
+      e02: 0
+      e03: -13.442139
+      e10: 0
+      e11: 1.0263174
+      e12: 0
+      e13: 140.68149
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    - e00: 0.8319012
+      e01: 0
+      e02: 0
+      e03: 168.0249
+      e10: 0
+      e11: 0.8319012
+      e12: 0
+      e13: 333.61435
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    - e00: 0.9132426
+      e01: 0
+      e02: 0
+      e03: 33.969048
+      e10: 0
+      e11: 0.9132426
+      e12: 0
+      e13: 126.89564
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    - e00: 0.7166006
+      e01: 0
+      e02: 0
+      e03: -73.78641
+      e10: 0
+      e11: 0.7166006
+      e12: 0
+      e13: 149.7502
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+  m_PreviewAnimator: {fileID: 0}
+  m_AnimatorController: {fileID: 9100000, guid: 1c9d138a63688b148a933d49b2067773, type: 2}
+  m_BreadCrumbs:
+  - m_Target: {fileID: 1050075509080595050, guid: 1c9d138a63688b148a933d49b2067773, type: 2}
+    m_ScrollPosition: {x: 0, y: 0}
+  stateMachineGraph: {fileID: 0}
+  stateMachineGraphGUI: {fileID: 0}
+  blendTreeGraph: {fileID: 0}
+  blendTreeGraphGUI: {fileID: 0}
+  m_AutoLiveLink: 1
+  m_MiniTool: 0
+  m_LockTracker:
+    m_IsLocked: 0
+  m_CurrentEditor: 1
+  m_LayerEditor:
+    m_SelectedLayerIndex: 0
+--- !u!114 &18
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 1
+  m_Script: {fileID: 12014, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MinSize: {x: 230, y: 250}
+  m_MaxSize: {x: 10000, y: 10000}
+  m_TitleContent:
+    m_Text: Project
+    m_Image: {fileID: -2032128904892744680, guid: 0000000000000000d000000000000000, type: 0}
+    m_Tooltip: 
+  m_Pos:
+    serializedVersion: 2
+    x: 1226
+    y: 102
+    width: 467
+    height: 645
+  m_ViewDataDictionary: {fileID: 0}
+  m_OverlayCanvas:
+    m_LastAppliedPresetName: Default
+    m_SaveData: []
+  m_SearchFilter:
+    m_NameFilter: 
+    m_ClassNames: []
+    m_AssetLabels: []
+    m_AssetBundleNames: []
+    m_VersionControlStates: []
+    m_SoftLockControlStates: []
+    m_ReferencingInstanceIDs: 
+    m_SceneHandles: 
+    m_ShowAllHits: 0
+    m_SkipHidden: 0
+    m_SearchArea: 1
+    m_Folders:
+    - Assets
+    m_Globs: []
+    m_OriginalText: 
+  m_ViewMode: 1
+  m_StartGridSize: 39
+  m_LastFolders:
+  - Assets
+  m_LastFoldersGridSize: 39
+  m_LastProjectPath: /Users/vilmantas/Desktop/Code/features-development
+  m_LockTracker:
+    m_IsLocked: 0
+  m_FolderTreeState:
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: f4650000
+    m_LastClickedID: 26100
+    m_ExpandedIDs: 00000000f4650000f6650000f8650000fa650000fc650000fe65000000660000026600000466000006660000086600000a6600000c6600000e66000060660000
+    m_RenameOverlay:
+      m_UserAcceptedRename: 0
+      m_Name: 
+      m_OriginalName: 
+      m_EditFieldRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      m_UserData: 0
+      m_IsWaitingForDelay: 0
+      m_IsRenaming: 0
+      m_OriginalEventType: 11
+      m_IsRenamingFilename: 1
+      m_ClientGUIView: {fileID: 11}
+    m_SearchString: 
+    m_CreateAssetUtility:
+      m_EndAction: {fileID: 0}
+      m_InstanceID: 0
+      m_Path: 
+      m_Icon: {fileID: 0}
+      m_ResourceFile: 
+  m_AssetTreeState:
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: 
+    m_LastClickedID: 0
+    m_ExpandedIDs: 00000000f4650000f6650000f8650000fa650000fc650000fe65000000660000026600000466000006660000086600000a6600000c6600000e660000
+    m_RenameOverlay:
+      m_UserAcceptedRename: 0
+      m_Name: 
+      m_OriginalName: 
+      m_EditFieldRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      m_UserData: 0
+      m_IsWaitingForDelay: 0
+      m_IsRenaming: 0
+      m_OriginalEventType: 11
+      m_IsRenamingFilename: 1
+      m_ClientGUIView: {fileID: 0}
+    m_SearchString: 
+    m_CreateAssetUtility:
+      m_EndAction: {fileID: 0}
+      m_InstanceID: 0
+      m_Path: 
+      m_Icon: {fileID: 0}
+      m_ResourceFile: 
+  m_ListAreaState:
+    m_SelectedInstanceIDs: 
+    m_LastClickedInstanceID: 0
+    m_HadKeyboardFocusLastEvent: 1
+    m_ExpandedInstanceIDs: c6230000f02f000000000000c65f00000262000054630000466100006625000074ae00004e260000406b0000988600005ad000009a6500009265000084650000966500009a8b000066650000726500006e6500004c260000bc61000016280000c6600000729b000068ab0000146400000a61000038640000da6200001e6b0000d2a70000e6860000486200005262000012670000
+    m_RenameOverlay:
+      m_UserAcceptedRename: 0
+      m_Name: 
+      m_OriginalName: 
+      m_EditFieldRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      m_UserData: 0
+      m_IsWaitingForDelay: 0
+      m_IsRenaming: 0
+      m_OriginalEventType: 11
+      m_IsRenamingFilename: 1
+      m_ClientGUIView: {fileID: 0}
+    m_CreateAssetUtility:
+      m_EndAction: {fileID: 0}
+      m_InstanceID: 0
+      m_Path: 
+      m_Icon: {fileID: 0}
+      m_ResourceFile: 
+    m_NewAssetIndexInList: -1
+    m_ScrollPosition: {x: 0, y: 0}
+    m_GridSize: 39
+  m_SkipHiddenPackages: 0
+  m_DirectoriesAreaWidth: 182
+--- !u!114 &19
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 1
+  m_Script: {fileID: 12003, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_TitleContent:
+    m_Text: Console
+    m_Image: {fileID: -3303252850963283158, guid: 0000000000000000d000000000000000, type: 0}
+    m_Tooltip: 
+  m_Pos:
+    serializedVersion: 2
+    x: 1226
+    y: 768
+    width: 467
+    height: 427
+  m_ViewDataDictionary: {fileID: 0}
+  m_OverlayCanvas:
+    m_LastAppliedPresetName: Default
+    m_SaveData: []
+--- !u!114 &20
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 13401, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_TitleContent:
+    m_Text: Test Runner
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  m_Pos:
+    serializedVersion: 2
+    x: 916
+    y: 652.5
+    width: 462.5
+    height: 338.5
+  m_ViewDataDictionary: {fileID: 0}
+  m_OverlayCanvas:
+    m_LastAppliedPresetName: Default
+    m_SaveData: []
+  m_Spl:
+    ID: 23549
+    splitterInitialOffset: 211
+    currentActiveSplitter: -1
+    realSizes:
+    - 160
+    - 108
+    relativeSizes:
+    - 0.59745765
+    - 0.40254235
+    minSizes:
+    - 32
+    - 32
+    maxSizes:
+    - 0
+    - 0
+    lastTotalSize: 268
+    splitSize: 6
+    xOffset: 0
+    m_Version: 1
+    oldRealSizes: 
+    oldMinSizes: 
+    oldMaxSizes: 
+    oldSplitSize: 0
+  m_TestTypeToolbarIndex: 1
+  m_PlayModeTestListGUI:
+    m_Window: {fileID: 20}
+    m_NewResultList:
+    - id: 1174
+      uniqueId: '[features-development][suite]'
+      name: features-development
+      fullName: features-development
+      resultStatus: 1
+      duration: 0.247319
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 
+      parentUniqueId: 
+    - id: 1182
+      uniqueId: '[Features.Buffs.Tests.PlayMode][/Users/vilmantas.petrusevicius@vinted.com/Desktop/Code/features-development/Library/ScriptAssemblies/Features.Buffs.Tests.PlayMode.dll][suite]'
+      name: Features.Buffs.Tests.PlayMode.dll
+      fullName: /Users/vilmantas.petrusevicius@vinted.com/Desktop/Code/features-development/Library/ScriptAssemblies/Features.Buffs.Tests.PlayMode.dll
+      resultStatus: 1
+      duration: 0.1197286
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1177
+      parentUniqueId: '[features-development][suite]'
+    - id: 1175
+      uniqueId: Features.Buffs.Tests.PlayMode.dll/[Features.Buffs.Tests.PlayMode][BuffControllerTests][suite]
+      name: BuffControllerTests
+      fullName: BuffControllerTests
+      resultStatus: 1
+      duration: 0.1130288
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1179
+      parentUniqueId: '[Features.Buffs.Tests.PlayMode][C:/Users/Vilmantas/Desktop/Code/unity-stuff/features-development/Library/ScriptAssemblies/Features.Buffs.Tests.PlayMode.dll][suite]'
+    - id: 1177
+      uniqueId: Features.Buffs.Tests.PlayMode.dll/BuffControllerTests/[Features.Buffs.Tests.PlayMode][BuffControllerTests.ItReportsWhenBuffAddingIsAttempted]
+      name: ItReportsWhenBuffAddingIsAttempted
+      fullName: BuffControllerTests.ItReportsWhenBuffAddingIsAttempted
+      resultStatus: 1
+      duration: 0.0480486
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1175
+      parentUniqueId: Features.Buffs.Tests.PlayMode.dll/[Features.Buffs.Tests.PlayMode][BuffControllerTests][suite]
+    - id: 1178
+      uniqueId: Features.Buffs.Tests.PlayMode.dll/BuffControllerTests/[Features.Buffs.Tests.PlayMode][BuffControllerTests.ItReportsWhenBuffRemovingIsAttempted]
+      name: ItReportsWhenBuffRemovingIsAttempted
+      fullName: BuffControllerTests.ItReportsWhenBuffRemovingIsAttempted
+      resultStatus: 1
+      duration: 0.0165216
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1175
+      parentUniqueId: Features.Buffs.Tests.PlayMode.dll/[Features.Buffs.Tests.PlayMode][BuffControllerTests][suite]
+    - id: 1176
+      uniqueId: Features.Buffs.Tests.PlayMode.dll/BuffControllerTests/[Features.Buffs.Tests.PlayMode][BuffControllerTests.ItReportsWhenTimerTicks]
+      name: ItReportsWhenTimerTicks
+      fullName: BuffControllerTests.ItReportsWhenTimerTicks
+      resultStatus: 1
+      duration: 0.0269694
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1175
+      parentUniqueId: Features.Buffs.Tests.PlayMode.dll/[Features.Buffs.Tests.PlayMode][BuffControllerTests][suite]
+    - id: 1190
+      uniqueId: '[Features.Health.PlayMode][/Users/vilmantas.petrusevicius@vinted.com/Desktop/Code/features-development/Library/ScriptAssemblies/Features.Health.PlayMode.dll][suite]'
+      name: Features.Health.PlayMode.dll
+      fullName: /Users/vilmantas.petrusevicius@vinted.com/Desktop/Code/features-development/Library/ScriptAssemblies/Features.Health.PlayMode.dll
+      resultStatus: 1
+      duration: 0.1118699
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1177
+      parentUniqueId: '[features-development][suite]'
+    - id: 1180
+      uniqueId: Features.Health.PlayMode.dll/[Features.Health.PlayMode][HealthControllerTests][suite]
+      name: HealthControllerTests
+      fullName: HealthControllerTests
+      resultStatus: 1
+      duration: 0.1076982
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1187
+      parentUniqueId: '[Features.Health.PlayMode][C:/Users/Vilmantas/Desktop/Code/unity-stuff/features-development/Library/ScriptAssemblies/Features.Health.PlayMode.dll][suite]'
+    - id: 1183
+      uniqueId: Features.Health.PlayMode.dll/HealthControllerTests/[Features.Health.PlayMode][HealthControllerTests.ItCallsDamageInterceptorCallbacks]
+      name: ItCallsDamageInterceptorCallbacks
+      fullName: HealthControllerTests.ItCallsDamageInterceptorCallbacks
+      resultStatus: 1
+      duration: 0.0320554
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1180
+      parentUniqueId: Features.Health.PlayMode.dll/[Features.Health.PlayMode][HealthControllerTests][suite]
+    - id: 1184
+      uniqueId: Features.Health.PlayMode.dll/HealthControllerTests/[Features.Health.PlayMode][HealthControllerTests.ItCallsHealInterceptorCallbacks]
+      name: ItCallsHealInterceptorCallbacks
+      fullName: HealthControllerTests.ItCallsHealInterceptorCallbacks
+      resultStatus: 1
+      duration: 0.0143195
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1180
+      parentUniqueId: Features.Health.PlayMode.dll/[Features.Health.PlayMode][HealthControllerTests][suite]
+    - id: 1181
+      uniqueId: Features.Health.PlayMode.dll/HealthControllerTests/[Features.Health.PlayMode][HealthControllerTests.ItIncreasesHealthWhenHealing]
+      name: ItIncreasesHealthWhenHealing
+      fullName: HealthControllerTests.ItIncreasesHealthWhenHealing
+      resultStatus: 1
+      duration: 0.014302
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1180
+      parentUniqueId: Features.Health.PlayMode.dll/[Features.Health.PlayMode][HealthControllerTests][suite]
+    - id: 1182
+      uniqueId: Features.Health.PlayMode.dll/HealthControllerTests/[Features.Health.PlayMode][HealthControllerTests.ItLowersHealthWhenDamaged]
+      name: ItLowersHealthWhenDamaged
+      fullName: HealthControllerTests.ItLowersHealthWhenDamaged
+      resultStatus: 1
+      duration: 0.0134064
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1180
+      parentUniqueId: Features.Health.PlayMode.dll/[Features.Health.PlayMode][HealthControllerTests][suite]
+    - id: 1185
+      uniqueId: Features.Health.PlayMode.dll/HealthControllerTests/[Features.Health.PlayMode][HealthControllerTests.ItUsesValueFromDamageInterceptors]
+      name: ItUsesValueFromDamageInterceptors
+      fullName: HealthControllerTests.ItUsesValueFromDamageInterceptors
+      resultStatus: 1
+      duration: 0.0138603
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1180
+      parentUniqueId: Features.Health.PlayMode.dll/[Features.Health.PlayMode][HealthControllerTests][suite]
+    - id: 1186
+      uniqueId: Features.Health.PlayMode.dll/HealthControllerTests/[Features.Health.PlayMode][HealthControllerTests.ItUsesValueFromHealInterceptors]
+      name: ItUsesValueFromHealInterceptors
+      fullName: HealthControllerTests.ItUsesValueFromHealInterceptors
+      resultStatus: 1
+      duration: 0.0137809
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1180
+      parentUniqueId: Features.Health.PlayMode.dll/[Features.Health.PlayMode][HealthControllerTests][suite]
+    m_ResultText: features-development (0.247s)
+    m_ResultStacktrace: 
+    m_TestListState:
+      scrollPos: {x: 0, y: 0}
+      m_SelectedIDs: ab096070
+      m_LastClickedID: 1885342123
+      m_ExpandedIDs: b3cdc1ea6f2bb6f67fb0a21016eea657ab096070ffffff7f
+      m_RenameOverlay:
+        m_UserAcceptedRename: 0
+        m_Name: 
+        m_OriginalName: 
+        m_EditFieldRect:
+          serializedVersion: 2
+          x: 0
+          y: 0
+          width: 0
+          height: 0
+        m_UserData: 0
+        m_IsWaitingForDelay: 0
+        m_IsRenaming: 0
+        m_OriginalEventType: 11
+        m_IsRenamingFilename: 0
+        m_ClientGUIView: {fileID: 0}
+      m_SearchString: 
+    m_TestRunnerUIFilter:
+      PassedHidden: 0
+      FailedHidden: 0
+      NotRunHidden: 0
+      m_SearchString: 
+      selectedCategoryMask: 0
+      availableCategories:
+      - Uncategorized
+    m_SelectedOption: 0
+  m_EditModeTestListGUI:
+    m_Window: {fileID: 20}
+    m_NewResultList:
+    - id: 1000
+      uniqueId: '[features-development][suite]'
+      name: features-development
+      fullName: features-development
+      resultStatus: 1
+      duration: 0.2640933
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 
+      parentUniqueId: 
+    - id: 1018
+      uniqueId: '[Features.Buffs.Tests.EditMode.dll][suite]'
+      name: Features.Buffs.Tests.EditMode.dll
+      fullName: C:/Users/Vilmantas/Desktop/Code/unity-stuff/features-development/Library/ScriptAssemblies/Features.Buffs.Tests.EditMode.dll
+      resultStatus: 1
+      duration: 0.0975671
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1000
+      parentUniqueId: '[features-development][suite]'
+    - id: 1019
+      uniqueId: Features.Buffs.Tests.EditMode.dll/[Features.Buffs.Tests.EditMode][BuffContainerTests][suite]
+      name: BuffContainerTests
+      fullName: BuffContainerTests
+      resultStatus: 1
+      duration: 0.0935254
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1018
+      parentUniqueId: '[Features.Buffs.Tests.EditMode.dll][suite]'
+    - id: 1001
+      uniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/[Features.Buffs.Tests.EditMode][BuffContainerTests.General][suite]
+      name: General
+      fullName: BuffContainerTests.General
+      resultStatus: 1
+      duration: 0.0913955
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1019
+      parentUniqueId: Features.Buffs.Tests.EditMode.dll/[Features.Buffs.Tests.EditMode][BuffContainerTests][suite]
+    - id: 1006
+      uniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/General/[Features.Buffs.Tests.EditMode][BuffContainerTests.General.AddsABuffWithFullDuration]
+      name: AddsABuffWithFullDuration
+      fullName: BuffContainerTests.General.AddsABuffWithFullDuration
+      resultStatus: 1
+      duration: 0.027419
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/[Features.Buffs.Tests.EditMode][BuffContainerTests.General][suite]
+    - id: 1003
+      uniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/General/[Features.Buffs.Tests.EditMode][BuffContainerTests.General.ItAddsOneStackbyDefault]
+      name: ItAddsOneStackbyDefault
+      fullName: BuffContainerTests.General.ItAddsOneStackbyDefault
+      resultStatus: 1
+      duration: 0.0012634
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/[Features.Buffs.Tests.EditMode][BuffContainerTests.General][suite]
+    - id: 1017
+      uniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/General/[Features.Buffs.Tests.EditMode][BuffContainerTests.General.ItCanExecuteIntervalTickImmediately]
+      name: ItCanExecuteIntervalTickImmediately
+      fullName: BuffContainerTests.General.ItCanExecuteIntervalTickImmediately
+      resultStatus: 1
+      duration: 0.0036599
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/[Features.Buffs.Tests.EditMode][BuffContainerTests.General][suite]
+    - id: 1002
+      uniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/General/[Features.Buffs.Tests.EditMode][BuffContainerTests.General.ItCanReceiveABuff]
+      name: ItCanReceiveABuff
+      fullName: BuffContainerTests.General.ItCanReceiveABuff
+      resultStatus: 1
+      duration: 0.000372
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/[Features.Buffs.Tests.EditMode][BuffContainerTests.General][suite]
+    - id: 1011
+      uniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/General/[Features.Buffs.Tests.EditMode][BuffContainerTests.General.ItCanReceiveBuffAfterFirstFinishes]
+      name: ItCanReceiveBuffAfterFirstFinishes
+      fullName: BuffContainerTests.General.ItCanReceiveBuffAfterFirstFinishes
+      resultStatus: 1
+      duration: 0.0021775
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/[Features.Buffs.Tests.EditMode][BuffContainerTests.General][suite]
+    - id: 1018
+      uniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/General/[Features.Buffs.Tests.EditMode][BuffContainerTests.General.ItCanReceiveBuffsWithCustomDuration]
+      name: ItCanReceiveBuffsWithCustomDuration
+      fullName: BuffContainerTests.General.ItCanReceiveBuffsWithCustomDuration
+      resultStatus: 1
+      duration: 0.0004567
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/[Features.Buffs.Tests.EditMode][BuffContainerTests.General][suite]
+    - id: 1005
+      uniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/General/[Features.Buffs.Tests.EditMode][BuffContainerTests.General.ItDoesNotStackOverLimit]
+      name: ItDoesNotStackOverLimit
+      fullName: BuffContainerTests.General.ItDoesNotStackOverLimit
+      resultStatus: 1
+      duration: 0.0003396
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/[Features.Buffs.Tests.EditMode][BuffContainerTests.General][suite]
+    - id: 1015
+      uniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/General/[Features.Buffs.Tests.EditMode][BuffContainerTests.General.ItNotifiesEachTimeAStackGetsRemoved]
+      name: ItNotifiesEachTimeAStackGetsRemoved
+      fullName: BuffContainerTests.General.ItNotifiesEachTimeAStackGetsRemoved
+      resultStatus: 1
+      duration: 0.0003861
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/[Features.Buffs.Tests.EditMode][BuffContainerTests.General][suite]
+    - id: 1016
+      uniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/General/[Features.Buffs.Tests.EditMode][BuffContainerTests.General.ItNotifiesEachTimeWhenStacksGetAdded]
+      name: ItNotifiesEachTimeWhenStacksGetAdded
+      fullName: BuffContainerTests.General.ItNotifiesEachTimeWhenStacksGetAdded
+      resultStatus: 1
+      duration: 0.0004761
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/[Features.Buffs.Tests.EditMode][BuffContainerTests.General][suite]
+    - id: 1009
+      uniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/General/[Features.Buffs.Tests.EditMode][BuffContainerTests.General.ItNotifiesWhenBuffReceived]
+      name: ItNotifiesWhenBuffReceived
+      fullName: BuffContainerTests.General.ItNotifiesWhenBuffReceived
+      resultStatus: 1
+      duration: 0.0003224
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/[Features.Buffs.Tests.EditMode][BuffContainerTests.General][suite]
+    - id: 1010
+      uniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/General/[Features.Buffs.Tests.EditMode][BuffContainerTests.General.ItNotifiesWhenBuffRemoved]
+      name: ItNotifiesWhenBuffRemoved
+      fullName: BuffContainerTests.General.ItNotifiesWhenBuffRemoved
+      resultStatus: 1
+      duration: 0.0003615
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/[Features.Buffs.Tests.EditMode][BuffContainerTests.General][suite]
+    - id: 1013
+      uniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/General/[Features.Buffs.Tests.EditMode][BuffContainerTests.General.ItNotifiesWhenStackWasAdded]
+      name: ItNotifiesWhenStackWasAdded
+      fullName: BuffContainerTests.General.ItNotifiesWhenStackWasAdded
+      resultStatus: 1
+      duration: 0.0003226
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/[Features.Buffs.Tests.EditMode][BuffContainerTests.General][suite]
+    - id: 1014
+      uniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/General/[Features.Buffs.Tests.EditMode][BuffContainerTests.General.ItNotifiesWhenStackWasRemoved]
+      name: ItNotifiesWhenStackWasRemoved
+      fullName: BuffContainerTests.General.ItNotifiesWhenStackWasRemoved
+      resultStatus: 1
+      duration: 0.0003419
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/[Features.Buffs.Tests.EditMode][BuffContainerTests.General][suite]
+    - id: 1012
+      uniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/General/[Features.Buffs.Tests.EditMode][BuffContainerTests.General.ItShouldTick10TimesForEverySecondPassed]
+      name: ItShouldTick10TimesForEverySecondPassed
+      fullName: BuffContainerTests.General.ItShouldTick10TimesForEverySecondPassed
+      resultStatus: 1
+      duration: 0.0234597
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/[Features.Buffs.Tests.EditMode][BuffContainerTests.General][suite]
+    - id: 1004
+      uniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/General/[Features.Buffs.Tests.EditMode][BuffContainerTests.General.ItStacksBuffs]
+      name: ItStacksBuffs
+      fullName: BuffContainerTests.General.ItStacksBuffs
+      resultStatus: 1
+      duration: 0.0005629
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/[Features.Buffs.Tests.EditMode][BuffContainerTests.General][suite]
+    - id: 1007
+      uniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/General/[Features.Buffs.Tests.EditMode][BuffContainerTests.General.ItTriggersInterval]
+      name: ItTriggersInterval
+      fullName: BuffContainerTests.General.ItTriggersInterval
+      resultStatus: 1
+      duration: 0.0003484
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/[Features.Buffs.Tests.EditMode][BuffContainerTests.General][suite]
+    - id: 1008
+      uniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/General/[Features.Buffs.Tests.EditMode][BuffContainerTests.General.ItTriggersTickIntervalsDuringBuffDuration]
+      name: ItTriggersTickIntervalsDuringBuffDuration
+      fullName: BuffContainerTests.General.ItTriggersTickIntervalsDuringBuffDuration
+      resultStatus: 1
+      duration: 0.0003563
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: Features.Buffs.Tests.EditMode.dll/BuffContainerTests/[Features.Buffs.Tests.EditMode][BuffContainerTests.General][suite]
+    - id: 1055
+      uniqueId: '[Utilities.Tests.EditMode.dll][suite]'
+      name: Utilities.Tests.EditMode.dll
+      fullName: C:/Users/Vilmantas/Desktop/Code/unity-stuff/features-development/Library/ScriptAssemblies/Utilities.Tests.EditMode.dll
+      resultStatus: 1
+      duration: 0.0852764
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1000
+      parentUniqueId: '[features-development][suite]'
+    - id: 1057
+      uniqueId: Utilities.Tests.EditMode.dll/[Utilities.Tests.EditMode][ItemContainerTests][suite]
+      name: ItemContainerTests
+      fullName: ItemContainerTests
+      resultStatus: 1
+      duration: 0.0283444
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1055
+      parentUniqueId: '[Utilities.Tests.EditMode.dll][suite]'
+    - id: 1039
+      uniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/[Utilities.Tests.EditMode][ItemContainerTests.General][suite]
+      name: General
+      fullName: ItemContainerTests.General
+      resultStatus: 1
+      duration: 0.0275084
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1057
+      parentUniqueId: Utilities.Tests.EditMode.dll/[Utilities.Tests.EditMode][ItemContainerTests][suite]
+    - id: 1043
+      uniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/General/[Utilities.Tests.EditMode][ItemContainerTests.General.ItAddsDuplicatesIfExistingItemIsFull]
+      name: ItAddsDuplicatesIfExistingItemIsFull
+      fullName: ItemContainerTests.General.ItAddsDuplicatesIfExistingItemIsFull
+      resultStatus: 1
+      duration: 0.0057626
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1039
+      parentUniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/[Utilities.Tests.EditMode][ItemContainerTests.General][suite]
+    - id: 1045
+      uniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/General/[Utilities.Tests.EditMode][ItemContainerTests.General.ItAppendsToExistingStackableItem]
+      name: ItAppendsToExistingStackableItem
+      fullName: ItemContainerTests.General.ItAppendsToExistingStackableItem
+      resultStatus: 1
+      duration: 0.0007481
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1039
+      parentUniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/[Utilities.Tests.EditMode][ItemContainerTests.General][suite]
+    - id: 1042
+      uniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/General/[Utilities.Tests.EditMode][ItemContainerTests.General.ItCanReceiveAnItem]
+      name: ItCanReceiveAnItem
+      fullName: ItemContainerTests.General.ItCanReceiveAnItem
+      resultStatus: 1
+      duration: 0.0004181
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1039
+      parentUniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/[Utilities.Tests.EditMode][ItemContainerTests.General][suite]
+    - id: 1049
+      uniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/General/[Utilities.Tests.EditMode][ItemContainerTests.General.ItCanRemoveItem]
+      name: ItCanRemoveItem
+      fullName: ItemContainerTests.General.ItCanRemoveItem
+      resultStatus: 1
+      duration: 0.0016755
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1039
+      parentUniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/[Utilities.Tests.EditMode][ItemContainerTests.General][suite]
+    - id: 1052
+      uniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/General/[Utilities.Tests.EditMode][ItemContainerTests.General.ItCanRemoveSpecificItem]
+      name: ItCanRemoveSpecificItem
+      fullName: ItemContainerTests.General.ItCanRemoveSpecificItem
+      resultStatus: 1
+      duration: 0.0014215
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1039
+      parentUniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/[Utilities.Tests.EditMode][ItemContainerTests.General][suite]
+    - id: 1054
+      uniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/General/[Utilities.Tests.EditMode][ItemContainerTests.General.ItCanReplaceExactItem]
+      name: ItCanReplaceExactItem
+      fullName: ItemContainerTests.General.ItCanReplaceExactItem
+      resultStatus: 1
+      duration: 0.0008159
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1039
+      parentUniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/[Utilities.Tests.EditMode][ItemContainerTests.General][suite]
+    - id: 1053
+      uniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/General/[Utilities.Tests.EditMode][ItemContainerTests.General.ItCanSwapSlotItems]
+      name: ItCanSwapSlotItems
+      fullName: ItemContainerTests.General.ItCanSwapSlotItems
+      resultStatus: 1
+      duration: 0.001017
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1039
+      parentUniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/[Utilities.Tests.EditMode][ItemContainerTests.General][suite]
+    - id: 1044
+      uniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/General/[Utilities.Tests.EditMode][ItemContainerTests.General.ItDoesNotAddDuplicateItemsIfExistingItemIsNotFull]
+      name: ItDoesNotAddDuplicateItemsIfExistingItemIsNotFull
+      fullName: ItemContainerTests.General.ItDoesNotAddDuplicateItemsIfExistingItemIsNotFull
+      resultStatus: 1
+      duration: 0.0003312
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1039
+      parentUniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/[Utilities.Tests.EditMode][ItemContainerTests.General][suite]
+    - id: 1046
+      uniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/General/[Utilities.Tests.EditMode][ItemContainerTests.General.ItDoesNotAppendNewItemToExistingStackable]
+      name: ItDoesNotAppendNewItemToExistingStackable
+      fullName: ItemContainerTests.General.ItDoesNotAppendNewItemToExistingStackable
+      resultStatus: 1
+      duration: 0.0003918
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1039
+      parentUniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/[Utilities.Tests.EditMode][ItemContainerTests.General][suite]
+    - id: 1051
+      uniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/General/[Utilities.Tests.EditMode][ItemContainerTests.General.ItDoesNotRemoveMoreThanAvailable]
+      name: ItDoesNotRemoveMoreThanAvailable
+      fullName: ItemContainerTests.General.ItDoesNotRemoveMoreThanAvailable
+      resultStatus: 1
+      duration: 0.0007614
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1039
+      parentUniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/[Utilities.Tests.EditMode][ItemContainerTests.General][suite]
+    - id: 1041
+      uniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/General/[Utilities.Tests.EditMode][ItemContainerTests.General.ItHasItems]
+      name: ItHasItems
+      fullName: ItemContainerTests.General.ItHasItems
+      resultStatus: 1
+      duration: 0.0035846
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1039
+      parentUniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/[Utilities.Tests.EditMode][ItemContainerTests.General][suite]
+    - id: 1040
+      uniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/General/[Utilities.Tests.EditMode][ItemContainerTests.General.ItHasSize]
+      name: ItHasSize
+      fullName: ItemContainerTests.General.ItHasSize
+      resultStatus: 1
+      duration: 0.0003798
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1039
+      parentUniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/[Utilities.Tests.EditMode][ItemContainerTests.General][suite]
+    - id: 1048
+      uniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/General/[Utilities.Tests.EditMode][ItemContainerTests.General.ItReportsAmountAdded]
+      name: ItReportsAmountAdded
+      fullName: ItemContainerTests.General.ItReportsAmountAdded
+      resultStatus: 1
+      duration: 0.0003321
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1039
+      parentUniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/[Utilities.Tests.EditMode][ItemContainerTests.General][suite]
+    - id: 1050
+      uniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/General/[Utilities.Tests.EditMode][ItemContainerTests.General.ItReportsRemovedAmount]
+      name: ItReportsRemovedAmount
+      fullName: ItemContainerTests.General.ItReportsRemovedAmount
+      resultStatus: 1
+      duration: 0.0003567
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1039
+      parentUniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/[Utilities.Tests.EditMode][ItemContainerTests.General][suite]
+    - id: 1047
+      uniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/General/[Utilities.Tests.EditMode][ItemContainerTests.General.ItStacksMultipleItems]
+      name: ItStacksMultipleItems
+      fullName: ItemContainerTests.General.ItStacksMultipleItems
+      resultStatus: 1
+      duration: 0.000497
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1039
+      parentUniqueId: Utilities.Tests.EditMode.dll/ItemContainerTests/[Utilities.Tests.EditMode][ItemContainerTests.General][suite]
+    - id: 1056
+      uniqueId: Utilities.Tests.EditMode.dll/[Utilities.Tests.EditMode][ResourceContainerTests][suite]
+      name: ResourceContainerTests
+      fullName: ResourceContainerTests
+      resultStatus: 1
+      duration: 0.0436509
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1055
+      parentUniqueId: '[Utilities.Tests.EditMode.dll][suite]'
+    - id: 1024
+      uniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/[Utilities.Tests.EditMode][ResourceContainerTests.General][suite]
+      name: General
+      fullName: ResourceContainerTests.General
+      resultStatus: 1
+      duration: 0.0048031
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1056
+      parentUniqueId: Utilities.Tests.EditMode.dll/[Utilities.Tests.EditMode][ResourceContainerTests][suite]
+    - id: 1025
+      uniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/General/[Utilities.Tests.EditMode][ResourceContainerTests.General.ItCanReceive]
+      name: ItCanReceive
+      fullName: ResourceContainerTests.General.ItCanReceive
+      resultStatus: 1
+      duration: 0.000588
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1024
+      parentUniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/[Utilities.Tests.EditMode][ResourceContainerTests.General][suite]
+    - id: 1026
+      uniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/General/[Utilities.Tests.EditMode][ResourceContainerTests.General.ItCanReduce]
+      name: ItCanReduce
+      fullName: ResourceContainerTests.General.ItCanReduce
+      resultStatus: 1
+      duration: 0.0002807
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1024
+      parentUniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/[Utilities.Tests.EditMode][ResourceContainerTests.General][suite]
+    - id: 1030
+      uniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/General/[Utilities.Tests.EditMode][ResourceContainerTests.General.ItDoesNotGoBelowZero]
+      name: ItDoesNotGoBelowZero
+      fullName: ResourceContainerTests.General.ItDoesNotGoBelowZero
+      resultStatus: 1
+      duration: 0.0003086
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1024
+      parentUniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/[Utilities.Tests.EditMode][ResourceContainerTests.General][suite]
+    - id: 1029
+      uniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/General/[Utilities.Tests.EditMode][ResourceContainerTests.General.ItDoesNotGoOverMaximum]
+      name: ItDoesNotGoOverMaximum
+      fullName: ResourceContainerTests.General.ItDoesNotGoOverMaximum
+      resultStatus: 1
+      duration: 0.0003022
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1024
+      parentUniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/[Utilities.Tests.EditMode][ResourceContainerTests.General][suite]
+    - id: 1027
+      uniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/General/[Utilities.Tests.EditMode][ResourceContainerTests.General.ItReportsAmountLeftAfterReceiving]
+      name: ItReportsAmountLeftAfterReceiving
+      fullName: ResourceContainerTests.General.ItReportsAmountLeftAfterReceiving
+      resultStatus: 1
+      duration: 0.0003028
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1024
+      parentUniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/[Utilities.Tests.EditMode][ResourceContainerTests.General][suite]
+    - id: 1028
+      uniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/General/[Utilities.Tests.EditMode][ResourceContainerTests.General.ItReportsAmountLeftAfterReducing]
+      name: ItReportsAmountLeftAfterReducing
+      fullName: ResourceContainerTests.General.ItReportsAmountLeftAfterReducing
+      resultStatus: 1
+      duration: 0.000304
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1024
+      parentUniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/[Utilities.Tests.EditMode][ResourceContainerTests.General][suite]
+    - id: 1035
+      uniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/[Utilities.Tests.EditMode][ResourceContainerTests.WhenEmpty][suite]
+      name: WhenEmpty
+      fullName: ResourceContainerTests.WhenEmpty
+      resultStatus: 1
+      duration: 0.0132911
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1056
+      parentUniqueId: Utilities.Tests.EditMode.dll/[Utilities.Tests.EditMode][ResourceContainerTests][suite]
+    - id: 1037
+      uniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/WhenEmpty/[Utilities.Tests.EditMode][ResourceContainerTests.WhenEmpty.ItCantBeReduced]
+      name: ItCantBeReduced
+      fullName: ResourceContainerTests.WhenEmpty.ItCantBeReduced
+      resultStatus: 1
+      duration: 0.0004617
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1035
+      parentUniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/[Utilities.Tests.EditMode][ResourceContainerTests.WhenEmpty][suite]
+    - id: 1038
+      uniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/WhenEmpty/[Utilities.Tests.EditMode][ResourceContainerTests.WhenEmpty.ItDoesntConsumeAmountReduced]
+      name: ItDoesntConsumeAmountReduced
+      fullName: ResourceContainerTests.WhenEmpty.ItDoesntConsumeAmountReduced
+      resultStatus: 1
+      duration: 0.0003331
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1035
+      parentUniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/[Utilities.Tests.EditMode][ResourceContainerTests.WhenEmpty][suite]
+    - id: 1036
+      uniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/WhenEmpty/[Utilities.Tests.EditMode][ResourceContainerTests.WhenEmpty.ItIsEmpty]
+      name: ItIsEmpty
+      fullName: ResourceContainerTests.WhenEmpty.ItIsEmpty
+      resultStatus: 1
+      duration: 0.0002838
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1035
+      parentUniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/[Utilities.Tests.EditMode][ResourceContainerTests.WhenEmpty][suite]
+    - id: 1031
+      uniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/[Utilities.Tests.EditMode][ResourceContainerTests.WhenFull][suite]
+      name: WhenFull
+      fullName: ResourceContainerTests.WhenFull
+      resultStatus: 1
+      duration: 0.0136102
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1056
+      parentUniqueId: Utilities.Tests.EditMode.dll/[Utilities.Tests.EditMode][ResourceContainerTests][suite]
+    - id: 1033
+      uniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/WhenFull/[Utilities.Tests.EditMode][ResourceContainerTests.WhenFull.ItCantReceive]
+      name: ItCantReceive
+      fullName: ResourceContainerTests.WhenFull.ItCantReceive
+      resultStatus: 1
+      duration: 0.0004629
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1031
+      parentUniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/[Utilities.Tests.EditMode][ResourceContainerTests.WhenFull][suite]
+    - id: 1034
+      uniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/WhenFull/[Utilities.Tests.EditMode][ResourceContainerTests.WhenFull.ItDoesntConsumeAmountReceived]
+      name: ItDoesntConsumeAmountReceived
+      fullName: ResourceContainerTests.WhenFull.ItDoesntConsumeAmountReceived
+      resultStatus: 1
+      duration: 0.0003243
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1031
+      parentUniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/[Utilities.Tests.EditMode][ResourceContainerTests.WhenFull][suite]
+    - id: 1032
+      uniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/WhenFull/[Utilities.Tests.EditMode][ResourceContainerTests.WhenFull.ItIsFull]
+      name: ItIsFull
+      fullName: ResourceContainerTests.WhenFull.ItIsFull
+      resultStatus: 1
+      duration: 0.0002865
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1031
+      parentUniqueId: Utilities.Tests.EditMode.dll/ResourceContainerTests/[Utilities.Tests.EditMode][ResourceContainerTests.WhenFull][suite]
+    m_ResultText: features-development (0.264s)
+    m_ResultStacktrace: 
+    m_TestListState:
+      scrollPos: {x: 0, y: 0}
+      m_SelectedIDs: ab096070
+      m_LastClickedID: 1885342123
+      m_ExpandedIDs: 3f871b99baf02fabcaea3ce2ea7467e4377812239d3ffc5fca60ca650add8a6dab0960703afc7276452d467bffffff7f
+      m_RenameOverlay:
+        m_UserAcceptedRename: 0
+        m_Name: 
+        m_OriginalName: 
+        m_EditFieldRect:
+          serializedVersion: 2
+          x: 0
+          y: 0
+          width: 0
+          height: 0
+        m_UserData: 0
+        m_IsWaitingForDelay: 0
+        m_IsRenaming: 0
+        m_OriginalEventType: 11
+        m_IsRenamingFilename: 0
+        m_ClientGUIView: {fileID: 0}
+      m_SearchString: 
+    m_TestRunnerUIFilter:
+      PassedHidden: 0
+      FailedHidden: 0
+      NotRunHidden: 0
+      m_SearchString: 
+      selectedCategoryMask: 0
+      availableCategories:
+      - Uncategorized
+--- !u!114 &21
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 1
+  m_Script: {fileID: 12019, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_TitleContent:
+    m_Text: Inspector
+    m_Image: {fileID: 8356117983803934776, guid: 0000000000000000d000000000000000, type: 0}
+    m_Tooltip: 
+  m_Pos:
+    serializedVersion: 2
+    x: 1695
+    y: 102
+    width: 360
+    height: 1093
+  m_ViewDataDictionary: {fileID: 0}
+  m_OverlayCanvas:
+    m_LastAppliedPresetName: Default
+    m_SaveData: []
+  m_ObjectsLockedBeforeSerialization: []
+  m_InstanceIDsLockedBeforeSerialization: 
+  m_PreviewResizer:
+    m_CachedPref: 220
+    m_ControlHash: -371814159
+    m_PrefName: Preview_InspectorPreview
+  m_LastInspectedObjectInstanceID: -1
+  m_LastVerticalScrollValue: 0
+  m_GlobalObjectId: 
+  m_InspectorMode: 0
+  m_LockTracker:
+    m_IsLocked: 0
+  m_PreviewWindow: {fileID: 0}
+--- !u!114 &22
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 12141, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MinSize: {x: 300, y: 360}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_TitleContent:
+    m_Text: Navigation
+    m_Image: {fileID: 7874161543223113035, guid: 0000000000000000d000000000000000, type: 0}
+    m_Tooltip: 
+  m_Pos:
+    serializedVersion: 2
+    x: 1659
+    y: 102
+    width: 396
+    height: 1091
+  m_ViewDataDictionary: {fileID: 0}
+  m_OverlayCanvas:
+    m_LastAppliedPresetName: Default
+    m_SaveData: []
+--- !u!114 &23
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 12079, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MinSize: {x: 390, y: 390}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_TitleContent:
+    m_Text: Lighting
+    m_Image: {fileID: 4345591932164060902, guid: 0000000000000000d000000000000000, type: 0}
+    m_Tooltip: 
+  m_Pos:
+    serializedVersion: 2
+    x: 1659
+    y: 102
+    width: 396
+    height: 1091
+  m_ViewDataDictionary: {fileID: 0}
+  m_OverlayCanvas:
+    m_LastAppliedPresetName: Default
+    m_SaveData: []

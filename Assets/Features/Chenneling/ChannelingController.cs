@@ -6,15 +6,15 @@ namespace UnityEngine
 {
     public class ChannelingController : MonoBehaviour
     {
-        public IReadOnlyDictionary<string, (ChannelingItem, ProgressReporter)> CurrentlyChanneling => m_CurrentlyChanneling;
+        public IReadOnlyDictionary<string, (ChannelingItem, ChannelingItemUI)> CurrentlyChanneling => m_CurrentlyChanneling;
 
-        private Dictionary<string, (ChannelingItem, ProgressReporter)> m_CurrentlyChanneling = new();
+        private Dictionary<string, (ChannelingItem, ChannelingItemUI)> m_CurrentlyChanneling = new();
 
         private GameObject Root;
 
         private Transform m_HeadAttachmentSpot;
 
-        public ProgressReporter TimerPrefab;
+        public ChannelingItemUI TimerPrefab;
 
         private void Update()
         {
@@ -27,7 +27,7 @@ namespace UnityEngine
         {
             Root = transform.root.gameObject;
 
-            TimerPrefab = Resources.Load<ProgressReporter>("Prefabs/ChannelTimer");
+            TimerPrefab = Resources.Load<ChannelingItemUI>("Prefabs/ChannelTimer");
         }
 
         private void Start()
@@ -59,7 +59,7 @@ namespace UnityEngine
             
             var timer = Instantiate(TimerPrefab, m_HeadAttachmentSpot);
             
-            timer.transform.position += new Vector3(0, 0.5f * m_CurrentlyChanneling.Count, 0);
+            timer.transform.position += new Vector3(0, 1f * m_CurrentlyChanneling.Count, 0);
             
             m_CurrentlyChanneling.Add(title, (new ChannelingItem(max, current), timer));
         }
@@ -74,8 +74,7 @@ namespace UnityEngine
 
                 var timer = valueTuple.Value.Item2;
 
-                 timer.SetText(
-                    $"{channelThing.ChanneledAmount:#.##}/{channelThing.MaxDuration:#.##}");
+                timer.SetFillAmount(channelThing.ChanneledAmount, channelThing.MaxDuration);
             }
         }
         
