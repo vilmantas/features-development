@@ -27,6 +27,14 @@ namespace UnityEngine
             
             RemoveExpired();
         }
+        
+        private void ProgressTimers(float timeDelta)
+        {
+            foreach (var channelingItem in m_CurrentlyChanneling)
+            {
+                channelingItem.AddProgress(timeDelta);
+            }
+        }
 
         public void StartChanneling(ChannelingCommand command)
         {
@@ -37,14 +45,6 @@ namespace UnityEngine
             m_CurrentlyChanneling.Add(tracker);
 
             OnChannelingStarted?.Invoke(tracker);
-        }
-
-        private void ProgressTimers(float timeDelta)
-        {
-            foreach (var channelingItem in m_CurrentlyChanneling)
-            {
-                channelingItem.AddProgress(timeDelta);
-            }
         }
         
         private void RemoveExpired()

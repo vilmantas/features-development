@@ -4,13 +4,17 @@ namespace Features.Skills
 {
     public class SkillActivationContext
     {
-        public readonly string Skill;
+        public string Skill => Metadata.ReferenceName;
+
+        public readonly SkillMetadata Metadata;
         
         public readonly GameObject Source;
 
-        public SkillActivationContext(string skill, GameObject source)
+        public bool PreventDefault;
+
+        public SkillActivationContext(SkillMetadata metadata, GameObject source)
         {
-            Skill = skill;
+            Metadata = metadata;
             Source = source;
         }
     }

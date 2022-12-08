@@ -45,6 +45,8 @@ namespace UnityEngine
             if (!m_CurrentlyChanneling.TryGetValue(obj.Title, out var item)) return;
             
             Destroy(item.gameObject);
+
+            m_CurrentlyChanneling.Remove(obj.Title);
         }
 
         private void OnChannelingTick(float obj)

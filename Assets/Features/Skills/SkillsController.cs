@@ -9,6 +9,8 @@ namespace Features.Skills
     {
         private List<SkillInstance> m_Skills = new();
 
+        public Action<SkillActivationContext> OnBeforeActivation;
+
         public Action<SkillInstance> OnSkillAdded;
 
         public Action<SkillInstance> OnSkillRemoved;
@@ -33,6 +35,10 @@ namespace Features.Skills
 
         public void ActivateSkill(SkillActivationContext context)
         {
+            OnBeforeActivation?.Invoke(context);
+
+            if (context.PreventDefault) return;
+            
             var skillInstance =
                 m_Skills.FirstOrDefault(x => x.Metadata.ReferenceName.Equals(context.Skill));
             
@@ -56,7 +62,7 @@ namespace Features.Skills
             
             m_Skills.Add(instance);
 
-            var ctx = new SkillActivationContext(metadata.ReferenceName, transform.root.gameObject);
+            var ctx = new SkillActivationContext(metadata, transform.root.gameObject);
             
             instance.Implementation.OnReceive(ctx);
             
@@ -73,8 +79,7 @@ namespace Features.Skills
 
             m_Skills.Remove(skill);
 
-            var ctx = new SkillActivationContext(skill.Metadata.ReferenceName,
-                transform.root.gameObject);
+            var ctx = new SkillActivationContext(skill.Metadata, transform.root.gameObject);
             
             skill.Implementation.OnRemove(ctx);
             

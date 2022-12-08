@@ -1,4 +1,6 @@
 using System;
+using Features.Actions;
+using Features.Cooldowns;
 using Features.Equipment;
 using Features.Skills;
 using Integrations.Items;
@@ -13,6 +15,12 @@ namespace Features.Character
         private EquipmentController m_EquipmentController;
 
         private SkillsController m_SkillsController;
+
+        private CooldownsController m_CooldownsController;
+
+        private ChannelingController m_ChannelingController;
+
+        private ActionsController m_ActionsController;
         
         private void Awake()
         {
@@ -21,6 +29,12 @@ namespace Features.Character
             m_EquipmentController = Root.GetComponentInChildren<EquipmentController>();
 
             m_SkillsController = Root.GetComponentInChildren<SkillsController>();
+
+            m_ChannelingController = Root.GetComponentInChildren<ChannelingController>();
+
+            m_CooldownsController = Root.GetComponentInChildren<CooldownsController>();
+
+            m_ActionsController = Root.GetComponentInChildren<ActionsController>();
             
             if (!m_EquipmentController) return;
             

@@ -8,7 +8,7 @@ namespace Integrations.Skills.Actions
 {
     public static class ActivateSkill
     {
-        public static ActionActivationPayload MakePayload(GameObject source, string skill)
+        public static ActionActivationPayload MakePayload(GameObject source, SkillMetadata skill)
         {
             var payload = new ActionActivationPayload(new ActionBase(nameof(ActivateSkill)),
                 source);
@@ -27,7 +27,7 @@ namespace Integrations.Skills.Actions
 
         private static void OnActivation(ActionActivationPayload payload)
         {
-            if (payload is not ActivateSkillActionPayload activateSkillActionPayload)
+            if (payload is not ActivateSkillActionPayload skillActionPayload)
             {
                 throw new ArgumentException("Invalid type of payload passed to activateSkill action");
             }
@@ -35,30 +35,22 @@ namespace Integrations.Skills.Actions
             var controller = payload.Target.GetComponentInChildren<SkillsController>();
             
             if (!controller) return;
-
-            var cooldowns = payload.Target.GetComponentInChildren<CooldownsController>();
-
-            if (cooldowns.IsOnCooldown(activateSkillActionPayload.Skill))
-            {
-                Debug.Log(activateSkillActionPayload.Skill +" is on cooldown");
-                return;
-            }
             
-            var ctx = new SkillActivationContext(activateSkillActionPayload.Skill,
-                activateSkillActionPayload.Target);
+            var ctx = new SkillActivationContext(skillActionPayload.Skill,
+                skillActionPayload.Target);
             
             controller.ActivateSkill(ctx);
         }
 
         public class ActivateSkillActionPayload : ActionActivationPayload
         {
-            public readonly string Skill;
+            public readonly SkillMetadata Skill;
 
             public ActivateSkillActionPayload(ActionActivationPayload original,
-                string skillName) : base(original.Action,
+                SkillMetadata skill) : base(original.Action,
                 original.Source, original.Target, original.Data)
             {
-                Skill = skillName;
+                Skill = skill;
             }
         }
     }

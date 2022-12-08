@@ -1,4 +1,4 @@
 {
   "name": "Integrations.Skills",
-  "references":[ "GUID:26f2f35b1ebe422b98a5ef5cd9eaa89f", "GUID:8609044b58cf65c46991eb7b27bfd69b", "GUID:45de591bbc0644818ef53e78946ecd2f", "GUID:e932ca31916e4d25937093ebee4e44aa", "GUID:0e24cd8cfeed400fabd81344ac8fa793", "GUID:c9ea744c7300468da3da43fb9bc887bf" ]
+  "references":[ "GUID:26f2f35b1ebe422b98a5ef5cd9eaa89f", "GUID:8609044b58cf65c46991eb7b27bfd69b", "GUID:45de591bbc0644818ef53e78946ecd2f", "GUID:e932ca31916e4d25937093ebee4e44aa", "GUID:0e24cd8cfeed400fabd81344ac8fa793", "GUID:c9ea744c7300468da3da43fb9bc887bf", "GUID:5484a99257fa4185a5115ec9bad0fcc3" ]
 }

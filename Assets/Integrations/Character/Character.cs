@@ -101,7 +101,7 @@ namespace Features.Character
 
             [HideInInspector] public CooldownsController m_CooldownsController;
 
-            [HideInInspector] public ChannelingController m_ChannelingController;
+            [HideInInspector] public ChannelingController ChannelingController;
 
             [HideInInspector] private ChannelingUIController m_ChannelingUIController;
 
@@ -126,6 +126,8 @@ namespace Features.Character
             private CharacterSkillsManager m_SkillsManager;
 
             private CharacterCooldownsManager m_CooldownsManager;
+
+            private CharacterChannelingManager m_ChannelingManager;
 
             private void Awake()
             {
@@ -158,10 +160,10 @@ namespace Features.Character
                 AddSystemsComponent("actions", ref m_ActionsController);
                 AddSystemsComponent("movement", ref m_MovementController);
                 AddSystemsComponent("cooldowns", ref m_CooldownsManager);
-                AddSystemsComponent("channeling", ref m_ChannelingController);
+                AddSystemsComponent("channeling", ref ChannelingController);
                 AddSystemsComponent("channeling_ui", ref m_ChannelingUIController);
                 
-                m_ChannelingUIController.Initialize(m_ChannelingController);
+                m_ChannelingUIController.Initialize(ChannelingController);
 
                 if (Inventory)
                 {
@@ -222,6 +224,7 @@ namespace Features.Character
                 AddManagerComponent("stat_calculator", ref m_StatCalculator);
                 AddManagerComponent("expiration", ref m_ExpirationManager);
                 AddManagerComponent("cooldowns", ref m_CooldownsController);
+                AddManagerComponent("channeling", ref m_ChannelingManager);
 
                 if (Inventory) AddManagerComponent("inventory", ref m_InventoryManager);
 

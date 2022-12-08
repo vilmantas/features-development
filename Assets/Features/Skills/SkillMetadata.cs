@@ -11,6 +11,8 @@ namespace Features.Skills
         public readonly float CastTime;
 
         public readonly float Cooldown;
+
+        public bool ChanneledSkill => CastTime > 0f;
         
         public SkillMetadata(string implementationName, string referenceName, string displayName, float castTime, float cooldown)
         {

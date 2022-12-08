@@ -8,6 +8,7 @@ using Features.Equipment.UI;
 using Features.Health;
 using Features.Inventory.UI;
 using Features.Movement;
+using Features.Skills;
 using Features.Stats.Base;
 using Integrations.Actions;
 using Integrations.Items;
@@ -124,7 +125,10 @@ namespace DebugScripts.Character
             
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                var payload = ActivateSkill.MakePayload(RootGameObject, "Basic Attack");
+                if (!SkillMetadataRegistry.Implementations.TryGetValue("Basic Attack",
+                        out var skill)) return;
+                
+                var payload = ActivateSkill.MakePayload(RootGameObject, skill);
 
                 PlayerInstance.m_ActionsController.DoAction(payload);
             }

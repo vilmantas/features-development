@@ -5,41 +5,37 @@ using UnityEngine;
 
 namespace Features.Character
 {
-    public class CharacterCooldownsManager : MonoBehaviour
+    public class CharacterChannelingManager : MonoBehaviour
     {
         private GameObject Root;
 
         private SkillsController m_SkillsController;
 
-        private CooldownsController m_CooldownsController;
+        private ChannelingController m_ChannelingController;
         
         private void Start()
         {
             Root = transform.root.gameObject;
 
-            m_CooldownsController = Root.GetComponentInChildren<CooldownsController>();
+            m_ChannelingController = Root.GetComponentInChildren<ChannelingController>();
 
             m_SkillsController = Root.GetComponentInChildren<SkillsController>();
 
             if (!m_SkillsController) return;
-            
-            m_SkillsController.OnSkillActivated += SetSkillCooldown;
             
             m_SkillsController.OnBeforeActivation += OnBeforeActivation;
         }
 
         private void OnBeforeActivation(SkillActivationContext obj)
         {
-            if (!m_CooldownsController.IsOnCooldown(obj.Skill)) return;
+            if (!obj.Metadata.ChanneledSkill) return;
+            
+            var command = new ChannelingCommand("skill_" + obj.Metadata.ReferenceName,
+                obj.Metadata.CastTime);
+                
+            m_ChannelingController.StartChanneling(command);
 
             obj.PreventDefault = true;
-        }
-
-        private void SetSkillCooldown(SkillActivationContext context, SkillActivationResult result, float cooldown)
-        {
-            if (!result.IsSuccess) return;
-            
-            m_CooldownsController.AddCooldown(context.Skill, cooldown);
         }
     }
 }
