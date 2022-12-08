@@ -8,6 +8,8 @@ namespace UnityEngine
         public readonly float MaxDuration;
         public float ChanneledAmount { get; private set; } = 0;
 
+        public Action Callback;
+
         public ChannelingItem(string title, float maxDuration, float progress)
         {
             Title = title;

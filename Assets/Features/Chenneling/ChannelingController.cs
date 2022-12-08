@@ -41,6 +41,8 @@ namespace UnityEngine
             if (m_CurrentlyChanneling.Any(x => x.Title.Equals(command.Title))) return;
 
             var tracker = new ChannelingItem(command.Title, command.Max, command.Current);
+
+            tracker.Callback = command.Callback;
             
             m_CurrentlyChanneling.Add(tracker);
 
@@ -55,6 +57,8 @@ namespace UnityEngine
             
             foreach (var channelingItem in expiredCooldowns)
             {
+                channelingItem.Callback?.Invoke();
+                
                 OnChannelingCompleted?.Invoke(channelingItem);
             }
         }

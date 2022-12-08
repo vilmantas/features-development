@@ -35,11 +35,11 @@ namespace Features.Character
             obj.PreventDefault = true;
         }
 
-        private void SetSkillCooldown(SkillActivationContext context, SkillActivationResult result, float cooldown)
+        private void SetSkillCooldown(SkillActivationContext context, SkillActivationResult result)
         {
             if (!result.IsSuccess) return;
             
-            m_CooldownsController.AddCooldown(context.Skill, cooldown);
+            m_CooldownsController.AddCooldown(context.Skill, context.Metadata.Cooldown);
         }
     }
 }

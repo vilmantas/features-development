@@ -15,7 +15,7 @@ namespace Features.Skills
 
         public Action<SkillInstance> OnSkillRemoved;
 
-        public Action<SkillActivationContext, SkillActivationResult, float> OnSkillActivated;
+        public Action<SkillActivationContext, SkillActivationResult> OnSkillActivated;
 
         public IReadOnlyList<SkillMetadata> Skills => m_Skills.Select(x => x.Metadata).ToList();
 
@@ -51,7 +51,7 @@ namespace Features.Skills
             
             var result = skillInstance.Implementation.OnActivation.Invoke(context);
             
-            OnSkillActivated?.Invoke(context, result, skillInstance.Metadata.Cooldown);
+            OnSkillActivated?.Invoke(context, result);
         }
 
         public void Add(SkillMetadata metadata)

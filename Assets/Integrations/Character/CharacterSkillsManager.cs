@@ -18,8 +18,6 @@ namespace Features.Character
 
         private CooldownsController m_CooldownsController;
 
-        private ChannelingController m_ChannelingController;
-
         private ActionsController m_ActionsController;
         
         private void Awake()
@@ -29,12 +27,6 @@ namespace Features.Character
             m_EquipmentController = Root.GetComponentInChildren<EquipmentController>();
 
             m_SkillsController = Root.GetComponentInChildren<SkillsController>();
-
-            m_ChannelingController = Root.GetComponentInChildren<ChannelingController>();
-
-            m_CooldownsController = Root.GetComponentInChildren<CooldownsController>();
-
-            m_ActionsController = Root.GetComponentInChildren<ActionsController>();
             
             if (!m_EquipmentController) return;
             
