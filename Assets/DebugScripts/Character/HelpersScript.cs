@@ -148,7 +148,9 @@ public class HelpersScript : MonoBehaviour
     public void GiveBasicChannel()
     {
         var controller = Target.GetComponentInChildren<ChannelingController>();
+
+        var channelCommand = new ChannelingCommand("Something" + Random.value, 2f);
         
-        controller.StartChanneling("Something" + Random.value, 2f);
+        controller.StartChanneling(channelCommand);
     }
 }

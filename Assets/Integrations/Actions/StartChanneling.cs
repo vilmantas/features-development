@@ -27,8 +27,10 @@ namespace Integrations.Actions
             var channelingController =
                 payload.Target.GetComponentInChildren<ChannelingController>();
 
-            channelingController.StartChanneling(startChannelingActionPayload.Data.Title,
+            var channelCommand = new ChannelingCommand(startChannelingActionPayload.Data.Title,
                 startChannelingActionPayload.Data.Duration);
+            
+            channelingController.StartChanneling(channelCommand);
         }
 
         public class StartChannelingActionPayload : ActionActivationPayload
