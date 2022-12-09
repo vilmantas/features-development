@@ -8,6 +8,8 @@ namespace Features.Combat
     {
         public Action<ProjectileCollisionData> OnProjectileCollided;
 
+        private int GroundLayerMask;
+        
         private object m_Source;
         
         private GameObject m_Parent;
@@ -18,6 +20,8 @@ namespace Features.Combat
 
         public void Initialize(GameObject parent, object source , Vector3 direction)
         {
+            GroundLayerMask = LayerMask.NameToLayer("Ground");
+
             m_Source = source;
             
             m_Rigidbody = GetComponent<Rigidbody>();
@@ -33,7 +37,14 @@ namespace Features.Combat
 
         private void OnTriggerEnter(Collider other)
         {
+            if (m_Parent == null) return;
+            
             if (other.transform.root.name == m_Parent.name) return;
+            
+            if (other.gameObject.layer == GroundLayerMask)
+            {
+                Destroy(gameObject);
+            }
             
             if (other.name != "hitbox") return;
             
