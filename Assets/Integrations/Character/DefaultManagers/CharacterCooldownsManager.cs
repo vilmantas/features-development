@@ -24,15 +24,6 @@ namespace Features.Character
             if (!m_SkillsController) return;
             
             m_SkillsController.OnSkillActivated += SetSkillCooldown;
-            
-            m_SkillsController.OnBeforeActivation += OnBeforeActivation;
-        }
-
-        private void OnBeforeActivation(SkillActivationContext obj)
-        {
-            if (!m_CooldownsController.IsOnCooldown(obj.Skill)) return;
-
-            obj.PreventDefault = true;
         }
 
         private void SetSkillCooldown(SkillActivationContext context, SkillActivationResult result)

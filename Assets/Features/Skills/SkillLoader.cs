@@ -20,7 +20,7 @@ namespace Features.Skills
         private static SkillMetadata ToMetadata(Skill_SO skill)
         {
             return new SkillMetadata(skill.ImplementationName, skill.ReferenceName,
-                skill.DisplayName, skill.CastTime, skill.Cooldown);
+                skill.DisplayName, skill.CastTime, skill.Cooldown, skill.RequiresTarget);
         }
     }
 }

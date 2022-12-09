@@ -139,7 +139,7 @@ namespace DebugScripts.Character
                     var x = hit.point;
 
                     x.y = transform.position.y;
-                    
+
                     transform.LookAt(x);
                 }
             }

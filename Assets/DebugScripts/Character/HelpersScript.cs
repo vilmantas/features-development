@@ -138,7 +138,7 @@ public class HelpersScript : MonoBehaviour
     {
         var metadata =
             new SkillMetadata(nameof(BasicAttackSkill), nameof(BasicAttackSkill),
-                nameof(BasicAttackSkill), 1f, 1f);
+                nameof(BasicAttackSkill), 1f, 1f, false);
             
         var controller = Target.GetComponentInChildren<SkillsController>();
         

@@ -48,7 +48,7 @@ namespace Features.Skills
             OnBeforeActivation?.Invoke(context);
 
             if (context.PreventDefault) return;
-            
+
             var result = skillInstance.Implementation.OnActivation.Invoke(context);
             
             OnSkillActivated?.Invoke(context, result);
