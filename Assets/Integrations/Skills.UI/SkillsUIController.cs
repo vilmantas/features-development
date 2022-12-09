@@ -14,15 +14,24 @@ namespace Integrations.Skills.UI
 
         private CooldownsController m_CooldownsController;
 
+        private ChannelingController m_ChannelingController;
+
         public SkillUIDataController SkillPrefab;
 
-        public List<SkillUIDataController> UIDatas; 
-        
-        public void Initialize(SkillsController source, CooldownsController cooldowns)
+        public List<SkillUIDataController> UIDatas;
+
+        public void Initialize(SkillsController source, CooldownsController cooldowns,
+            ChannelingController channeling)
         {
             m_Source = source;
 
             m_CooldownsController = cooldowns;
+
+            m_ChannelingController = channeling;
+            
+            m_ChannelingController.OnChannelingStarted += OnChannelingStarted;
+
+            m_ChannelingController.OnChannelingCompleted += OnChannelingStarted;
             
             m_Source.OnSkillAdded += _ => UpdateUI();
 
@@ -32,6 +41,11 @@ namespace Integrations.Skills.UI
             
             m_CooldownsController.OnCooldownExpired += CheckCooldowns;
             
+            UpdateUI();
+        }
+
+        private void OnChannelingStarted(ChannelingItem obj)
+        {
             UpdateUI();
         }
 
@@ -59,6 +73,8 @@ namespace Integrations.Skills.UI
             }
             
             SetCooldowns();
+            
+            SetChannelings();
         }
 
         private void SetCooldowns()
@@ -71,6 +87,18 @@ namespace Integrations.Skills.UI
                     x.Name == data.Parent.ReferenceName);
                 
                 data.SetCooldown(cd);
+            }
+        }
+
+        private void SetChannelings()
+        {
+            foreach (var skillUIDataController in UIDatas)
+            {
+                var channeling = m_ChannelingController.CurrentlyChanneling.FirstOrDefault(x =>
+                    x.Title.Replace("skill_",
+                        "").Equals(skillUIDataController.Parent.ReferenceName));
+                
+                skillUIDataController.SetBlock(channeling != null);
             }
         }
     }

@@ -101,7 +101,7 @@ namespace Features.Character
 
             [HideInInspector] public CooldownsController m_CooldownsController;
 
-            [HideInInspector] public ChannelingController ChannelingController;
+            [HideInInspector] public ChannelingController m_ChannelingController;
 
             [HideInInspector] private ChannelingUIController m_ChannelingUIController;
 
@@ -160,10 +160,10 @@ namespace Features.Character
                 AddSystemsComponent("actions", ref m_ActionsController);
                 AddSystemsComponent("movement", ref m_MovementController);
                 AddSystemsComponent("cooldowns", ref m_CooldownsManager);
-                AddSystemsComponent("channeling", ref ChannelingController);
+                AddSystemsComponent("channeling", ref m_ChannelingController);
                 AddSystemsComponent("channeling_ui", ref m_ChannelingUIController);
                 
-                m_ChannelingUIController.Initialize(ChannelingController);
+                m_ChannelingUIController.Initialize(m_ChannelingController);
 
                 if (Inventory)
                 {

@@ -19,6 +19,12 @@ namespace UnityEngine
             m_Canvas.worldCamera = Camera.main;
 
             m_Image = GetComponentInChildren<Image>();
+            
+            var sizeDelta = m_Image.rectTransform.sizeDelta;
+            
+            sizeDelta = new Vector2(0, sizeDelta.y);
+
+            m_Image.rectTransform.sizeDelta = sizeDelta;
         }
 
         public void SetFillAmount(float current, float max)
@@ -28,7 +34,6 @@ namespace UnityEngine
             sizeDelta = new Vector2(current / max * MAX_WIDTH, sizeDelta.y);
             
             m_Image.rectTransform.sizeDelta = sizeDelta;
-            
         }
     }
 }

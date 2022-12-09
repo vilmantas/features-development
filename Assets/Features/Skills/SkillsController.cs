@@ -35,10 +35,6 @@ namespace Features.Skills
 
         public void ActivateSkill(SkillActivationContext context)
         {
-            OnBeforeActivation?.Invoke(context);
-
-            if (context.PreventDefault) return;
-            
             var skillInstance =
                 m_Skills.FirstOrDefault(x => x.Metadata.ReferenceName.Equals(context.Skill));
             
@@ -48,6 +44,10 @@ namespace Features.Skills
 
                 return;
             }
+            
+            OnBeforeActivation?.Invoke(context);
+
+            if (context.PreventDefault) return;
             
             var result = skillInstance.Implementation.OnActivation.Invoke(context);
             

@@ -1,4 +1,4 @@
 {
   "name": "Integrations.Skills.UI",
-  "references":[ "GUID:26f2f35b1ebe422b98a5ef5cd9eaa89f",     "GUID:6055be8ebefd69e48b49212b09b47b2f",     "GUID:c9ea744c7300468da3da43fb9bc887bf",     "GUID:c7bff77d66b55c949934bd0b903bdf65" ]
+  "references":[ "GUID:26f2f35b1ebe422b98a5ef5cd9eaa89f",     "GUID:6055be8ebefd69e48b49212b09b47b2f",     "GUID:c9ea744c7300468da3da43fb9bc887bf",     "GUID:c7bff77d66b55c949934bd0b903bdf65",     "GUID:5484a99257fa4185a5115ec9bad0fcc3" ]
 }

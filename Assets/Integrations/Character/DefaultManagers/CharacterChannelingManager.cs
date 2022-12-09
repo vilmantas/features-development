@@ -32,6 +32,8 @@ namespace Features.Character
 
         private void OnBeforeActivation(SkillActivationContext obj)
         {
+            if (obj.PreventDefault) return;
+            
             if (!obj.Metadata.ChanneledSkill) return;
 
             if (IsSkillPrepared(obj)) return;
