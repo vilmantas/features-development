@@ -10,7 +10,7 @@ namespace Features.Skills
         public string DisplayName;
         public float CastTime;
         public float Cooldown;
-        public bool RequiresTarget;
+        public SkillTarget Target;
 
         public SkillMetadata GetMetadata => SkillMetadataRegistry.Implementations[ReferenceName];
     }

@@ -12,16 +12,16 @@ namespace Features.Skills
 
         public readonly float Cooldown;
 
-        public readonly bool RequiresTarget;
+        public readonly SkillTarget Target;
         
         public bool ChanneledSkill => CastTime > 0f;
         
-        public SkillMetadata(string implementationName, string referenceName, string displayName, float castTime, float cooldown, bool requiresTarget)
+        public SkillMetadata(string implementationName, string referenceName, string displayName, float castTime, float cooldown, SkillTarget target)
         {
             DisplayName = displayName;
             CastTime = castTime;
             Cooldown = cooldown;
-            RequiresTarget = requiresTarget;
+            Target = target;
             ImplementationName = implementationName;
             ReferenceName = referenceName;
         }

@@ -160,6 +160,16 @@ namespace DebugScripts.Character
                     PlayerInstance.m_ActionsController.DoAction(movePayload);
                 }
             }
+
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                if (!SkillMetadataRegistry.Implementations.TryGetValue("Meteor Strike",
+                        out var skill)) return;
+                
+                var payload = ActivateSkill.MakePayload(RootGameObject, skill);
+
+                PlayerInstance.m_ActionsController.DoAction(payload);
+            }
         }
     }
 }

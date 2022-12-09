@@ -4378,6 +4378,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_StaffGuy
       objectReference: {fileID: 0}
+    - target: {fileID: 1231179446112602929, guid: c38bd70661894434bb40da94ad043f3d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1231179446112602930, guid: c38bd70661894434bb40da94ad043f3d, type: 3}
       propertyPath: Buffs
       value: 1
@@ -4546,7 +4550,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6728580033162269917, guid: ec5a0edd3f716c44b8ab2c6a04e3de33, type: 3}
       propertyPath: StartingSkills.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6728580033162269917, guid: ec5a0edd3f716c44b8ab2c6a04e3de33, type: 3}
       propertyPath: StartingInventory.Array.size
@@ -4556,6 +4560,10 @@ PrefabInstance:
       propertyPath: StartingSkills.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: 70e5457c3a5ad4baab4d67c9ba63e23c, type: 2}
+    - target: {fileID: 6728580033162269917, guid: ec5a0edd3f716c44b8ab2c6a04e3de33, type: 3}
+      propertyPath: StartingSkills.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 2ad72aeb919dc4fc39c9154a6cc7afe1, type: 2}
     - target: {fileID: 6728580033162269917, guid: ec5a0edd3f716c44b8ab2c6a04e3de33, type: 3}
       propertyPath: StartingInventory.Array.data[3]
       value: 

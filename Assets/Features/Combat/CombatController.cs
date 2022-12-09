@@ -10,8 +10,6 @@ namespace Features.Combat
     {
         private Dictionary<string, ProjectileController> m_AmmoData;
 
-        public Action<ProjectileCollisionData> OnProjectileCollided;
-
         public Action<CombatActionPayload> OnBeforeStrike;
 
         public Action<CombatActionPayload> OnBeforeBlock;
@@ -29,14 +27,24 @@ namespace Features.Combat
             m_AmmoData = new Dictionary<string, ProjectileController>();
         }
 
-        public void FireProjectile(ProjectileController projectilePrefab, Vector3 location,
-            Vector3 direction, object source)
+        public void FireProjectile(ProjectileController projectilePrefab, Vector3 spawnLocation,
+            Vector3 direction, object source, Action<ProjectileCollisionData> callback)
         {
-            var projectile = Instantiate(projectilePrefab, location, Random.rotation);
+            var projectile = Instantiate(projectilePrefab, spawnLocation, Random.rotation);
 
-            projectile.OnProjectileCollided += data => OnProjectileCollided?.Invoke(data);
+            projectile.OnProjectileCollided += callback;
             
-            projectile.Initialize(transform.root.gameObject, source, direction);
+            projectile.Initialize(transform.root.gameObject, source, direction, null);
+        }
+        
+        public void FireHomingProjectile(ProjectileController projectilePrefab, Vector3 spawnLocation,
+            GameObject target, object source, Action<ProjectileCollisionData> callback)
+        {
+            var projectile = Instantiate(projectilePrefab, spawnLocation, Random.rotation);
+
+            projectile.OnProjectileCollided += callback;
+            
+            projectile.Initialize(transform.root.gameObject, source, Vector3.zero, target);
         }
 
         public void Strike()

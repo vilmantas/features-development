@@ -50,8 +50,6 @@ namespace Features.Character
             
             m_EquipmentController.OnItemUnequipped += OnItemUnequipped;
 
-            m_CombatController.OnProjectileCollided += OnProjectileCollided;
-
             m_Character.Events.OnProjectileTrigger += OnProjectileTrigger;
             
             m_CombatController.OnStrike += OnAttemptStrike;
@@ -76,9 +74,9 @@ namespace Features.Character
 
             var payload = FireProjectile.MakePayload(itemInSlot, root.gameObject, null,
                 itemInstance.Metadata.RequiredAmmo,
-                position, root.forward);
+                position, root.forward, null, OnProjectileCollided);
 
-            m_Character.m_ActionsController.DoAction(payload);
+            m_Character.m_ActionsController.DoPassiveAction(payload);
         }
 
 

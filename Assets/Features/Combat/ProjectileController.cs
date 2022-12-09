@@ -14,11 +14,13 @@ namespace Features.Combat
         
         private GameObject m_Parent;
 
+        private GameObject m_Target;
+
         private Rigidbody m_Rigidbody;
 
         private Vector3 m_Direction;
 
-        public void Initialize(GameObject parent, object source , Vector3 direction)
+        public void Initialize(GameObject parent, object source , Vector3 direction, GameObject target)
         {
             GroundLayerMask = LayerMask.NameToLayer("Ground");
 
@@ -27,6 +29,8 @@ namespace Features.Combat
             m_Rigidbody = GetComponent<Rigidbody>();
             
             m_Parent = parent;
+
+            m_Target = target;
 
             m_Direction = direction;
             
@@ -41,19 +45,12 @@ namespace Features.Combat
             
             if (other.transform.root.name == m_Parent.name) return;
             
-            if (other.gameObject.layer == GroundLayerMask)
-            {
-                Destroy(gameObject);
-            }
-            
-            if (other.name != "hitbox") return;
-            
             var data = new ProjectileCollisionData(m_Parent, other.transform.root.gameObject, m_Source);
             
             OnProjectileCollided?.Invoke(data);
-
+            
             if (!data.IsConsumed) return;
-
+            
             OnProjectileCollided = null;
             
             Destroy(gameObject);
