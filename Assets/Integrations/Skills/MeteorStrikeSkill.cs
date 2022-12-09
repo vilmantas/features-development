@@ -22,32 +22,24 @@ namespace Integrations.Skills
 
         private static SkillActivationResult OnActivation(SkillActivationContext context)
         {
-            Vector3 targetPosition;
-            
-            switch (context.Metadata.Target)
-            {
-                case SkillTarget.Character:
-                    targetPosition = context.TargetObject.transform.position;
-                    break;
-                case SkillTarget.Self:
-                    targetPosition = context.Source.transform.position;
-                    break;
-                case SkillTarget.Pointer:
-                    targetPosition = context.TargetLocation;
-                    break;
-            }
-
             var comb = context.Source.GetComponentInChildren<ActionsController>();
 
-            var p = context.Source.transform.position;
+            var spawnPoint = context.TargetLocation;
 
-            p.y += 10f;
+            spawnPoint.y += 10f;
 
-            var pp = FireProjectile.MakeNoAmmoPayload(context.Metadata, context.Source,
-                context.TargetObject,
-                p, Vector3.down, Projectile, Callback);
+            var projectilePayload = FireProjectile.MakePayload(
+                context.Metadata, 
+                context.Source,
+                spawnPoint, 
+                Callback,
+                context.TargetObject);
+            
+            projectilePayload.Direction = Vector3.down;
 
-            comb.DoAction(pp);
+            projectilePayload.Projectile = Projectile;
+
+            comb.DoAction(projectilePayload);
                 
             return new SkillActivationResult(true);
         }

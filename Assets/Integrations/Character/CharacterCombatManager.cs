@@ -16,7 +16,7 @@ namespace Features.Character
 
         public Action<DamageActionPayload> OnBeforeDoDamage;
 
-        private Transform root;
+        private Transform Root;
 
         private Modules.Character m_Character;
 
@@ -30,17 +30,17 @@ namespace Features.Character
 
         private void Awake()
         {
-            root = transform.root;
+            Root = transform.root;
 
-            m_Character = root.GetComponent<Modules.Character>();
+            m_Character = Root.GetComponent<Modules.Character>();
 
-            m_EquipmentController = root.GetComponentInChildren<EquipmentController>();
+            m_EquipmentController = Root.GetComponentInChildren<EquipmentController>();
 
-            m_CombatController = root.GetComponentInChildren<CombatController>();
+            m_CombatController = Root.GetComponentInChildren<CombatController>();
 
             m_EquipmentController.OnHitboxCollided += OnHitboxCollided;
 
-            m_Events = root.GetComponentInChildren<CharacterEvents>();
+            m_Events = Root.GetComponentInChildren<CharacterEvents>();
             
             m_Events.OnStrikeStart += () => DamageEnabled = true;
 
@@ -72,9 +72,15 @@ namespace Features.Character
 
             if (itemInSlot is not ItemInstance itemInstance) return;
 
-            var payload = FireProjectile.MakePayload(itemInSlot, root.gameObject, null,
-                itemInstance.Metadata.RequiredAmmo,
-                position, root.forward, null, OnProjectileCollided);
+            var payload = FireProjectile.MakePayload(
+                itemInSlot, 
+                Root.gameObject,
+                position, 
+                OnProjectileCollided);
+
+            payload.AmmoType = itemInstance.Metadata.RequiredAmmo;
+            
+            payload.Direction = Root.forward;
 
             m_Character.m_ActionsController.DoPassiveAction(payload);
         }
@@ -113,7 +119,7 @@ namespace Features.Character
         {
             if (!DamageEnabled) return;
 
-            var damagePayload = Damage.MakePayload(root.gameObject, target.transform.root.gameObject,
+            var damagePayload = Damage.MakePayload(Root.gameObject, target.transform.root.gameObject,
                 m_Character.m_StatCalculator.GetMainDamage());
 
             OnBeforeDoDamage?.Invoke(damagePayload);
