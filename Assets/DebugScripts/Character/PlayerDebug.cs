@@ -131,6 +131,17 @@ namespace DebugScripts.Character
                 var payload = ActivateSkill.MakePayload(RootGameObject, skill);
 
                 PlayerInstance.m_ActionsController.DoAction(payload);
+                
+                var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+                if (Physics.Raycast(ray, out RaycastHit hit, 100f, GroundLayer))
+                {
+                    var x = hit.point;
+
+                    x.y = transform.position.y;
+                    
+                    transform.LookAt(x);
+                }
             }
             
             if (Input.GetMouseButtonUp(0))
