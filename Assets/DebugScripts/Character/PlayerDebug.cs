@@ -10,6 +10,7 @@ using Features.Inventory.UI;
 using Features.Movement;
 using Features.Skills;
 using Features.Stats.Base;
+using Features.Targeting;
 using Integrations.Actions;
 using Integrations.Items;
 using Integrations.Skills;
@@ -25,6 +26,8 @@ namespace DebugScripts.Character
     {
         public LayerMask GroundLayer;
 
+        public LayerMask GroundAndPlayer;
+        
         public Player PlayerInstance;
 
         public InventoryUIController InventoryUI;
@@ -89,6 +92,22 @@ namespace DebugScripts.Character
                 SkillsUI.Initialize(PlayerInstance.m_SkillsController,
                     PlayerInstance.m_CooldownsController, PlayerInstance.m_ChannelingController);
             }
+            
+            LocationProvider.OnOverlayActivated += OnOverlayActivated;
+            
+            LocationProvider.OnOverlayDisabled += OnOverlayDisabled;
+        }
+
+        public bool DisableInput = false;
+
+        private void OnOverlayDisabled()
+        {
+            DisableInput = false;
+        }
+
+        private void OnOverlayActivated()
+        {
+            DisableInput = true;
         }
 
         private void ShowContextMenu(StorageData data)
@@ -115,6 +134,46 @@ namespace DebugScripts.Character
 
         private void Update()
         {
+            if (DisableInput)
+            {
+                if (Input.GetMouseButtonUp(0))
+                {
+                    if (EventSystem.current != null &&
+                        EventSystem.current.IsPointerOverGameObject()) return;
+                
+                    var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+                    if (!Physics.Raycast(ray, out RaycastHit hit, 100f, GroundAndPlayer)) return;
+                    
+                    if (hit.collider.gameObject.layer == LayerMask.NameToLayer("PlayerHitbox"))
+                        return;
+                        
+                    var movePayload =
+                        Move.MakePayload(RootGameObject, new MoveActionData(hit.point));
+
+                    PlayerInstance.m_ActionsController.DoAction(movePayload);
+                }
+                
+                return;
+            }
+            
+            if (Input.GetMouseButtonUp(0))
+            {
+                if (EventSystem.current != null &&
+                    EventSystem.current.IsPointerOverGameObject()) return;
+                
+                
+                var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+                if (Physics.Raycast(ray, out RaycastHit hit, 100f, GroundLayer))
+                {
+                    var movePayload =
+                        Move.MakePayload(RootGameObject, new MoveActionData(hit.point));
+
+                    PlayerInstance.m_ActionsController.DoAction(movePayload);
+                }
+            }
+            
             if (Input.GetKeyDown(KeyCode.LeftShift)) PlayerInstance.m_MovementController.SetRunning(true);
 
             if (Input.GetKeyUp(KeyCode.LeftShift)) PlayerInstance.m_MovementController.SetRunning(false);
@@ -143,23 +202,6 @@ namespace DebugScripts.Character
                     transform.LookAt(x);
                 }
             }
-            
-            if (Input.GetMouseButtonUp(0))
-            {
-                if (EventSystem.current != null &&
-                    EventSystem.current.IsPointerOverGameObject()) return;
-                
-                
-                var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-                if (Physics.Raycast(ray, out RaycastHit hit, 100f, GroundLayer))
-                {
-                    var movePayload =
-                        Move.MakePayload(RootGameObject, new MoveActionData(hit.point));
-
-                    PlayerInstance.m_ActionsController.DoAction(movePayload);
-                }
-            }
 
             if (Input.GetKeyDown(KeyCode.Q))
             {
@@ -169,6 +211,11 @@ namespace DebugScripts.Character
                 var payload = ActivateSkill.MakePayload(RootGameObject, skill);
 
                 PlayerInstance.m_ActionsController.DoAction(payload);
+            }
+
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                LocationProvider.EnableTargeting();
             }
         }
     }

@@ -10,9 +10,9 @@ namespace Features.Skills
         
         public readonly GameObject Source;
 
-        public GameObject TargetObject { get; private set; }
+        public GameObject TargetObject { get; set; }
 
-        public Vector3 TargetLocation { get; private set; }
+        public Vector3 TargetLocation { get; set; }
 
         public bool PreventDefault;
 

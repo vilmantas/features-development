@@ -13,6 +13,7 @@ using Features.Movement;
 using Features.OverheadParticles;
 using Features.Skills;
 using Features.Stats.Base;
+using Features.Targeting;
 using Integrations.Items;
 using UnityEditor.U2D;
 using UnityEngine;
@@ -105,6 +106,8 @@ namespace Features.Character
 
             [HideInInspector] private ChannelingUIController m_ChannelingUIController;
 
+            private TargetProvider m_TargetProvider;
+
             private CharacterActionsManager m_ActionsManager;
 
             private CharacterBuffsManager m_BuffsManager;
@@ -162,8 +165,11 @@ namespace Features.Character
                 AddSystemsComponent("cooldowns", ref m_CooldownsManager);
                 AddSystemsComponent("channeling", ref m_ChannelingController);
                 AddSystemsComponent("channeling_ui", ref m_ChannelingUIController);
+                AddSystemsComponent("target_provider", ref m_TargetProvider);
                 
                 m_ChannelingUIController.Initialize(m_ChannelingController);
+                
+                ConfigureTargetingSystem(m_TargetProvider);
 
                 if (Inventory)
                 {
@@ -321,6 +327,16 @@ namespace Features.Character
                 i.transform.parent = parent;
 
                 holder = i.AddComponent<T>();
+            }
+
+            protected virtual void ConfigureTargetingSystem(TargetProvider provider)
+            {
+                
+            }
+
+            protected virtual void SetupGameHooks()
+            {
+                
             }
         }
     }

@@ -5,6 +5,7 @@ using Features.Actions;
 using Features.Cooldowns;
 using Features.Equipment;
 using Features.Skills;
+using Features.Targeting;
 using Integrations.Items;
 using UnityEngine;
 
@@ -23,6 +24,8 @@ namespace Features.Character
         private ChannelingController m_ChannelingController;
         
         private ActionsController m_ActionsController;
+
+        private TargetProvider m_TargetProvider;
         
         private List<string> PreparedSkills = new();
         
@@ -37,6 +40,8 @@ namespace Features.Character
             m_ChannelingController = Root.GetComponentInChildren<ChannelingController>();
 
             m_CooldownsController = Root.GetComponentInChildren<CooldownsController>();
+
+            m_TargetProvider = Root.GetComponentInChildren<TargetProvider>();
             
             m_SkillsController.OnBeforeActivation += OnBeforeActivation;
             
@@ -49,19 +54,36 @@ namespace Features.Character
 
         private void OnBeforeActivation(SkillActivationContext obj)
         {
-            if (m_CooldownsController.IsOnCooldown(obj.Skill))
+            if (CooldownGate(obj)) return;
+
+            if (obj.Metadata.Target == SkillTarget.Character)
             {
+                m_TargetProvider.GetCharacterTarget(x =>
+                {
+                    obj.TargetObject = x;
+                    
+                    ContinueWithTarget(obj);
+                });
+
                 obj.PreventDefault = true;
 
                 return;
             }
+            
+            ChannelingGate(obj);
+        }
+
+        private void ChannelingGate(SkillActivationContext obj)
+        {
+            if (!obj.Metadata.ChanneledSkill) return;
+
             if (IsSkillPrepared(obj))
             {
                 PreparedSkills.Remove(obj.Skill);
-                
+
                 return;
             }
-            
+
             var command = new ChannelingCommand("skill_" + obj.Metadata.ReferenceName,
                 obj.Metadata.CastTime)
             {
@@ -71,6 +93,18 @@ namespace Features.Character
             m_ChannelingController.StartChanneling(command);
 
             obj.PreventDefault = true;
+        }
+
+        private bool CooldownGate(SkillActivationContext obj)
+        {
+            if (m_CooldownsController.IsOnCooldown(obj.Skill))
+            {
+                obj.PreventDefault = true;
+
+                return true;
+            }
+
+            return false;
         }
 
         private bool IsSkillPrepared(SkillActivationContext context)
@@ -84,6 +118,13 @@ namespace Features.Character
         {
             PreparedSkills.Add(obj.Skill);
 
+            obj.PreventDefault = false;
+            
+            m_SkillsController.ActivateSkill(obj);
+        }
+
+        private void ContinueWithTarget(SkillActivationContext obj)
+        {
             obj.PreventDefault = false;
             
             m_SkillsController.ActivateSkill(obj);
