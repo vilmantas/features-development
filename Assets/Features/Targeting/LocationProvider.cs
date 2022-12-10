@@ -26,9 +26,14 @@ namespace Features.Targeting
             OnOverlayDisabled?.Invoke();
         }
 
-        public static GameObject PlayerLocationProvider(Action<GameObject> callback)
+        public static void PlayerLocationProvider(Action<GameObject> callback)
         {
-            return  GameObject.Find("Player").gameObject;
+            callback.Invoke(GameObject.Find("Player").gameObject);
+        }
+
+        public static GameObject PlayerLocationProvider()
+        {
+            return GameObject.Find("Player").gameObject;
         }
 
         public static Vector3 MousePositionProvider()
@@ -43,9 +48,18 @@ namespace Features.Targeting
             return Vector3.zero;
         }
 
-        public static GameObject StartCharacterSelect(Action<GameObject> callback)
+        public static void StartCharacterSelect(Action<GameObject> callback)
         {
-            return new GameObject();
+            var manager = GameObject.Find("TargetingProvider").GetComponent<TargetingManager>();
+            
+            manager.Initialize(x =>
+            {
+                callback.Invoke(x);
+                
+                OnOverlayDisabled?.Invoke();
+            });
+            
+            OnOverlayActivated?.Invoke();
         }
     }
 }

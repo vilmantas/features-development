@@ -48,16 +48,8 @@ namespace Integrations.Actions
                 }
             }
 
-            if (!firePayload.Target)
-            {
-                combatController.FireProjectile(projectile, firePayload.Location,
-                    firePayload.Direction, firePayload.DamageSource, firePayload.Callback);
-            }
-            else
-            {
-                combatController.FireHomingProjectile(projectile, firePayload.Location,
-                    firePayload.Target, firePayload.DamageSource, firePayload.Callback);
-            }
+            combatController.FireProjectile(projectile, firePayload.Location,
+                firePayload.Direction, firePayload.DamageSource, firePayload.Callback);
         }
     }
 

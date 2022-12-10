@@ -7,7 +7,7 @@ namespace Features.Character
     {
         protected override void ConfigureTargetingSystem(TargetProvider provider)
         {
-            provider.MousePositionProvider = LocationProvider.MousePositionProvider;
+            provider.CurrentMousePositionProvider = LocationProvider.MousePositionProvider;
 
             provider.CharacterTargetProvider = LocationProvider.StartCharacterSelect;
         }

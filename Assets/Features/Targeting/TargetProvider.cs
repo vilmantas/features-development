@@ -5,9 +5,9 @@ namespace Features.Targeting
 {
     public class TargetProvider : MonoBehaviour
     {
-        public Func<Action<GameObject>, GameObject> CharacterTargetProvider;
+        public Action<Action<GameObject>> CharacterTargetProvider;
 
-        public Func<Vector3> MousePositionProvider;
+        public Func<Vector3> CurrentMousePositionProvider;
         
         public void GetCharacterTarget(Action<GameObject> callback)
         {
@@ -16,7 +16,7 @@ namespace Features.Targeting
 
         public Vector3 GetMousePosition()
         {
-            return MousePositionProvider.Invoke();
+            return CurrentMousePositionProvider.Invoke();
         }
     }
 }

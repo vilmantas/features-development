@@ -17,4 +17,4 @@ MonoBehaviour:
   DisplayName: Meteor Strike
   CastTime: 0
   Cooldown: 0
-  Target: 0
+  Target: 2

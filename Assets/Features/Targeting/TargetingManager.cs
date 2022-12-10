@@ -14,6 +14,8 @@ namespace Features.Targeting
 
         public TextMeshProUGUI Text;
 
+        private bool Activated = false;
+        
         private Action<GameObject> m_Callback;
 
         private void Awake()
@@ -25,6 +27,8 @@ namespace Features.Targeting
 
         private void Update()
         {
+            if (!Activated) return;
+            
             if (!Text) return;
             
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -40,6 +44,10 @@ namespace Features.Targeting
             m_Callback.Invoke(hit.collider.transform.root.gameObject);
             
             m_OverlayInstance.SetActive(false);
+
+            Activated = false;
+
+            m_Callback = null;
         }
 
         public void Initialize(Action<GameObject> Callback)
@@ -49,6 +57,8 @@ namespace Features.Targeting
             m_Callback = Callback;
             
             Text = GetComponentInChildren<TextMeshProUGUI>();
+
+            Activated = true;
         }
     }
 }

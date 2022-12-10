@@ -6,7 +6,7 @@ namespace Features.Character
     {
         protected override void ConfigureTargetingSystem(TargetProvider provider)
         {
-            provider.MousePositionProvider = () => LocationProvider.PlayerLocationProvider(null).transform.position;
+            provider.CurrentMousePositionProvider = () => LocationProvider.PlayerLocationProvider().transform.position;
 
             provider.CharacterTargetProvider = LocationProvider.PlayerLocationProvider;
         }

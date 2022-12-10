@@ -58,16 +58,19 @@ namespace Features.Character
 
             if (obj.Metadata.Target == SkillTarget.Character)
             {
-                m_TargetProvider.GetCharacterTarget(x =>
+                if (!obj.TargetObject)
                 {
-                    obj.TargetObject = x;
+                    m_TargetProvider.GetCharacterTarget(x =>
+                    {
+                        obj.TargetObject = x;
                     
-                    ContinueWithTarget(obj);
-                });
+                        ContinueWithTarget(obj);
+                    });
 
-                obj.PreventDefault = true;
+                    obj.PreventDefault = true;
 
-                return;
+                    return;
+                }
             }
             
             ChannelingGate(obj);

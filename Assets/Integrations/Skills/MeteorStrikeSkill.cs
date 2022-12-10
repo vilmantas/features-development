@@ -26,6 +26,11 @@ namespace Integrations.Skills
 
             var spawnPoint = context.TargetLocation;
 
+            if (context.Metadata.Target == SkillTarget.Character)
+            {
+                spawnPoint = context.TargetObject.transform.position;
+            }
+            
             spawnPoint.y += 10f;
 
             var projectilePayload = FireProjectile.MakePayload(
@@ -47,7 +52,6 @@ namespace Integrations.Skills
         private static void Callback(ProjectileCollisionData obj)
         {
             obj.SetProjectileConsumed();
-            Debug.Log("BOOM");
         }
 
         private static void OnReceive(SkillActivationContext obj)
