@@ -54,14 +54,27 @@ namespace Features.Character
 
         private void OnBeforeActivation(SkillActivationContext obj)
         {
-            if (CooldownGate(obj)) return;
+            if (IsSkillOnCooldown(obj))
+            {
+                obj.PreventDefault = true;
+                
+                return;
+            }
 
-            if (TargetingGate(obj)) return;
+            if (RequiresTarget(obj))
+            {
+                obj.PreventDefault = true;
+                
+                return;
+            }
 
-            ChannelingGate(obj);
+            if (RequiresChanneling(obj))
+            {
+                obj.PreventDefault = true;
+            }
         }
 
-        private bool TargetingGate(SkillActivationContext obj)
+        private bool RequiresTarget(SkillActivationContext obj)
         {
             if (obj.Metadata.Target == SkillTarget.None) return false;
 
@@ -76,8 +89,6 @@ namespace Features.Character
 
                             ContinueWithTarget(obj);
                         });
-
-                        obj.PreventDefault = true;
 
                         return true;
                     }
@@ -94,11 +105,22 @@ namespace Features.Character
                             ContinueWithTarget(obj);
                         });
 
-                        obj.PreventDefault = true;
-
                         return true;
                     }
 
+                    break;
+                case SkillTarget.CharacterLocation:
+                    if (!obj.TargetObject)
+                    {
+                        m_TargetProvider.GetCharacterTarget(x =>
+                        {
+                            obj.TargetLocation = x.transform.position;
+
+                            ContinueWithTarget(obj);
+                        });
+
+                        return true;
+                    }
                     break;
                 case SkillTarget.None:
                     break;
@@ -111,15 +133,15 @@ namespace Features.Character
             return false;
         }
 
-        private void ChannelingGate(SkillActivationContext obj)
+        private bool RequiresChanneling(SkillActivationContext obj)
         {
-            if (!obj.Metadata.ChanneledSkill) return;
+            if (!obj.Metadata.ChanneledSkill) return false;
 
             if (IsSkillPrepared(obj))
             {
                 PreparedSkills.Remove(obj.Skill);
 
-                return;
+                return false;
             }
 
             var command = new ChannelingCommand("skill_" + obj.Metadata.ReferenceName,
@@ -130,26 +152,17 @@ namespace Features.Character
 
             m_ChannelingController.StartChanneling(command);
 
-            obj.PreventDefault = true;
+            return true;
         }
 
-        private bool CooldownGate(SkillActivationContext obj)
+        private bool IsSkillOnCooldown(SkillActivationContext obj)
         {
-            if (m_CooldownsController.IsOnCooldown(obj.Skill))
-            {
-                obj.PreventDefault = true;
-
-                return true;
-            }
-
-            return false;
+            return m_CooldownsController.IsOnCooldown(obj.Skill);
         }
 
         private bool IsSkillPrepared(SkillActivationContext context)
         {
-            if (!PreparedSkills.Any(x => x.Equals(context.Skill))) return false;
-
-            return true;
+            return PreparedSkills.Any(x => x.Equals(context.Skill));
         }
 
         private void ContinueActivation(SkillActivationContext obj)

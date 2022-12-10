@@ -3,6 +3,7 @@ using Features.Combat;
 using Features.Movement;
 using Features.Skills;
 using Integrations.Actions;
+using Integrations.GameSystems;
 using UnityEngine;
 
 namespace Integrations.Skills
@@ -11,6 +12,8 @@ namespace Integrations.Skills
     {
         public static ProjectileController Projectile { get; set; }
 
+        public static ParticleSystem Particles { get; set; }
+        
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         private static void Register()
         {
@@ -18,6 +21,8 @@ namespace Integrations.Skills
             SkillImplementationRegistry.Register(nameof(MeteorStrikeSkill), implementation);
             
             Projectile = Resources.Load<ProjectileController>("Prefabs/Meteor");
+
+            Particles = Resources.Load<ParticleSystem>("Particles/Explosion");
         }
 
         private static SkillActivationResult OnActivation(SkillActivationContext context)
@@ -51,6 +56,10 @@ namespace Integrations.Skills
 
         private static void Callback(ProjectileCollisionData obj)
         {
+            var player = GameObject.Find("Player").GetComponent<ParticlePlayer>();
+
+            player.PlayParticles(Particles, obj.Projectile.transform.position);
+            
             obj.SetProjectileConsumed();
         }
 

@@ -21,5 +21,6 @@ namespace Features.Skills
         Self,
         Character,
         Pointer,
+        CharacterLocation,
     }
 }

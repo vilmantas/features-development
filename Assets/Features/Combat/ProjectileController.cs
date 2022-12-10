@@ -20,6 +20,13 @@ namespace Features.Combat
 
         private Vector3 m_Direction;
 
+        private void Update()
+        {
+            if (!m_Target) return;
+            
+            transform.LookAt(m_Target.transform.position);
+        }
+
         public void Initialize(GameObject parent, object source , Vector3 direction, GameObject target)
         {
             GroundLayerMask = LayerMask.NameToLayer("Ground");
@@ -45,7 +52,7 @@ namespace Features.Combat
             
             if (other.transform.root.name == m_Parent.name) return;
             
-            var data = new ProjectileCollisionData(m_Parent, other.transform.root.gameObject, m_Source);
+            var data = new ProjectileCollisionData(this, m_Parent, other.transform.root.gameObject, m_Source);
             
             OnProjectileCollided?.Invoke(data);
             
@@ -59,6 +66,7 @@ namespace Features.Combat
 
     public class ProjectileCollisionData
     {
+        public ProjectileController Projectile { get; }
         public readonly GameObject ProjectileParent;
 
         public readonly GameObject Collider;
@@ -69,8 +77,9 @@ namespace Features.Combat
         
         public bool IsConsumed => m_isConsumed;
 
-        public ProjectileCollisionData(GameObject parent, GameObject collider, object source)
+        public ProjectileCollisionData(ProjectileController projectile, GameObject parent, GameObject collider, object source)
         {
+            Projectile = projectile;
             ProjectileParent = parent;
             Collider = collider;
             Source = source;

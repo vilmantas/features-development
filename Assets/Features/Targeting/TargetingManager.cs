@@ -6,13 +6,13 @@ namespace Features.Targeting
 {
     public class TargetingManager : MonoBehaviour
     {
-        public GameObject OverlayPrefab;
+        private GameObject OverlayPrefab;
 
         private GameObject m_OverlayInstance;
 
-        public LayerMask GroundAndPlayer;
+        private LayerMask GroundAndPlayer;
 
-        public TextMeshProUGUI Text;
+        private TextMeshProUGUI Text;
 
         private bool Activated = false;
         
@@ -24,6 +24,10 @@ namespace Features.Targeting
 
         private void Awake()
         {
+            OverlayPrefab = Resources.Load<GameObject>("Prefabs/TargetingOverlay");
+            
+            GroundAndPlayer = LayerMask.GetMask("Ground", "PlayerHitbox");
+            
             m_OverlayInstance = Instantiate(OverlayPrefab, transform);
          
             m_OverlayInstance.SetActive(false);

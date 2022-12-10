@@ -462,9 +462,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 5a600000
+      m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 16fbffff
+      m_ExpandedIDs: 16fbffff385f0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -757,9 +757,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -1.4991345, y: 9.39763, z: 3.977141}
+    m_Target: {x: 0.25058794, y: 1.0918083, z: -3.4113574}
     speed: 2
-    m_Value: {x: -1.4991345, y: 9.39763, z: 3.977141}
+    m_Value: {x: 0.25058794, y: 1.0918083, z: -3.4113574}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -805,13 +805,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.13348249, y: 0.19254032, z: -0.026443508, w: -0.9718119}
+    m_Target: {x: -0.3078898, y: 0.29498237, z: -0.10103621, w: -0.8988818}
     speed: 2
-    m_Value: {x: -0.13348202, y: 0.19253965, z: -0.026443416, w: -0.97180855}
+    m_Value: {x: -0.30788866, y: 0.29498127, z: -0.10103584, w: -0.89887846}
   m_Size:
-    m_Target: 5.322808
+    m_Target: 7.925267
     speed: 2
-    m_Value: 5.322808
+    m_Value: 7.925267
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1043,22 +1043,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/DebugScripts/Resources/Skills
+    - Assets/Features/Skills
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 39
   m_LastFolders:
-  - Assets/DebugScripts/Resources/Skills
+  - Assets/Features/Skills
   m_LastFoldersGridSize: 39
   m_LastProjectPath: /Users/vilmantas/Desktop/Code/features-development
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 78660000
-    m_LastClickedID: 26232
-    m_ExpandedIDs: 00000000386600003a6600003c6600003e66000040660000426600004466000046660000486600004a6600004c6600004e660000506600005266000054660000
+    m_SelectedIDs: ca660000
+    m_LastClickedID: 26314
+    m_ExpandedIDs: 0000000066660000686600006a6600006c6600006e66000070660000726600007466000076660000786600007a6600007c6600007e6600008066000082660000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1086,7 +1086,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000386600003a6600003c6600003e66000040660000426600004466000046660000486600004a6600004c6600004e660000506600005266000054660000
+    m_ExpandedIDs: 0000000066660000686600006a6600006c6600006e66000070660000726600007466000076660000786600007a6600007c6600007e6600008066000082660000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

@@ -17,7 +17,7 @@ namespace Features.Targeting
         
         public static void EnableTargeting(TargetingType type)
         {
-            var manager = GameObject.Find("TargetingProvider").GetComponent<TargetingManager>();
+            var manager = GameObject.Find("target_provider_system").GetComponent<TargetingManager>();
 
             OverlayInfo info = new();
             
@@ -77,7 +77,7 @@ namespace Features.Targeting
 
         public static void StartCharacterSelect(Action<GameObject> callback)
         {
-            var manager = GameObject.Find("TargetingProvider").GetComponent<TargetingManager>();
+            var manager = GameObject.Find("target_provider_system").GetComponent<TargetingManager>();
             
             manager.Initialize(x =>
             {
@@ -91,7 +91,7 @@ namespace Features.Targeting
 
         public static void StartMousePositionSelect(Action<Vector3> callback)
         {
-            var manager = GameObject.Find("TargetingProvider").GetComponent<TargetingManager>();
+            var manager = GameObject.Find("target_provider_system").GetComponent<TargetingManager>();
 
             manager.Initialize(x =>
             {
