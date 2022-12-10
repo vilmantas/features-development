@@ -8,6 +8,8 @@ namespace Features.Targeting
         public Action<Action<GameObject>> CharacterTargetProvider;
 
         public Func<Vector3> CurrentMousePositionProvider;
+
+        public Action<Action<Vector3>> MousePositionSelectProvider;
         
         public void GetCharacterTarget(Action<GameObject> callback)
         {
@@ -17,6 +19,11 @@ namespace Features.Targeting
         public Vector3 GetMousePosition()
         {
             return CurrentMousePositionProvider.Invoke();
+        }
+
+        public void PickMousePosition(Action<Vector3> callback)
+        {
+            MousePositionSelectProvider.Invoke(callback);
         }
     }
 }

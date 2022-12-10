@@ -56,24 +56,59 @@ namespace Features.Character
         {
             if (CooldownGate(obj)) return;
 
-            if (obj.Metadata.Target == SkillTarget.Character)
-            {
-                if (!obj.TargetObject)
-                {
-                    m_TargetProvider.GetCharacterTarget(x =>
-                    {
-                        obj.TargetObject = x;
-                    
-                        ContinueWithTarget(obj);
-                    });
+            if (TargetingGate(obj)) return;
 
-                    obj.PreventDefault = true;
-
-                    return;
-                }
-            }
-            
             ChannelingGate(obj);
+        }
+
+        private bool TargetingGate(SkillActivationContext obj)
+        {
+            if (obj.Metadata.Target == SkillTarget.None) return false;
+
+            switch (obj.Metadata.Target)
+            {
+                case SkillTarget.Character:
+                    if (!obj.TargetObject)
+                    {
+                        m_TargetProvider.GetCharacterTarget(x =>
+                        {
+                            obj.TargetObject = x;
+
+                            ContinueWithTarget(obj);
+                        });
+
+                        obj.PreventDefault = true;
+
+                        return true;
+                    }
+
+                    break;
+
+                case SkillTarget.Pointer:
+                    if (obj.TargetLocation == Vector3.zero)
+                    {
+                        m_TargetProvider.PickMousePosition(x =>
+                        {
+                            obj.TargetLocation = x;
+
+                            ContinueWithTarget(obj);
+                        });
+
+                        obj.PreventDefault = true;
+
+                        return true;
+                    }
+
+                    break;
+                case SkillTarget.None:
+                    break;
+                case SkillTarget.Self:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            return false;
         }
 
         private void ChannelingGate(SkillActivationContext obj)

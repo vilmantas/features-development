@@ -10,13 +10,17 @@ namespace Features.Targeting
 
         private GameObject m_OverlayInstance;
 
-        public LayerMask RaycastStuff;
+        public LayerMask GroundAndPlayer;
 
         public TextMeshProUGUI Text;
 
         private bool Activated = false;
         
-        private Action<GameObject> m_Callback;
+        private Action<GameObject> m_CharacterCallback;
+
+        private Action<Vector3> m_PositionCallback;
+
+        private TargetingType TargetingType;
 
         private void Awake()
         {
@@ -30,35 +34,82 @@ namespace Features.Targeting
             if (!Activated) return;
             
             if (!Text) return;
-            
-            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            if (!Physics.Raycast(ray, out RaycastHit hit, 100f, RaycastStuff)) return;
+            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            
+            switch (TargetingType)
+            {
+                case TargetingType.Character:
+                    TryGetCharacter(ray);
+                    break;
+                
+                case TargetingType.Mouse:
+                    if (!Physics.Raycast(ray, out RaycastHit hit, 100f, LayerMask.GetMask("Ground"))) return;
+                    
+                    Text.text = hit.point.ToString();
+
+                    if (!Input.GetMouseButtonUp(0)) return;
+                    
+                    m_PositionCallback.Invoke(hit.point);
+
+                    m_OverlayInstance.SetActive(false);
+
+                    Activated = false;
+
+                    m_PositionCallback = null;
+                    break;
+            }
+        }
+
+        private void TryGetCharacter(Ray ray)
+        {
+            if (!Physics.Raycast(ray, out RaycastHit hit, 100f, GroundAndPlayer)) return;
 
             if (hit.collider.gameObject.layer != LayerMask.NameToLayer("PlayerHitbox")) return;
-            
+
             Text.text = hit.collider.transform.root.name;
 
             if (!Input.GetMouseButtonUp(0)) return;
-            
-            m_Callback.Invoke(hit.collider.transform.root.gameObject);
-            
+
+            m_CharacterCallback.Invoke(hit.collider.transform.root.gameObject);
+
             m_OverlayInstance.SetActive(false);
 
             Activated = false;
 
-            m_Callback = null;
+            m_CharacterCallback = null;
         }
 
         public void Initialize(Action<GameObject> Callback)
         {
             m_OverlayInstance.SetActive(true);
 
-            m_Callback = Callback;
+            m_CharacterCallback = Callback;
             
             Text = GetComponentInChildren<TextMeshProUGUI>();
 
             Activated = true;
+
+            TargetingType = TargetingType.Character;
         }
+        
+        public void Initialize(Action<Vector3> Callback)
+        {
+            m_OverlayInstance.SetActive(true);
+
+            m_PositionCallback = Callback;
+            
+            Text = GetComponentInChildren<TextMeshProUGUI>();
+
+            Activated = true;
+
+            TargetingType = TargetingType.Mouse;
+        }
+    }
+
+    public enum TargetingType
+    {
+        Mouse,
+        Character,
     }
 }

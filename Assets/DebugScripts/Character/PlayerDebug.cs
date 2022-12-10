@@ -100,14 +100,22 @@ namespace DebugScripts.Character
 
         public bool DisableInput = false;
 
+        public bool DisableMovement = false;
+
         private void OnOverlayDisabled()
         {
             DisableInput = false;
+            DisableMovement = false;
         }
 
-        private void OnOverlayActivated()
+        private void OnOverlayActivated(OverlayInfo info)
         {
             DisableInput = true;
+
+            if (info.BlockMovementActions)
+            {
+                DisableMovement = true;
+            }
         }
 
         private void ShowContextMenu(StorageData data)
@@ -136,6 +144,8 @@ namespace DebugScripts.Character
         {
             if (DisableInput)
             {
+                if (DisableMovement) return;
+                
                 if (Input.GetMouseButtonUp(0))
                 {
                     if (EventSystem.current != null &&
@@ -203,9 +213,19 @@ namespace DebugScripts.Character
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.X))
             {
                 if (!SkillMetadataRegistry.Implementations.TryGetValue("Meteor Strike",
+                        out var skill)) return;
+                
+                var payload = ActivateSkill.MakePayload(RootGameObject, skill);
+
+                PlayerInstance.m_ActionsController.DoAction(payload);
+            }
+            
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                if (!SkillMetadataRegistry.Implementations.TryGetValue("Meteor Strike Location",
                         out var skill)) return;
                 
                 var payload = ActivateSkill.MakePayload(RootGameObject, skill);
@@ -215,7 +235,12 @@ namespace DebugScripts.Character
 
             if (Input.GetKeyDown(KeyCode.E))
             {
-                LocationProvider.EnableTargeting();
+                LocationProvider.EnableTargeting(TargetingType.Character);
+            }
+            
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                LocationProvider.EnableTargeting(TargetingType.Mouse);
             }
         }
     }

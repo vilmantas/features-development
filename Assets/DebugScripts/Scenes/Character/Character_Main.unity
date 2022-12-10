@@ -3726,7 +3726,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OverlayPrefab: {fileID: 7525233865810169888, guid: 49e744b9e6ddb4b3e9921b070a2c7083, type: 3}
-  RaycastStuff:
+  GroundAndPlayer:
     serializedVersion: 2
     m_Bits: 136
   Text: {fileID: 0}
@@ -4599,7 +4599,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6728580033162269917, guid: ec5a0edd3f716c44b8ab2c6a04e3de33, type: 3}
       propertyPath: StartingSkills.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6728580033162269917, guid: ec5a0edd3f716c44b8ab2c6a04e3de33, type: 3}
       propertyPath: StartingInventory.Array.size
@@ -4613,6 +4613,10 @@ PrefabInstance:
       propertyPath: StartingSkills.Array.data[1]
       value: 
       objectReference: {fileID: 11400000, guid: 2ad72aeb919dc4fc39c9154a6cc7afe1, type: 2}
+    - target: {fileID: 6728580033162269917, guid: ec5a0edd3f716c44b8ab2c6a04e3de33, type: 3}
+      propertyPath: StartingSkills.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 30d516b13b2b14eb381dd25e5a2e7882, type: 2}
     - target: {fileID: 6728580033162269917, guid: ec5a0edd3f716c44b8ab2c6a04e3de33, type: 3}
       propertyPath: StartingInventory.Array.data[3]
       value: 

@@ -10,6 +10,8 @@ namespace Features.Character
             provider.CurrentMousePositionProvider = LocationProvider.MousePositionProvider;
 
             provider.CharacterTargetProvider = LocationProvider.StartCharacterSelect;
+
+            provider.MousePositionSelectProvider = LocationProvider.StartMousePositionSelect;
         }
 
         protected override void SetupGameHooks()

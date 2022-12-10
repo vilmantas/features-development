@@ -4,22 +4,49 @@ using UnityEngine;
 
 namespace Features.Targeting
 {
+    public class OverlayInfo
+    {
+        public bool BlockMovementActions;
+    }
+    
     public static class LocationProvider
     {
-        public static Action OnOverlayActivated;
+        public static Action<OverlayInfo> OnOverlayActivated;
 
         public static Action OnOverlayDisabled;
         
-        public static void EnableTargeting()
+        public static void EnableTargeting(TargetingType type)
         {
             var manager = GameObject.Find("TargetingProvider").GetComponent<TargetingManager>();
+
+            OverlayInfo info = new();
             
-            manager.Initialize(ReportTarget);
+            switch (type)
+            {
+                case TargetingType.Character:
+                    manager.Initialize(ReportCharacter);
+
+                    info = new() {BlockMovementActions = false};
+                    break;
+                
+                case TargetingType.Mouse:
+                    manager.Initialize(ReportPosition);
+
+                    info = new OverlayInfo() {BlockMovementActions = true};
+                    break;
+            }
             
-            OnOverlayActivated?.Invoke();
+            OnOverlayActivated?.Invoke(info);
         }
 
-        private static void ReportTarget(GameObject obj)
+        private static void ReportPosition(Vector3 obj)
+        {
+            Debug.Log(obj);
+            
+            OnOverlayDisabled?.Invoke();
+        }
+
+        private static void ReportCharacter(GameObject obj)
         {
             Debug.Log(obj.name);
             
@@ -58,8 +85,22 @@ namespace Features.Targeting
                 
                 OnOverlayDisabled?.Invoke();
             });
+
+            OnOverlayActivated?.Invoke(new OverlayInfo() {BlockMovementActions = false});
+        }
+
+        public static void StartMousePositionSelect(Action<Vector3> callback)
+        {
+            var manager = GameObject.Find("TargetingProvider").GetComponent<TargetingManager>();
+
+            manager.Initialize(x =>
+            {
+                callback.Invoke(x);
+
+                OnOverlayDisabled?.Invoke();
+            });
             
-            OnOverlayActivated?.Invoke();
+            OnOverlayActivated?.Invoke(new OverlayInfo() {BlockMovementActions = true});
         }
     }
 }
