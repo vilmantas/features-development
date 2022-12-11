@@ -1,6 +1,5 @@
 using Features.Actions;
 using Features.Combat;
-using Features.Movement;
 using Features.Skills;
 using Integrations.Actions;
 using Integrations.GameSystems;
@@ -56,7 +55,7 @@ namespace Integrations.Skills
 
         private static void Callback(ProjectileCollisionData obj)
         {
-            var player = GameObject.Find("Player").GetComponent<ParticlePlayer>();
+            var player = GameObject.Find("ROOT_SYSTEMS").GetComponentInChildren<ParticlePlayer>();
 
             player.PlayParticles(Particles, obj.Projectile.transform.position);
             

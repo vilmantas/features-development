@@ -25,6 +25,9 @@ namespace Features.Conditions
         {
             if (!StatusEffectImplementationRegistry.Implementations.TryGetValue(payload.Metadata.InternalName,
                     out StatusEffectImplementation impl)) return;
+
+            if (StatusEffects.Any(
+                    x => x.Metadata.InternalName.Equals(payload.Metadata.InternalName))) return;
             
             OnBeforeAdd?.Invoke(payload);
 

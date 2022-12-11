@@ -26,6 +26,10 @@ namespace Features.Character
         public Action OnProjectileTrigger;
 
         public Action OnDeath;
+
+        public Action<string> OnChannelingStart;
+        
+        public Action OnChannelingEnd;
         
         private void Start()
         {

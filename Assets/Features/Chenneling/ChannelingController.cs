@@ -57,9 +57,9 @@ namespace UnityEngine
             
             foreach (var channelingItem in expiredCooldowns)
             {
-                channelingItem.Callback?.Invoke();
-                
                 OnChannelingCompleted?.Invoke(channelingItem);
+                
+                channelingItem.Callback?.Invoke();
             }
         }
     }

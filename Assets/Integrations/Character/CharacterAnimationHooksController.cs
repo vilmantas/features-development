@@ -15,12 +15,15 @@ namespace Features.Character
         private CharacterEvents m_Events;
 
         private Modules.Character m_Character;
+        private static readonly int IsChanneling = Animator.StringToHash("IsChanneling");
 
         private void Awake()
         {
-            m_Character = transform.root.GetComponent<Modules.Character>();
+            var root = transform.root;
+            
+            m_Character = root.GetComponent<Modules.Character>();
 
-            m_Events = transform.root.GetComponent<CharacterEvents>();
+            m_Events = root.GetComponent<CharacterEvents>();
 
             m_Animator = GetComponent<Animator>();
 
@@ -30,6 +33,22 @@ namespace Features.Character
             {
                 m_Animator.SetTrigger(anim);
             };
+            
+            m_Events.OnChannelingStart += OnChannelingStart;
+            
+            m_Events.OnChannelingEnd += OnChannelingEnd;
+        }
+
+        private void OnChannelingEnd()
+        {
+            m_Animator.SetBool(IsChanneling, false);
+        }
+
+        private void OnChannelingStart(string obj)
+        {
+            m_Animator.SetBool(IsChanneling, true);
+            
+            m_Animator.Play("Channeling");
         }
 
         private void Start()
