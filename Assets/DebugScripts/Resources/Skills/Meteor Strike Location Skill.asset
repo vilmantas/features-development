@@ -15,6 +15,7 @@ MonoBehaviour:
   ImplementationName: MeteorStrikeSkill
   ReferenceName: Meteor Strike Location
   DisplayName: Location Meteor
-  CastTime: 1
+  ChannelingTime: 2
   Cooldown: 1
   Target: 3
+  ChannelingFlags: 0

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace UnityEngine
 {
@@ -9,6 +10,8 @@ namespace UnityEngine
         public float ChanneledAmount { get; private set; } = 0;
 
         public Action Callback;
+
+        public Dictionary<string, object> Data;
 
         public ChannelingItem(string title, float maxDuration, float progress)
         {

@@ -15,5 +15,7 @@ MonoBehaviour:
   ImplementationName: RangedAttackSkill
   ReferenceName: Ranged Attack
   DisplayName: Ranged Attack
-  CastTime: 0
+  ChannelingTime: 0
   Cooldown: 2
+  Target: 0
+  ChannelingFlags: 0

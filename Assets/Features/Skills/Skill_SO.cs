@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Features.Skills
@@ -8,9 +9,10 @@ namespace Features.Skills
         public string ImplementationName;
         public string ReferenceName;
         public string DisplayName;
-        public float CastTime;
+        public float ChannelingTime;
         public float Cooldown;
         public SkillTarget Target;
+        public SkillFlags Flags;
 
         public SkillMetadata GetMetadata => SkillMetadataRegistry.Implementations[ReferenceName];
     }

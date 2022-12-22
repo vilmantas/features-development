@@ -145,7 +145,7 @@ namespace Features.Character
             }
 
             var command = new ChannelingCommand("skill_" + obj.Metadata.ReferenceName,
-                obj.Metadata.CastTime)
+                obj.Metadata.ChannelingTime)
             {
                 Callback = () => ContinueActivation(obj)
             };

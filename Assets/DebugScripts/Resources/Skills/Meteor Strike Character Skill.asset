@@ -15,6 +15,7 @@ MonoBehaviour:
   ImplementationName: MeteorStrikeSkill
   ReferenceName: Meteor Strike
   DisplayName: Character Meteor
-  CastTime: 1
+  ChannelingTime: 2
   Cooldown: 1
   Target: 2
+  ChannelingFlags: 0
