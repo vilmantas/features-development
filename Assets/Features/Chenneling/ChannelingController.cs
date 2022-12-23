@@ -25,7 +25,7 @@ namespace UnityEngine
             
             OnChannelingTick?.Invoke(delta);
             
-            RemoveExpired();
+            RemoveCompleted();
         }
         
         private void ProgressTimers(float timeDelta)
@@ -40,7 +40,7 @@ namespace UnityEngine
         {
             if (m_CurrentlyChanneling.Any(x => x.Title.Equals(command.Title))) return;
 
-            var tracker = new ChannelingItem(command.Title, command.Max, command.Current);
+            var tracker = new ChannelingItem(command.Title, command.Max, command.Current, command.Data);
 
             tracker.Callback = command.Callback;
             
@@ -48,14 +48,21 @@ namespace UnityEngine
 
             OnChannelingStarted?.Invoke(tracker);
         }
-        
-        private void RemoveExpired()
-        {
-            var expiredCooldowns = m_CurrentlyChanneling.Where(x => x.IsCompleted);
 
-            m_CurrentlyChanneling = m_CurrentlyChanneling.Where(x => !x.IsCompleted).ToList();
+        public void InterruptChanneling(string title)
+        {
+            var item = m_CurrentlyChanneling.FirstOrDefault(x => x.Title.Equals(title));
             
-            foreach (var channelingItem in expiredCooldowns)
+            item?.Interrupted();
+        }
+        
+        private void RemoveCompleted()
+        {
+            var completedChannels = m_CurrentlyChanneling.Where(x => x.IsCompleted || x.IsInterrupted);
+
+            m_CurrentlyChanneling = m_CurrentlyChanneling.Where(x => !x.IsCompleted && !x.IsInterrupted).ToList();
+            
+            foreach (var channelingItem in completedChannels)
             {
                 OnChannelingCompleted?.Invoke(channelingItem);
                 

@@ -42,6 +42,11 @@ namespace Integrations.Skills.Actions
             controller.ActivateSkill(ctx);
         }
 
+        public static void OnStartChannel(SkillFlags flags)
+        {
+            
+        }
+
         public class ActivateSkillActionPayload : ActionActivationPayload
         {
             public readonly SkillMetadata Skill;

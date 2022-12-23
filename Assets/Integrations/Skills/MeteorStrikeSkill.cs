@@ -17,6 +17,7 @@ namespace Integrations.Skills
         private static void Register()
         {
             SkillImplementation implementation = new(OnReceive, OnActivation, OnRemove);
+            
             SkillImplementationRegistry.Register(nameof(MeteorStrikeSkill), implementation);
             
             Projectile = Resources.Load<ProjectileController>("Prefabs/Meteor");

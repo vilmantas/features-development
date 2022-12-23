@@ -16,22 +16,22 @@ namespace Integrations.StatusEffects
 
         private static void OnStatusEffectApplied(StatusEffectPayload payload)
         {
-            var actionsController = payload.Target.GetComponentInChildren<ActionsController>();
-
-            var movementController = payload.Target.GetComponentInChildren<MovementController>();
-            
-            movementController.Stop();
-
-            StatusEffectPresets.DisableActivity(actionsController,
-                nameof(ChannelingStatusEffect));
+            // var actionsController = payload.Target.GetComponentInChildren<ActionsController>();
+            //
+            // var movementController = payload.Target.GetComponentInChildren<MovementController>();
+            //
+            // movementController.Stop();
+            //
+            // StatusEffectPresets.DisableActivity(actionsController,
+            //     nameof(ChannelingStatusEffect));
         }
 
         private static void OnStatusEffectRemoved(StatusEffectPayload payload)
         {
-            var actionsController = payload.Target.GetComponentInChildren<ActionsController>();
-
-            StatusEffectPresets.RemoveConditionHandler(actionsController,
-                nameof(ChannelingStatusEffect));
+            // var actionsController = payload.Target.GetComponentInChildren<ActionsController>();
+            //
+            // StatusEffectPresets.RemoveConditionHandler(actionsController,
+            //     nameof(ChannelingStatusEffect));
         }
     }
 }

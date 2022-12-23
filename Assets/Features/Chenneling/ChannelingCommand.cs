@@ -11,15 +11,22 @@ namespace UnityEngine
         
         public readonly float Current;
 
-        public Dictionary<string, object> Data;
+        public Dictionary<string, object> Data = new();
 
-        public Action Callback;
+        public Action Callback { get; private set; }
 
         public ChannelingCommand(string title, float max, float current = 0)
         {
             Title = title;
             Max = max;
             Current = current;
+        }
+
+        public ChannelingCommand WithCallback(Action callback)
+        {
+            Callback = callback;
+
+            return this;
         }
     }
 }

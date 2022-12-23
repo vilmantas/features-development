@@ -31,5 +31,10 @@ namespace Features.Skills
 
         public SkillInstance MakeInstance => new(this,
             SkillImplementationRegistry.Implementations[ImplementationName]);
+
+        public bool HasFlag(SkillFlags flag)
+        {
+            return (Flags & flag) == flag;
+        }
     }
 }

@@ -11,22 +11,30 @@ namespace UnityEngine
 
         public Action Callback;
 
-        public Dictionary<string, object> Data;
+        public readonly Dictionary<string, object> Data;
 
-        public ChannelingItem(string title, float maxDuration, float progress)
+        public ChannelingItem(string title, float maxDuration, float progress, Dictionary<string, object> data)
         {
             Title = title;
             MaxDuration = maxDuration;
             ChanneledAmount = progress;
+            Data = data;
         }
 
         public float TimeLeft => Math.Max(MaxDuration - ChanneledAmount, 0);
 
         public bool IsCompleted => TimeLeft == 0;
         
+        public bool IsInterrupted { get; private set; }
+        
         public void AddProgress(float deltaTime)
         {
             ChanneledAmount += deltaTime;
+        }
+
+        public void Interrupted()
+        {
+            IsInterrupted = true;
         }
     }
 }

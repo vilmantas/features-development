@@ -44,7 +44,7 @@ namespace Features.Skills
 
                 return;
             }
-            
+
             OnBeforeActivation?.Invoke(context);
 
             if (context.PreventDefault) return;

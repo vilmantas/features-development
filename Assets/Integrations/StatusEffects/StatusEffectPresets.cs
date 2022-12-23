@@ -1,22 +1,35 @@
 using System;
 using System.Collections.Generic;
 using Features.Actions;
+using Features.Movement;
 using UnityEngine;
 
 namespace Integrations.StatusEffects
 {
     public static class StatusEffectPresets
     {
-        private static Dictionary<string, Delegate> Handlers = new();
+        private static readonly Dictionary<string, Delegate> Handlers = new();
 
         public static void PreventAllActions(ActionsController actionsController, string condition)
         {
-            Action<ActionActivation> handler = payload =>
-                BlockAllActions(payload, actionsController);
-
             var dictionaryKey = GetName(actionsController) + condition;
 
             if (Handlers.ContainsKey(dictionaryKey)) return;
+            
+            Action<ActionActivation> handler = BlockAllActions;
+            
+            Handlers.Add(GetName(actionsController) + condition, handler);
+
+            actionsController.OnBeforeAction += handler;
+        }
+        
+        public static void PreventMovement(ActionsController actionsController, string condition)
+        {
+            var dictionaryKey = GetName(actionsController) + condition;
+
+            if (Handlers.ContainsKey(dictionaryKey)) return;
+            
+            Action<ActionActivation> handler = BlockMovementAction;
             
             Handlers.Add(GetName(actionsController) + condition, handler);
 
@@ -25,7 +38,7 @@ namespace Integrations.StatusEffects
 
         public static void DisableActivity(ActionsController actionsController, string condition)
         {
-            Action<ActionActivation> handler = payload => BlockAction(payload, actionsController);
+            Action<ActionActivation> handler = BlockCharacterActions;
 
             var dictionaryKey = GetName(actionsController) + condition;
 
@@ -49,22 +62,32 @@ namespace Integrations.StatusEffects
             actionsController.OnBeforeAction -= handler;
         }
 
-        private static void BlockAction(ActionActivation obj, ActionsController actionsController)
+        private static void BlockCharacterActions(ActionActivation obj)
         {
             if (obj.Payload.Data != null && obj.Payload.Data.ContainsKey("passive"))
             {
                 if (obj.Payload.Data["passive"] is true) return;
             }
 
+            var actionsController = obj.Payload.Source.GetComponentInChildren<ActionsController>();
+            
             if (obj.Payload.Source == actionsController.transform.root.gameObject)
             {
                 obj.PreventDefault = true;
             }
         }
 
-        private static void BlockAllActions(ActionActivation obj, ActionsController actionsController)
+        private static void BlockAllActions(ActionActivation obj)
         {
             obj.PreventDefault = true;
+        }
+
+        private static void BlockMovementAction(ActionActivation obj)
+        {
+            if (obj.Payload.Action.Name == "Move")
+            {
+                obj.PreventDefault = true;
+            }
         }
         
         private static string GetName(ActionsController controller) =>
