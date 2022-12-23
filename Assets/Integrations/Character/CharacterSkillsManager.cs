@@ -113,18 +113,18 @@ namespace Features.Character
 
         private void BlockMovement(ActionActivation obj)
         {
-            if (obj.Payload.Action.Name == nameof(Move))
-            {
-                obj.PreventDefault = true;
-            }
+            if (obj.Payload.Action.Name != nameof(Move)) return;
+            
+            obj.PreventDefault = true;
         }
 
         private void StopChannelingOnMovement(ActionActivation obj, SkillActivationContext ctx)
         {
-            if (obj.Payload.Action.Name == nameof(Move))
-            {
-                m_ChannelingController.InterruptChanneling(GetChannelingTag(ctx));
-            }
+            if (obj.Payload.Action.Name != nameof(Move)) return;
+            
+            if (obj.PreventDefault) return;
+                
+            m_ChannelingController.InterruptChanneling(GetChannelingTag(ctx));
         }
         
         private void StopChannelingOnDamage(SkillActivationContext ctx)
