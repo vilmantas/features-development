@@ -18,4 +18,4 @@ MonoBehaviour:
   ChannelingTime: 2
   Cooldown: 1
   Target: 3
-  Flags: 1
+  Flags: -1
