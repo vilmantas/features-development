@@ -66,9 +66,9 @@ namespace _SampleGames.Survivr
 
             if (actionsController == null) return;
 
-            var payload = new ActionActivationPayload(new(nameof(Damage)), gameObject, target.transform.root.gameObject);
+            var payload = new ActionActivationPayload(new(nameof(DamageTarget)), gameObject, target.transform.root.gameObject);
 
-            actionsController.DoAction(new DamageActionPayload(payload, 2));
+            actionsController.DoAction(new DamageTargetActionPayload(payload, 2));
 
             BeginDestroy();
         }

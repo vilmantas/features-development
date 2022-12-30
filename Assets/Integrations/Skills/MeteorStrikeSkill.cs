@@ -9,9 +9,9 @@ namespace Integrations.Skills
 {
     public static class MeteorStrikeSkill
     {
-        public static ProjectileController Projectile { get; set; }
+        private static ProjectileController Projectile { get; set; }
 
-        public static ParticleSystem Particles { get; set; }
+        private static ParticleSystem Particles { get; set; }
         
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         private static void Register()
@@ -56,9 +56,9 @@ namespace Integrations.Skills
 
         private static void Callback(ProjectileCollisionData obj)
         {
-            var player = GameObject.Find("ROOT_SYSTEMS").GetComponentInChildren<ParticlePlayer>();
+            var particlePlayer = GameObject.Find("ROOT_SYSTEMS").GetComponentInChildren<ParticlePlayer>();
 
-            player.PlayParticles(Particles, obj.Projectile.transform.position);
+            particlePlayer.PlayParticles(Particles, obj.Projectile.transform.position);
             
             obj.SetProjectileConsumed();
         }

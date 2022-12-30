@@ -14,7 +14,7 @@ namespace Features.Character
     {
         private const string DEFAULT_ATTACK_ANIMATION = "Strike_1";
 
-        public Action<DamageActionPayload> OnBeforeDoDamage;
+        public Action<DamageTargetActionPayload> OnBeforeDoDamage;
 
         private Transform Root;
 
@@ -90,11 +90,9 @@ namespace Features.Character
         {
             if (obj.Source is not ItemInstance item) return;
             
-            var damagePayload = Damage.MakePayloadForItem(obj.ProjectileParent, obj.Collider, item);
+            var damagePayload = DamageTarget.MakePayloadForItem(obj.ProjectileParent, obj.Collider, item);
 
-            damagePayload.Data.Add("passive", true);
-            
-            obj.ProjectileParent.GetComponentInChildren<ActionsController>().DoAction(damagePayload);
+            obj.ProjectileParent.GetComponentInChildren<ActionsController>().DoPassiveAction(damagePayload);
 
             obj.SetProjectileConsumed();
         }
@@ -119,7 +117,7 @@ namespace Features.Character
         {
             if (!DamageEnabled) return;
 
-            var damagePayload = Damage.MakePayload(Root.gameObject, target.transform.root.gameObject,
+            var damagePayload = DamageTarget.MakePayload(Root.gameObject, target.transform.root.gameObject,
                 m_Character.m_StatCalculator.GetMainDamage());
 
             OnBeforeDoDamage?.Invoke(damagePayload);

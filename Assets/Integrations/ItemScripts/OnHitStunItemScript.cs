@@ -37,7 +37,7 @@ namespace Integrations.ItemScripts
 
         private static void OnAfterAction(ActionActivation arg1, ActionActivationResult arg2)
         {
-            if (arg1.Payload.Action.Name != nameof(Damage)) return;
+            if (arg1.Payload.Action.Name != nameof(DamageTarget)) return;
             
             if (arg2.IsSuccessful.HasValue && arg2.IsFailed) return;
             
