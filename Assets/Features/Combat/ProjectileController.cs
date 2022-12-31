@@ -8,8 +8,6 @@ namespace Features.Combat
     {
         public Action<ProjectileCollisionData> OnProjectileCollided;
 
-        private int GroundLayerMask;
-        
         private object m_Source;
         
         private GameObject m_Parent;
@@ -29,8 +27,6 @@ namespace Features.Combat
 
         public void Initialize(GameObject parent, object source , Vector3 direction, GameObject target)
         {
-            GroundLayerMask = LayerMask.NameToLayer("Ground");
-
             m_Source = source;
             
             m_Rigidbody = GetComponent<Rigidbody>();

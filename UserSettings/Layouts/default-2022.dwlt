@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2056
     height: 1164
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Inspector
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 68
+  controlID: 20
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -250,7 +250,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 131
+  controlID: 134
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -398,7 +398,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 0
+    m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -462,9 +462,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 72600000
-      m_LastClickedID: 0
-      m_ExpandedIDs: 06b8ffff02c4ffff16fbffff
+      m_SelectedIDs: be5e0000
+      m_LastClickedID: 24254
+      m_ExpandedIDs: 924cffff18f9ffff22f9ffff4cfaffff16fbffffbe5e0000425f0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -757,9 +757,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 1.9982796, y: 1.2341843, z: -0.8926449}
+    m_Target: {x: 0, y: 0, z: 0}
     speed: 2
-    m_Value: {x: 1.9982796, y: 1.2341843, z: -0.8926449}
+    m_Value: {x: 0, y: 0, z: 0}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -805,13 +805,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.119954966, y: 0.38436607, z: -0.05044327, w: -0.91396767}
+    m_Target: {x: -0.39490718, y: 0.32356068, z: -0.1509432, w: -0.84651136}
     speed: 2
-    m_Value: {x: -0.1199545, y: 0.38436455, z: -0.050443072, w: -0.9139641}
+    m_Value: {x: -0.39490554, y: 0.32355934, z: -0.15094258, w: -0.84650785}
   m_Size:
-    m_Target: 2.5646632
+    m_Target: 3.4078128
     speed: 2
-    m_Value: 2.5646632
+    m_Value: 3.4078128
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1043,21 +1043,21 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/DebugScripts/Resources/Skills
+    - Assets/DebugScripts/Resources/Prefabs
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 39
   m_LastFolders:
-  - Assets/DebugScripts/Resources/Skills
+  - Assets/DebugScripts/Resources/Prefabs
   m_LastFoldersGridSize: 39
   m_LastProjectPath: /Users/vilmantas/Desktop/Code/features-development
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: a6660000
-    m_LastClickedID: 26278
+    m_SelectedIDs: a4660000
+    m_LastClickedID: 26276
     m_ExpandedIDs: 0000000066660000686600006a6600006c6600006e66000070660000726600007466000076660000786600007a6600007c6600007e6600008066000082660000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
