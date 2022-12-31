@@ -64,7 +64,7 @@ namespace Features.Skills
 
             var ctx = new SkillActivationContext(metadata, transform.root.gameObject);
             
-            instance.Implementation.OnReceive(ctx);
+            instance.Implementation.OnReceive?.Invoke(ctx);
             
             OnSkillAdded?.Invoke(instance);
         }
@@ -81,7 +81,7 @@ namespace Features.Skills
 
             var ctx = new SkillActivationContext(skill.Metadata, transform.root.gameObject);
             
-            skill.Implementation.OnRemove(ctx);
+            skill.Implementation?.OnRemove?.Invoke(ctx);
             
             OnSkillRemoved?.Invoke(skill);
         }

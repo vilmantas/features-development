@@ -89,8 +89,15 @@ namespace Features.Character
         private void OnProjectileCollided(ProjectileCollisionData obj)
         {
             if (obj.Source is not ItemInstance item) return;
+
+            if (obj.OriginalCollider.gameObject.layer == LayerMask.NameToLayer("Ground"))
+            {
+                obj.SetProjectileConsumed();
+                
+                return;
+            }
             
-            var damagePayload = DamageTarget.MakePayloadForItem(obj.ProjectileParent, obj.Collider, item);
+            var damagePayload = DamageTarget.MakePayloadForItem(obj.ProjectileParent, obj.ColliderRoot, item);
 
             obj.ProjectileParent.GetComponentInChildren<ActionsController>().DoPassiveAction(damagePayload);
 

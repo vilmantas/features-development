@@ -48,7 +48,7 @@ namespace Features.Combat
             
             if (other.transform.root.name == m_Parent.name) return;
             
-            var data = new ProjectileCollisionData(this, m_Parent, other.transform.root.gameObject, m_Source);
+            var data = new ProjectileCollisionData(this, m_Parent, other.transform.root.gameObject, m_Source, other);
             
             OnProjectileCollided?.Invoke(data);
             
@@ -57,33 +57,6 @@ namespace Features.Combat
             OnProjectileCollided = null;
             
             Destroy(gameObject);
-        }
-    }
-
-    public class ProjectileCollisionData
-    {
-        public ProjectileController Projectile { get; }
-        public readonly GameObject ProjectileParent;
-
-        public readonly GameObject Collider;
-
-        public readonly object Source;
-
-        private bool m_isConsumed;
-        
-        public bool IsConsumed => m_isConsumed;
-
-        public ProjectileCollisionData(ProjectileController projectile, GameObject parent, GameObject collider, object source)
-        {
-            Projectile = projectile;
-            ProjectileParent = parent;
-            Collider = collider;
-            Source = source;
-        }
-
-        public void SetProjectileConsumed()
-        {
-            m_isConsumed = true;
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Integrations.Skills
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         private static void Register()
         {
-            SkillImplementation implementation = new(OnReceive, OnActivation, OnRemove);
+            SkillImplementation implementation = new(OnActivation);
             SkillImplementationRegistry.Register(nameof(RangedAttackSkill), implementation);
         }
         
@@ -21,14 +21,6 @@ namespace Integrations.Skills
             Debug.Log("Doing ranged attack");
 
             return new SkillActivationResult(true);
-        }
-
-        private static void OnReceive(SkillActivationContext obj)
-        {
-        }
-
-        private static void OnRemove(SkillActivationContext obj)
-        {
         }
     }
 }

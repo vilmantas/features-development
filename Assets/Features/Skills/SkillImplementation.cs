@@ -8,13 +8,9 @@ namespace Features.Skills
         public readonly Func<SkillActivationContext, SkillActivationResult> OnActivation;
         public readonly Action<SkillActivationContext> OnRemove;
 
-        public SkillImplementation(Action<SkillActivationContext> onReceive,
-            Func<SkillActivationContext, SkillActivationResult> onActivation,
-            Action<SkillActivationContext> onRemove)
+        public SkillImplementation(Func<SkillActivationContext, SkillActivationResult> onActivation)
         {
-            OnReceive = onReceive;
             OnActivation = onActivation;
-            OnRemove = onRemove;
         }
     }
 }

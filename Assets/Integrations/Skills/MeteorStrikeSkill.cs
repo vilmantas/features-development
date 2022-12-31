@@ -2,10 +2,12 @@ using System.Linq;
 using Features.Actions;
 using Features.Buffs;
 using Features.Combat;
+using Features.Conditions;
 using Features.Skills;
 using Integrations.Actions;
 using Integrations.Buffs;
 using Integrations.GameSystems;
+using Integrations.StatusEffects;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -17,19 +19,15 @@ namespace Integrations.Skills
 
         private static ParticleSystem Particles { get; set; }
         
-        private static GameObject Sphere { get; set; }
-        
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         private static void Register()
         {
-            SkillImplementation implementation = new(OnReceive, OnActivation, OnRemove);
+            SkillImplementation implementation = new(OnActivation);
             
             SkillImplementationRegistry.Register(nameof(MeteorStrikeSkill), implementation);
             
             Projectile = Resources.Load<ProjectileController>("Prefabs/Meteor");
             
-            Sphere = Resources.Load<GameObject>("Prefabs/DebugSphere");
-
             Particles = Resources.Load<ParticleSystem>("Particles/Explosion");
         }
 
@@ -66,54 +64,30 @@ namespace Integrations.Skills
         {
             var particlePlayer = GameObject.Find("ROOT_SYSTEMS").GetComponentInChildren<ParticlePlayer>();
 
-            var position = obj.Projectile.transform.position;
-            particlePlayer.PlayParticles(Particles, position);
+            var hitPoint = obj.Projectile.transform.position;
+            
+            particlePlayer.PlayParticles(Particles, hitPoint);
 
-            var z = Physics.OverlapSphere(position, 10f, LayerMask.GetMask("PlayerHitbox"));
+            var z = Physics.OverlapSphere(hitPoint, 10f, LayerMask.GetMask("PlayerHitbox"));
 
             foreach (var collider in z)
             {
-                var position1 = collider.transform.position;
-                var dist = position1 - position;
-
-                var dir = dist.normalized;
-                
-                var xx = particlePlayer.CreateInstanceOf(Sphere);
-
-                xx.transform.position = position1 + (dir * 3f);
-
-                var zoot = collider.transform.root;
+                var colliderRoot = collider.transform.root;
                 
                 var actionsController =
-                    zoot.GetComponentInChildren<ActionsController>();
+                    colliderRoot.GetComponentInChildren<ActionsController>();
 
-                var rb = zoot.GetComponentInChildren<Rigidbody>();
-
-                zoot.GetComponentInChildren<NavMeshAgent>().enabled = false;
-
-                rb.isKinematic = false;
+                var shovePayload = AddBuff.MakePayload(obj.ProjectileParent,
+                    colliderRoot.gameObject, new BuffMetadata(nameof(Shove), 1f), 1f);
                 
-                rb.AddForce(dir * 20f);
-                
-                var stunPayload = AddBuff.MakePayload(obj.ProjectileParent,
-                    zoot.gameObject, new BuffMetadata(nameof(Stun), 1f), 1f);
+                var rb = colliderRoot.GetComponentInChildren<Rigidbody>();
 
-                actionsController.DoPassiveAction(stunPayload);
+                actionsController.DoPassiveAction(shovePayload);
+
+                rb.AddExplosionForce(500f, hitPoint, 10f);
             }
             
-            var zz = particlePlayer.CreateInstanceOf(Sphere);
-
-            zz.transform.position = position;
-            
             obj.SetProjectileConsumed();
-        }
-
-        private static void OnReceive(SkillActivationContext obj)
-        {
-        }
-
-        private static void OnRemove(SkillActivationContext obj)
-        {
         }
     }
 }
