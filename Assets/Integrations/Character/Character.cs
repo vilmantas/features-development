@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using Codice.Client.BaseCommands;
 using Features.Actions;
 using Features.Buffs;
 using Features.Combat;
@@ -15,9 +14,7 @@ using Features.Skills;
 using Features.Stats.Base;
 using Features.Targeting;
 using Integrations.Items;
-using UnityEditor.U2D;
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace Features.Character
 {
@@ -104,33 +101,33 @@ namespace Features.Character
 
             [HideInInspector] public ChannelingController m_ChannelingController;
 
-            [HideInInspector] private ChannelingUIController m_ChannelingUIController;
-
-            private TargetProvider m_TargetProvider;
+            [HideInInspector] public HealthController m_HealthController;
 
             private CharacterActionsManager m_ActionsManager;
 
             private CharacterBuffsManager m_BuffsManager;
 
-            private CharacterEquipmentManager m_EquipmentManager;
+            private CharacterChannelingManager m_ChannelingManager;
 
-            [HideInInspector] public HealthController m_HealthController;
-
-            private CharacterInventoryManager m_InventoryManager;
-
-            private CharacterStatsManager m_StatsManager;
+            [HideInInspector] private ChannelingUIController m_ChannelingUIController;
 
             private CharacterCombatManager m_CombatManager;
 
-            private CharacterStatusEffectsManager m_StatusEffectsManager;
+            private CharacterCooldownsManager m_CooldownsManager;
+
+            private CharacterEquipmentManager m_EquipmentManager;
 
             private CharacterExpirationManager m_ExpirationManager;
 
+            private CharacterInventoryManager m_InventoryManager;
+
             private CharacterSkillsManager m_SkillsManager;
 
-            private CharacterCooldownsManager m_CooldownsManager;
+            private CharacterStatsManager m_StatsManager;
 
-            private CharacterChannelingManager m_ChannelingManager;
+            private CharacterStatusEffectsManager m_StatusEffectsManager;
+
+            private TargetProvider m_TargetProvider;
 
             private void Awake()
             {
@@ -149,7 +146,6 @@ namespace Features.Character
                 PrepareCharacter();
             }
 
-
             private void AddSystems(Transform root)
             {
                 var systemsParent = new GameObject("systems").transform;
@@ -166,9 +162,9 @@ namespace Features.Character
                 AddSystemsComponent("channeling", ref m_ChannelingController);
                 AddSystemsComponent("channeling_ui", ref m_ChannelingUIController);
                 AddSystemsComponent("target_provider", ref m_TargetProvider);
-                
+
                 m_ChannelingUIController.Initialize(m_ChannelingController);
-                
+
                 ConfigureTargetingSystem(m_TargetProvider);
 
                 if (Inventory)
@@ -216,7 +212,7 @@ namespace Features.Character
                     AddSystemsComponent("skills", ref m_SkillsController);
                 }
             }
-            
+
             private void AddManagers(Transform root)
             {
                 var managersParent = new GameObject("managers").transform;
@@ -249,7 +245,7 @@ namespace Features.Character
                     AddManagerComponent("status_effects", ref m_StatusEffectsManager);
 
                 if (Overheads) AddManagerComponent("overheads", ref m_OverheadsManager);
-                
+
                 if (Skills) AddManagerComponent("skills", ref m_SkillsManager);
             }
 
@@ -279,7 +275,7 @@ namespace Features.Character
 
                             m_InventoryController.HandleRequest(
                                 ChangeRequestFactory.Add(itemInstance.StorageData));
-                        } 
+                        }
                     }
                 }
 
@@ -331,12 +327,10 @@ namespace Features.Character
 
             protected virtual void ConfigureTargetingSystem(TargetProvider provider)
             {
-                
             }
 
             protected virtual void SetupGameHooks()
             {
-                
             }
         }
     }

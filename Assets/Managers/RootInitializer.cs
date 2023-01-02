@@ -1,14 +1,27 @@
 using Features.Targeting;
 using UnityEngine;
 
-namespace Integrations.GameSystems
+namespace Managers
 {
     public static class RootInitializer
     {
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         public static void Initialize()
         {
+            var gameManager = new GameObject("game_manager");
+
+            gameManager.AddComponent<GameManager>();
+        }
+
+        public static void AddGameplayNodes()
+        {
             var root = new GameObject("ROOT_SYSTEMS");
+
+            var gameplayManager = new GameObject("gameplay_manager");
+
+            gameplayManager.transform.SetParent(root.transform);
+
+            gameplayManager.AddComponent<GameplayManager>();
 
             var particleSystemCore = new GameObject("particles_player_system");
 

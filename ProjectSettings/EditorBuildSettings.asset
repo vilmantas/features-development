@@ -23,4 +23,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_SampleGames/Survivr/Scenes/Pause_UI.unity
     guid: 409012fe81047446ebb8520b79d8afa4
+  - enabled: 1
+    path: Assets/Features/LoadingScene/Loading.unity
+    guid: fc566fff996ae2e4c99376ad815954e7
+  - enabled: 1
+    path: Assets/DebugScripts/Scenes/Buffs.unity
+    guid: 38ad9fcff5d9b3643833995857e0f0fe
   m_configObjects: {}

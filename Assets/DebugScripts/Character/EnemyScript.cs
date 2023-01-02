@@ -1,15 +1,10 @@
-using System;
 using System.Collections;
 using Features.Actions;
-using Features.Buffs;
 using Features.Character;
-using Features.Health;
 using Features.Health.Events;
-using Features.Inventory;
 using Features.Movement;
 using Integrations.Actions;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace DebugScripts.Character
 {
@@ -19,21 +14,19 @@ namespace DebugScripts.Character
 
         private bool DamageEnabled;
 
+        private Vector3 RoamTarget;
+
         private Vector3 SpawnPoint;
 
-        private Vector3 RoamTarget;
-        
         private void Start()
         {
             var transform1 = transform;
             SpawnPoint = transform1.position;
 
             RoamTarget = SpawnPoint + (transform1.forward * 5);
-            
+
             StartCoroutine(HitterCoroutine());
 
-            StartCoroutine(MoverCoroutine());
-            
             Character.m_HealthController.OnDamage += OnDamage;
         }
 
@@ -58,17 +51,17 @@ namespace DebugScripts.Character
         public IEnumerator MoverCoroutine()
         {
             var moveBack = false;
-            
+
             while (true)
             {
                 yield return new WaitForSeconds(Random.Range(5, 10));
 
                 Vector3 dest;
-                
+
                 if (moveBack)
                 {
                     dest = SpawnPoint;
-                    
+
                     moveBack = false;
                 }
                 else
@@ -77,7 +70,7 @@ namespace DebugScripts.Character
 
                     moveBack = true;
                 }
-                
+
                 var o = gameObject;
 
                 var movePayload = Move.MakePayload(o, new MoveActionData(dest));
