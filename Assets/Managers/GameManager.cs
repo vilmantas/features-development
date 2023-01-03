@@ -11,7 +11,7 @@ namespace Managers
 
         public void StartGame()
         {
-            LoadingManager.Instance.LoadAdditionalScenes("Buffs");
+            LoadingManager.Instance.LoadAdditionalScenes("Character_Main", "Scenes/Gameplay");
         }
     }
 }
