@@ -58,7 +58,7 @@ namespace Integrations.Skills
 
         private static void Callback(ProjectileCollisionData obj)
         {
-            var particlePlayer = GameObject.Find("ROOT_SYSTEMS").GetComponentInChildren<ParticlePlayer>();
+            var particlePlayer = GameObject.Find("particle_player").GetComponent<ParticlePlayer>();
 
             var hitPoint = obj.Projectile.transform.position;
 

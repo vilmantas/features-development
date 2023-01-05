@@ -1,6 +1,17 @@
 {
-  "name": "Features.Camera",
-  "references": [
-    "GUID:c7bff77d66b55c949934bd0b903bdf65"
-  ]
+    "name": "Features.Camera",
+    "rootNamespace": "",
+    "references": [
+        "GUID:c7bff77d66b55c949934bd0b903bdf65",
+        "GUID:4307f53044263cf4b835bd812fc161a4"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

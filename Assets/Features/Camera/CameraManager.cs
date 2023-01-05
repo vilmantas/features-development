@@ -1,9 +1,15 @@
+using Cinemachine;
 using Managers;
+using UnityEngine;
 
 namespace Features.Camera
 {
     public class CameraManager : SingletonManager<CameraManager>
     {
+        public CinemachineVirtualCamera CinemachineCamera;
+
+        public UnityEngine.Camera Camera;
+        
         protected override void DoSetup()
         {
             if (UnityEngine.Camera.allCameras.Length > 1)
@@ -14,6 +20,12 @@ namespace Features.Camera
             }
 
             DontDestroyOnLoad(gameObject);
+        }
+
+        public void ChangeTarget(Transform follow, Transform lookAt)
+        {
+            CinemachineCamera.Follow = follow;
+            CinemachineCamera.LookAt = lookAt;
         }
     }
 }

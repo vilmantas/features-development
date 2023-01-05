@@ -7,9 +7,11 @@ namespace Features.Camera
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         public static void InitializeCameraScene()
         {
-            var x = Resources.Load<GameObject>("Camera");
+            var cameraResource = Resources.Load<GameObject>("Camera");
 
-            var zz = GameObject.Instantiate(x);
+            var instance = Object.Instantiate(cameraResource);
+
+            instance.name = "camera_manager";
         }
     }
 }

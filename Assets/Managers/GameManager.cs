@@ -1,4 +1,5 @@
 using Features.LoadingScene;
+using UnityEngine.SceneManagement;
 
 namespace Managers
 {
@@ -11,7 +12,7 @@ namespace Managers
 
         public void StartGame()
         {
-            LoadingManager.Instance.LoadAdditionalScenes("Character_Main", "Scenes/Gameplay");
+            LoadingManager.Instance.LoadAdditionalScenes("Character_Main", "Scenes/Gameplay", "Scenes/Lighting");
         }
     }
 }

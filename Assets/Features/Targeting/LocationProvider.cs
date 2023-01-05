@@ -77,7 +77,7 @@ namespace Features.Targeting
 
         public static void StartCharacterSelect(Action<GameObject> callback)
         {
-            var manager = GameObject.Find("target_provider_system").GetComponent<TargetingManager>();
+            var manager = GameObject.Find("targeting_manager").GetComponent<TargetingManager>();
             
             manager.Initialize(x =>
             {
@@ -91,7 +91,7 @@ namespace Features.Targeting
 
         public static void StartMousePositionSelect(Action<Vector3> callback)
         {
-            var manager = GameObject.Find("target_provider_system").GetComponent<TargetingManager>();
+            var manager = GameObject.Find("targeting_manager").GetComponent<TargetingManager>();
 
             manager.Initialize(x =>
             {
