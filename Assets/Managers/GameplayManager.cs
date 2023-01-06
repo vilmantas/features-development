@@ -7,9 +7,9 @@ namespace Managers
 {
     public class GameplayManager : SingletonManager<GameplayManager>
     {
-        public Player Player;
+        [HideInInspector] public Player Player;
 
-        private void Start()
+        private void Awake()
         {
             Player = GameObject.Find("Player").GetComponent<Player>();
 

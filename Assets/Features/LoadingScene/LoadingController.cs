@@ -17,6 +17,8 @@ namespace Managers
 
         public List<(string scene, AsyncOperation op)> Operations = new();
 
+        public string SetActiveScene = "";
+
         private void Awake()
         {
             if (Camera.main != null)
@@ -31,8 +33,10 @@ namespace Managers
             }
         }
 
-        public void Initialize(params string[] scenes)
+        public void Initialize(string[] scenes, string activeScene)
         {
+            SetActiveScene = activeScene;
+            
             foreach (var scene in scenes)
             {
                 var o = SceneManager.LoadSceneAsync(scene, LoadSceneMode.Additive);
@@ -82,7 +86,16 @@ namespace Managers
                 yield return null;
             }
 
-            if (SceneManager.GetActiveScene().name == "Loading")
+            if (!string.IsNullOrEmpty(SetActiveScene))
+            {
+                var scene = SceneManager.GetSceneByName(SetActiveScene);
+
+                if (scene.isLoaded)
+                {
+                    SceneManager.SetActiveScene(scene);
+                }
+            }
+            else if (SceneManager.GetActiveScene().name == "Loading")
             {
                 var scene = SceneManager.GetSceneByName(Operations.First().scene);
 

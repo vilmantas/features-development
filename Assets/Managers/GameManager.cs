@@ -12,7 +12,9 @@ namespace Managers
 
         public void StartGame()
         {
-            LoadingManager.Instance.LoadAdditionalScenes("Character_Main", "Scenes/Gameplay", "Scenes/Lighting");
+            var scenes = new[] {"Character_Main", "Scenes/Gameplay", "Scenes/Lighting"};
+            
+            LoadingManager.Instance.LoadScenes(scenes, "Scenes/Lighting");
         }
     }
 }

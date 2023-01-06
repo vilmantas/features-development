@@ -12,12 +12,12 @@ namespace Features.LoadingScene
             DontDestroyOnLoad(gameObject);
         }
 
-        public void LoadAdditionalScenes(params string[] scenes)
+        public void LoadScenes(string[] scenes, string activeScene = "")
         {
-            StartCoroutine(LoadLoadingScene(scenes));
+            StartCoroutine(ShowLoadingScreen(scenes, activeScene));
         }
 
-        private static IEnumerator LoadLoadingScene(string[] scenes)
+        private static IEnumerator ShowLoadingScreen(string[] scenes, string activeScene)
         {
             var op = SceneManager.LoadSceneAsync("Loading", LoadSceneMode.Single);
 
@@ -26,14 +26,14 @@ namespace Features.LoadingScene
                 yield return null;
             }
 
-            PrepareScene(scenes);
+            PrepareScene(scenes, activeScene);
         }
 
-        private static void PrepareScene(string[] scenes)
+        private static void PrepareScene(string[] scenes, string activeScene)
         {
             var g = GameObject.Find("LoadingController").GetComponent<LoadingController>();
 
-            g.Initialize(scenes);
+            g.Initialize(scenes, activeScene);
         }
     }
 }
