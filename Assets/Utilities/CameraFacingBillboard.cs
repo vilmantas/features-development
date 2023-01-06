@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-namespace _SampleGames.Survivr
+namespace Utilities
 {
     public class CameraFacingBillboard : MonoBehaviour
     {
