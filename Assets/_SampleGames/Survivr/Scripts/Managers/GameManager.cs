@@ -1,8 +1,5 @@
-using System;
-using Codice.Client.BaseCommands.Differences;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 
 namespace _SampleGames.Survivr
 {

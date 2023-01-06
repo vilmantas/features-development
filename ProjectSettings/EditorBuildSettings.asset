@@ -6,8 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_SampleGames/Survivr/Scenes/__INIT.unity
-    guid: 6f91f00713f534d31b04582f4ddf051e
+    path: Assets/Scenes/Intro.unity
+    guid: e65fdf77eb7a6214fb730708f89e0424
+  - enabled: 1
+    path: Assets/DebugScripts/Scenes/Character/Character_Main.unity
+    guid: cd87df1b7e65ef94f8817f87f89a932f
   - enabled: 1
     path: Assets/_SampleGames/Survivr/Scenes/Level.unity
     guid: 0a20b9468000c4e6d91606171b9a340f
@@ -30,9 +33,6 @@ EditorBuildSettings:
     path: Assets/DebugScripts/Scenes/Buffs.unity
     guid: 38ad9fcff5d9b3643833995857e0f0fe
   - enabled: 1
-    path: Assets/DebugScripts/Scenes/Character/Character_Main.unity
-    guid: cd87df1b7e65ef94f8817f87f89a932f
-  - enabled: 1
     path: Assets/Scenes/Gameplay.unity
     guid: 540eaf958fe5e3a49a35fcd97235379a
   - enabled: 1
@@ -41,4 +41,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Lighting.unity
     guid: 5679e9ba6c7644142b42c2fdf88eb592
+  - enabled: 1
+    path: Assets/_SampleGames/Survivr/Scenes/__INIT.unity
+    guid: 6f91f00713f534d31b04582f4ddf051e
   m_configObjects: {}
