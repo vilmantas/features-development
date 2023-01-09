@@ -15,12 +15,17 @@ namespace Features.LoadingScene
 
         public void LoadScenes(IEnumerable<string> scenes, string activeScene = "")
         {
-            StartCoroutine(ShowLoadingScreen(scenes, activeScene));
+            StartCoroutine(ShowLoadingScreen(scenes, activeScene, LoadSceneMode.Single));
         }
 
-        private static IEnumerator ShowLoadingScreen(IEnumerable<string> scenes, string activeScene)
+        public void LoadAdditionalScenes(IEnumerable<string> scenes, string activeScene = "")
         {
-            var op = SceneManager.LoadSceneAsync("Loading", LoadSceneMode.Single);
+            StartCoroutine(ShowLoadingScreen(scenes, activeScene, LoadSceneMode.Additive));
+        }
+
+        private static IEnumerator ShowLoadingScreen(IEnumerable<string> scenes, string activeScene, LoadSceneMode mode)
+        {
+            var op = SceneManager.LoadSceneAsync("Loading", mode);
 
             while (!op.isDone)
             {

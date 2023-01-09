@@ -28,7 +28,7 @@ namespace Features.EditorHelpers
 
             var missingScenes = RequiredGameplayScenes.Where(x => !existingScenes.Contains(x));
             
-            LoadingManager.Instance.LoadScenes(missingScenes.ToArray(), "Lighting");
+            LoadingManager.Instance.LoadAdditionalScenes(missingScenes.ToArray(), "Lighting");
         }
     }
 }
