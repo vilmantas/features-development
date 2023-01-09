@@ -33,7 +33,7 @@ namespace Managers
             }
         }
 
-        public void Initialize(string[] scenes, string activeScene)
+        public void Initialize(IEnumerable<string> scenes, string activeScene)
         {
             SetActiveScene = activeScene;
             

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using Managers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,12 +13,12 @@ namespace Features.LoadingScene
             DontDestroyOnLoad(gameObject);
         }
 
-        public void LoadScenes(string[] scenes, string activeScene = "")
+        public void LoadScenes(IEnumerable<string> scenes, string activeScene = "")
         {
             StartCoroutine(ShowLoadingScreen(scenes, activeScene));
         }
 
-        private static IEnumerator ShowLoadingScreen(string[] scenes, string activeScene)
+        private static IEnumerator ShowLoadingScreen(IEnumerable<string> scenes, string activeScene)
         {
             var op = SceneManager.LoadSceneAsync("Loading", LoadSceneMode.Single);
 
@@ -29,7 +30,7 @@ namespace Features.LoadingScene
             PrepareScene(scenes, activeScene);
         }
 
-        private static void PrepareScene(string[] scenes, string activeScene)
+        private static void PrepareScene(IEnumerable<string> scenes, string activeScene)
         {
             var g = GameObject.Find("LoadingController").GetComponent<LoadingController>();
 

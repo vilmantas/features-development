@@ -1,4 +1,4 @@
 {
   "name": "Features.EditorHelpers",
-  "references":[ "GUID:c7bff77d66b55c949934bd0b903bdf65" ]
+  "references":[ "GUID:c7bff77d66b55c949934bd0b903bdf65", "GUID:c93fd0ef891c42b6883cff5295c555cd" ]
 }
