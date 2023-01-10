@@ -26,8 +26,6 @@ namespace DebugScripts.Character
     {
         public LayerMask GroundLayer;
 
-        public LayerMask GroundAndPlayer;
-        
         public Player PlayerInstance;
 
         public InventoryUIController InventoryUI;
@@ -92,30 +90,6 @@ namespace DebugScripts.Character
                 SkillsUI.Initialize(PlayerInstance.m_SkillsController,
                     PlayerInstance.m_CooldownsController, PlayerInstance.m_ChannelingController);
             }
-            
-            LocationProvider.OnOverlayActivated += OnOverlayActivated;
-            
-            LocationProvider.OnOverlayDisabled += OnOverlayDisabled;
-        }
-
-        public bool DisableInput = false;
-
-        public bool DisableMovement = false;
-
-        private void OnOverlayDisabled()
-        {
-            DisableInput = false;
-            DisableMovement = false;
-        }
-
-        private void OnOverlayActivated(OverlayInfo info)
-        {
-            DisableInput = true;
-
-            if (info.BlockMovementActions)
-            {
-                DisableMovement = true;
-            }
         }
 
         private void ShowContextMenu(StorageData data)
@@ -142,48 +116,6 @@ namespace DebugScripts.Character
 
         private void Update()
         {
-            if (DisableInput)
-            {
-                if (DisableMovement) return;
-                
-                if (Input.GetMouseButtonUp(0))
-                {
-                    if (EventSystem.current != null &&
-                        EventSystem.current.IsPointerOverGameObject()) return;
-                
-                    var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-                    if (!Physics.Raycast(ray, out RaycastHit hit, 100f, GroundAndPlayer)) return;
-                    
-                    if (hit.collider.gameObject.layer == LayerMask.NameToLayer("PlayerHitbox"))
-                        return;
-                        
-                    var movePayload =
-                        Move.MakePayload(RootGameObject, new MoveActionData(hit.point));
-
-                    PlayerInstance.m_ActionsController.DoAction(movePayload);
-                }
-                
-                return;
-            }
-            
-            if (Input.GetMouseButtonUp(0))
-            {
-                if (EventSystem.current != null &&
-                    EventSystem.current.IsPointerOverGameObject()) return;
-                
-                
-                var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-                if (Physics.Raycast(ray, out RaycastHit hit, 100f, GroundLayer))
-                {
-                    var movePayload =
-                        Move.MakePayload(RootGameObject, new MoveActionData(hit.point));
-
-                    PlayerInstance.m_ActionsController.DoAction(movePayload);
-                }
-            }
-            
             if (Input.GetKeyDown(KeyCode.LeftShift)) PlayerInstance.m_MovementController.SetRunning(true);
 
             if (Input.GetKeyUp(KeyCode.LeftShift)) PlayerInstance.m_MovementController.SetRunning(false);

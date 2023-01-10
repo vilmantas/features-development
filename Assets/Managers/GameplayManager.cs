@@ -1,3 +1,4 @@
+using System;
 using Features.Camera;
 using Features.Character;
 using Features.CharacterModel;
@@ -9,11 +10,14 @@ namespace Managers
     {
         [HideInInspector] public Player Player;
 
-        private void Awake()
+        protected override void DoSetup()
         {
             Player = GameObject.Find("Player").GetComponent<Player>();
+        }
 
-            var cameraManager = GameObject.Find("camera_manager").GetComponent<CameraManager>();
+        private void Start()
+        {
+            var cameraManager = CameraManager.Instance;
 
             var characterModel = Player.GetComponentInChildren<CharacterModelController>();
             

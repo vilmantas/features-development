@@ -17,7 +17,7 @@ namespace Features.Targeting
         
         public static void EnableTargeting(TargetingType type)
         {
-            var manager = GameObject.Find("target_provider_system").GetComponent<TargetingManager>();
+            var manager = TargetingManager.Instance;
 
             OverlayInfo info = new();
             

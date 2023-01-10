@@ -1,10 +1,11 @@
 using System;
+using Managers;
 using TMPro;
 using UnityEngine;
 
 namespace Features.Targeting
 {
-    public class TargetingManager : MonoBehaviour
+    public class TargetingManager : SingletonManager<TargetingManager>
     {
         private GameObject OverlayPrefab;
 
@@ -22,7 +23,7 @@ namespace Features.Targeting
 
         private TargetingType TargetingType;
 
-        private void Awake()
+        protected override void DoSetup()
         {
             OverlayPrefab = Resources.Load<GameObject>("Prefabs/TargetingOverlay");
             
