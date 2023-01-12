@@ -1,6 +1,7 @@
 using System.Linq;
 using Features.Inventory;
 using Features.Stats.Base;
+using Features.WeaponAnimationConfigurations;
 using UnityEngine;
 using Utilities.ItemsContainer;
 
@@ -32,6 +33,14 @@ namespace Integrations.Items
 
         private static ItemMetadata ToMetadata(Item_SO prefab)
         {
+            WeaponAnimations_SO animations = null;
+            
+            if (!string.IsNullOrEmpty(prefab.WeaponType))
+            {
+                WeaponAnimationConfigurationRegistry.Registry.TryGetValue(prefab.WeaponType,
+                    out animations);
+            }
+            
             return new(
                 prefab.Name,
                 prefab.Sprite,
@@ -49,7 +58,9 @@ namespace Integrations.Items
                 prefab.RequiredAmmoType,
                 prefab.ProvidedAmmo,
                 prefab.Scripts.Select(x => x.Instance).ToArray(),
-                prefab.Skills.Select(x => x.GetMetadata).ToArray());
+                prefab.Skills.Select(x => x.GetMetadata).ToArray(),
+                prefab.WeaponType,
+                animations);
         }
 
         public static ItemInstance CreateInstanceFrom(ItemMetadata metadata, int count = 0)

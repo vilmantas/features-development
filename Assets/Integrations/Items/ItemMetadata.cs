@@ -6,6 +6,7 @@ using Features.Equipment;
 using Features.Inventory.UI.Utilities;
 using Features.Skills;
 using Features.Stats.Base;
+using Features.WeaponAnimationConfigurations;
 using UnityEngine;
 
 namespace Integrations.Items
@@ -23,7 +24,9 @@ namespace Integrations.Items
             string requiredAmmo,
             GameObject providedAmmo,
             ItemScriptDTO[] scripts,
-            SkillMetadata[] skills)
+            SkillMetadata[] skills,
+            string weaponType,
+            WeaponAnimations_SO animations)
         {
             Name = name;
             Sprite = sprite;
@@ -43,6 +46,8 @@ namespace Integrations.Items
             ProvidedAmmo = providedAmmo;
             Scripts = scripts;
             Skills = skills;
+            WeaponType = weaponType;
+            WeaponAnimationsSo = animations;
         }
 
         public string RequiredAmmo { get; }
@@ -63,6 +68,7 @@ namespace Integrations.Items
         public string AttackAnimation { get; }
         public ItemScriptDTO[] Scripts { get; }
         public SkillMetadata[] Skills { get; }
-        
+        public string WeaponType { get; }
+        public WeaponAnimations_SO WeaponAnimationsSo { get; }
     }
 }
