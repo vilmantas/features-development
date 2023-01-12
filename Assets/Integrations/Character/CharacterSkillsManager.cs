@@ -266,7 +266,7 @@ namespace Features.Character
         {
             if (!obj.Metadata.ChanneledSkill) return false;
 
-            if (IsSkillPrepared(obj)) return false;
+            if (IsSkillAlreadyChanneled(obj)) return false;
             
             var command = new ChannelingCommand(GetChannelingTag(obj),
                     obj.Metadata.ChannelingTime)
@@ -289,7 +289,7 @@ namespace Features.Character
             return m_CooldownsController.IsOnCooldown(obj.Skill);
         }
 
-        private bool IsSkillPrepared(SkillActivationContext context)
+        private bool IsSkillAlreadyChanneled(SkillActivationContext context)
         {
             return context is ContinuedSkillActivation cont && cont.IsOfType<ChanneledSkillActivationContext>();
         }
