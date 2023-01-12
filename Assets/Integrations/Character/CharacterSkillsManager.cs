@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Features.Actions;
+using Features.Character.SkillsData;
 using Features.Cooldowns;
 using Features.Equipment;
 using Features.Health;
@@ -340,43 +341,6 @@ namespace Features.Character
                 {
                     m_SkillsController.Add(metadataSkill);
                 }
-            }
-        }
-
-        public class TargetedSkillActivationContext : ContinuedSkillActivation
-        {
-            public void SetTargetObject(GameObject obj) => TargetObject = obj;
-
-            public void SetTargetLocation(Vector3 loc) => TargetLocation = loc;
-
-            public TargetedSkillActivationContext(SkillActivationContext ctx) : base(ctx)
-            {
-            }
-        }
-        public class ChanneledSkillActivationContext : ContinuedSkillActivation
-        {
-            public ChannelingItem Result { get; }
-
-            public ChanneledSkillActivationContext(SkillActivationContext ctx, ChannelingItem result) : base(ctx)
-            {
-                Result = result;
-            }
-        }
-
-        public class ContinuedSkillActivation : SkillActivationContext
-        {
-            public ContinuedSkillActivation Prev { get; set; }
-            
-            public ContinuedSkillActivation(SkillActivationContext ctx) : base(ctx)
-            {
-                Prev = ctx as ContinuedSkillActivation;
-            }
-
-            public bool IsOfType<T>() where T: ContinuedSkillActivation
-            {
-                if (this is T t) return true;
-                
-                return Prev != null && Prev.IsOfType<T>();
             }
         }
     }
