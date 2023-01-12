@@ -317,8 +317,6 @@ namespace Features.Character
             if (result.IsInterrupted &&
                 !context.Metadata.HasFlag(SkillFlags.AllowPartialChannelingCompletion)) return;
 
-            context.PreventDefault = false;
-
             var channeledSkill = new ChanneledSkillActivationContext(context, result);
             
             m_SkillsController.ActivateSkill(channeledSkill);
