@@ -225,41 +225,32 @@ namespace Features.Character
             return context is ContinuedSkillActivation cont && cont.IsOfType<TargetedSkillActivationContext>();
         }
         
-        private bool RequiresTarget(SkillActivationContext obj)
+        private bool RequiresTarget(SkillActivationContext skill)
         {
-            if (obj.Metadata.Target == SkillTarget.None) return false;
+            if (skill.Metadata.Target == SkillTarget.None) return false;
 
-            if (IsSkillWithTarget(obj)) return false;
+            if (IsSkillWithTarget(skill)) return false;
 
-            switch (obj.Metadata.Target)
+            switch (skill.Metadata.Target)
             {
                 case SkillTarget.Character:
-                    m_TargetProvider.GetCharacterTarget(x =>
-                    {
-                        ContinueWithTargetObject(obj, x);
-                    });
+                    void C1(GameObject target) => ContinueWithTargetObject(skill, target);
+
+                    m_TargetProvider.GetCharacterTarget(C1);
 
                     return true;
-
-                    break;
-
                 case SkillTarget.Pointer:
-                    m_TargetProvider.PickMousePosition(x =>
-                    {
-                        ContinueWithTargetPosition(obj, x);
-                    });
+                    void C2(Vector3 loc) => ContinueWithTargetPosition(skill, loc);
+
+                    m_TargetProvider.PickMousePosition(C2);
 
                     return true;
-
-                    break;
                 case SkillTarget.CharacterLocation:
-                    m_TargetProvider.GetCharacterTarget(x =>
-                    {
-                        ContinueWithTargetPosition(obj, x.transform.position);
-                    });
+                    void C3(GameObject target) => ContinueWithTargetPosition(skill, target.transform.position);
 
-                        return true;
-                    break;
+                    m_TargetProvider.GetCharacterTarget(C3);
+
+                    return true;
                 case SkillTarget.None:
                     break;
                 case SkillTarget.Self:
