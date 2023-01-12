@@ -9,5 +9,6 @@ namespace Features.Skills
         PreventMovement,
         InterruptableByMovement,
         InterruptableByDamage,
+        AllowPartialChannelingCompletion,
     }
 }

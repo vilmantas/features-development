@@ -35,8 +35,6 @@ namespace Features.Character
         
         private MovementController m_MovementController;
         
-        private readonly List<string> PreparedSkills = new();
-        
         private readonly Dictionary<string, Delegate> RunningHandlers = new ();
 
         private void Awake()
@@ -286,13 +284,8 @@ namespace Features.Character
         {
             if (!obj.Metadata.ChanneledSkill) return false;
 
-            if (IsSkillPrepared(obj))
-            {
-                PreparedSkills.Remove(obj.Skill);
-
-                return false;
-            }
-
+            if (IsSkillPrepared(obj)) return false;
+            
             var command = new ChannelingCommand(GetChannelingTag(obj),
                     obj.Metadata.ChannelingTime)
                 .WithCallback(result => ContinueActivation(obj, result));
@@ -316,16 +309,19 @@ namespace Features.Character
 
         private bool IsSkillPrepared(SkillActivationContext context)
         {
-            return PreparedSkills.Any(x => x.Equals(context.Skill));
+            return context is ChanneledSkillActivationContext;
         }
 
-        private void ContinueActivation(SkillActivationContext obj, ChannelingItem result)
+        private void ContinueActivation(SkillActivationContext context, ChannelingItem result)
         {
-            PreparedSkills.Add(obj.Skill);
+            if (result.IsInterrupted &&
+                !context.Metadata.HasFlag(SkillFlags.AllowPartialChannelingCompletion)) return;
 
-            obj.PreventDefault = false;
+            context.PreventDefault = false;
+
+            var channeledSkill = new ChanneledSkillActivationContext(context, result);
             
-            m_SkillsController.ActivateSkill(obj);
+            m_SkillsController.ActivateSkill(channeledSkill);
         }
 
         private void ContinueWithTarget(SkillActivationContext obj)
@@ -353,6 +349,19 @@ namespace Features.Character
                 {
                     m_SkillsController.Add(metadataSkill);
                 }
+            }
+        }
+
+        public class ChanneledSkillActivationContext : SkillActivationContext
+        {
+            public ChannelingItem Result { get; }
+
+            public ChanneledSkillActivationContext(SkillActivationContext ctx, ChannelingItem result) : base(ctx.Metadata, ctx.Source)
+            {
+                Result = result;
+
+                TargetLocation = ctx.TargetLocation;
+                TargetObject = ctx.TargetObject;
             }
         }
     }
