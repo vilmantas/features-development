@@ -66,7 +66,7 @@ namespace UnityEngine
             {
                 OnChannelingCompleted?.Invoke(channelingItem);
                 
-                channelingItem.Callback?.Invoke();
+                channelingItem.Callback?.Invoke(channelingItem);
             }
         }
     }

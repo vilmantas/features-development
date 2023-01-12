@@ -294,7 +294,8 @@ namespace Features.Character
             }
 
             var command = new ChannelingCommand(GetChannelingTag(obj),
-                obj.Metadata.ChannelingTime).WithCallback(() => ContinueActivation(obj));
+                    obj.Metadata.ChannelingTime)
+                .WithCallback(result => ContinueActivation(obj, result));
             
             command.Data.Add("skill", obj);
 
@@ -318,7 +319,7 @@ namespace Features.Character
             return PreparedSkills.Any(x => x.Equals(context.Skill));
         }
 
-        private void ContinueActivation(SkillActivationContext obj)
+        private void ContinueActivation(SkillActivationContext obj, ChannelingItem result)
         {
             PreparedSkills.Add(obj.Skill);
 

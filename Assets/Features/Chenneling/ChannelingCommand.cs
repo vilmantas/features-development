@@ -13,7 +13,7 @@ namespace UnityEngine
 
         public Dictionary<string, object> Data = new();
 
-        public Action Callback { get; private set; }
+        public Action<ChannelingItem> Callback { get; private set; }
 
         public ChannelingCommand(string title, float max, float current = 0)
         {
@@ -22,7 +22,7 @@ namespace UnityEngine
             Current = current;
         }
 
-        public ChannelingCommand WithCallback(Action callback)
+        public ChannelingCommand WithCallback(Action<ChannelingItem> callback)
         {
             Callback = callback;
 

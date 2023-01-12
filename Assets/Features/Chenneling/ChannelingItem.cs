@@ -9,7 +9,7 @@ namespace UnityEngine
         public readonly float MaxDuration;
         public float ChanneledAmount { get; private set; } = 0;
 
-        public Action Callback;
+        public Action<ChannelingItem> Callback;
 
         public readonly Dictionary<string, object> Data;
 
