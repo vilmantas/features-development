@@ -21,5 +21,14 @@ namespace Features.Skills
             Metadata = metadata;
             Source = source;
         }
+
+        public SkillActivationContext(SkillActivationContext copy)
+        {
+            Metadata = copy.Metadata;
+            Source = copy.Source;
+
+            TargetObject = copy.TargetObject;
+            TargetLocation = copy.TargetLocation;
+        }
     }
 }

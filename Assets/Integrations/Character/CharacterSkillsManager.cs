@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Features.Actions;
 using Features.Cooldowns;
 using Features.Equipment;
@@ -221,53 +220,45 @@ namespace Features.Character
             }
         }
 
+        private bool IsSkillWithTarget(SkillActivationContext context)
+        {
+            return context is ContinuedSkillActivation cont && cont.IsOfType<TargetedSkillActivationContext>();
+        }
+        
         private bool RequiresTarget(SkillActivationContext obj)
         {
             if (obj.Metadata.Target == SkillTarget.None) return false;
 
+            if (IsSkillWithTarget(obj)) return false;
+
             switch (obj.Metadata.Target)
             {
                 case SkillTarget.Character:
-                    if (!obj.TargetObject)
+                    m_TargetProvider.GetCharacterTarget(x =>
                     {
-                        m_TargetProvider.GetCharacterTarget(x =>
-                        {
-                            obj.TargetObject = x;
+                        ContinueWithTargetObject(obj, x);
+                    });
 
-                            ContinueWithTarget(obj);
-                        });
-
-                        return true;
-                    }
+                    return true;
 
                     break;
 
                 case SkillTarget.Pointer:
-                    if (obj.TargetLocation == Vector3.zero)
+                    m_TargetProvider.PickMousePosition(x =>
                     {
-                        m_TargetProvider.PickMousePosition(x =>
-                        {
-                            obj.TargetLocation = x;
+                        ContinueWithTargetPosition(obj, x);
+                    });
 
-                            ContinueWithTarget(obj);
-                        });
-
-                        return true;
-                    }
+                    return true;
 
                     break;
                 case SkillTarget.CharacterLocation:
-                    if (!obj.TargetObject)
+                    m_TargetProvider.GetCharacterTarget(x =>
                     {
-                        m_TargetProvider.GetCharacterTarget(x =>
-                        {
-                            obj.TargetLocation = x.transform.position;
-
-                            ContinueWithTarget(obj);
-                        });
+                        ContinueWithTargetPosition(obj, x.transform.position);
+                    });
 
                         return true;
-                    }
                     break;
                 case SkillTarget.None:
                     break;
@@ -309,7 +300,7 @@ namespace Features.Character
 
         private bool IsSkillPrepared(SkillActivationContext context)
         {
-            return context is ChanneledSkillActivationContext;
+            return context is ContinuedSkillActivation cont && cont.IsOfType<ChanneledSkillActivationContext>();
         }
 
         private void ContinueActivation(SkillActivationContext context, ChannelingItem result)
@@ -322,13 +313,24 @@ namespace Features.Character
             m_SkillsController.ActivateSkill(channeledSkill);
         }
 
-        private void ContinueWithTarget(SkillActivationContext obj)
+        private void ContinueWithTargetObject(SkillActivationContext context, GameObject targetObj)
         {
-            obj.PreventDefault = false;
+            var x = new TargetedSkillActivationContext(context);
+
+            x.SetTargetObject(targetObj);
             
-            m_SkillsController.ActivateSkill(obj);
+            m_SkillsController.ActivateSkill(x);
         }
         
+        private void ContinueWithTargetPosition(SkillActivationContext context, Vector3 targetLoc)
+        {
+            var x = new TargetedSkillActivationContext(context);
+            
+            x.SetTargetLocation(targetLoc);
+
+            m_SkillsController.ActivateSkill(x);
+        }
+
         private void EquipmentChanged(EquipResult obj)
         {
             if (!obj.Succeeded) return;
@@ -350,16 +352,40 @@ namespace Features.Character
             }
         }
 
-        public class ChanneledSkillActivationContext : SkillActivationContext
+        public class TargetedSkillActivationContext : ContinuedSkillActivation
+        {
+            public void SetTargetObject(GameObject obj) => TargetObject = obj;
+
+            public void SetTargetLocation(Vector3 loc) => TargetLocation = loc;
+
+            public TargetedSkillActivationContext(SkillActivationContext ctx) : base(ctx)
+            {
+            }
+        }
+        public class ChanneledSkillActivationContext : ContinuedSkillActivation
         {
             public ChannelingItem Result { get; }
 
-            public ChanneledSkillActivationContext(SkillActivationContext ctx, ChannelingItem result) : base(ctx.Metadata, ctx.Source)
+            public ChanneledSkillActivationContext(SkillActivationContext ctx, ChannelingItem result) : base(ctx)
             {
                 Result = result;
+            }
+        }
 
-                TargetLocation = ctx.TargetLocation;
-                TargetObject = ctx.TargetObject;
+        public class ContinuedSkillActivation : SkillActivationContext
+        {
+            public ContinuedSkillActivation Prev { get; set; }
+            
+            public ContinuedSkillActivation(SkillActivationContext ctx) : base(ctx)
+            {
+                Prev = ctx as ContinuedSkillActivation;
+            }
+
+            public bool IsOfType<T>() where T: ContinuedSkillActivation
+            {
+                if (this is T t) return true;
+                
+                return Prev != null && Prev.IsOfType<T>();
             }
         }
     }
