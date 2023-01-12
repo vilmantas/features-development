@@ -306,20 +306,20 @@ namespace Features.Character
 
         private void ContinueWithTargetObject(SkillActivationContext context, GameObject targetObj)
         {
-            var x = new TargetedSkillActivationContext(context);
+            var targetedActivation = new TargetedSkillActivationContext(context);
 
-            x.SetTargetObject(targetObj);
+            targetedActivation.SetTargetObject(targetObj);
             
-            m_SkillsController.ActivateSkill(x);
+            m_SkillsController.ActivateSkill(targetedActivation);
         }
         
         private void ContinueWithTargetPosition(SkillActivationContext context, Vector3 targetLoc)
         {
-            var x = new TargetedSkillActivationContext(context);
+            var targetedActivation = new TargetedSkillActivationContext(context);
             
-            x.SetTargetLocation(targetLoc);
+            targetedActivation.SetTargetLocation(targetLoc);
 
-            m_SkillsController.ActivateSkill(x);
+            m_SkillsController.ActivateSkill(targetedActivation);
         }
 
         private void EquipmentChanged(EquipResult obj)
