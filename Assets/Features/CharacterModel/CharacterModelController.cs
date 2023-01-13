@@ -11,5 +11,7 @@ namespace Features.CharacterModel
         public Transform CameraFollow;
 
         public Transform CameraTarget;
+
+        public Transform WeaponHitboxSpawn;
     }
 }

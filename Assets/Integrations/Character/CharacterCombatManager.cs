@@ -4,6 +4,7 @@ using System.Linq;
 using Features.Actions;
 using Features.Combat;
 using Features.Equipment;
+using Features.WeaponAnimationConfigurations;
 using Integrations.Actions;
 using Integrations.Items;
 using UnityEngine;
@@ -26,6 +27,8 @@ namespace Features.Character
 
         private CharacterEvents m_Events;
 
+        private HitboxAnimationController m_HitboxAnimationController;
+
         private bool DamageEnabled;
 
         private void Awake()
@@ -37,6 +40,8 @@ namespace Features.Character
             m_EquipmentController = Root.GetComponentInChildren<EquipmentController>();
 
             m_CombatController = Root.GetComponentInChildren<CombatController>();
+
+            m_HitboxAnimationController = Root.GetComponentInChildren<HitboxAnimationController>();
 
             m_EquipmentController.OnHitboxCollided += OnHitboxCollided;
 
@@ -154,6 +159,8 @@ namespace Features.Character
             if (animationConfiguration != null)
             {
                 ani = animationConfiguration.Animation.AnimationName;
+                
+                m_HitboxAnimationController.Play(animationConfiguration.Animation.Instance);
             }
 
             return ani;

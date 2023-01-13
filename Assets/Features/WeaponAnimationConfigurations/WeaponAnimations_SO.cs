@@ -9,5 +9,11 @@ namespace Features.WeaponAnimationConfigurations
         public string Type;
 
         public WeaponAnimation[] Animations = Array.Empty<WeaponAnimation>();
+        
+        public WeaponAnimationsDTO Instance => new WeaponAnimationsDTO()
+        {
+            Type = Type,
+            Animations = Animations,
+        };
     }
 }

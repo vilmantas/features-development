@@ -13,6 +13,7 @@ using Features.OverheadParticles;
 using Features.Skills;
 using Features.Stats.Base;
 using Features.Targeting;
+using Features.WeaponAnimationConfigurations;
 using Integrations.Items;
 using UnityEngine;
 
@@ -103,6 +104,8 @@ namespace Features.Character
 
             [HideInInspector] public HealthController m_HealthController;
 
+            [HideInInspector] public HitboxAnimationController m_HitboxAnimationController;
+
             private CharacterActionsManager m_ActionsManager;
 
             private CharacterBuffsManager m_BuffsManager;
@@ -162,6 +165,7 @@ namespace Features.Character
                 AddSystemsComponent("channeling", ref m_ChannelingController);
                 AddSystemsComponent("channeling_ui", ref m_ChannelingUIController);
                 AddSystemsComponent("target_provider", ref m_TargetProvider);
+                AddSystemsComponent("hitbox_animation", ref m_HitboxAnimationController);
 
                 m_ChannelingUIController.Initialize(m_ChannelingController);
 

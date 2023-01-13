@@ -8,7 +8,7 @@ namespace Features.WeaponAnimationConfigurations
         public static void RegisterFactory()
         {
             WeaponAnimations_SO[] allItems =
-                Resources.LoadAll<WeaponAnimations_SO>("WeaponAnimationConriguration");
+                Resources.LoadAll<WeaponAnimations_SO>("");
 
             foreach (var item in allItems)
             {

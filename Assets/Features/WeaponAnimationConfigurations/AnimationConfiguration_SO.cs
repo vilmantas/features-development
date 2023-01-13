@@ -11,7 +11,15 @@ namespace Features.WeaponAnimationConfigurations
         public float DelayBeforeHitboxSpawn;
 
         public float HitboxDuration;
+
+        public HitboxPlayer HitboxPrefab;
+
+        public AnimationConfigurationDTO Instance => new AnimationConfigurationDTO()
+        {
+            AnimationName = AnimationName,
+            DelayBeforeHitboxSpawn = DelayBeforeHitboxSpawn,
+            HitboxDuration = HitboxDuration,
+            HitboxPrefab = HitboxPrefab,
+        };
     }
-
-
 }
