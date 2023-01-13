@@ -143,8 +143,20 @@ namespace Features.Character
             if (mainSlot == null ||
                 mainSlot.IsEmpty ||
                 mainSlot.Main is not ItemInstance item) return DEFAULT_ATTACK_ANIMATION;
+            
+            var ani = item.Metadata.AttackAnimation;
 
-            return item.Metadata.AttackAnimation;
+            if (item.Metadata.WeaponAnimationsSo == null) return ani;
+            
+            var animationConfiguration = item.Metadata.WeaponAnimationsSo.Animations
+                .FirstOrDefault(x => x.Type == "main");
+
+            if (animationConfiguration != null)
+            {
+                ani = animationConfiguration.Animation.AnimationName;
+            }
+
+            return ani;
         }
     }
 }
