@@ -1,12 +1,15 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Features.Actions;
 using Features.Combat;
+using Features.Conditions;
 using Features.Equipment;
 using Features.WeaponAnimationConfigurations;
 using Integrations.Actions;
 using Integrations.Items;
+using Integrations.StatusEffects;
 using UnityEngine;
 
 namespace Features.Character
@@ -29,7 +32,7 @@ namespace Features.Character
 
         private HitboxAnimationController m_HitboxAnimationController;
 
-        private bool DamageEnabled;
+        private StatusEffectsController m_StatusEffectsController;
 
         private void Awake()
         {
@@ -54,6 +57,21 @@ namespace Features.Character
             m_Character.Events.OnProjectileTrigger += OnProjectileTrigger;
             
             m_CombatController.OnStrike += OnAttemptStrike;
+
+            m_StatusEffectsController = Root.GetComponentInChildren<StatusEffectsController>();
+
+            if (m_StatusEffectsController)
+            {
+                m_StatusEffectsController.OnAdded += OnStatusEffectAdded;
+            }
+        }
+
+        private void OnStatusEffectAdded(StatusEffectMetadata obj)
+        {
+            if (obj.InternalName.Equals(nameof(StunStatusEffect)))
+            {
+                m_HitboxAnimationController.Interrupt();
+            }
         }
 
         private void OnStrikingAnimationCollided(Collider obj)

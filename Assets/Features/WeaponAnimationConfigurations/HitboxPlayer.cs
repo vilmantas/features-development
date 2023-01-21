@@ -5,12 +5,21 @@ namespace Features.WeaponAnimationConfigurations
 {
     public class HitboxPlayer : MonoBehaviour
     {
+        public Guid Id { get; private set; }
+        
         public Action<Collider> OnCollision;
+
+        public Action OnDestruction;
 
         private bool m_Initialized;
 
         private Transform m_Parent;
-        
+
+        private void Awake()
+        {
+            Id = Guid.NewGuid();
+        }
+
         public void Initialize()
         {
             m_Parent = transform.root.transform;
@@ -29,6 +38,7 @@ namespace Features.WeaponAnimationConfigurations
 
         private void OnDestroy()
         {
+            OnDestruction?.Invoke();
             OnCollision = null;
         }
     }
