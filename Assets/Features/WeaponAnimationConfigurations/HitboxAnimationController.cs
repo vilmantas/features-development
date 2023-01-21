@@ -12,7 +12,7 @@ namespace Features.WeaponAnimationConfigurations
     {
         private Transform m_spawn;
 
-        public Action<Collider> OnAnimationCollision;
+        public Action<Collider, List<Collider>> OnAnimationCollision;
         
         public ConcurrentDictionary<Guid, HitboxPlayer> ActiveHitboxes = new();
         
@@ -48,7 +48,7 @@ namespace Features.WeaponAnimationConfigurations
 
             ActiveHitboxes.TryAdd(hitbox.Id, hitbox);
             
-            hitbox.OnCollision += OnAnimationCollision;
+            hitbox.OnCollision += coll => OnAnimationCollision?.Invoke(coll, hitbox.Collisions.ToList());
             
             hitbox.OnDestruction += () => RemoveHitbox(hitbox.Id);
             

@@ -74,10 +74,15 @@ namespace Features.Character
             }
         }
 
-        private void OnStrikingAnimationCollided(Collider obj)
+        private void OnStrikingAnimationCollided(Collider currentCollision, List<Collider> allCollisions)
         {
-            var target = obj.transform.root.gameObject;
+            var target = currentCollision.transform.root.gameObject;
 
+            var count =
+                allCollisions.Count(x => x.transform.root.gameObject.name.Equals(target.name));
+
+            if (count > 1) return;
+            
             var damagePayload = DamageTarget.MakePayload(Root.gameObject, target,
                 m_Character.m_StatCalculator.GetMainDamage());
 

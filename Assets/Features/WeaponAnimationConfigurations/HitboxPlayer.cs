@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Concurrent;
 using UnityEngine;
 
 namespace Features.WeaponAnimationConfigurations
@@ -14,6 +15,8 @@ namespace Features.WeaponAnimationConfigurations
         private bool m_Initialized;
 
         private Transform m_Parent;
+
+        public ConcurrentStack<Collider> Collisions = new();
 
         private void Awake()
         {
@@ -33,12 +36,16 @@ namespace Features.WeaponAnimationConfigurations
             
             if (other.transform.root.name == m_Parent.name) return;
             
+            Collisions.Push(other);
+            
             OnCollision?.Invoke(other);
         }
 
         private void OnDestroy()
         {
             OnDestruction?.Invoke();
+            
+            OnDestruction = null;
             OnCollision = null;
         }
     }
