@@ -2,6 +2,7 @@ using Features.Actions;
 using Features.Conditions;
 using Features.Movement;
 using Features.OverheadParticles;
+using Features.WeaponAnimationConfigurations;
 using UnityEngine;
 
 namespace Integrations.StatusEffects
@@ -28,6 +29,14 @@ namespace Integrations.StatusEffects
             var movementController = payload.Target.GetComponentInChildren<MovementController>();
             
             movementController.Stop();
+
+            var hitboxController =
+                payload.Target.GetComponentInChildren<HitboxAnimationController>();
+
+            if (hitboxController)
+            {
+                hitboxController.Interrupt();
+            }
 
             StatusEffectPresets.DisableActivity(actionsController,
                 nameof(StunStatusEffect));

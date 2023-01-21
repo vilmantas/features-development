@@ -32,8 +32,6 @@ namespace Features.Character
 
         private HitboxAnimationController m_HitboxAnimationController;
 
-        private StatusEffectsController m_StatusEffectsController;
-
         private void Awake()
         {
             Root = transform.root;
@@ -57,21 +55,6 @@ namespace Features.Character
             m_Character.Events.OnProjectileTrigger += OnProjectileTrigger;
             
             m_CombatController.OnStrike += OnAttemptStrike;
-
-            m_StatusEffectsController = Root.GetComponentInChildren<StatusEffectsController>();
-
-            if (m_StatusEffectsController)
-            {
-                m_StatusEffectsController.OnAdded += OnStatusEffectAdded;
-            }
-        }
-
-        private void OnStatusEffectAdded(StatusEffectMetadata obj)
-        {
-            if (obj.InternalName.Equals(nameof(StunStatusEffect)))
-            {
-                m_HitboxAnimationController.Interrupt();
-            }
         }
 
         private void OnStrikingAnimationCollided(Collider currentCollision, List<Collider> allCollisions)
