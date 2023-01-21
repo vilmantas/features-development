@@ -8,6 +8,8 @@ namespace Features.WeaponAnimationConfigurations
     public class HitboxAnimationController : MonoBehaviour
     {
         private Transform m_spawn;
+
+        public Action<Collider> OnColliderCollided;
         
         private void Start()
         {
@@ -26,7 +28,11 @@ namespace Features.WeaponAnimationConfigurations
             yield return new WaitForSeconds(configurationSo.DelayBeforeHitboxSpawn);
             
             var hitbox = Instantiate(configurationSo.HitboxPrefab, m_spawn);
+
+            hitbox.OnCollision += OnColliderCollided;
             
+            hitbox.Initialize();
+
             Destroy(hitbox.gameObject, configurationSo.HitboxDuration);
         }
     }

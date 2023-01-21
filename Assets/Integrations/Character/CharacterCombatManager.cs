@@ -42,6 +42,8 @@ namespace Features.Character
             m_CombatController = Root.GetComponentInChildren<CombatController>();
 
             m_HitboxAnimationController = Root.GetComponentInChildren<HitboxAnimationController>();
+            
+            m_HitboxAnimationController.OnColliderCollided += OnColliderCollided;
 
             m_EquipmentController.OnHitboxCollided += OnHitboxCollided;
 
@@ -58,6 +60,12 @@ namespace Features.Character
             m_Character.Events.OnProjectileTrigger += OnProjectileTrigger;
             
             m_CombatController.OnStrike += OnAttemptStrike;
+        }
+
+        private void OnColliderCollided(Collider obj)
+        {
+            print("Weapon collided " + obj.transform.root.name);
+            print("actual coll " + obj.name + " / " + obj.transform.parent.name);
         }
 
         private void OnItemUnequipped(EquipResult obj)
@@ -156,12 +164,11 @@ namespace Features.Character
             var animationConfiguration = item.Metadata.WeaponAnimationsSo.Animations
                 .FirstOrDefault(x => x.Type == "main");
 
-            if (animationConfiguration != null)
-            {
-                ani = animationConfiguration.Animation.AnimationName;
+            if (animationConfiguration == null) return ani;
+            
+            ani = animationConfiguration.Animation.AnimationName;
                 
-                m_HitboxAnimationController.Play(animationConfiguration.Animation.Instance);
-            }
+            m_HitboxAnimationController.Play(animationConfiguration.Animation.Instance);
 
             return ani;
         }

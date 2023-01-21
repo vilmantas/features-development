@@ -56,7 +56,6 @@ namespace Features.Character
             m_Character.m_CombatController.OnBlockingStatusChanged += state =>
             {
                 m_Animator.SetLayerWeight(m_RightArmLayerIndex, state ? 1 : 0);
-                Debug.Log("Stop Block");
             };
         }
 

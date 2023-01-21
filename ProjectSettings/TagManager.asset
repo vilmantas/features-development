@@ -16,8 +16,8 @@ TagManager:
   - ProjectileHitbox
   - PlayerHitbox
   - WeaponHitbox
-  - 
-  - 
+  - AnimationHitbox
+  - EquipmentHitbox
   - 
   - 
   - 
