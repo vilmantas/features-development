@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 
 namespace Features.WeaponAnimationConfigurations
@@ -8,12 +9,12 @@ namespace Features.WeaponAnimationConfigurations
     {
         public string Type;
 
-        public WeaponAnimation[] Animations = Array.Empty<WeaponAnimation>();
+        public WeaponAnimation_SO[] Animations = Array.Empty<WeaponAnimation_SO>();
         
-        public WeaponAnimationsDTO Instance => new WeaponAnimationsDTO()
+        public WeaponAnimationsDTO Instance => new()
         {
             Type = Type,
-            Animations = Animations,
+            Animations = Animations.Select(x => x.Instance).ToArray(),
         };
     }
 }

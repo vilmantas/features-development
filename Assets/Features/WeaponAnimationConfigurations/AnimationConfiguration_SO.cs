@@ -14,7 +14,7 @@ namespace Features.WeaponAnimationConfigurations
 
         public HitboxPlayer HitboxPrefab;
 
-        public AnimationConfigurationDTO Instance => new AnimationConfigurationDTO()
+        public AnimationConfigurationDTO Instance => new()
         {
             AnimationName = AnimationName,
             DelayBeforeHitboxSpawn = DelayBeforeHitboxSpawn,

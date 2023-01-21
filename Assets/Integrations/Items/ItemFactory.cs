@@ -34,11 +34,15 @@ namespace Integrations.Items
         private static ItemMetadata ToMetadata(Item_SO prefab)
         {
             WeaponAnimations_SO animations = null;
+
+            WeaponAnimationsDTO anims = null;
             
             if (!string.IsNullOrEmpty(prefab.WeaponType))
             {
                 WeaponAnimationConfigurationRegistry.Registry.TryGetValue(prefab.WeaponType,
                     out animations);
+
+                if (animations) anims = animations.Instance;
             }
             
             return new(
@@ -60,7 +64,7 @@ namespace Integrations.Items
                 prefab.Scripts.Select(x => x.Instance).ToArray(),
                 prefab.Skills.Select(x => x.GetMetadata).ToArray(),
                 prefab.WeaponType,
-                animations);
+                anims);
         }
 
         public static ItemInstance CreateInstanceFrom(ItemMetadata metadata, int count = 0)

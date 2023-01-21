@@ -26,7 +26,7 @@ namespace Integrations.Items
             ItemScriptDTO[] scripts,
             SkillMetadata[] skills,
             string weaponType,
-            WeaponAnimations_SO animations)
+            WeaponAnimationsDTO animations)
         {
             Name = name;
             Sprite = sprite;
@@ -47,7 +47,7 @@ namespace Integrations.Items
             Scripts = scripts;
             Skills = skills;
             WeaponType = weaponType;
-            WeaponAnimationsSo = animations;
+            WeaponAnimations = animations;
         }
 
         public string RequiredAmmo { get; }
@@ -69,6 +69,6 @@ namespace Integrations.Items
         public ItemScriptDTO[] Scripts { get; }
         public SkillMetadata[] Skills { get; }
         public string WeaponType { get; }
-        public WeaponAnimations_SO WeaponAnimationsSo { get; }
+        public WeaponAnimationsDTO WeaponAnimations { get; }
     }
 }

@@ -7,6 +7,6 @@ namespace Features.WeaponAnimationConfigurations
     {
         public string Type;
 
-        public WeaponAnimation[] Animations = Array.Empty<WeaponAnimation>();
+        public WeaponAnimationDTO[] Animations = Array.Empty<WeaponAnimationDTO>();
     }
 }

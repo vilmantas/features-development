@@ -130,7 +130,15 @@ namespace Features.Character
 
         private void OnAttemptStrike()
         {
-            m_Events.OnStrike?.Invoke(GetAttackAnimation());
+            var animationName = GetAttackAnimation();
+
+            var configuration = GetAnimationConfiguration();
+            
+            m_Events.OnStrike?.Invoke(animationName);
+
+            if (configuration == null) return;
+            
+            m_HitboxAnimationController.Play(configuration.Animation);
         }
 
         private void OnHitboxCollided(string slot, Collider target)
@@ -145,7 +153,7 @@ namespace Features.Character
             m_Character.m_ActionsController.DoAction(damagePayload);
         }
 
-        public string GetAttackAnimation()
+        private string GetAttackAnimation()
         {
             if (!m_EquipmentController) return DEFAULT_ATTACK_ANIMATION;
 
@@ -159,18 +167,32 @@ namespace Features.Character
             
             var ani = item.Metadata.AttackAnimation;
 
-            if (item.Metadata.WeaponAnimationsSo == null) return ani;
+            if (item.Metadata.WeaponAnimations == null) return ani;
             
-            var animationConfiguration = item.Metadata.WeaponAnimationsSo.Animations
-                .FirstOrDefault(x => x.Type == "main");
+            var animationConfiguration = item.Metadata.WeaponAnimations.Animations
+                .FirstOrDefault(x => x.AnimationType == "main");
 
             if (animationConfiguration == null) return ani;
             
             ani = animationConfiguration.Animation.AnimationName;
-                
-            m_HitboxAnimationController.Play(animationConfiguration.Animation.Instance);
 
             return ani;
+        }
+
+        private WeaponAnimationDTO GetAnimationConfiguration()
+        {
+            var mainSlot =
+                m_EquipmentController.ContainerSlots.FirstOrDefault(x =>
+                    x.Slot.ToLower() == "main");
+
+            if (mainSlot == null ||
+                mainSlot.IsEmpty ||
+                mainSlot.Main is not ItemInstance item) return null;
+
+            var animationConfiguration = item.Metadata.WeaponAnimations?.Animations
+                .FirstOrDefault(x => x.AnimationType == "main");
+
+            return animationConfiguration;
         }
     }
 }
