@@ -9,7 +9,7 @@ namespace Features.WeaponAnimationConfigurations
     {
         private Transform m_spawn;
 
-        public Action<Collider> OnColliderCollided;
+        public Action<Collider> OnAnimationCollision;
         
         private void Start()
         {
@@ -29,7 +29,7 @@ namespace Features.WeaponAnimationConfigurations
             
             var hitbox = Instantiate(configurationSo.HitboxPrefab, m_spawn);
 
-            hitbox.OnCollision += OnColliderCollided;
+            hitbox.OnCollision += OnAnimationCollision;
             
             hitbox.Initialize();
 

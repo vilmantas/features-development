@@ -43,16 +43,10 @@ namespace Features.Character
 
             m_HitboxAnimationController = Root.GetComponentInChildren<HitboxAnimationController>();
             
-            m_HitboxAnimationController.OnColliderCollided += OnColliderCollided;
-
-            m_EquipmentController.OnHitboxCollided += OnHitboxCollided;
+            m_HitboxAnimationController.OnAnimationCollision += OnStrikingAnimationCollided;
 
             m_Events = Root.GetComponentInChildren<CharacterEvents>();
             
-            m_Events.OnStrikeStart += () => DamageEnabled = true;
-
-            m_Events.OnStrikeEnd += () => DamageEnabled = false;
-
             m_EquipmentController.OnItemEquipped += OnItemEquipped;
             
             m_EquipmentController.OnItemUnequipped += OnItemUnequipped;
@@ -62,10 +56,16 @@ namespace Features.Character
             m_CombatController.OnStrike += OnAttemptStrike;
         }
 
-        private void OnColliderCollided(Collider obj)
+        private void OnStrikingAnimationCollided(Collider obj)
         {
-            print("Weapon collided " + obj.transform.root.name);
-            print("actual coll " + obj.name + " / " + obj.transform.parent.name);
+            var target = obj.transform.root.gameObject;
+
+            var damagePayload = DamageTarget.MakePayload(Root.gameObject, target,
+                m_Character.m_StatCalculator.GetMainDamage());
+
+            OnBeforeDoDamage?.Invoke(damagePayload);
+
+            m_Character.m_ActionsController.DoAction(damagePayload);
         }
 
         private void OnItemUnequipped(EquipResult obj)
@@ -139,18 +139,6 @@ namespace Features.Character
             if (configuration == null) return;
             
             m_HitboxAnimationController.Play(configuration.Animation);
-        }
-
-        private void OnHitboxCollided(string slot, Collider target)
-        {
-            if (!DamageEnabled) return;
-
-            var damagePayload = DamageTarget.MakePayload(Root.gameObject, target.transform.root.gameObject,
-                m_Character.m_StatCalculator.GetMainDamage());
-
-            OnBeforeDoDamage?.Invoke(damagePayload);
-
-            m_Character.m_ActionsController.DoAction(damagePayload);
         }
 
         private string GetAttackAnimation()
