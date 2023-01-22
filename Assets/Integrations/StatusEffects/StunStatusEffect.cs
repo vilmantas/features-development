@@ -30,14 +30,6 @@ namespace Integrations.StatusEffects
             
             movementController.Stop();
 
-            var hitboxController =
-                payload.Target.GetComponentInChildren<HitboxAnimationController>();
-
-            if (hitboxController)
-            {
-                hitboxController.Interrupt();
-            }
-
             StatusEffectPresets.DisableActivity(actionsController,
                 nameof(StunStatusEffect));
         }

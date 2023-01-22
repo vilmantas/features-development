@@ -4,6 +4,8 @@ namespace Features.WeaponAnimationConfigurations
     {
         public string AnimationName;
 
+        public float AnimationDuration;
+        
         public float DelayBeforeHitboxSpawn;
 
         public float HitboxDuration;

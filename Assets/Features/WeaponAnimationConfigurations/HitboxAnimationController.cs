@@ -44,7 +44,7 @@ namespace Features.WeaponAnimationConfigurations
             var id = Guid.NewGuid();
             
             var routine = StartCoroutine(PlayHitbox(configurationSo, id));
-
+            
             RunningRoutines.TryAdd(id, routine);
         }
 

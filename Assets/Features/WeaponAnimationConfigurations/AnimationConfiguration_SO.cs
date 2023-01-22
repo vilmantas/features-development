@@ -8,6 +8,8 @@ namespace Features.WeaponAnimationConfigurations
     {
         public string AnimationName;
 
+        public float AnimationDuration;
+        
         public float DelayBeforeHitboxSpawn;
 
         public float HitboxDuration;
@@ -17,6 +19,7 @@ namespace Features.WeaponAnimationConfigurations
         public AnimationConfigurationDTO Instance => new()
         {
             AnimationName = AnimationName,
+            AnimationDuration = AnimationDuration,
             DelayBeforeHitboxSpawn = DelayBeforeHitboxSpawn,
             HitboxDuration = HitboxDuration,
             HitboxPrefab = HitboxPrefab,

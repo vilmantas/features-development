@@ -1,12 +1,16 @@
 using System;
+using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using Features.Actions;
 using Features.Combat;
+using Features.Conditions;
 using Features.Equipment;
 using Features.WeaponAnimationConfigurations;
 using Integrations.Actions;
 using Integrations.Items;
+using Integrations.StatusEffects;
 using UnityEngine;
 
 namespace Features.Character
@@ -28,6 +32,8 @@ namespace Features.Character
         private CharacterEvents m_Events;
 
         private HitboxAnimationController m_HitboxAnimationController;
+
+        private StatusEffectsController m_StatusEffectsController;
 
         private void Awake()
         {
@@ -52,6 +58,13 @@ namespace Features.Character
             m_Character.Events.OnProjectileTrigger += OnProjectileTrigger;
             
             m_CombatController.OnStrike += OnStrike;
+
+            m_StatusEffectsController = Root.GetComponentInChildren<StatusEffectsController>();
+
+            if (m_StatusEffectsController)
+            {
+                m_StatusEffectsController.OnAdded += OnAdded;
+            }
         }
 
         private void OnStrikingAnimationCollided(Collider currentCollision, List<Collider> allCollisions)
@@ -130,20 +143,64 @@ namespace Features.Character
 
             m_CombatController.SetAmmo(item.Metadata.RequiredAmmo, ammo);
         }
+        
+        private void OnAdded(StatusEffectMetadata obj)
+        {
+            if (!obj.InternalName.Equals(nameof(StunStatusEffect))) return;
+            
+            m_HitboxAnimationController.Interrupt();
+            
+            var status = new StatusEffectMetadata(nameof(AttackingStatusEffect));
+
+            var p = new StatusEffectRemovePayload(status);
+        
+            m_StatusEffectsController.RemoveStatusEffect(p);
+            
+            RunningRoutines.Clear();
+        }
 
         private void OnStrike()
         {
             var animationName = GetAttackAnimation();
 
             var configuration = GetAnimationConfiguration();
-            
+
             m_Events.OnStrike?.Invoke(animationName);
 
             if (configuration == null) return;
             
-            m_HitboxAnimationController.Play(configuration.Animation);
+            m_HitboxAnimationController.Play(configuration);
+
+            if (!m_StatusEffectsController) return;
+            
+            var status = new StatusEffectMetadata(nameof(AttackingStatusEffect));
+
+            var p = new StatusEffectAddPayload(status);
+        
+            m_StatusEffectsController.AddStatusEffect(p);
+
+            var id = Guid.NewGuid();
+
+            var routine = StartCoroutine(StrikeCompletionWaiter(configuration, id));
+
+            RunningRoutines.TryAdd(id, routine);
         }
 
+        private readonly ConcurrentDictionary<Guid, Coroutine> RunningRoutines = new();
+
+        private IEnumerator StrikeCompletionWaiter(AnimationConfigurationDTO config, Guid Id)
+        {
+            yield return new WaitForSeconds(config.AnimationDuration);
+
+            if (!RunningRoutines.ContainsKey(Id)) yield break;
+            
+            var status = new StatusEffectMetadata(nameof(AttackingStatusEffect));
+
+            var p = new StatusEffectRemovePayload(status);
+        
+            m_StatusEffectsController.RemoveStatusEffect(p);
+        }
+        
         private string GetAttackAnimation()
         {
             if (!m_EquipmentController) return DEFAULT_ATTACK_ANIMATION;
@@ -170,7 +227,7 @@ namespace Features.Character
             return ani;
         }
 
-        private WeaponAnimationDTO GetAnimationConfiguration()
+        private AnimationConfigurationDTO GetAnimationConfiguration()
         {
             var mainSlot =
                 m_EquipmentController.ContainerSlots.FirstOrDefault(x =>
@@ -183,7 +240,7 @@ namespace Features.Character
             var animationConfiguration = item.Metadata.WeaponAnimations?.Animations
                 .FirstOrDefault(x => x.AnimationType == "main");
 
-            return animationConfiguration;
+            return animationConfiguration?.Animation;
         }
     }
 }
