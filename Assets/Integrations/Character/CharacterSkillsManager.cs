@@ -17,25 +17,24 @@ namespace Features.Character
 {
     public class CharacterSkillsManager : MonoBehaviour
     {
-        private GameObject Root;
+        private readonly Dictionary<string, Delegate> RunningHandlers = new();
 
-        private EquipmentController m_EquipmentController;
+        private ActionsController m_ActionsController;
 
-        private SkillsController m_SkillsController;
+        private ChannelingController m_ChannelingController;
 
         private CooldownsController m_CooldownsController;
 
-        private ChannelingController m_ChannelingController;
-        
-        private ActionsController m_ActionsController;
-
-        private TargetProvider m_TargetProvider;
+        private EquipmentController m_EquipmentController;
 
         private HealthController m_HealthController;
-        
+
         private MovementController m_MovementController;
-        
-        private readonly Dictionary<string, Delegate> RunningHandlers = new ();
+
+        private SkillsController m_SkillsController;
+
+        private TargetProvider m_TargetProvider;
+        private GameObject Root;
 
         private void Awake()
         {
@@ -44,33 +43,33 @@ namespace Features.Character
             m_ActionsController = Root.GetComponentInChildren<ActionsController>();
 
             m_HealthController = Root.GetComponentInChildren<HealthController>();
-            
+
             m_MovementController = Root.GetComponentInChildren<MovementController>();
-            
+
             m_EquipmentController = Root.GetComponentInChildren<EquipmentController>();
 
             m_SkillsController = Root.GetComponentInChildren<SkillsController>();
 
             m_ChannelingController = Root.GetComponentInChildren<ChannelingController>();
-            
+
             m_ChannelingController.OnChannelingStarted += OnChannelingStarted;
-            
+
             m_ChannelingController.OnChannelingCompleted += OnChannelingCompleted;
 
             m_CooldownsController = Root.GetComponentInChildren<CooldownsController>();
 
             m_TargetProvider = Root.GetComponentInChildren<TargetProvider>();
-            
+
             m_SkillsController.OnBeforeActivation += OnBeforeActivation;
-            
+
             if (!m_EquipmentController) return;
-            
+
             m_EquipmentController.OnItemEquipped += EquipmentChanged;
-            
+
             m_EquipmentController.OnItemUnequipped += EquipmentChanged;
         }
-        
-        static string GetHandlerTag(SkillActivationContext ctx, SkillFlags flag) => ctx.Skill + "_" +flag;
+
+        static string GetHandlerTag(SkillActivationContext ctx, SkillFlags flag) => ctx.Skill + "_" + flag;
 
         private void OnChannelingCompleted(ChannelingItem obj)
         {
@@ -79,29 +78,31 @@ namespace Features.Character
             if (!obj.Data.TryGetValue("skill", out var contextRaw)) return;
 
             if (contextRaw is not SkillActivationContext context) return;
-            
+
             if (context.Metadata.HasFlag(SkillFlags.PreventMovement))
             {
                 var handlerTag = GetHandlerTag(context, SkillFlags.PreventMovement);
-                
+
                 if (RunningHandlers.Remove(handlerTag, out var handler))
                 {
                     m_ActionsController.OnBeforeAction -= handler as Action<ActionActivation>;
                 }
             }
+
             if (context.Metadata.HasFlag(SkillFlags.InterruptableByDamage))
             {
                 var handlerTag = GetHandlerTag(context, SkillFlags.InterruptableByDamage);
-                
+
                 if (RunningHandlers.Remove(handlerTag, out var handler))
                 {
-                    m_ActionsController.OnBeforeAction -= handler as Action<ActionActivation>;
+                    m_HealthController.OnDamage -= handler as Action<HealthChangeEventArgs>;
                 }
             }
+
             if (context.Metadata.HasFlag(SkillFlags.InterruptableByMovement))
             {
                 var handlerTag = GetHandlerTag(context, SkillFlags.InterruptableByMovement);
-                
+
                 if (RunningHandlers.Remove(handlerTag, out var handler))
                 {
                     m_ActionsController.OnBeforeAction -= handler as Action<ActionActivation>;
@@ -112,24 +113,24 @@ namespace Features.Character
         private void BlockMovement(ActionActivation obj)
         {
             if (obj.Payload.Action.Name != nameof(Move)) return;
-            
+
             obj.PreventDefault = true;
         }
 
         private void StopChannelingOnMovement(ActionActivation obj, SkillActivationContext ctx)
         {
             if (obj.Payload.Action.Name != nameof(Move)) return;
-            
+
             if (obj.PreventDefault) return;
-                
+
             m_ChannelingController.InterruptChanneling(GetChannelingTag(ctx));
         }
-        
+
         private void StopChannelingOnDamage(SkillActivationContext ctx)
         {
             m_ChannelingController.InterruptChanneling(GetChannelingTag(ctx));
         }
-        
+
         private void OnChannelingStarted(ChannelingItem obj)
         {
             if (!obj.Title.StartsWith("skill_")) return;
@@ -139,17 +140,19 @@ namespace Features.Character
             if (contextRaw is not SkillActivationContext context) return;
 
             List<Action<SkillActivationContext>> actions = new List<Action<SkillActivationContext>>();
-            
+
             if (context.Metadata.HasFlag(SkillFlags.PreventMovement))
             {
                 Action<SkillActivationContext> adel = EnableMovementPrevent;
                 actions.Add(adel);
             }
+
             if (context.Metadata.HasFlag(SkillFlags.InterruptableByDamage))
             {
                 Action<SkillActivationContext> adel = EnableDamageInterrupt;
                 actions.Add(adel);
             }
+
             if (context.Metadata.HasFlag(SkillFlags.InterruptableByMovement))
             {
                 Action<SkillActivationContext> adel = EnableMovementInterrupt;
@@ -166,7 +169,7 @@ namespace Features.Character
         {
             var handlerTag = GetHandlerTag(context, SkillFlags.InterruptableByDamage);
 
-            Action<HealthChangeEventArgs> handler = x => StopChannelingOnDamage(context);
+            Action<HealthChangeEventArgs> handler = _ => StopChannelingOnDamage(context);
 
             m_HealthController.OnDamage += handler;
 
@@ -185,14 +188,14 @@ namespace Features.Character
 
             RunningHandlers.Add(handlerTag, handler);
         }
-        
+
         private void EnableMovementInterrupt(SkillActivationContext context)
         {
             m_MovementController.Stop();
-            
+
             var handlerTag = GetHandlerTag(context, SkillFlags.InterruptableByMovement);
 
-            Action<ActionActivation> handler = act =>  StopChannelingOnMovement(act, context);
+            Action<ActionActivation> handler = act => StopChannelingOnMovement(act, context);
 
             m_ActionsController.OnBeforeAction += handler;
 
@@ -204,14 +207,14 @@ namespace Features.Character
             if (IsSkillOnCooldown(obj))
             {
                 obj.PreventDefault = true;
-                
+
                 return;
             }
 
             if (RequiresTarget(obj))
             {
                 obj.PreventDefault = true;
-                
+
                 return;
             }
 
@@ -225,7 +228,7 @@ namespace Features.Character
         {
             return context is ContinuedSkillActivation cont && cont.IsOfType<TargetedSkillActivationContext>();
         }
-        
+
         private bool RequiresTarget(SkillActivationContext skill)
         {
             if (skill.Metadata.Target == SkillTarget.None) return false;
@@ -268,11 +271,11 @@ namespace Features.Character
             if (!obj.Metadata.ChanneledSkill) return false;
 
             if (IsSkillAlreadyChanneled(obj)) return false;
-            
+
             var command = new ChannelingCommand(GetChannelingTag(obj),
                     obj.Metadata.ChannelingTime)
                 .WithCallback(result => ContinueActivation(obj, result));
-            
+
             command.Data.Add("skill", obj);
 
             m_ChannelingController.StartChanneling(command);
@@ -301,7 +304,7 @@ namespace Features.Character
                 !context.Metadata.HasFlag(SkillFlags.AllowPartialChannelingCompletion)) return;
 
             var channeledSkill = new ChanneledSkillActivationContext(context, result);
-            
+
             m_SkillsController.ActivateSkill(channeledSkill);
         }
 
@@ -310,14 +313,14 @@ namespace Features.Character
             var targetedActivation = new TargetedSkillActivationContext(context);
 
             targetedActivation.SetTargetObject(targetObj);
-            
+
             m_SkillsController.ActivateSkill(targetedActivation);
         }
-        
+
         private void ContinueWithTargetPosition(SkillActivationContext context, Vector3 targetLoc)
         {
             var targetedActivation = new TargetedSkillActivationContext(context);
-            
+
             targetedActivation.SetTargetLocation(targetLoc);
 
             m_SkillsController.ActivateSkill(targetedActivation);
