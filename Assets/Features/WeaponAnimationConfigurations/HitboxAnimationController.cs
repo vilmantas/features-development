@@ -15,7 +15,9 @@ namespace Features.WeaponAnimationConfigurations
         public Action<Collider, List<Collider>> OnAnimationCollision;
         
         public ConcurrentDictionary<Guid, HitboxPlayer> ActiveHitboxes = new();
-        
+
+        private ConcurrentDictionary<Guid, Coroutine> RunningRoutines = new();
+
         private void Start()
         {
             var modelData = transform.root.GetComponentInChildren<CharacterModelController>();
@@ -33,16 +35,24 @@ namespace Features.WeaponAnimationConfigurations
             {
                 Destroy(hbp.gameObject);
             }
+            
+            RunningRoutines.Clear();
         }
         
         public void Play(AnimationConfigurationDTO configurationSo)
         {
-            StartCoroutine(PlayHitbox(configurationSo));
+            var id = Guid.NewGuid();
+            
+            var routine = StartCoroutine(PlayHitbox(configurationSo, id));
+
+            RunningRoutines.TryAdd(id, routine);
         }
 
-        private IEnumerator PlayHitbox(AnimationConfigurationDTO configurationSo)
+        private IEnumerator PlayHitbox(AnimationConfigurationDTO configurationSo, Guid id)
         {
             yield return new WaitForSeconds(configurationSo.DelayBeforeHitboxSpawn);
+
+            if (!RunningRoutines.ContainsKey(id)) yield break;
 
             var hitbox = Instantiate(configurationSo.HitboxPrefab, m_spawn);
 

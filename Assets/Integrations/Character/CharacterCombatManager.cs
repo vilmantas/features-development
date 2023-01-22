@@ -1,15 +1,12 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Features.Actions;
 using Features.Combat;
-using Features.Conditions;
 using Features.Equipment;
 using Features.WeaponAnimationConfigurations;
 using Integrations.Actions;
 using Integrations.Items;
-using Integrations.StatusEffects;
 using UnityEngine;
 
 namespace Features.Character
@@ -54,7 +51,7 @@ namespace Features.Character
 
             m_Character.Events.OnProjectileTrigger += OnProjectileTrigger;
             
-            m_CombatController.OnStrike += OnAttemptStrike;
+            m_CombatController.OnStrike += OnStrike;
         }
 
         private void OnStrikingAnimationCollided(Collider currentCollision, List<Collider> allCollisions)
@@ -134,7 +131,7 @@ namespace Features.Character
             m_CombatController.SetAmmo(item.Metadata.RequiredAmmo, ammo);
         }
 
-        private void OnAttemptStrike()
+        private void OnStrike()
         {
             var animationName = GetAttackAnimation();
 
