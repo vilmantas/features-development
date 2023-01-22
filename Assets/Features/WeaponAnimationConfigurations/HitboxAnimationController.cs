@@ -14,9 +14,9 @@ namespace Features.WeaponAnimationConfigurations
 
         public Action<Collider, List<Collider>> OnAnimationCollision;
         
-        public ConcurrentDictionary<Guid, HitboxPlayer> ActiveHitboxes = new();
+        private readonly ConcurrentDictionary<Guid, HitboxPlayer> ActiveHitboxes = new();
 
-        private ConcurrentDictionary<Guid, Coroutine> RunningRoutines = new();
+        private readonly ConcurrentDictionary<Guid, Coroutine> RunningRoutines = new();
 
         private void Start()
         {
