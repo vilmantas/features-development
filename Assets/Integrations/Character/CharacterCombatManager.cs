@@ -19,21 +19,27 @@ namespace Features.Character
     {
         private const string DEFAULT_ATTACK_ANIMATION = "Strike_1";
 
-        public Action<DamageTargetActionPayload> OnBeforeDoDamage;
+        private readonly Dictionary<string, Delegate> RunningHandlers = new();
 
-        private Transform Root;
+        private readonly ConcurrentDictionary<Guid, Coroutine> RunningRoutines = new();
+
+        private ActionsController m_ActionsController;
 
         private Modules.Character m_Character;
 
-        private EquipmentController m_EquipmentController;
-
         private CombatController m_CombatController;
+
+        private EquipmentController m_EquipmentController;
 
         private CharacterEvents m_Events;
 
         private HitboxAnimationController m_HitboxAnimationController;
 
         private StatusEffectsController m_StatusEffectsController;
+
+        public Action<DamageTargetActionPayload> OnBeforeDoDamage;
+
+        private Transform Root;
 
         private void Awake()
         {
@@ -46,17 +52,21 @@ namespace Features.Character
             m_CombatController = Root.GetComponentInChildren<CombatController>();
 
             m_HitboxAnimationController = Root.GetComponentInChildren<HitboxAnimationController>();
-            
+
             m_HitboxAnimationController.OnAnimationCollision += OnStrikingAnimationCollided;
 
+            m_HitboxAnimationController.OnHitboxActivated += OnHitboxActivated;
+
+            m_HitboxAnimationController.OnHitboxFinished += OnHitboxFinished;
+
             m_Events = Root.GetComponentInChildren<CharacterEvents>();
-            
+
             m_EquipmentController.OnItemEquipped += OnItemEquipped;
-            
+
             m_EquipmentController.OnItemUnequipped += OnItemUnequipped;
 
             m_Character.Events.OnProjectileTrigger += OnProjectileTrigger;
-            
+
             m_CombatController.OnStrike += OnStrike;
 
             m_StatusEffectsController = Root.GetComponentInChildren<StatusEffectsController>();
@@ -65,6 +75,8 @@ namespace Features.Character
             {
                 m_StatusEffectsController.OnAdded += OnAdded;
             }
+
+            m_ActionsController = Root.GetComponentInChildren<ActionsController>();
         }
 
         private void OnStrikingAnimationCollided(Collider currentCollision, List<Collider> allCollisions)
@@ -75,7 +87,7 @@ namespace Features.Character
                 allCollisions.Count(x => x.transform.root.gameObject.name.Equals(target.name));
 
             if (count > 1) return;
-            
+
             var damagePayload = DamageTarget.MakePayload(Root.gameObject, target,
                 m_Character.m_StatCalculator.GetMainDamage());
 
@@ -102,13 +114,13 @@ namespace Features.Character
             if (itemInSlot is not ItemInstance itemInstance) return;
 
             var payload = FireProjectile.MakePayload(
-                itemInSlot, 
+                itemInSlot,
                 Root.gameObject,
-                position, 
+                position,
                 OnProjectileCollided);
 
             payload.AmmoType = itemInstance.Metadata.RequiredAmmo;
-            
+
             payload.Direction = Root.forward;
 
             m_Character.m_ActionsController.DoPassiveAction(payload);
@@ -122,10 +134,10 @@ namespace Features.Character
             if (obj.OriginalCollider.gameObject.layer == LayerMask.NameToLayer("Ground"))
             {
                 obj.SetProjectileConsumed();
-                
+
                 return;
             }
-            
+
             var damagePayload = DamageTarget.MakePayloadForItem(obj.ProjectileParent, obj.ColliderRoot, item);
 
             obj.ProjectileParent.GetComponentInChildren<ActionsController>().DoPassiveAction(damagePayload);
@@ -143,20 +155,43 @@ namespace Features.Character
 
             m_CombatController.SetAmmo(item.Metadata.RequiredAmmo, ammo);
         }
-        
+
         private void OnAdded(StatusEffectMetadata obj)
         {
             if (!obj.InternalName.Equals(nameof(StunStatusEffect))) return;
-            
+
             m_HitboxAnimationController.Interrupt();
-            
-            var status = new StatusEffectMetadata(nameof(AttackingStatusEffect));
+
+            var status = new StatusEffectMetadata(nameof(AttackInitiatedStatusEffect));
 
             var p = new StatusEffectRemovePayload(status);
-        
+
             m_StatusEffectsController.RemoveStatusEffect(p);
-            
+
             RunningRoutines.Clear();
+        }
+
+        private void OnHitboxFinished()
+        {
+            var status = new StatusEffectMetadata(nameof(AttackActiveStatusEffect));
+
+            var p = new StatusEffectRemovePayload(status);
+
+            m_StatusEffectsController.RemoveStatusEffect(p);
+        }
+
+        private void OnHitboxActivated()
+        {
+            if (RunningHandlers.Remove("movement_blocker", out var handler))
+            {
+                m_ActionsController.OnBeforeAction -= handler as Action<ActionActivation>;
+            }
+
+            var status = new StatusEffectMetadata(nameof(AttackActiveStatusEffect));
+
+            var p = new StatusEffectAddPayload(status);
+
+            m_StatusEffectsController.AddStatusEffect(p);
         }
 
         private void OnStrike()
@@ -168,15 +203,15 @@ namespace Features.Character
             m_Events.OnStrike?.Invoke(animationName);
 
             if (configuration == null) return;
-            
+
             m_HitboxAnimationController.Play(configuration);
 
             if (!m_StatusEffectsController) return;
-            
-            var status = new StatusEffectMetadata(nameof(AttackingStatusEffect));
+
+            var status = new StatusEffectMetadata(nameof(AttackInitiatedStatusEffect));
 
             var p = new StatusEffectAddPayload(status);
-        
+
             m_StatusEffectsController.AddStatusEffect(p);
 
             var id = Guid.NewGuid();
@@ -184,23 +219,52 @@ namespace Features.Character
             var routine = StartCoroutine(StrikeCompletionWaiter(configuration, id));
 
             RunningRoutines.TryAdd(id, routine);
+
+            Action<ActionActivation> handler = MovementChecker;
+
+            m_ActionsController.OnBeforeAction += handler;
+
+            RunningHandlers.Add("movement_blocker", handler);
         }
 
-        private readonly ConcurrentDictionary<Guid, Coroutine> RunningRoutines = new();
+        private void MovementChecker(ActionActivation obj)
+        {
+            if (obj.Payload.Action.Name == nameof(Move))
+            {
+                m_HitboxAnimationController.Interrupt();
+
+                var status = new StatusEffectMetadata(nameof(AttackInitiatedStatusEffect));
+
+                var p = new StatusEffectRemovePayload(status);
+
+                m_StatusEffectsController.RemoveStatusEffect(p);
+
+                RunningRoutines.Clear();
+
+                if (RunningHandlers.Remove("movement_blocker", out var handler))
+                {
+                    m_ActionsController.OnBeforeAction -= handler as Action<ActionActivation>;
+                }
+
+                return;
+            }
+
+            obj.PreventDefault = true;
+        }
 
         private IEnumerator StrikeCompletionWaiter(AnimationConfigurationDTO config, Guid Id)
         {
             yield return new WaitForSeconds(config.AnimationDuration);
 
             if (!RunningRoutines.ContainsKey(Id)) yield break;
-            
-            var status = new StatusEffectMetadata(nameof(AttackingStatusEffect));
+
+            var status = new StatusEffectMetadata(nameof(AttackInitiatedStatusEffect));
 
             var p = new StatusEffectRemovePayload(status);
-        
+
             m_StatusEffectsController.RemoveStatusEffect(p);
         }
-        
+
         private string GetAttackAnimation()
         {
             if (!m_EquipmentController) return DEFAULT_ATTACK_ANIMATION;
@@ -212,16 +276,16 @@ namespace Features.Character
             if (mainSlot == null ||
                 mainSlot.IsEmpty ||
                 mainSlot.Main is not ItemInstance item) return DEFAULT_ATTACK_ANIMATION;
-            
+
             var ani = item.Metadata.AttackAnimation;
 
             if (item.Metadata.WeaponAnimations == null) return ani;
-            
+
             var animationConfiguration = item.Metadata.WeaponAnimations.Animations
                 .FirstOrDefault(x => x.AnimationType == "main");
 
             if (animationConfiguration == null) return ani;
-            
+
             ani = animationConfiguration.Animation.AnimationName;
 
             return ani;

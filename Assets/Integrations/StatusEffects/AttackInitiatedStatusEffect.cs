@@ -3,12 +3,13 @@ using UnityEngine;
 
 namespace Integrations.StatusEffects
 {
-    public static class AttackingStatusEffect
+    public static class AttackInitiatedStatusEffect
     {
         [RuntimeInitializeOnLoadMethod]
         private static void Register()
         {
-            StatusEffectImplementation implementation = new(nameof(AttackingStatusEffect), OnStatusEffectApplied, OnStatusEffectRemoved);
+            StatusEffectImplementation implementation = new(nameof(AttackInitiatedStatusEffect), OnStatusEffectApplied,
+                OnStatusEffectRemoved);
             StatusEffectImplementationRegistry.Implementations.TryAdd(implementation.Name, implementation);
         }
 
