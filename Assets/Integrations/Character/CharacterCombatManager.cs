@@ -127,22 +127,22 @@ namespace Features.Character
         }
 
 
-        private void OnProjectileCollided(ProjectileCollisionData obj)
+        private void OnProjectileCollided(ProjectileCollisionData collisionData)
         {
-            if (obj.Source is not ItemInstance item) return;
+            if (collisionData.Source is not ItemInstance item) return;
 
-            if (obj.OriginalCollider.gameObject.layer == LayerMask.NameToLayer("Ground"))
+            if (collisionData.OriginalCollider.gameObject.layer == LayerMask.NameToLayer("Ground"))
             {
-                obj.SetProjectileConsumed();
+                collisionData.SetProjectileConsumed();
 
                 return;
             }
 
-            var damagePayload = DamageTarget.MakePayloadForItem(obj.ProjectileParent, obj.ColliderRoot, item);
+            var damagePayload = DamageTarget.MakePayloadForItem(collisionData.ProjectileParent, collisionData.ColliderRoot, item);
 
-            obj.ProjectileParent.GetComponentInChildren<ActionsController>().DoPassiveAction(damagePayload);
+            collisionData.ProjectileParent.GetComponentInChildren<ActionsController>().DoPassiveAction(damagePayload);
 
-            obj.SetProjectileConsumed();
+            collisionData.SetProjectileConsumed();
         }
 
         private void OnItemEquipped(EquipResult obj)
