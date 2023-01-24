@@ -1,7 +1,7 @@
-using System;
 using Features.Camera;
 using Features.Character;
 using Features.CharacterModel;
+using Features.DestinationPointer;
 using Features.Movement;
 using Features.Targeting;
 using Integrations.Actions;
@@ -13,34 +13,34 @@ namespace Managers
     {
         [HideInInspector] public Player Player;
 
-        private UserMouseInputController m_MouseInputController;
-        
         public bool DisableInput;
 
         public bool DisableMovement;
-        
-        protected override void DoSetup()
-        {
-            Player = GameObject.Find("Player").GetComponent<Player>();
-        }
+
+        private UserMouseInputController m_MouseInputController;
 
         private void Start()
         {
             var cameraManager = CameraManager.Instance;
 
             var characterModel = Player.GetComponentInChildren<CharacterModelController>();
-            
+
             cameraManager.ChangeTarget(characterModel.CameraFollow, characterModel.CameraTarget);
 
             m_MouseInputController = UserMouseInputController.Instance;
-            
+
             m_MouseInputController.OnGameGroundClicked += OnGameGroundClicked;
-            
+
             m_MouseInputController.OnCharacterLocationClicked += OnCharacterLocationClicked;
-            
+
             LocationProvider.OnOverlayActivated += OnOverlayActivated;
-            
+
             LocationProvider.OnOverlayDisabled += OnOverlayDisabled;
+        }
+
+        protected override void DoSetup()
+        {
+            Player = GameObject.Find("Player").GetComponent<Player>();
         }
 
         private void OnOverlayDisabled()
@@ -58,21 +58,23 @@ namespace Managers
                 DisableMovement = true;
             }
         }
-        
+
         private void OnGameGroundClicked(Vector3 point)
         {
             if (DisableInput && DisableMovement) return;
-            
+
+            DestinationPointerManager.Show(point, 1f);
+
             var movePayload =
                 Move.MakePayload(Player.gameObject, new MoveActionData(point));
 
             Player.m_ActionsController.DoAction(movePayload);
         }
-        
+
         private void OnCharacterLocationClicked(Vector3 characterLocation)
         {
             if (DisableInput) return;
-            
+
             var movePayload =
                 Move.MakePayload(Player.gameObject, new MoveActionData(characterLocation));
 
