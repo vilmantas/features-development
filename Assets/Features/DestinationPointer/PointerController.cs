@@ -35,8 +35,6 @@ namespace Features.DestinationPointer
             transform.position = pos;
 
             m_Model.gameObject.SetActive(true);
-
-            m_Model.gameObject.SetActive(true);
         }
 
         IEnumerator DisplayPointer(float duration)
