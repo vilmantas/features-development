@@ -207,25 +207,31 @@ namespace Features.Character
         {
             var animationName = GetAttackAnimation();
 
-            var configuration = GetAnimationConfiguration();
-
             m_Events.OnStrike?.Invoke(animationName);
+            
+            var configuration = GetAnimationConfiguration();
 
             if (configuration == null) return;
 
             m_HitboxAnimationController.Play(configuration);
 
-            if (!m_StatusEffectsController) return;
+            if (m_StatusEffectsController)
+            {
+                AddAttackInitiatedEffect();
 
-            AddAttackInitiatedEffect();
+                StartAnimationCompletionWaiter(configuration);
+            }
 
+            StartMovementHandler();
+        }
+
+        private void StartAnimationCompletionWaiter(AnimationConfigurationDTO configuration)
+        {
             var id = Guid.NewGuid();
 
             var routine = StartCoroutine(StrikeCompletionWaiter(configuration, id));
 
             RunningRoutines.TryAdd(id, routine);
-
-            StartMovementHandler();
         }
 
         private void AddAttackInitiatedEffect()
