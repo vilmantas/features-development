@@ -1,6 +1,4 @@
 using Features.Actions;
-using Features.Combat;
-using Features.Movement;
 using Features.Skills;
 using Integrations.Actions;
 using UnityEngine;
