@@ -39,6 +39,8 @@ namespace Features.Character
 
         public Action<DamageTargetActionPayload> OnBeforeDoDamage;
 
+        public Action OnStrikeInterrupted;
+
         private Transform Root;
 
         private void Awake()
@@ -173,6 +175,11 @@ namespace Features.Character
 
         private void OnHitboxFinished()
         {
+            RemoveAttackActiveEffect();
+        }
+
+        private void RemoveAttackActiveEffect()
+        {
             var status = new StatusEffectMetadata(nameof(AttackActiveStatusEffect));
 
             var p = new StatusEffectRemovePayload(status);
@@ -182,11 +189,13 @@ namespace Features.Character
 
         private void OnHitboxActivated()
         {
-            if (RunningHandlers.Remove("movement_blocker", out var handler))
-            {
-                m_ActionsController.OnBeforeAction -= handler as Action<ActionActivation>;
-            }
+            RemoveMovementBlocker();
 
+            AddAttackActiveEffect();
+        }
+
+        private void AddAttackActiveEffect()
+        {
             var status = new StatusEffectMetadata(nameof(AttackActiveStatusEffect));
 
             var p = new StatusEffectAddPayload(status);
@@ -208,11 +217,7 @@ namespace Features.Character
 
             if (!m_StatusEffectsController) return;
 
-            var status = new StatusEffectMetadata(nameof(AttackInitiatedStatusEffect));
-
-            var p = new StatusEffectAddPayload(status);
-
-            m_StatusEffectsController.AddStatusEffect(p);
+            AddAttackInitiatedEffect();
 
             var id = Guid.NewGuid();
 
@@ -220,6 +225,20 @@ namespace Features.Character
 
             RunningRoutines.TryAdd(id, routine);
 
+            StartMovementHandler();
+        }
+
+        private void AddAttackInitiatedEffect()
+        {
+            var status = new StatusEffectMetadata(nameof(AttackInitiatedStatusEffect));
+
+            var p = new StatusEffectAddPayload(status);
+
+            m_StatusEffectsController.AddStatusEffect(p);
+        }
+
+        private void StartMovementHandler()
+        {
             Action<ActionActivation> handler = MovementChecker;
 
             m_ActionsController.OnBeforeAction += handler;
@@ -232,24 +251,27 @@ namespace Features.Character
             if (obj.Payload.Action.Name == nameof(Move))
             {
                 m_HitboxAnimationController.Interrupt();
-
-                var status = new StatusEffectMetadata(nameof(AttackInitiatedStatusEffect));
-
-                var p = new StatusEffectRemovePayload(status);
-
-                m_StatusEffectsController.RemoveStatusEffect(p);
+                
+                RemoveAttackInitiatedEffect();
 
                 RunningRoutines.Clear();
 
-                if (RunningHandlers.Remove("movement_blocker", out var handler))
-                {
-                    m_ActionsController.OnBeforeAction -= handler as Action<ActionActivation>;
-                }
+                RemoveMovementBlocker();
 
+                OnStrikeInterrupted?.Invoke();
+                
                 return;
             }
 
             obj.PreventDefault = true;
+        }
+
+        private void RemoveMovementBlocker()
+        {
+            if (RunningHandlers.Remove("movement_blocker", out var handler))
+            {
+                m_ActionsController.OnBeforeAction -= handler as Action<ActionActivation>;
+            }
         }
 
         private IEnumerator StrikeCompletionWaiter(AnimationConfigurationDTO config, Guid Id)
@@ -258,6 +280,11 @@ namespace Features.Character
 
             if (!RunningRoutines.ContainsKey(Id)) yield break;
 
+            RemoveAttackInitiatedEffect();
+        }
+
+        private void RemoveAttackInitiatedEffect()
+        {
             var status = new StatusEffectMetadata(nameof(AttackInitiatedStatusEffect));
 
             var p = new StatusEffectRemovePayload(status);
