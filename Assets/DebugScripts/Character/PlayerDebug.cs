@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Features.Buffs.UI;
@@ -7,17 +6,13 @@ using Features.Conditions;
 using Features.Equipment.UI;
 using Features.Health;
 using Features.Inventory.UI;
-using Features.Movement;
 using Features.Skills;
 using Features.Stats.Base;
 using Features.Targeting;
-using Integrations.Actions;
 using Integrations.Items;
-using Integrations.Skills;
 using Integrations.Skills.Actions;
 using Integrations.Skills.UI;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using Utilities.ItemsContainer;
 
 namespace DebugScripts.Character
@@ -27,91 +22,12 @@ namespace DebugScripts.Character
         public LayerMask GroundLayer;
 
         public Player PlayerInstance;
-
-        public InventoryUIController InventoryUI;
-
-        public EquipmentUIController EquipmentUI;
-
-        public BuffUIController BuffUI;
-
-        public StatsUIController StatsUI;
-
-        public ContextMenuUIController ContextMenuUI;
-
-        public HealthUIController HealthUI;
-
-        public StatusEffectsUIController StatusEffectsUI;
-
-        public SkillsUIController SkillsUI;
-
+        
         public GameObject RootGameObject;
         
         private void Start()
         {
             RootGameObject = transform.root.gameObject;
-            
-            if (InventoryUI && PlayerInstance.Inventory)
-            {
-                InventoryUI.Initialize(PlayerInstance.m_InventoryController);
-            }
-
-            if (EquipmentUI && PlayerInstance.Equipment)
-            {
-                EquipmentUI.Initialize(PlayerInstance.m_EquipmentController);
-            }
-
-            if (BuffUI && PlayerInstance.Buffs)
-            {
-                BuffUI.Initialize(PlayerInstance.m_BuffController);
-            }
-
-            if (StatsUI && PlayerInstance.Stats)
-            {
-                StatsUI.Initialize(PlayerInstance.m_StatsController);
-            }
-
-            if (HealthUI && PlayerInstance.Health)
-            {
-                HealthUI.Initialize(PlayerInstance.m_HealthController);
-            }
-            
-            if (PlayerInstance.Inventory)
-            {
-                PlayerInstance.m_InventoryController.OnContextRequested += ShowContextMenu;
-            }
-
-            if (StatusEffectsUI && PlayerInstance.Conditions)
-            {
-                StatusEffectsUI.Initialize(PlayerInstance.m_StatusEffectsController);
-            }
-
-            if (SkillsUI && PlayerInstance.Skills)
-            {
-                SkillsUI.Initialize(PlayerInstance.m_SkillsController,
-                    PlayerInstance.m_CooldownsController, PlayerInstance.m_ChannelingController);
-            }
-        }
-
-        private void ShowContextMenu(StorageData data)
-        {
-            var item = data.Parent as ItemInstance;
-
-            var inventoryOptions = GetInventoryOptionsFor(item);
-            
-            ContextMenuUI.Show(Input.mousePosition, inventoryOptions, action =>
-            {
-                PlayerInstance.m_InventoryController.HandleItemAction(data, action);
-            });
-        }
-
-        private static List<string> GetInventoryOptionsFor(ItemInstance item)
-        {
-            var options = item.Metadata.InventoryContextMenuActions
-                .Select(x => x.DisplayName)
-                .Prepend(item.Metadata.Action.DisplayName)
-                .Append("Drop");
-
-            return options.ToList();
         }
 
         private void Update()

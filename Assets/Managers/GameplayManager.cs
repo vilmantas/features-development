@@ -6,12 +6,13 @@ using Features.Movement;
 using Features.Targeting;
 using Integrations.Actions;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Managers
 {
     public class GameplayManager : SingletonManager<GameplayManager>
-    {
-        [HideInInspector] public Player Player;
+    { 
+        private Player m_Player;
 
         public bool DisableInput;
 
@@ -23,7 +24,7 @@ namespace Managers
         {
             var cameraManager = CameraManager.Instance;
 
-            var characterModel = Player.GetComponentInChildren<CharacterModelController>();
+            var characterModel = m_Player.GetComponentInChildren<CharacterModelController>();
 
             cameraManager.ChangeTarget(characterModel.CameraFollow, characterModel.CameraTarget);
 
@@ -38,9 +39,11 @@ namespace Managers
             LocationProvider.OnOverlayDisabled += OnOverlayDisabled;
         }
 
+        public static Player Player => Instance.m_Player;
+
         protected override void DoSetup()
         {
-            Player = GameObject.Find("Player").GetComponent<Player>();
+            m_Player = GameObject.Find("Player").GetComponent<Player>();
         }
 
         private void OnOverlayDisabled()
@@ -66,9 +69,9 @@ namespace Managers
             DestinationPointerManager.Show(point, 1f);
 
             var movePayload =
-                Move.MakePayload(Player.gameObject, new MoveActionData(point));
+                Move.MakePayload(m_Player.gameObject, new MoveActionData(point));
 
-            Player.m_ActionsController.DoAction(movePayload);
+            m_Player.m_ActionsController.DoAction(movePayload);
         }
 
         private void OnCharacterLocationClicked(Vector3 characterLocation)
@@ -76,9 +79,9 @@ namespace Managers
             if (DisableInput) return;
 
             var movePayload =
-                Move.MakePayload(Player.gameObject, new MoveActionData(characterLocation));
+                Move.MakePayload(m_Player.gameObject, new MoveActionData(characterLocation));
 
-            Player.m_ActionsController.DoAction(movePayload);
+            m_Player.m_ActionsController.DoAction(movePayload);
         }
     }
 }
