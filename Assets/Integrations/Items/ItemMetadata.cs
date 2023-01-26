@@ -19,7 +19,7 @@ namespace Integrations.Items
             string mainSlot,
             string secondarySlot, GameObject modelPrefab, List<BuffMetadata> buffs, ActionBase action,
             List<ActionBase> inventoryContextMenuActions,
-            List<ActionBase> equipmentContextMenuActions, string attackAnimation,
+            List<ActionBase> equipmentContextMenuActions,
             StatGroup usageStats,
             string requiredAmmo,
             GameObject providedAmmo,
@@ -40,7 +40,6 @@ namespace Integrations.Items
             Action = action;
             InventoryContextMenuActions = inventoryContextMenuActions;
             EquipmentContextMenuActions = equipmentContextMenuActions;
-            AttackAnimation = attackAnimation;
             UsageStats = usageStats;
             RequiredAmmo = requiredAmmo;
             ProvidedAmmo = providedAmmo;
@@ -65,7 +64,6 @@ namespace Integrations.Items
         public string Name { get; }
         public Sprite Sprite { get; }
         public int MaxStack { get; }
-        public string AttackAnimation { get; }
         public ItemScriptDTO[] Scripts { get; }
         public SkillMetadata[] Skills { get; }
         public string WeaponType { get; }

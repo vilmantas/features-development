@@ -180,6 +180,8 @@ namespace Features.Character
 
         private void RemoveAttackActiveEffect()
         {
+            if (!m_StatusEffectsController) return;
+            
             var status = new StatusEffectMetadata(nameof(AttackActiveStatusEffect));
 
             var p = new StatusEffectRemovePayload(status);
@@ -196,6 +198,8 @@ namespace Features.Character
 
         private void AddAttackActiveEffect()
         {
+            if (!m_StatusEffectsController) return;
+            
             var status = new StatusEffectMetadata(nameof(AttackActiveStatusEffect));
 
             var p = new StatusEffectAddPayload(status);
@@ -205,14 +209,10 @@ namespace Features.Character
 
         private void OnStrike()
         {
-            var animationName = GetAttackAnimation();
-
-            m_Events.OnStrike?.Invoke(animationName);
-            
             var configuration = GetAnimationConfiguration();
 
-            if (configuration == null) return;
-
+            m_Events.OnStrike?.Invoke(configuration.AnimationName);
+            
             m_HitboxAnimationController.Play(configuration);
 
             if (m_StatusEffectsController)
@@ -236,6 +236,8 @@ namespace Features.Character
 
         private void AddAttackInitiatedEffect()
         {
+            if (!m_StatusEffectsController) return;
+            
             var status = new StatusEffectMetadata(nameof(AttackInitiatedStatusEffect));
 
             var p = new StatusEffectAddPayload(status);
@@ -291,37 +293,13 @@ namespace Features.Character
 
         private void RemoveAttackInitiatedEffect()
         {
+            if (!m_StatusEffectsController) return;
+            
             var status = new StatusEffectMetadata(nameof(AttackInitiatedStatusEffect));
 
             var p = new StatusEffectRemovePayload(status);
 
             m_StatusEffectsController.RemoveStatusEffect(p);
-        }
-
-        private string GetAttackAnimation()
-        {
-            if (!m_EquipmentController) return DEFAULT_ATTACK_ANIMATION;
-
-            var mainSlot =
-                m_EquipmentController.ContainerSlots.FirstOrDefault(x =>
-                    x.Slot.ToLower() == "main");
-
-            if (mainSlot == null ||
-                mainSlot.IsEmpty ||
-                mainSlot.Main is not ItemInstance item) return DEFAULT_ATTACK_ANIMATION;
-
-            var ani = item.Metadata.AttackAnimation;
-
-            if (item.Metadata.WeaponAnimations == null) return ani;
-
-            var animationConfiguration = item.Metadata.WeaponAnimations.Animations
-                .FirstOrDefault(x => x.AnimationType == "main");
-
-            if (animationConfiguration == null) return ani;
-
-            ani = animationConfiguration.Animation.AnimationName;
-
-            return ani;
         }
 
         private AnimationConfigurationDTO GetAnimationConfiguration()

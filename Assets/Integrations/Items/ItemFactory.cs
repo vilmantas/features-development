@@ -57,7 +57,6 @@ namespace Integrations.Items
                 prefab.Action == null ? null : prefab.Action.Base,
                 prefab.InventoryActions.Select(x => x.Base).ToList(),
                 prefab.EquipmentActions.Select(x => x.Base).ToList(),
-                prefab.AttackAnimation,
                 new StatGroup(prefab.UsageStats.ToArray()),
                 prefab.RequiredAmmoType,
                 prefab.ProvidedAmmo,

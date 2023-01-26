@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1225858781668010140
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2243503126781540575}
+  m_Layer: 9
+  m_Name: weapon_hitbox_spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2243503126781540575
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1225858781668010140}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.178, z: 0.469}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3297395408025472566}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3297395408025472567
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,6 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3297395408025472566}
+  - component: {fileID: 7190821573430436959}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -30,9 +62,27 @@ Transform:
   m_Children:
   - {fileID: 3297395408189707293}
   - {fileID: 5564436759156153278}
+  - {fileID: 2243503126781540575}
   m_Father: {fileID: 3297395409041271170}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7190821573430436959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3297395408025472567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18d752b0a08b48b0b5860fa012695a5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Hitbox: {fileID: 3297395408189707294}
+  Avatar: {fileID: 5076411567358116100}
+  CameraFollow: {fileID: 0}
+  CameraTarget: {fileID: 0}
+  WeaponHitboxSpawn: {fileID: 2243503126781540575}
 --- !u!1 &3297395408189707294
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,6 +344,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: a65d730a337e84dbcb0b40de3e05265a, type: 3}
+--- !u!1 &5076411567358116100 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7760189016993748394, guid: a65d730a337e84dbcb0b40de3e05265a, type: 3}
+  m_PrefabInstance: {fileID: 3297395407530513582}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5564436759156153278 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6988014763128950544, guid: a65d730a337e84dbcb0b40de3e05265a, type: 3}

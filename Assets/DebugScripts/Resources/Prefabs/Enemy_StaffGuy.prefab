@@ -55,7 +55,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1231179445155265170}
-  - component: {fileID: 1231179445155265181}
+  - component: {fileID: 9182729429527156367}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -77,23 +77,27 @@ Transform:
   m_Children:
   - {fileID: 1231179444443682872}
   - {fileID: 8209056384264651178}
+  - {fileID: 2158018333172397590}
   m_Father: {fileID: 1231179446112602943}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &1231179445155265181
-CapsuleCollider:
+--- !u!114 &9182729429527156367
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1231179445155265171}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18d752b0a08b48b0b5860fa012695a5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Hitbox: {fileID: 1231179444443682873}
+  Avatar: {fileID: 8838241585646738192}
+  CameraFollow: {fileID: 0}
+  CameraTarget: {fileID: 0}
+  WeaponHitboxSpawn: {fileID: 2158018333172397590}
 --- !u!1 &1231179446112602929
 GameObject:
   m_ObjectHideFlags: 0
@@ -129,7 +133,7 @@ Transform:
   m_Children:
   - {fileID: 1231179445155265170}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 127.432, z: 0}
 --- !u!114 &1231179446112602940
 MonoBehaviour:
@@ -157,7 +161,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Velocity: {x: 0, y: 0, z: 0}
-  InputHooksEnabled: 0
 --- !u!114 &1231179446112602930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,7 +174,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Events: {fileID: 0}
-  NavAgent: {fileID: 0}
   Rigidbody: {fileID: 0}
   Buffs: 0
   Inventory: 0
@@ -179,6 +181,9 @@ MonoBehaviour:
   Stats: 0
   Health: 1
   Combat: 1
+  Conditions: 0
+  Overheads: 0
+  Skills: 0
   MaxHealth: 32
   CurrentHealth: 28
   InventorySize: 5
@@ -193,13 +198,24 @@ MonoBehaviour:
     Slot: Main
   StartingBuffs: []
   BaseStats: {fileID: 0}
+  StartingSkills: []
   m_BuffController: {fileID: 0}
   m_EquipmentController: {fileID: 0}
   m_InventoryController: {fileID: 0}
   m_StatsController: {fileID: 0}
   m_ActionsController: {fileID: 0}
   m_CombatController: {fileID: 0}
+  m_StatusEffectsController: {fileID: 0}
+  m_MovementController: {fileID: 0}
+  m_StatCalculator: {fileID: 0}
+  m_ItemManager: {fileID: 0}
+  m_OverheadsManager: {fileID: 0}
+  m_OverheadsController: {fileID: 0}
+  m_SkillsController: {fileID: 0}
+  m_CooldownsController: {fileID: 0}
+  m_ChannelingController: {fileID: 0}
   m_HealthController: {fileID: 0}
+  m_HitboxAnimationController: {fileID: 0}
 --- !u!195 &1231179446112602931
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -238,6 +254,37 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &7915424196422476265
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2158018333172397590}
+  m_Layer: 9
+  m_Name: weapon_hitbox_spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2158018333172397590
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7915424196422476265}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.178, z: 0.469}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1231179445155265170}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1231179444769771194
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -305,5 +352,10 @@ Transform:
 --- !u!4 &8209056384264651178 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6988014763128950544, guid: a65d730a337e84dbcb0b40de3e05265a, type: 3}
+  m_PrefabInstance: {fileID: 1231179444769771194}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8838241585646738192 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7760189016993748394, guid: a65d730a337e84dbcb0b40de3e05265a, type: 3}
   m_PrefabInstance: {fileID: 1231179444769771194}
   m_PrefabAsset: {fileID: 0}

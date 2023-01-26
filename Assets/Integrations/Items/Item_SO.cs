@@ -26,7 +26,6 @@ namespace Integrations.Items
         public Action_SO Action;
         public List<Action_SO> InventoryActions;
         public List<Action_SO> EquipmentActions;
-        public string AttackAnimation = string.Empty;
         public string RequiredAmmoType = string.Empty;
         public GameObject ProvidedAmmo;
         public ItemScript_SO[] Scripts = Array.Empty<ItemScript_SO>();

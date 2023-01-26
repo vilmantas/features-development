@@ -33,3 +33,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9887226a8d2271648a035def669f9fde, type: 2}
   EquipmentActions: []
   AttackAnimation: Strike_2
+  RequiredAmmoType: 
+  ProvidedAmmo: {fileID: 0}
+  Scripts: []
+  Skills: []
+  WeaponType: Sword
