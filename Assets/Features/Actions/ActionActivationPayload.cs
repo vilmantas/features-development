@@ -13,6 +13,8 @@ namespace Features.Actions
 
         public readonly Dictionary<string, object> Data;
 
+        public bool IsPassive => Data.ContainsKey("passive") && (bool) Data["passive"];
+
         public ActionActivationPayload(ActionBase action, GameObject source, GameObject target, Dictionary<string, object> data = null)
         {
             Action = action;

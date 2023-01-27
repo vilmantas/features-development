@@ -167,7 +167,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32bff3d7b25f41628e113a93dea333cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_GameplayManager: {fileID: 1415737823}
+  GroundAndPlayerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &339942635
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,6 +258,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a950a61ca8a34d0cbef0b8a8cb6b18a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &427824354
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 427824356}
+  - component: {fileID: 427824355}
+  m_Layer: 0
+  m_Name: rpg_system_configuration
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &427824355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 427824354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4174d7fb6dca4827b4e701a669c537cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Configuration: {fileID: 11400000, guid: f4ab3aaf6ecc44ca9873be16c901f423, type: 2}
+--- !u!4 &427824356
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 427824354}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.214493, y: 0.496979, z: -0.08342099}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1210627231
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,4 +391,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a425f489514345a4a8269371294c392d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 0}
+  DisableInput: 0
+  DisableMovement: 0

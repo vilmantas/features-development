@@ -43,7 +43,7 @@ namespace Integrations.Actions
             var takeDmg = TakeDamage.MakePayload(payload.Source, payload.Target,
                 damageActionPayload.DamageAmount);
 
-            actionController.DoAction(takeDmg);
+            actionController.DoPassiveAction(takeDmg);
         }
         
         private static DamageTargetActionPayload PayloadMake(ActionActivationPayload originalPayload)

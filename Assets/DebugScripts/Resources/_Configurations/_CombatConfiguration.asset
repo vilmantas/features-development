@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1807bfc176574dc9957e43fbb0755cf2, type: 3}
+  m_Name: _CombatConfiguration
+  m_EditorClassIdentifier: 
+  StrikeInterruptingActions: {fileID: 11400000, guid: b73c1baf28f434ac492aff3b0cf9fef6, type: 2}
+  StrikeInterruptingSEs: {fileID: 11400000, guid: 697836288040c41fbab509424fa4423f, type: 2}

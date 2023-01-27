@@ -4,6 +4,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using Features.Actions;
+using Features.Character.Configurations;
 using Features.Combat;
 using Features.Conditions;
 using Features.Equipment;
@@ -160,8 +161,8 @@ namespace Features.Character
 
         private void OnAdded(StatusEffectMetadata obj)
         {
-            if (!obj.InternalName.Equals(nameof(StunStatusEffect))) return;
-
+            if (RPGSystemConfigurationController.Disables.All(x => x != obj.InternalName)) return;
+            
             m_HitboxAnimationController.Interrupt();
 
             var status = new StatusEffectMetadata(nameof(AttackInitiatedStatusEffect));
@@ -171,6 +172,8 @@ namespace Features.Character
             m_StatusEffectsController.RemoveStatusEffect(p);
 
             RunningRoutines.Clear();
+            
+            RemoveMovementBlocker();
         }
 
         private void OnHitboxFinished()
@@ -225,6 +228,11 @@ namespace Features.Character
             StartMovementHandler();
         }
 
+        private void StartInterruptionChecker()
+        {
+            
+        }
+
         private void StartAnimationCompletionWaiter(AnimationConfigurationDTO configuration)
         {
             var id = Guid.NewGuid();
@@ -256,6 +264,13 @@ namespace Features.Character
 
         private void MovementChecker(ActionActivation obj)
         {
+            if (obj.Payload.IsPassive) return;
+
+            if (transform.root.gameObject.name == "Player")
+            {
+                var z = 1;
+            }
+
             if (obj.Payload.Action.Name == nameof(Move))
             {
                 m_HitboxAnimationController.Interrupt();
@@ -270,7 +285,7 @@ namespace Features.Character
                 
                 return;
             }
-
+            
             obj.PreventDefault = true;
         }
 
@@ -288,6 +303,8 @@ namespace Features.Character
 
             if (!RunningRoutines.ContainsKey(Id)) yield break;
 
+            RemoveMovementBlocker();
+            
             RemoveAttackInitiatedEffect();
         }
 

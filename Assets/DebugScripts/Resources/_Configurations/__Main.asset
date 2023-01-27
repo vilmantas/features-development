@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0107a36e2d5d4a4180f3529a66c29e8b, type: 3}
+  m_Name: __Main
+  m_EditorClassIdentifier: 
+  CombatConfiguration: {fileID: 11400000, guid: 73d9cfeda0aad4bfd943f78c26c6bad4, type: 2}
+  BuffsConfiguration: {fileID: 11400000, guid: 202ab20a5cf564fd2bcef357c138792f, type: 2}
+  StatusEffectConfiguration: {fileID: 11400000, guid: adcd20ec4b56a408492facf43e311a65, type: 2}
