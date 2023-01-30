@@ -1,3 +1,4 @@
+using Features.Actions;
 using Features.Camera;
 using Features.Character;
 using Features.CharacterModel;
@@ -41,10 +42,28 @@ namespace Managers
             m_MouseInputController.OnCharacterLocationClicked += OnCharacterLocationClicked;
             
             m_KeyboardInputController.OnSkillActivationRequested += OnSkillActivationRequested;
+            
+            m_KeyboardInputController.OnRunningToggled += OnRunningToggled;
 
             LocationProvider.OnOverlayActivated += OnOverlayActivated;
 
             LocationProvider.OnOverlayDisabled += OnOverlayDisabled;
+        }
+
+        private void OnRunningToggled(bool isRunning)
+        {
+            ActionActivationPayload payload;
+            
+            if (isRunning)
+            {
+                payload = StartRunning.MakePayload(m_Player.gameObject);
+            }
+            else
+            {
+                payload = StartWalking.MakePayload(m_Player.gameObject);
+            }
+
+            m_Player.m_ActionsController.DoAction(payload);
         }
 
         private void OnSkillActivationRequested(int obj)

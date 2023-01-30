@@ -6,6 +6,8 @@ namespace Managers
     public class UserKeyboardInputController : SingletonManager<UserKeyboardInputController>
     {
         public Action<int> OnSkillActivationRequested;
+
+        public Action<bool> OnRunningToggled;
         
         private void Update()
         {
@@ -22,6 +24,16 @@ namespace Managers
             if (Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Alpha2))
             {
                 OnSkillActivationRequested?.Invoke(2);
+            }
+
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                OnRunningToggled?.Invoke(true);
+            }
+            
+            if (Input.GetKeyUp(KeyCode.LeftShift))
+            {
+                OnRunningToggled?.Invoke(false);
             }
         }
     }
