@@ -21,7 +21,7 @@ namespace Integrations.Skills.Actions
         {
             var controller = source.GetComponentInChildren<SkillsController>();
 
-            var skillMetadata = controller.Skills.ElementAt(index);
+            var skillMetadata = controller.Skills.Where(x => x.ImplementationName != nameof(BasicAttackSkill)).ElementAt(index);
 
             var payload = new ActionActivationPayload(new ActionBase(nameof(ActivateSkill)),
                 source);

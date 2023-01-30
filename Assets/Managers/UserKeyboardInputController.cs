@@ -7,6 +7,8 @@ namespace Managers
     {
         public Action<int> OnSkillActivationRequested;
 
+        public Action OnAttackActivationRequested;
+
         public Action<bool> OnRunningToggled;
         
         private void Update()
@@ -34,6 +36,11 @@ namespace Managers
             if (Input.GetKeyUp(KeyCode.LeftShift))
             {
                 OnRunningToggled?.Invoke(false);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                OnAttackActivationRequested?.Invoke();
             }
         }
     }

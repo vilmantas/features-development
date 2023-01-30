@@ -49,6 +49,11 @@ namespace Integrations.Skills.UI
             Title.text = metadata.DisplayName;
 
             Index.text = index.ToString();
+
+            if (index == -1)
+            {
+                Index.text = " ";
+            }
         }
 
         public void SetCooldown(ActiveCooldown cooldown)

@@ -43,11 +43,22 @@ namespace Managers
             
             m_KeyboardInputController.OnSkillActivationRequested += OnSkillActivationRequested;
             
+            m_KeyboardInputController.OnAttackActivationRequested += OnAttackActivationRequested;
+            
             m_KeyboardInputController.OnRunningToggled += OnRunningToggled;
 
             LocationProvider.OnOverlayActivated += OnOverlayActivated;
 
             LocationProvider.OnOverlayDisabled += OnOverlayDisabled;
+        }
+
+        private void OnAttackActivationRequested()
+        {
+            var metadata = SkillMetadataRegistry.Implementations["Basic Attack"];
+            
+            var skillActivation = ActivateSkill.MakePayload(m_Player.gameObject, metadata);
+
+            m_Player.m_ActionsController.DoAction(skillActivation);
         }
 
         private void OnRunningToggled(bool isRunning)

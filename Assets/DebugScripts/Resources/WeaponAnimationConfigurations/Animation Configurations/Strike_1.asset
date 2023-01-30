@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Strike_1
   m_EditorClassIdentifier: 
   AnimationName: Strike_1
-  AnimationDuration: 1
-  DelayBeforeHitboxSpawn: 0.4
+  AnimationDuration: 0.4
+  DelayBeforeHitboxSpawn: 0.2
   HitboxDuration: 0.2
   HitboxPrefab: {fileID: 2487071169966818635, guid: b26b58d49ffb842de83dfed6430abe0e, type: 3}

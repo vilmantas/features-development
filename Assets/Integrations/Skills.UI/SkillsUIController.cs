@@ -64,10 +64,25 @@ namespace Integrations.Skills.UI
             UIDatas.Clear();
 
             int i = 1;
-            
-            foreach (var skillMetadata in m_Source.Skills)
+
+            var skills = m_Source.Skills.Where(x => x.ReferenceName != "Basic Attack");
+
+            var basicAttack = m_Source.Skills.FirstOrDefault(x => x.ReferenceName == "Basic Attack");
+
+            SkillUIDataController instance;
+
+            if (basicAttack != null)
             {
-                var instance = Instantiate(SkillPrefab, transform);
+                instance = Instantiate(SkillPrefab, transform);
+
+                instance.Initialize(basicAttack, -1);
+
+                UIDatas.Add(instance);
+            }
+
+            foreach (var skillMetadata in skills)
+            {
+                instance = Instantiate(SkillPrefab, transform);
                 
                 instance.Initialize(skillMetadata, i);
                 

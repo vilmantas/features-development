@@ -18,9 +18,13 @@ namespace Integrations.Skills
         
         private static SkillActivationResult OnActivation(SkillActivationContext context)
         {
-            Debug.Log("Doing defending");
+            var defendAction = Defend.MakePayload(context.Source, true);
 
-            return new SkillActivationResult(true);
+            var result = context.Source.GetComponentInChildren<ActionsController>()
+                .DoAction(defendAction);
+
+            return new SkillActivationResult(result.IsSuccessful.HasValue &&
+                                             result.IsSuccessful.Value);
         }
     }
 }
