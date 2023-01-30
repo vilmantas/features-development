@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Features.Actions;
 using Features.Cooldowns;
 using Features.Skills;
@@ -14,6 +15,18 @@ namespace Integrations.Skills.Actions
                 source);
 
             return new ActivateSkillActionPayload(payload, skill);
+        }
+        
+        public static ActionActivationPayload MakePayload(GameObject source, int index)
+        {
+            var controller = source.GetComponentInChildren<SkillsController>();
+
+            var skillMetadata = controller.Skills.ElementAt(index);
+
+            var payload = new ActionActivationPayload(new ActionBase(nameof(ActivateSkill)),
+                source);
+
+            return new ActivateSkillActionPayload(payload, skillMetadata);
         }
         
 

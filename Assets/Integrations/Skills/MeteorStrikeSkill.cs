@@ -1,6 +1,7 @@
 using Features.Actions;
 using Features.Buffs;
 using Features.Combat;
+using Features.ParticlePlayer;
 using Features.Skills;
 using Integrations.Actions;
 using Integrations.Buffs;
@@ -58,7 +59,8 @@ namespace Integrations.Skills
 
         private static void Callback(ProjectileCollisionData obj)
         {
-            var particlePlayer = GameObject.Find("particle_player").GetComponent<ParticlePlayer>();
+            var particlePlayer = GameObject.Find("particle_player")
+                .GetComponent<ParticlePlayerController>();
 
             var hitPoint = obj.Projectile.transform.position;
 

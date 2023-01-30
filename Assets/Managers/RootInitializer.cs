@@ -1,3 +1,4 @@
+using Features.ParticlePlayer;
 using Features.Targeting;
 using UnityEngine;
 
@@ -27,7 +28,7 @@ namespace Managers
 
             particleSystemCore.transform.SetParent(root.transform);
 
-            particleSystemCore.AddComponent<ParticlePlayer>();
+            particleSystemCore.AddComponent<ParticlePlayerController>();
 
             var targetingSystem = new GameObject("target_provider_system");
 
