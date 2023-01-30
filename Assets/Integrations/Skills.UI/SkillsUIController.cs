@@ -63,13 +63,17 @@ namespace Integrations.Skills.UI
             
             UIDatas.Clear();
 
+            int i = 1;
+            
             foreach (var skillMetadata in m_Source.Skills)
             {
                 var instance = Instantiate(SkillPrefab, transform);
                 
-                instance.Initialize(skillMetadata);
+                instance.Initialize(skillMetadata, i);
                 
                 UIDatas.Add(instance);
+
+                i++;
             }
             
             SetCooldowns();

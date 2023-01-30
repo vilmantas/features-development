@@ -13,6 +13,8 @@ namespace Integrations.Skills.UI
         public SkillMetadata Parent { get; private set; }
         
         private TextMeshProUGUI Title;
+        
+        private TextMeshProUGUI Index;
 
         private RadialTimerController Timer;
 
@@ -22,8 +24,10 @@ namespace Integrations.Skills.UI
         
         private void Awake()
         {
-            Title = GetComponentInChildren<TextMeshProUGUI>();
-
+            Title = transform.Find("title").gameObject.GetComponent<TextMeshProUGUI>();
+            
+            Index = transform.Find("index").gameObject.GetComponent<TextMeshProUGUI>();
+            
             Timer = GetComponentInChildren<RadialTimerController>();
 
             Blocker = transform.Find("blocker").gameObject.GetComponent<Image>();
@@ -36,13 +40,15 @@ namespace Integrations.Skills.UI
             Timer.SetFillAmount(Cooldown.StartCooldown, Cooldown.TimeLeft);
         }
 
-        public void Initialize(SkillMetadata metadata)
+        public void Initialize(SkillMetadata metadata, int index)
         {
             Parent = metadata;
             
             name = metadata.ReferenceName;
             
             Title.text = metadata.DisplayName;
+
+            Index.text = index.ToString();
         }
 
         public void SetCooldown(ActiveCooldown cooldown)
