@@ -15,6 +15,7 @@ MonoBehaviour:
   ImplementationName: BasicAttackSkill
   ReferenceName: Basic Attack
   DisplayName: Basic Attack
-  CastTime: 0
-  Cooldown: 1
+  ChannelingTime: 0
+  Cooldown: 0.3
   Target: 0
+  Flags: 0
