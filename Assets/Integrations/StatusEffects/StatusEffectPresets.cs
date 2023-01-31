@@ -64,10 +64,7 @@ namespace Integrations.StatusEffects
 
         private static void BlockCharacterActions(ActionActivation obj)
         {
-            if (obj.Payload.Data != null && obj.Payload.Data.ContainsKey("passive"))
-            {
-                if (obj.Payload.Data["passive"] is true) return;
-            }
+            if (obj.Payload.IsPassive) return;
 
             var actionsController = obj.Payload.Source.GetComponentInChildren<ActionsController>();
             

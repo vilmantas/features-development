@@ -58,6 +58,8 @@ namespace DebugScripts
                     ? String.Empty
                     : data.Item.StackableData.Current.ToString();
 
+                Value.enabled = !Value.text.Equals(string.Empty);
+                
                 var metadata = (data.Item.Parent as IInventoryItemInstance).Metadata;
 
                 if (metadata.Sprite == null)

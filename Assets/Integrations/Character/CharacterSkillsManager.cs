@@ -110,27 +110,6 @@ namespace Features.Character
             }
         }
 
-        private void BlockMovement(ActionActivation obj)
-        {
-            if (obj.Payload.Action.Name != nameof(Move)) return;
-
-            obj.PreventDefault = true;
-        }
-
-        private void StopChannelingOnMovement(ActionActivation obj, SkillActivationContext ctx)
-        {
-            if (obj.Payload.Action.Name != nameof(Move)) return;
-
-            if (obj.PreventDefault) return;
-
-            m_ChannelingController.InterruptChanneling(GetChannelingTag(ctx));
-        }
-
-        private void StopChannelingOnDamage(SkillActivationContext ctx)
-        {
-            m_ChannelingController.InterruptChanneling(GetChannelingTag(ctx));
-        }
-
         private void OnChannelingStarted(ChannelingItem obj)
         {
             if (!obj.Title.StartsWith("skill_")) return;
@@ -163,43 +142,6 @@ namespace Features.Character
             {
                 action.Invoke(context);
             }
-        }
-
-        private void EnableDamageInterrupt(SkillActivationContext context)
-        {
-            var handlerTag = GetHandlerTag(context, SkillFlags.InterruptableByDamage);
-
-            Action<HealthChangeEventArgs> handler = _ => StopChannelingOnDamage(context);
-
-            m_HealthController.OnDamage += handler;
-
-            RunningHandlers.Add(handlerTag, handler);
-        }
-
-        private void EnableMovementPrevent(SkillActivationContext context)
-        {
-            m_MovementController.Stop();
-
-            var handlerTag = GetHandlerTag(context, SkillFlags.PreventMovement);
-
-            Action<ActionActivation> handler = BlockMovement;
-
-            m_ActionsController.OnBeforeAction += handler;
-
-            RunningHandlers.Add(handlerTag, handler);
-        }
-
-        private void EnableMovementInterrupt(SkillActivationContext context)
-        {
-            m_MovementController.Stop();
-
-            var handlerTag = GetHandlerTag(context, SkillFlags.InterruptableByMovement);
-
-            Action<ActionActivation> handler = act => StopChannelingOnMovement(act, context);
-
-            m_ActionsController.OnBeforeAction += handler;
-
-            RunningHandlers.Add(handlerTag, handler);
         }
 
         private void OnBeforeActivation(SkillActivationContext obj)
@@ -346,5 +288,65 @@ namespace Features.Character
                 }
             }
         }
+        
+        #region HANDLERS
+        private void EnableDamageInterrupt(SkillActivationContext context)
+        {
+            var handlerTag = GetHandlerTag(context, SkillFlags.InterruptableByDamage);
+
+            Action<HealthChangeEventArgs> handler = _ => StopChannelingOnDamage(context);
+
+            m_HealthController.OnDamage += handler;
+
+            RunningHandlers.Add(handlerTag, handler);
+        }
+
+        private void EnableMovementPrevent(SkillActivationContext context)
+        {
+            m_MovementController.Stop();
+
+            var handlerTag = GetHandlerTag(context, SkillFlags.PreventMovement);
+
+            Action<ActionActivation> handler = BlockMovement;
+
+            m_ActionsController.OnBeforeAction += handler;
+
+            RunningHandlers.Add(handlerTag, handler);
+        }
+
+        private void EnableMovementInterrupt(SkillActivationContext context)
+        {
+            m_MovementController.Stop();
+
+            var handlerTag = GetHandlerTag(context, SkillFlags.InterruptableByMovement);
+
+            Action<ActionActivation> handler = act => StopChannelingOnMovement(act, context);
+
+            m_ActionsController.OnBeforeAction += handler;
+
+            RunningHandlers.Add(handlerTag, handler);
+        }
+        
+        private void BlockMovement(ActionActivation obj)
+        {
+            if (obj.Payload.Action.Name != nameof(Move)) return;
+
+            obj.PreventDefault = true;
+        }
+
+        private void StopChannelingOnMovement(ActionActivation obj, SkillActivationContext ctx)
+        {
+            if (obj.Payload.Action.Name != nameof(Move)) return;
+
+            if (obj.PreventDefault) return;
+
+            m_ChannelingController.InterruptChanneling(GetChannelingTag(ctx));
+        }
+
+        private void StopChannelingOnDamage(SkillActivationContext ctx)
+        {
+            m_ChannelingController.InterruptChanneling(GetChannelingTag(ctx));
+        }
+        #endregion
     }
 }
