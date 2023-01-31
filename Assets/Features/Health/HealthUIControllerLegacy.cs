@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Features.Health
 {
-    public class HealthUIController : MonoBehaviour
+    public class HealthUIControllerLegacy : MonoBehaviour
     {
         private HealthController _source;
 

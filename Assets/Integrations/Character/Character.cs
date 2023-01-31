@@ -2,11 +2,13 @@ using System;
 using System.Linq;
 using Features.Actions;
 using Features.Buffs;
+using Features.CharacterModel;
 using Features.Combat;
 using Features.Conditions;
 using Features.Cooldowns;
 using Features.Equipment;
 using Features.Health;
+using Features.Health.UI;
 using Features.Inventory;
 using Features.Movement;
 using Features.OverheadParticles;
@@ -154,6 +156,8 @@ namespace Features.Character
                 var systemsParent = new GameObject("systems").transform;
 
                 systemsParent.parent = root;
+                
+                systemsParent.transform.position = Vector3.zero;
 
                 void AddSystemsComponent<T>(string componentName, ref T holder)
                     where T : MonoBehaviour =>
@@ -222,6 +226,8 @@ namespace Features.Character
                 var managersParent = new GameObject("managers").transform;
 
                 managersParent.parent = root;
+                
+                managersParent.transform.position = Vector3.zero;
 
                 void AddManagerComponent<T>(string componentName, ref T holder)
                     where T : MonoBehaviour => AddComponent(managersParent, componentName, ref holder);
@@ -258,6 +264,16 @@ namespace Features.Character
                 if (Health)
                 {
                     m_HealthController.Initialize(CurrentHealth, MaxHealth);
+
+                    var model = GetComponentInChildren<CharacterModelController>();
+
+                    var cmp = new GameObject("health_display");
+                    
+                    cmp.transform.SetParent(model.HeadLocation.transform, false);
+                
+                    var u = cmp.AddComponent<HealthUIController>();
+                
+                    u.Initialize(m_HealthController);
                 }
 
                 if (Stats && BaseStats)

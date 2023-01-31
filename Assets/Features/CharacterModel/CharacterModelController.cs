@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Features.CharacterModel
 {
@@ -13,5 +14,7 @@ namespace Features.CharacterModel
         public Transform CameraTarget;
 
         public Transform WeaponHitboxSpawn;
+
+        public Transform HeadLocation;
     }
 }

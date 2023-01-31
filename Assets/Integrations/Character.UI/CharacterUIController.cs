@@ -30,7 +30,7 @@ namespace Integrations.Character.UI
 
         private ContextMenuUIController ContextMenuUI;
 
-        private HealthUIController HealthUI;
+        private HealthUIControllerLegacy HealthUI;
 
         private StatusEffectsUIController StatusEffectsUI;
 
@@ -43,7 +43,7 @@ namespace Integrations.Character.UI
             BuffUI = GetComponentInChildren<BuffUIController>();
             StatsUI = GetComponentInChildren<StatsUIController>();
             ContextMenuUI = GetComponentInChildren<ContextMenuUIController>();
-            HealthUI = GetComponentInChildren<HealthUIController>();
+            HealthUI = GetComponentInChildren<HealthUIControllerLegacy>();
             StatusEffectsUI = GetComponentInChildren<StatusEffectsUIController>();
             SkillsUI = GetComponentInChildren<SkillsUIController>();
         }
