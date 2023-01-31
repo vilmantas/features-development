@@ -11,6 +11,8 @@ namespace Features.Actions
 
         public ActionActivationResult DoAction(ActionActivationPayload payload)
         {
+            if (payload == null) return ActionActivationResult.NoResultActivation;
+            
             var activation = ActionActivationHelper.GetActivation(payload);
 
             OnBeforeAction?.Invoke(activation);

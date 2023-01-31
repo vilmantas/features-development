@@ -13,19 +13,15 @@ namespace Managers
         
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Alpha1))
+            for (var i = 1; i < 10; i++)
             {
-                OnSkillActivationRequested?.Invoke(0);
-            }
-            
-            if (Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                OnSkillActivationRequested?.Invoke(1);
-            }
-            
-            if (Input.GetKeyDown(KeyCode.Keypad3) || Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                OnSkillActivationRequested?.Invoke(2);
+                var alpha = Enum.Parse<KeyCode>($"Alpha{i}");
+                var keypad = Enum.Parse<KeyCode>($"Keypad{i}");  
+                
+                if (Input.GetKeyDown(alpha) || Input.GetKeyDown(keypad))
+                {
+                    OnSkillActivationRequested?.Invoke(i - 1);
+                }
             }
 
             if (Input.GetKeyDown(KeyCode.LeftShift))
