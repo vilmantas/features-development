@@ -56,6 +56,8 @@ namespace Features.Character
 
             public bool Skills;
 
+            public bool HealthOverhead;
+
             [Range(1, 100)] public int MaxHealth = 20;
 
             [Range(1, 100)] public int CurrentHealth = 10;
@@ -133,6 +135,8 @@ namespace Features.Character
             private CharacterStatusEffectsManager m_StatusEffectsManager;
 
             private TargetProvider m_TargetProvider;
+            
+            private bool m_HealthInitialized;
 
             private void Awake()
             {
@@ -259,23 +263,38 @@ namespace Features.Character
                 if (Skills) AddManagerComponent("skills", ref m_SkillsManager);
             }
 
+            
+            public void WithHealthUI()
+            {
+                if (!Health) return;
+
+                if (m_HealthInitialized) return;
+
+                m_HealthInitialized = true;
+                
+                var model = GetComponentInChildren<CharacterModelController>();
+
+                var cmp = new GameObject("health_display");
+                    
+                cmp.transform.SetParent(model.HeadLocation.transform, false);
+
+                cmp.transform.localPosition = new Vector3(0, 1.14f, 0);
+                    
+                var u = cmp.AddComponent<HealthUIController>();
+                
+                u.Initialize(m_HealthController);
+            }
+
             private void PrepareCharacter()
             {
                 if (Health)
                 {
                     m_HealthController.Initialize(CurrentHealth, MaxHealth);
 
-                    var model = GetComponentInChildren<CharacterModelController>();
-
-                    var cmp = new GameObject("health_display");
-                    
-                    cmp.transform.SetParent(model.HeadLocation.transform, false);
-
-                    cmp.transform.localPosition = new Vector3(0, 1.14f, 0);
-                    
-                    var u = cmp.AddComponent<HealthUIController>();
-                
-                    u.Initialize(m_HealthController);
+                    if (HealthOverhead)
+                    {
+                        WithHealthUI();
+                    }
                 }
 
                 if (Stats && BaseStats)

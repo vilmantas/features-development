@@ -2509,6 +2509,10 @@ PrefabInstance:
       propertyPath: CurrentHealth
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 1231179446112602930, guid: c38bd70661894434bb40da94ad043f3d, type: 3}
+      propertyPath: HealthOverhead
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1231179446112602943, guid: c38bd70661894434bb40da94ad043f3d, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -2576,6 +2580,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3297395409041271168, guid: 891ce23f1b5d94fa88c51e4d59cce50b, type: 3}
+      propertyPath: HealthOverhead
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3297395409041271170, guid: 891ce23f1b5d94fa88c51e4d59cce50b, type: 3}
       propertyPath: m_RootOrder
       value: 0
