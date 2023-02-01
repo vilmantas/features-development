@@ -40,9 +40,7 @@ namespace DebugScripts.Character
             {
                 yield return new WaitForSeconds(Random.Range(2, 5));
 
-                var o = gameObject;
-                var strikePayload = new ActionActivationPayload(new ActionBase(nameof(Strike)),
-                    o, o);
+                var strikePayload = Strike.MakePayload(gameObject);
 
                 Character.m_ActionsController.DoAction(strikePayload);
             }

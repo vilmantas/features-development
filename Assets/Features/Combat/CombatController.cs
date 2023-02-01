@@ -12,9 +12,13 @@ namespace Features.Combat
 
         public Action<CombatActionPayload> OnBeforeStrike;
 
-        public Action<CombatActionPayload> OnBeforeBlock;
+        public Action<BlockActionPayload> OnBeforeBlock;
         
-        public Action OnStrike;
+        public Action<CombatActionPayload> OnStrike;
+        
+        public Action<Guid> OnStrikeInterrupted;
+
+        public Action<Guid> OnStrikeCancelled;
         
         public Action<bool> OnBlockingStatusChanged;
         
@@ -47,22 +51,24 @@ namespace Features.Combat
             projectile.Initialize(transform.root.gameObject, source, Vector3.zero, target);
         }
 
-        public void Strike()
+        public bool Strike(Guid id)
         {
-            var payload = new CombatActionPayload();
+            var payload = new CombatActionPayload(id);
             
             OnBeforeStrike?.Invoke(payload);
 
-            if (payload.PreventDefault) return;
+            if (payload.PreventDefault) return false;
             
-            OnStrike?.Invoke();
+            OnStrike?.Invoke(payload);
+
+            return true;
         }
 
         public void SetBlocking(bool status)
         {
             if (IsBlocking == status) return;
 
-            var payload = new CombatActionPayload();
+            var payload = new BlockActionPayload();
             
             OnBeforeBlock?.Invoke(payload);
 
@@ -87,6 +93,18 @@ namespace Features.Combat
     }
 
     public class CombatActionPayload
+    {
+        public readonly Guid Id;
+        
+        public bool PreventDefault;
+
+        public CombatActionPayload(Guid id)
+        {
+            Id = id;
+        }
+    }
+
+    public class BlockActionPayload
     {
         public bool PreventDefault;
     }

@@ -22,6 +22,13 @@ namespace Features.Cooldowns
             RemoveExpired();
         }
 
+        public void ReduceCooldown(string activeCooldown, float progress)
+        {
+            var cd = m_ActiveCooldowns.FirstOrDefault(x => x.Name.Equals(activeCooldown));
+
+            cd?.Tick(progress);
+        }
+
         public void AddCooldown(string title, float duration)
         {
             var activeCooldown = new ActiveCooldown(title, duration);

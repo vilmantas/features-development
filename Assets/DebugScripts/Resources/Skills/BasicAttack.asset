@@ -16,6 +16,6 @@ MonoBehaviour:
   ReferenceName: Basic Attack
   DisplayName: Basic Attack
   ChannelingTime: 0
-  Cooldown: 0.3
+  Cooldown: 1
   Target: 0
   Flags: 0

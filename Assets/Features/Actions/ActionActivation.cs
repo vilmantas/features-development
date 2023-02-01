@@ -2,28 +2,28 @@ namespace Features.Actions
 {
     public class ActionActivation
     {
-        private readonly ActionImplementation Action;
+        private readonly ActionImplementation Implementation;
 
         public readonly ActionActivationPayload Payload;
 
         public bool PreventDefault = false;
 
-        public ActionActivation(ActionImplementation action, ActionActivationPayload payload)
+        public ActionActivation(ActionImplementation implementation, ActionActivationPayload payload)
         {
-            Action = action;
+            Implementation = implementation;
             Payload = payload;
         }
 
         public ActionActivationResult Activate()
         {
-            var actionPayload = Action.PayloadFactory?.Invoke(Payload) ?? Payload;
+            var actionPayload = Implementation.PayloadFactory?.Invoke(Payload) ?? Payload;
 
-            if (Action.ActivationWithResultAction != null)
+            if (Implementation.ActivationWithResultAction != null)
             {
-                return Action.ActivationWithResultAction.Invoke(actionPayload);
+                return Implementation.ActivationWithResultAction.Invoke(actionPayload);
             }
             
-            Action.ActivationAction.Invoke(actionPayload);
+            Implementation.ActivationAction.Invoke(actionPayload);
 
             return ActionActivationResult.NoResultActivation;
         }

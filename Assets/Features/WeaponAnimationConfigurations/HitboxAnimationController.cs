@@ -8,16 +8,44 @@ using UnityEngine;
 
 namespace Features.WeaponAnimationConfigurations
 {
+    public class InterruptResult
+    {
+        public readonly IEnumerable<Guid> ActiveAnimationsInterrupted;
+
+        public readonly IEnumerable<Guid> NotStartedAnimationsInterrupted;
+
+        public InterruptResult(IEnumerable<Guid> activeAnimationsInterrupted,
+            IEnumerable<Guid> notStartedAnimationsInterrupted)
+
+        {
+            ActiveAnimationsInterrupted = activeAnimationsInterrupted;
+            NotStartedAnimationsInterrupted = notStartedAnimationsInterrupted;
+        }
+    }
+    
+    public class PlayHitboxAnimationPayload
+    {
+        public readonly Guid AnimationId;
+        
+        public readonly AnimationConfigurationDTO Configuration;
+
+        public PlayHitboxAnimationPayload(Guid animationId, AnimationConfigurationDTO configuration)
+        {
+            AnimationId = animationId;
+            Configuration = configuration;
+        }
+    }
+    
     public class HitboxAnimationController : MonoBehaviour
     {
         private readonly ConcurrentDictionary<Guid, HitboxPlayer> ActiveHitboxes = new();
 
-        private readonly ConcurrentDictionary<Guid, Coroutine> RunningRoutines = new();
+        private readonly ConcurrentDictionary<Guid, (PlayHitboxAnimationPayload, Coroutine, bool)> RunningRoutines = new();
         private Transform m_spawn;
 
         public Action<Collider, List<Collider>> OnAnimationCollision;
 
-        public Action OnHitboxActivated;
+        public Action<Guid> OnHitboxActivated;
 
         public Action OnHitboxFinished;
 
@@ -28,7 +56,7 @@ namespace Features.WeaponAnimationConfigurations
             m_spawn = modelData == null ? transform.root : modelData.WeaponHitboxSpawn;
         }
 
-        public void Interrupt()
+        public InterruptResult Interrupt()
         {
             var players = ActiveHitboxes.Select(keyValuePair => keyValuePair.Value).ToList();
 
@@ -39,25 +67,49 @@ namespace Features.WeaponAnimationConfigurations
                 Destroy(hbp.gameObject);
             }
 
+            var activeInterrupts = new List<Guid>();
+
+            var notStartedInterrupts = new List<Guid>();
+
+            foreach (var tuple in RunningRoutines)
+            {
+                var animationId = tuple.Value.Item1.AnimationId;
+                
+                if (tuple.Value.Item3)
+                {
+                    activeInterrupts.Add(animationId);
+                }
+                else
+                {
+                    notStartedInterrupts.Add(animationId);
+                }
+            }
+
             RunningRoutines.Clear();
+
+            return new InterruptResult(activeInterrupts, notStartedInterrupts);
         }
 
-        public void Play(AnimationConfigurationDTO configurationSo)
+        public void Play(PlayHitboxAnimationPayload payload)
         {
             var id = Guid.NewGuid();
 
-            var routine = StartCoroutine(PlayHitbox(configurationSo, id));
+            var routine = StartCoroutine(PlayHitbox(payload, id));
 
-            RunningRoutines.TryAdd(id, routine);
+            RunningRoutines.TryAdd(id, (payload, routine, false));
         }
 
-        private IEnumerator PlayHitbox(AnimationConfigurationDTO configurationSo, Guid id)
+        private IEnumerator PlayHitbox(PlayHitboxAnimationPayload payload, Guid id)
         {
+            var configurationSo = payload.Configuration;
+            
             yield return new WaitForSeconds(configurationSo.DelayBeforeHitboxSpawn);
 
             if (!RunningRoutines.ContainsKey(id)) yield break;
 
-            OnHitboxActivated?.Invoke();
+            RunningRoutines[id] = (RunningRoutines[id].Item1, RunningRoutines[id].Item2, true);
+            
+            OnHitboxActivated?.Invoke(payload.AnimationId);
 
             var hitbox = Instantiate(configurationSo.HitboxPrefab, m_spawn);
 

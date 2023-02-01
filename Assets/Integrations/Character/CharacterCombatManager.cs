@@ -38,8 +38,6 @@ namespace Features.Character
 
         public Action<DamageTargetActionPayload> OnBeforeDoDamage;
 
-        public Action OnStrikeInterrupted;
-
         private Transform Root;
 
         private void Awake()
@@ -59,7 +57,7 @@ namespace Features.Character
             m_HitboxAnimationController.OnHitboxActivated += OnHitboxActivated;
 
             m_HitboxAnimationController.OnHitboxFinished += OnHitboxFinished;
-
+            
             m_Events = Root.GetComponentInChildren<CharacterEvents>();
 
             m_EquipmentController.OnItemEquipped += OnItemEquipped;
@@ -74,7 +72,7 @@ namespace Features.Character
 
             if (m_StatusEffectsController)
             {
-                m_StatusEffectsController.OnAdded += OnAdded;
+                m_StatusEffectsController.OnAdded += OnStatusEffectAdded;
             }
 
             m_ActionsController = Root.GetComponentInChildren<ActionsController>();
@@ -127,7 +125,6 @@ namespace Features.Character
             m_Character.m_ActionsController.DoPassiveAction(payload);
         }
 
-
         private void OnProjectileCollided(ProjectileCollisionData collisionData)
         {
             if (collisionData.Source is not ItemInstance item) return;
@@ -157,11 +154,20 @@ namespace Features.Character
             m_CombatController.SetAmmo(item.Metadata.RequiredAmmo, ammo);
         }
 
-        private void OnAdded(StatusEffectMetadata obj)
+        private void OnStatusEffectAdded(StatusEffectMetadata obj)
         {
             if (RPGSystemConfigurationController.Disables.All(x => x != obj.InternalName)) return;
             
-            m_HitboxAnimationController.Interrupt();
+            var interrupts = m_HitboxAnimationController.Interrupt();
+
+            var interruptedAnimations = interrupts.ActiveAnimationsInterrupted.ToList();
+            
+            interruptedAnimations.AddRange(interrupts.NotStartedAnimationsInterrupted);
+            
+            foreach (var animationIds in interruptedAnimations)
+            {
+                m_CombatController.OnStrikeInterrupted?.Invoke(animationIds);
+            }
 
             var status = new StatusEffectMetadata(nameof(AttackInitiatedStatusEffect));
 
@@ -190,7 +196,7 @@ namespace Features.Character
             m_StatusEffectsController.RemoveStatusEffect(p);
         }
 
-        private void OnHitboxActivated()
+        private void OnHitboxActivated(Guid _)
         {
             RemoveMovementBlocker();
 
@@ -208,13 +214,13 @@ namespace Features.Character
             m_StatusEffectsController.AddStatusEffect(p);
         }
 
-        private void OnStrike()
+        private void OnStrike(CombatActionPayload payload)
         {
             var configuration = GetAnimationConfiguration();
 
             m_Events.OnStrike?.Invoke(configuration.AnimationName);
             
-            m_HitboxAnimationController.Play(configuration);
+            m_HitboxAnimationController.Play(new PlayHitboxAnimationPayload(payload.Id, configuration));
 
             if (m_StatusEffectsController)
             {
@@ -261,7 +267,7 @@ namespace Features.Character
 
             if (obj.Payload.Action.Name == nameof(Move))
             {
-                m_HitboxAnimationController.Interrupt();
+                var interrupts = m_HitboxAnimationController.Interrupt();
                 
                 RemoveAttackInitiatedEffect();
 
@@ -269,7 +275,10 @@ namespace Features.Character
 
                 RemoveMovementBlocker();
 
-                OnStrikeInterrupted?.Invoke();
+                foreach (var animationIds in interrupts.NotStartedAnimationsInterrupted)
+                {
+                    m_CombatController.OnStrikeCancelled?.Invoke(animationIds);
+                }
                 
                 return;
             }
