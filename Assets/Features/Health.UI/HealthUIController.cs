@@ -30,6 +30,8 @@ namespace Features.Health.UI
 
         private void OnChange(HealthChangeEventArgs obj)
         {
+            m_HealthDisplay.UpdateText(obj.After.ToString(), obj.Source.MaxHealth.ToString());
+
             StartCoroutine(BlinkHealth());
         }
 

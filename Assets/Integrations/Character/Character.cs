@@ -270,7 +270,9 @@ namespace Features.Character
                     var cmp = new GameObject("health_display");
                     
                     cmp.transform.SetParent(model.HeadLocation.transform, false);
-                
+
+                    cmp.transform.localPosition = new Vector3(0, 1.14f, 0);
+                    
                     var u = cmp.AddComponent<HealthUIController>();
                 
                     u.Initialize(m_HealthController);

@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1581732553
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1581732554}
+  m_Layer: 0
+  m_Name: head_location
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1581732554
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1581732553}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.07, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7899908667279024318}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7899908668019531744
 GameObject:
   m_ObjectHideFlags: 0
@@ -34,7 +65,7 @@ Transform:
   m_Children:
   - {fileID: 7899908667279024318}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7899908668019531753
 MonoBehaviour:
@@ -51,21 +82,8 @@ MonoBehaviour:
   GroundLayer:
     serializedVersion: 2
     m_Bits: 8
-  GroundAndPlayer:
-    serializedVersion: 2
-    m_Bits: 0
   PlayerInstance: {fileID: 6728580033162269917}
-  InventoryUI: {fileID: 0}
-  EquipmentUI: {fileID: 0}
-  BuffUI: {fileID: 0}
-  StatsUI: {fileID: 0}
-  ContextMenuUI: {fileID: 0}
-  HealthUI: {fileID: 0}
-  StatusEffectsUI: {fileID: 0}
-  SkillsUI: {fileID: 0}
   RootGameObject: {fileID: 0}
-  DisableInput: 0
-  DisableMovement: 0
 --- !u!114 &6728580033162269917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85,20 +103,20 @@ MonoBehaviour:
   Equipment: 1
   Stats: 1
   Health: 1
-  Combat: 0
-  Conditions: 0
-  Overheads: 0
-  Skills: 0
+  Combat: 1
+  Conditions: 1
+  Overheads: 1
+  Skills: 1
   MaxHealth: 20
   CurrentHealth: 10
   InventorySize: 5
   EquipmentSlots:
   - Instance: {fileID: 0}
-    InstanceParent: {fileID: 0}
+    InstanceParent: {fileID: 7970170003078867293}
     slotType: Main
-    AddHitboxTrigger: 0
+    AddHitboxTrigger: 1
   - Instance: {fileID: 0}
-    InstanceParent: {fileID: 0}
+    InstanceParent: {fileID: 5954489743112986753}
     slotType: Secondary
     AddHitboxTrigger: 0
   - Instance: {fileID: 0}
@@ -109,13 +127,17 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 65486bab36bfb4e2dab7d80ae586f820, type: 2}
   - {fileID: 11400000, guid: 2637cc207eea0a0468526306b9ae6b51, type: 2}
   - {fileID: 11400000, guid: 6b2185d2db0634cffb4155889763b41e, type: 2}
+  - {fileID: 11400000, guid: 9c60467f0a2e540c7bd477fb14c0a36e, type: 2}
   StartingEquipment:
-  - Item: {fileID: 0}
+  - Item: {fileID: 11400000, guid: 685a02d860b0e4d15855ae4782cd05b8, type: 2}
     Slot: 
   StartingBuffs:
   - {fileID: 11400000, guid: f8f868495d5d11145b3191830b66b886, type: 2}
   BaseStats: {fileID: 11400000, guid: 90fed523627e87f45903bc0107b13790, type: 2}
-  StartingSkills: []
+  StartingSkills:
+  - {fileID: 11400000, guid: 70e5457c3a5ad4baab4d67c9ba63e23c, type: 2}
+  - {fileID: 11400000, guid: 2ad72aeb919dc4fc39c9154a6cc7afe1, type: 2}
+  - {fileID: 11400000, guid: 30d516b13b2b14eb381dd25e5a2e7882, type: 2}
   m_BuffController: {fileID: 0}
   m_EquipmentController: {fileID: 0}
   m_InventoryController: {fileID: 0}
@@ -132,6 +154,7 @@ MonoBehaviour:
   m_CooldownsController: {fileID: 0}
   m_ChannelingController: {fileID: 0}
   m_HealthController: {fileID: 0}
+  m_HitboxAnimationController: {fileID: 0}
 --- !u!114 &1219492263853177834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,6 +192,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 7899908668019531756}
     m_Modifications:
+    - target: {fileID: 3289586790152300690, guid: fa94529daeca0d64c919773635f671f2, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 5174351761793039268, guid: fa94529daeca0d64c919773635f671f2, type: 3}
       propertyPath: m_Name
       value: Model
@@ -218,16 +245,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 5174351761793039269, guid: fa94529daeca0d64c919773635f671f2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1581732554}
   m_SourcePrefab: {fileID: 100100000, guid: fa94529daeca0d64c919773635f671f2, type: 3}
 --- !u!4 &1680511436443296325 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4413106176486160734, guid: fa94529daeca0d64c919773635f671f2, type: 3}
   m_PrefabInstance: {fileID: 3057065160446647067}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &2045598806703229515 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3895488153718837584, guid: fa94529daeca0d64c919773635f671f2, type: 3}
+  m_PrefabInstance: {fileID: 3057065160446647067}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4723547755522725411 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7773645308652916024, guid: fa94529daeca0d64c919773635f671f2, type: 3}
+  m_PrefabInstance: {fileID: 3057065160446647067}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5954489743112986753 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8705027412520467354, guid: fa94529daeca0d64c919773635f671f2, type: 3}
   m_PrefabInstance: {fileID: 3057065160446647067}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &6131297176000407762 stripped
@@ -261,6 +301,13 @@ MonoBehaviour:
   Avatar: {fileID: 6131297176000407762}
   CameraFollow: {fileID: 1680511436443296325}
   CameraTarget: {fileID: 9209377794206359135}
+  WeaponHitboxSpawn: {fileID: 2045598806703229515}
+  HeadLocation: {fileID: 1581732554}
+--- !u!4 &7970170003078867293 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4969541813721920070, guid: fa94529daeca0d64c919773635f671f2, type: 3}
+  m_PrefabInstance: {fileID: 3057065160446647067}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9209377794206359135 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6170680117425030468, guid: fa94529daeca0d64c919773635f671f2, type: 3}
