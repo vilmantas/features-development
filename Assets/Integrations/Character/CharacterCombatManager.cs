@@ -18,8 +18,6 @@ namespace Features.Character
 {
     public class CharacterCombatManager : MonoBehaviour
     {
-        private const string DEFAULT_ATTACK_ANIMATION = "Strike_1";
-
         private readonly Dictionary<string, Delegate> RunningHandlers = new();
 
         private readonly ConcurrentDictionary<Guid, Coroutine> RunningRoutines = new();
@@ -96,7 +94,7 @@ namespace Features.Character
 
             OnBeforeDoDamage?.Invoke(damagePayload);
 
-            m_Character.m_ActionsController.DoAction(damagePayload);
+            m_Character.m_ActionsController.DoPassiveAction(damagePayload);
         }
 
         private void OnItemUnequipped(EquipResult obj)
@@ -228,11 +226,6 @@ namespace Features.Character
             StartMovementHandler();
         }
 
-        private void StartInterruptionChecker()
-        {
-            
-        }
-
         private void StartAnimationCompletionWaiter(AnimationConfigurationDTO configuration)
         {
             var id = Guid.NewGuid();
@@ -265,11 +258,6 @@ namespace Features.Character
         private void MovementChecker(ActionActivation obj)
         {
             if (obj.Payload.IsPassive) return;
-
-            if (transform.root.gameObject.name == "Player")
-            {
-                var z = 1;
-            }
 
             if (obj.Payload.Action.Name == nameof(Move))
             {
