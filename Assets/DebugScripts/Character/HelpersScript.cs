@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using Features.Actions;
 using Features.Buffs;
 using Features.Conditions;
@@ -7,7 +7,9 @@ using Integrations.Actions;
 using Integrations.Items;
 using Integrations.Skills;
 using Integrations.StatusEffects;
+using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class HelpersScript : MonoBehaviour
 {
@@ -22,7 +24,9 @@ public class HelpersScript : MonoBehaviour
     public Item_SO Item;
 
     public Item_SO Ammo;
-    
+
+    public TextMeshProUGUI DEBUG_TEXT;
+
     public void GiveItem()
     {
         var controller = Target.GetComponentInChildren<ActionsController>();
@@ -138,7 +142,7 @@ public class HelpersScript : MonoBehaviour
     {
         var metadata =
             new SkillMetadata(nameof(BasicAttackSkill), nameof(BasicAttackSkill),
-                nameof(BasicAttackSkill), 1f, 1f, SkillTarget.Self, SkillFlags.None);
+                nameof(BasicAttackSkill), 1f, 1f, SkillTarget.Self, SkillFlags.None, Array.Empty<ExtraData>());
             
         var controller = Target.GetComponentInChildren<SkillsController>();
         

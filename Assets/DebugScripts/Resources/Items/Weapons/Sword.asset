@@ -10,27 +10,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d568eb4627e704b2b8571d09f992c2ca, type: 3}
-  m_Name: Simple Shield
+  m_Name: Sword
   m_EditorClassIdentifier: 
-  Name: Simple Shield
-  MainSlot: Secondary
+  Name: Simple Sword
+  MainSlot: Main
   SecondarySlot: 
   Count: 1
   MaxStack: 1
   Sprite: {fileID: 0}
-  ModelPrefab: {fileID: 8151689441138500505, guid: 89df7ba4155ab47008bfefc82aa767c9, type: 3}
+  ModelPrefab: {fileID: 174314346489856887, guid: 1115421db183e43d18cfe80cbd16204d, type: 3}
   EquipStats:
-  - Name: Defence
-    Value: 3
-  UsageStats: []
+  - Name: Strength
+    Value: 1
+  - Name: Constitution
+    Value: 1
+  UsageStats:
+  - Name: Damage
+    Value: 2
   Buffs: []
   Action: {fileID: 11400000, guid: 1b0b911a9a2e34805bdb021ac53244f2, type: 2}
   InventoryActions:
-  - {fileID: 11400000, guid: 1915b57104c564792b5376bd13747a28, type: 2}
+  - {fileID: 11400000, guid: 9887226a8d2271648a035def669f9fde, type: 2}
   EquipmentActions: []
-  AttackAnimation: 
+  AttackAnimation: Strike_2
   RequiredAmmoType: 
   ProvidedAmmo: {fileID: 0}
   Scripts: []
-  Skills:
-  - {fileID: 11400000, guid: 70e5457c3a5ad4baab4d67c9ba63e23c, type: 2}
+  Skills: []
+  WeaponType: Sword

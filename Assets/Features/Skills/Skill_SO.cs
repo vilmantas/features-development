@@ -13,8 +13,19 @@ namespace Features.Skills
         public float Cooldown;
         public SkillTarget Target;
         public SkillFlags Flags;
+        public ExtraData[] Extras = Array.Empty<ExtraData>();
 
         public SkillMetadata GetMetadata => SkillMetadataRegistry.Implementations[ReferenceName];
+    }
+
+    [Serializable]
+    public class ExtraData
+    {
+        public string Title;
+
+        public float NumericValue;
+
+        public string StringValue;
     }
 
     public enum SkillTarget
