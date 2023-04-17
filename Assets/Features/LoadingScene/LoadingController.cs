@@ -11,13 +11,13 @@ namespace Managers
     {
         public LoadingItemController ItemPrefab;
 
-        public Camera SceneCamera;
+        private Camera SceneCamera;
 
         public Transform ItemContainer;
 
         public List<(string scene, AsyncOperation op)> Operations = new();
 
-        public string SetActiveScene = "";
+        [HideInInspector] public string SetActiveScene = "";
 
         private void Awake()
         {
