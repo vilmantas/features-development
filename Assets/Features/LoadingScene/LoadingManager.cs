@@ -25,11 +25,16 @@ namespace Features.LoadingScene
 
         private static IEnumerator ShowLoadingScreen(IEnumerable<string> scenes, string activeScene, LoadSceneMode mode)
         {
-            var op = SceneManager.LoadSceneAsync("Loading", mode);
+            var scene = SceneManager.GetSceneByName("Loading");
 
-            while (!op.isDone)
+            if (!scene.isLoaded)
             {
-                yield return null;
+                var op = SceneManager.LoadSceneAsync("Loading", mode);
+
+                while (!op.isDone)
+                {
+                    yield return null;
+                }    
             }
 
             PrepareScene(scenes, activeScene);

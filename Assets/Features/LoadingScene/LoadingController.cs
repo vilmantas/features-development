@@ -11,7 +11,7 @@ namespace Managers
     {
         public LoadingItemController ItemPrefab;
 
-        private Camera SceneCamera;
+        public Camera SceneCamera;
 
         public Transform ItemContainer;
 
@@ -21,7 +21,7 @@ namespace Managers
 
         private void Awake()
         {
-            if (Camera.main != null)
+            if (Camera.allCamerasCount > 1)
             {
                 SceneCamera.gameObject.SetActive(false);
             }
